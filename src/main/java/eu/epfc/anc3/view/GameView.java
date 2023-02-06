@@ -1,6 +1,9 @@
 package eu.epfc.anc3.view;
 
+import eu.epfc.anc3.model.GameFacade;
 import eu.epfc.anc3.vm.GameViewModel;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -11,10 +14,16 @@ public class GameView extends BorderPane {
     static final int PADDING = 20;
     private static final int SCENE_MIN_WIDTH = 600;
     private static final int SCENE_MIN_HEIGHT = 480;
-    //static final int GRID_WIDTH = GameFacade.gridWidth();
+    static final int FARM_WIDTH = GameFacade.farmWidth();
+    static final int FARM_HEIGHT = GameFacade.farmHeight();
+
+
+
+    private final DoubleProperty farmWidthProperty = new SimpleDoubleProperty(300);
+    private final DoubleProperty farmHeightProperty = new SimpleDoubleProperty(200);
 
     private HBox countView;
-//    private GridPane farmView;
+    private GridPane farmView;
     private HBox menuView;
     public GameView(Stage primaryStage) {
         start(primaryStage);
@@ -34,20 +43,25 @@ public class GameView extends BorderPane {
 
     private void configMainComponents(Stage stage) {
         configCount();
-//        configFarm();
+        configFarm();
         configMenu();
     }
 
     private void configMenu() {
-        menuView = new MenuView(gameViewModel.getMenuViewModes());
+        menuView = new MenuView(gameViewModel.getMenuViewModel());
         setBottom(menuView);
     }
 
     private void configCount() {
-        countView = new CountView(gameViewModel.getCountViewMode());
+        countView = new CountView(gameViewModel.getCountViewModel());
         setTop(countView);
 
 
+    }
+
+    private void configFarm(){
+        farmView = new FarmView(gameViewModel.getFarmViewModel(),farmWidthProperty,farmHeightProperty);
+        setCenter(farmView);
     }
 
 

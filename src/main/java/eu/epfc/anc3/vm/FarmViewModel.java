@@ -9,4 +9,8 @@ public class FarmViewModel {
         this.game = game;
     }
 
+    public ParcelViewModel getParcelViewModel(int line, int col){
+        return new ParcelViewModel(line,col,game);
+    }
+
 }

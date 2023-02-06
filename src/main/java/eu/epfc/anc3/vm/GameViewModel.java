@@ -1,8 +1,6 @@
 package eu.epfc.anc3.vm;
 
 import eu.epfc.anc3.model.GameFacade;
-import eu.epfc.anc3.view.GameView;
-import eu.epfc.anc3.view.MenuView;
 
 public class GameViewModel {
 
@@ -17,13 +15,17 @@ public class GameViewModel {
         menuViewModel = new MenuViewModel(game);
     }
 
-    public MenuViewModel getMenuViewModes() {
+    public MenuViewModel getMenuViewModel() {
         return menuViewModel;
     }
 
-    public CountViewModel getCountViewMode() {
+    public CountViewModel getCountViewModel() {
         return countViewModel;
 
+    }
+
+    public FarmViewModel getFarmViewModel(){
+        return farmViewModel;
     }
 
 
