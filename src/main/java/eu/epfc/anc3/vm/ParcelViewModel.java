@@ -15,6 +15,7 @@ public class ParcelViewModel {
         this.col = col;
         this.game = game;
     }
+
     public ReadOnlyObjectProperty<ParcelValue> valueProperty(){
         return game.valueProperty(line,col);
     }

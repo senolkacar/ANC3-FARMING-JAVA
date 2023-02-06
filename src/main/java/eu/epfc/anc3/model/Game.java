@@ -5,6 +5,6 @@ import javafx.beans.property.ReadOnlyObjectProperty;
 public class Game {
     private Farm farm;
     ReadOnlyObjectProperty<ParcelValue> valueProperty(int line, int col) {
-        return farm.valueProperty(line, col);
+        return farm.valueProperty(line, col);// farm == null ?
     }
 }
