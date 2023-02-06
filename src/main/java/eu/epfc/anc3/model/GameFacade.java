@@ -14,7 +14,7 @@ public class GameFacade {
         return Farm.FARM_WIDTH;
     }
 
-    public static int farmHeight(){
+    public static int farmHeight(){//
         return Farm.FARM_HEIGHT;
     }
 

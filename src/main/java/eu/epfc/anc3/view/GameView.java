@@ -15,12 +15,12 @@ public class GameView extends BorderPane {
     private static final int SCENE_MIN_WIDTH = 600;
     private static final int SCENE_MIN_HEIGHT = 480;
     static final int FARM_WIDTH = GameFacade.farmWidth();
-    static final int FARM_HEIGHT = GameFacade.farmHeight();
+    static final int FARM_HEIGHT = GameFacade.farmHeight();//
 
 
 
-    private final DoubleProperty farmWidthProperty = new SimpleDoubleProperty(300);
-    private final DoubleProperty farmHeightProperty = new SimpleDoubleProperty(200);
+    private final DoubleProperty farmWidthProperty = new SimpleDoubleProperty(250);
+    private final DoubleProperty farmHeightProperty = new SimpleDoubleProperty(150);
 
     private HBox countView;
     private GridPane farmView;
@@ -32,7 +32,7 @@ public class GameView extends BorderPane {
     public void start(Stage stage) {
         configMainComponents(stage);
 
-        Scene scene = new Scene(this, 640, 480);
+        Scene scene = new Scene(this, 600, 480);
         scene.getRoot().setStyle("-fx-font-family: 'serif'");
         stage.setScene(scene);
         stage.show();
@@ -61,6 +61,7 @@ public class GameView extends BorderPane {
 
     private void configFarm(){
         farmView = new FarmView(gameViewModel.getFarmViewModel(),farmWidthProperty,farmHeightProperty);
+        //farmView = new FarmView(gameViewModel.getFarmViewModel(),farmWidthProperty);
         setCenter(farmView);
     }
 

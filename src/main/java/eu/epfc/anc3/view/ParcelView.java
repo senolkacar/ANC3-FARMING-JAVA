@@ -19,7 +19,9 @@ public class ParcelView extends StackPane {
     public ParcelView(ParcelViewModel parcelViewModel, DoubleBinding parcelWidthProperty){
         imageView.setPreserveRatio(true);
         imageView.fitWidthProperty().bind(parcelWidthProperty);
+
         getChildren().add(imageView);
+
         ReadOnlyObjectProperty<ParcelValue> valueProp = parcelViewModel.valueProperty();
         valueProp.addListener((obs,old,newVal)->setFarmImage(imageView,newVal));
     }
