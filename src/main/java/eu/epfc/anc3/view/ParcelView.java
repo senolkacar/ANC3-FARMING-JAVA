@@ -4,6 +4,7 @@ import eu.epfc.anc3.model.ParcelValue;
 import eu.epfc.anc3.vm.ParcelViewModel;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -14,12 +15,16 @@ public class ParcelView extends StackPane {
     private static final Image farmerImage = new Image("farmer.png");
     private static final Image grassImage = new Image("grass.png");
 
-    private final ImageView imageView = new ImageView();
+    private final ImageView imageView = new ImageView(dirtImage);
+
 
     public ParcelView(DoubleBinding parcelWidthProperty){//only for test
-        imageView.setPreserveRatio(true);
-        imageView.fitWidthProperty().bind(parcelWidthProperty);
-        imageView.setImage(dirtImage);
+        setPadding(Insets.EMPTY);
+        //imageView.setPreserveRatio(true);
+        //imageView.fitWidthProperty().bind(parcelWidthProperty);
+        imageView.fitHeightProperty().bind(heightProperty());
+        imageView.fitWidthProperty().bind(widthProperty());
+        //imageView.setImage(dirtImage);
         getChildren().add(imageView);
 
     }

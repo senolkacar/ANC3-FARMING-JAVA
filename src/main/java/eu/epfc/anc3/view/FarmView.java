@@ -15,8 +15,15 @@ import static eu.epfc.anc3.view.GameView.PADDING;
 public class FarmView extends GridPane {
 
     public FarmView(FarmViewModel farmViewModel, DoubleProperty farmWidthProperty, DoubleProperty farmHeightProperty) {
+        //setPadding(new Insets(20,20,20,20));
+        setHgap(0);
+        setVgap(0);
         setGridLinesVisible(true);
+        //setPadding(Insets.EMPTY);
+
+
         setPadding(new Insets(PADDING));
+
 
         DoubleBinding parcelWidthProperty = farmWidthProperty.subtract(PADDING * 2).divide(FARM_WIDTH);
 
@@ -36,7 +43,8 @@ public class FarmView extends GridPane {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
                 //ParcelView parcelView = new ParcelView(farmViewModel.getParcelViewModel(i, j), parcelWidthProperty);
-                ParcelView parcelView = new ParcelView( parcelWidthProperty);
+                ParcelView parcelView = new ParcelView( parcelWidthProperty);//for test
+                parcelView.setPadding(Insets.EMPTY);
                 add(parcelView, j, i);// lignes/colonnes inversées dans gridpane
             }
         }
