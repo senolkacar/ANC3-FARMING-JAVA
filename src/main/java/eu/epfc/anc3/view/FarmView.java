@@ -14,13 +14,13 @@ import static eu.epfc.anc3.view.GameView.PADDING;
 
 public class FarmView extends GridPane {
 
-    public FarmView(FarmViewModel farmViewModel, DoubleProperty farmWidthProperty,DoubleProperty farmHeightProperty){
+    public FarmView(FarmViewModel farmViewModel, DoubleProperty farmWidthProperty, DoubleProperty farmHeightProperty) {
         setGridLinesVisible(true);
         setPadding(new Insets(PADDING));
 
-//        DoubleBinding parcelWidthProperty = farmWidthProperty.subtract(PADDING * 2).divide(FARM_WIDTH);
+        DoubleBinding parcelWidthProperty = farmWidthProperty.subtract(PADDING * 2).divide(FARM_WIDTH);
 
-        for (int i = 0; i <25; ++i) {//carré
+        for (int i = 0; i < 25; ++i) {//carré
             ColumnConstraints columnConstraints = new ColumnConstraints();
             columnConstraints.setPercentWidth(100.0 / FARM_WIDTH);
             getColumnConstraints().add(columnConstraints);
@@ -31,17 +31,17 @@ public class FarmView extends GridPane {
             getRowConstraints().add(rowConstraints);
 
 
-            }
-
         }
 
-//
-//        for(int i=0;i<FARM_WIDTH;++i){//FARM_HEIGHT
-//            for(int j=0;j<FARM_WIDTH;++j){
-//                ParcelView parcelView = new ParcelView(farmViewModel.getParcelViewModel(i,j),parcelWidthProperty);
-//                add(parcelView,j,i);
-//            }
-//        }
+        for (int i = 0; i < FARM_HEIGHT; ++i) {
+            for (int j = 0; j < FARM_WIDTH; ++j) {
+                //ParcelView parcelView = new ParcelView(farmViewModel.getParcelViewModel(i, j), parcelWidthProperty);
+                ParcelView parcelView = new ParcelView( parcelWidthProperty);
+                add(parcelView, j, i);// lignes/colonnes inversées dans gridpane
+            }
+        }
+
 
     }
+}
 
