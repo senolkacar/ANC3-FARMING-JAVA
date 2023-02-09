@@ -17,14 +17,13 @@ public class GameView extends BorderPane {
     static final int FARM_WIDTH = GameFacade.farmWidth();
     static final int FARM_HEIGHT = GameFacade.farmHeight();//
 
-
-
-    private final DoubleProperty farmWidthProperty = new SimpleDoubleProperty(250);
-    private final DoubleProperty farmHeightProperty = new SimpleDoubleProperty(150);
+    private final DoubleProperty farmWidthProperty = new SimpleDoubleProperty(500);
+    private final DoubleProperty farmHeightProperty = new SimpleDoubleProperty(300);
 
     private HBox countView;
     private GridPane farmView;
     private HBox menuView;
+
     public GameView(Stage primaryStage) {
         start(primaryStage);
     }
