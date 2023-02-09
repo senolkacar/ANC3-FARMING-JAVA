@@ -41,8 +41,8 @@ public class FarmView extends GridPane {
 
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
-                ParcelView parcelView = new ParcelView(farmViewModel.getParcelViewModel(i, j));
-                //ParcelView parcelView = new ParcelView();//for test
+                //ParcelView parcelView = new ParcelView(farmViewModel.getParcelViewModel(i, j));
+                ParcelView parcelView = new ParcelView();//for test
                 parcelView.setPadding(Insets.EMPTY);
                 add(parcelView, j, i);// lignes/colonnes inversées dans gridpane
             }

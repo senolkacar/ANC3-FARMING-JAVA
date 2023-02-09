@@ -48,7 +48,7 @@ public class ParcelView extends StackPane {
 
 //        ReadOnlyObjectProperty<ParcelValue> valueProp = parcelViewModel.valueProperty();
 //        valueProp.addListener((obs,old,newVal)->setFarmImage(imageView,newVal));
-        this.setOnMouseClicked(e -> parcelViewModel.teleportFarmer());
+ //   this.setOnMouseClicked(e -> parcelViewModel.teleportFarmer());
     }
 
     private void setFarmImage(ImageView farmerImageView,ParcelValue parcelValue){
