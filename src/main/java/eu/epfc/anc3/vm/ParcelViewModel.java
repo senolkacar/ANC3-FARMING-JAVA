@@ -16,7 +16,13 @@ public class ParcelViewModel {
         this.game = game;
     }
 
+    public void teleportFarmer() {
+        game.teleportFarmer(line,col);
+    }
+
     public ReadOnlyObjectProperty<ParcelValue> valueProperty(){
         return game.valueProperty(line,col);
     }
+
+
 }

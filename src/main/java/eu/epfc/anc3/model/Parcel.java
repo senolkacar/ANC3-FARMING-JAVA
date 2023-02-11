@@ -13,6 +13,12 @@ public class Parcel {
         return value.getValue();
     }
 
+    boolean setValue(ParcelValue value) {
+        //if farmer doesn't exist return false
+        this.value.setValue(value);
+        return true;
+    }
+
     ReadOnlyObjectProperty<ParcelValue> valueProperty() {
         return value;
     }
