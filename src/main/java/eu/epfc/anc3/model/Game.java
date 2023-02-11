@@ -9,8 +9,9 @@ public class Game {
     private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);
 
     void start() {
-        farm = new Farm();
         gameMode.set(Mode.START);
+        farm = new Farm();
+        System.err.println("start " + gameModeProperty());//
     }
 
     private Mode status() {
@@ -37,6 +38,10 @@ public class Game {
         return gameMode;
     }
 
+    public void stop() {
+        gameMode.set(Mode.STOP);
+        System.err.println("stop " + gameMode);
+    }
 
     public void newGame() {
         gameMode.set(Mode.START);

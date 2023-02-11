@@ -1,6 +1,7 @@
 package eu.epfc.anc3.view;
 
 import eu.epfc.anc3.model.GameFacade;
+import eu.epfc.anc3.model.Mode;
 import eu.epfc.anc3.vm.GameViewModel;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -16,6 +17,7 @@ public class GameView extends BorderPane {
     private static final int SCENE_MIN_HEIGHT = 480;
     static final int FARM_WIDTH = GameFacade.farmWidth();
     static final int FARM_HEIGHT = GameFacade.farmHeight();//
+    static boolean MOVEMENTENABLED = false;
 
     private final DoubleProperty farmWidthProperty = new SimpleDoubleProperty(500);
     private final DoubleProperty farmHeightProperty = new SimpleDoubleProperty(300);
@@ -38,8 +40,8 @@ public class GameView extends BorderPane {
         stage.setTitle("Projet ANC3 2223 a02");
         stage.setMinHeight(stage.getHeight());
         stage.setMinWidth(stage.getWidth());
-
-        scene.setOnKeyPressed(e -> farmView.onKeyPressed(e.getCode().getChar())); // to pass event to viewModel
+        scene.setOnKeyPressed(e -> farmView.onKeyPressed(e.getCode().getChar()));
+        System.err.println(gameViewModel.gameModeProperty().get());
     }
 
     private void configMainComponents(Stage stage) {
@@ -54,7 +56,7 @@ public class GameView extends BorderPane {
     }
 
     private void configFarm(){
-        farmView = new FarmView(gameViewModel.getFarmViewModel(),farmWidthProperty,farmHeightProperty);
+        farmView = new FarmView(gameViewModel.getFarmViewModel());
         //farmView = new FarmView(gameViewModel.getFarmViewModel(),farmWidthProperty);
         setCenter(farmView);
     }
@@ -63,4 +65,6 @@ public class GameView extends BorderPane {
         menuView = new MenuView(gameViewModel.getMenuViewModel());
         setBottom(menuView);
     }
+
+
 }

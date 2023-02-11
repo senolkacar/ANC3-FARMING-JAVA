@@ -12,7 +12,7 @@ public class GameFacade {
     private final BooleanProperty isStarted = new SimpleBooleanProperty(false);
 
     public GameFacade(){
-        isStarted.bind(gameStatusProperty().isEqualTo(Mode.START));
+        isStarted.bind(gameModeProperty().isEqualTo(Mode.START));
 
     }
 
@@ -28,6 +28,10 @@ public class GameFacade {
         game.start();
     }
 
+    public void stop() {
+        game.stop();
+    }
+
     public void newGame() {
         game.newGame();
     }
@@ -39,12 +43,13 @@ public class GameFacade {
     public ReadOnlyObjectProperty<ParcelValue> valueProperty(int line, int col){
         return game.valueProperty(line,col);
     }
-    public ReadOnlyObjectProperty<Mode> gameStatusProperty() {
+
+    public ReadOnlyObjectProperty<Mode> gameModeProperty() {
         return game.gameModeProperty();
     }
 
-    private Mode status() {
-        return gameStatusProperty().get();
+    private Mode mode() {
+        return gameModeProperty().get();
     }
 
     public ReadOnlyBooleanProperty isStartedProperty() {

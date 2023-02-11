@@ -11,15 +11,19 @@ public class MenuViewModel {
     }
 
     private void configLogicStatus() {
-        game.gameStatusProperty().addListener((obs,old,newval) -> refreshStatus(newval));
+        game.gameModeProperty().addListener((obs,old,newval) -> refreshMode(newval));
     }
 
-    private void refreshStatus(Mode status) {
+    private void refreshMode(Mode mode) {
 
     }
 
     public void start() {
         game.start();
+    }
+
+    public void stop(){
+        game.stop();
     }
 
     public void newGame() {
