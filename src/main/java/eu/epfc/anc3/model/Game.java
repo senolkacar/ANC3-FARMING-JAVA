@@ -28,6 +28,10 @@ public class Game {
         return actionStatus;
     }
 
+    ReadOnlyObjectProperty<Type> valueProperty(int line, int col) {
+        return farm.valueProperty(line, col);
+    }
+
 
 
 }

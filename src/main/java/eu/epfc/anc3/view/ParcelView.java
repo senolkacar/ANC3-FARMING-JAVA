@@ -1,35 +1,30 @@
     package eu.epfc.anc3.view;
 
-    import eu.epfc.anc3.model.Position;
+    import eu.epfc.anc3.model.*;
     import eu.epfc.anc3.vm.FarmerViewModel;
     import eu.epfc.anc3.vm.ParcelViewModel;
     import javafx.beans.binding.Bindings;
     import javafx.beans.binding.DoubleBinding;
-    import javafx.beans.property.ObjectProperty;
-    import javafx.event.EventHandler;
     import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
     import javafx.scene.input.KeyCode;
-    import javafx.scene.input.KeyEvent;
     import javafx.scene.layout.StackPane;
-
     import static eu.epfc.anc3.view.GameView.FARM_HEIGHT;
     import static eu.epfc.anc3.view.GameView.FARM_WIDTH;
 
     public class ParcelView extends StackPane {
-        private static final Image dirtImage = new Image("dirt.png");
+        private Elements elements;
         private static final Image farmerImage = new Image("farmer.png");
-        private final ImageView imageView = new ImageView(dirtImage);
         private final ImageView farmerView = new ImageView(farmerImage);
         public ParcelView(ParcelViewModel parcelViewModel,FarmerViewModel farmerViewModel,DoubleBinding parcelWidthProperty) {
             this.requestFocus();
+            elements = new Dirt();
             farmerView.xProperty().bind(Bindings.multiply(farmerViewModel.getPosition().xProperty(), widthProperty()));
             farmerView.yProperty().bind(Bindings.multiply(farmerViewModel.getPosition().yProperty(), heightProperty()));
-            StackPane pane = new StackPane(imageView, farmerView);
+            StackPane pane = new StackPane(elements, farmerView);
             getChildren().add(pane);
-            imageView.fitWidthProperty().bind(pane.widthProperty());
-            imageView.fitHeightProperty().bind(pane.heightProperty());
-
+            elements.fitWidthProperty().bind(pane.widthProperty());
+            elements.fitHeightProperty().bind(pane.heightProperty());
 
 
             setOnMouseClicked(event -> {
@@ -61,7 +56,6 @@
                 farmerViewModel.setPosition((new Position(x, y)));
                 requestFocus();
             });
-
             farmerView.visibleProperty().bind(Bindings.createBooleanBinding(() ->
                             (parcelViewModel.getPosition().getX()==(farmerViewModel.getPosition().getX()))&&(parcelViewModel.getPosition().getY()==(farmerViewModel.getPosition().getY())),
                     parcelViewModel.positionProperty(), farmerViewModel.positionProperty()));

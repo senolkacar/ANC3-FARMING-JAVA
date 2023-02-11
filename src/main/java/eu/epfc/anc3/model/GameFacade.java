@@ -51,5 +51,9 @@ public class GameFacade {
         return isStopped;
     }
 
+    public ReadOnlyObjectProperty<Type> valueProperty(int line, int col) {
+        return game.valueProperty(line, col);
+    }
+
 
 }
