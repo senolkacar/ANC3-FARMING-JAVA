@@ -1,5 +1,6 @@
 package eu.epfc.anc3.view;
 
+import eu.epfc.anc3.model.Mode;
 import eu.epfc.anc3.vm.FarmViewModel;
 import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Insets;
@@ -19,12 +20,14 @@ import static eu.epfc.anc3.view.GameView.PADDING;
 public class FarmView extends GridPane {
     private final Map<Integer, Map<Integer, ParcelView>> parcels; // to put in the model
     private int[] farmerCoordinates; // to put in the model
+    FarmViewModel farmViewModel;
 
-    public FarmView(FarmViewModel farmViewModel, DoubleProperty farmWidthProperty, DoubleProperty farmHeightProperty) {
+    public FarmView(FarmViewModel farmViewModel) {// FarmView(FarmViewModel farmViewModel, DoubleProperty farmWidthProperty, DoubleProperty farmHeightProperty)
 //        setHgap(0);
 //        setVgap(0);
 //        setGridLinesVisible(true);
         setPadding(new Insets(PADDING));
+        this.farmViewModel = farmViewModel;
 
         for (int i = 0; i < 25; ++i) {
             ColumnConstraints columnConstraints = new ColumnConstraints();
@@ -49,7 +52,9 @@ public class FarmView extends GridPane {
                     parcelView.putFarmer();
                     farmerCoordinates = new int[]{0, 0};//initial farmerCordinates
                 }
-                parcelView.setOnMouseClicked(e -> this.handleTeleport((ParcelView) e.getSource()));
+                if (farmViewModel.gameModeProperty().get() != Mode.FREE) {
+                    parcelView.setOnMouseClicked(e -> this.handleTeleport((ParcelView) e.getSource()));
+                }
                 add(parcelView, i, j);//add(parcelView, i, j); col, line
                 ithRow.put(j, parcelView);
             }
@@ -76,12 +81,18 @@ public class FarmView extends GridPane {
         requestFocus();
     }
 
+    public void setOnkeyPressed(){
+        //gameViewModel.gameModeProperty().get() != Mode.FREE
+        this.setOnKeyPressed(e -> this.onKeyPressed(e.getCode().getChar())); // to pass event to viewModel
+
+    }
+
     public void onKeyPressed(String character) {  // put this in the viewModel?
         requestFocus();
         if ("Z".equalsIgnoreCase(character)) {
             if (farmerCoordinates[1] > 0) {
                 this.removeFarmer();
-                farmerCoordinates = new int[]{farmerCoordinates[0], farmerCoordinates[1]-1};
+                farmerCoordinates = new int[]{farmerCoordinates[0], farmerCoordinates[1]-1};//int[col,line]
                 this.putFarmer();
             }
         } else if ("Q".equalsIgnoreCase(character)) {
