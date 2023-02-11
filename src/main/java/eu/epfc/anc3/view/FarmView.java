@@ -16,6 +16,8 @@ import java.util.Map;
 import static eu.epfc.anc3.view.GameView.FARM_HEIGHT;//
 import static eu.epfc.anc3.view.GameView.FARM_WIDTH;
 import static eu.epfc.anc3.view.GameView.PADDING;
+import static eu.epfc.anc3.view.GameView.MOVEMENTENABLED;
+
 
 public class FarmView extends GridPane {
     private final Map<Integer, Map<Integer, ParcelView>> parcels; // to put in the model
@@ -52,9 +54,8 @@ public class FarmView extends GridPane {
                     parcelView.putFarmer();
                     farmerCoordinates = new int[]{0, 0};//initial farmerCordinates
                 }
-                if (farmViewModel.gameModeProperty().get() != Mode.FREE) {
-                    parcelView.setOnMouseClicked(e -> this.handleTeleport((ParcelView) e.getSource()));
-                }
+               parcelView.setOnMouseClicked(e -> this.handleTeleport((ParcelView) e.getSource()));
+
                 add(parcelView, i, j);//add(parcelView, i, j); col, line
                 ithRow.put(j, parcelView);
             }
@@ -75,45 +76,48 @@ public class FarmView extends GridPane {
     }
 
     private void handleTeleport(ParcelView parcelView) {  // put this in the viewModel?
-        this.removeFarmer();
-        farmerCoordinates = parcelView.getCoordinates();//new farmerCoordinates
-        this.putFarmer();
-        requestFocus();
-    }
-
-    public void setOnkeyPressed(){
-        //gameViewModel.gameModeProperty().get() != Mode.FREE
-        this.setOnKeyPressed(e -> this.onKeyPressed(e.getCode().getChar())); // to pass event to viewModel
+        if (MOVEMENTENABLED){
+            this.removeFarmer();
+            farmerCoordinates = parcelView.getCoordinates();//new farmerCoordinates
+            this.putFarmer();
+            requestFocus();
+        }
 
     }
 
     public void onKeyPressed(String character) {  // put this in the viewModel?
-        requestFocus();
-        if ("Z".equalsIgnoreCase(character)) {
-            if (farmerCoordinates[1] > 0) {
-                this.removeFarmer();
-                farmerCoordinates = new int[]{farmerCoordinates[0], farmerCoordinates[1]-1};//int[col,line]
-                this.putFarmer();
-            }
-        } else if ("Q".equalsIgnoreCase(character)) {
-            if (farmerCoordinates[0] > 0) {
-                this.removeFarmer();
-                farmerCoordinates = new int[]{farmerCoordinates[0]-1, farmerCoordinates[1] };
-                this.putFarmer();
-            }
-        } else if ("S".equalsIgnoreCase(character)) {
-            if (farmerCoordinates[1] <FARM_HEIGHT - 1) {//if (farmerCoordinates[1] < FARM_WIDTH - 1)
-                this.removeFarmer();
-                farmerCoordinates = new int[]{farmerCoordinates[0], farmerCoordinates[1]+1};
-                this.putFarmer();
-            }
-        } else if ("D".equalsIgnoreCase(character)) {
-            if (farmerCoordinates[0] < FARM_WIDTH - 1) {// if (farmerCoordinates[0] < FARM_HEIGHT - 1)
-                this.removeFarmer();
-                farmerCoordinates = new int[]{farmerCoordinates[0]+1, farmerCoordinates[1]};
-                this.putFarmer();
+        if (MOVEMENTENABLED) {
+            requestFocus();
+            if ("Z".equalsIgnoreCase(character)) {
+                if (farmerCoordinates[1] > 0) {
+                    this.removeFarmer();
+                    farmerCoordinates = new int[]{farmerCoordinates[0], farmerCoordinates[1] - 1};//int[col,line]
+                    this.putFarmer();
+                }
+            } else if ("Q".equalsIgnoreCase(character)) {
+                if (farmerCoordinates[0] > 0) {
+                    this.removeFarmer();
+                    farmerCoordinates = new int[]{farmerCoordinates[0] - 1, farmerCoordinates[1]};
+                    this.putFarmer();
+                }
+            } else if ("S".equalsIgnoreCase(character)) {
+                if (farmerCoordinates[1] < FARM_HEIGHT - 1) {//if (farmerCoordinates[1] < FARM_WIDTH - 1)
+                    this.removeFarmer();
+                    farmerCoordinates = new int[]{farmerCoordinates[0], farmerCoordinates[1] + 1};
+                    this.putFarmer();
+                }
+            } else if ("D".equalsIgnoreCase(character)) {
+                if (farmerCoordinates[0] < FARM_WIDTH - 1) {// if (farmerCoordinates[0] < FARM_HEIGHT - 1)
+                    this.removeFarmer();
+                    farmerCoordinates = new int[]{farmerCoordinates[0] + 1, farmerCoordinates[1]};
+                    this.putFarmer();
+                }
             }
         }
     }
+
+
+
+
 }
 

@@ -17,6 +17,7 @@ public class GameView extends BorderPane {
     private static final int SCENE_MIN_HEIGHT = 480;
     static final int FARM_WIDTH = GameFacade.farmWidth();
     static final int FARM_HEIGHT = GameFacade.farmHeight();//
+    static boolean MOVEMENTENABLED = false;
 
     private final DoubleProperty farmWidthProperty = new SimpleDoubleProperty(500);
     private final DoubleProperty farmHeightProperty = new SimpleDoubleProperty(300);
@@ -39,9 +40,7 @@ public class GameView extends BorderPane {
         stage.setTitle("Projet ANC3 2223 a02");
         stage.setMinHeight(stage.getHeight());
         stage.setMinWidth(stage.getWidth());
-//        if (gameViewModel.gameModeProperty().get() != Mode.FREE) {
-//            scene.setOnKeyPressed(e -> farmView.onKeyPressed(e.getCode().getChar())); // to pass event to viewModel
-//        }
+        scene.setOnKeyPressed(e -> farmView.onKeyPressed(e.getCode().getChar()));
         System.err.println(gameViewModel.gameModeProperty().get());
     }
 
