@@ -6,15 +6,15 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class Game {
     private Farm farm;
-    private final ObjectProperty<GameStatus> gameStatus = new SimpleObjectProperty<>(GameStatus.FREE);//change GameStatus to Mode?
+    private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);
 
     void start() {
         farm = new Farm();
-        gameStatus.set(GameStatus.START);
+        gameMode.set(Mode.START);
     }
 
-    private GameStatus status() {
-        return this.gameStatus.get();
+    private Mode status() {
+        return this.gameMode.get();
     }
 
     ParcelValue teleportFarmer(int line, int col) {// like game.play
@@ -33,13 +33,13 @@ public class Game {
         return farm.valueProperty(line, col);// farm == null ?
     }
 
-    ReadOnlyObjectProperty<GameStatus> gameStatusProperty() {
-        return gameStatus;
+    ReadOnlyObjectProperty<Mode> gameModeProperty() {
+        return gameMode;
     }
 
 
     public void newGame() {
-        gameStatus.set(GameStatus.START);
+        gameMode.set(Mode.START);
     }
 
 

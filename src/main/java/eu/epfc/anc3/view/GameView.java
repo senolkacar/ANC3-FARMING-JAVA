@@ -21,7 +21,7 @@ public class GameView extends BorderPane {
     private final DoubleProperty farmHeightProperty = new SimpleDoubleProperty(300);
 
     private HBox countView;
-    private GridPane farmView;
+    private FarmView farmView;
     private HBox menuView;
 
     public GameView(Stage primaryStage) {
@@ -38,6 +38,8 @@ public class GameView extends BorderPane {
         stage.setTitle("Projet ANC3 2223 a02");
         stage.setMinHeight(stage.getHeight());
         stage.setMinWidth(stage.getWidth());
+
+        scene.setOnKeyPressed(e -> farmView.onKeyPressed(e.getCode().getChar())); // to pass event to viewModel
     }
 
     private void configMainComponents(Stage stage) {
@@ -46,16 +48,9 @@ public class GameView extends BorderPane {
         configMenu();
     }
 
-    private void configMenu() {
-        menuView = new MenuView(gameViewModel.getMenuViewModel());
-        setBottom(menuView);
-    }
-
     private void configCount() {
         countView = new CountView(gameViewModel.getCountViewModel());
         setTop(countView);
-
-
     }
 
     private void configFarm(){
@@ -64,5 +59,8 @@ public class GameView extends BorderPane {
         setCenter(farmView);
     }
 
-
+    private void configMenu() {
+        menuView = new MenuView(gameViewModel.getMenuViewModel());
+        setBottom(menuView);
+    }
 }

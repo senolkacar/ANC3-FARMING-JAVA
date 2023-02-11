@@ -1,60 +1,59 @@
 package eu.epfc.anc3.view;
 
-import eu.epfc.anc3.model.ParcelValue;
-import eu.epfc.anc3.vm.ParcelViewModel;
-import javafx.beans.binding.DoubleBinding;
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 
 public class ParcelView extends StackPane {
 
-    private static final Image dirtImage = new Image("dirt.png");
-    private static final Image farmerImage = new Image("farmer.png");
-    private static final Image grassImage = new Image("grass.png");
+    private final int[] coordinates;
+    boolean isDirt;
 
-    private ImageView imageView = new ImageView(dirtImage);
-    private ImageView farmerImageView = new ImageView();
+    private ImageView farmer; //  pass it through the viewModel instead of here
 
-    public ParcelView(){//only for test
+    public ParcelView(int[] coordinates) {
+        this.requestFocus();
+        this.coordinates = coordinates;
+
         setPadding(Insets.EMPTY);
-        //imageView.setPreserveRatio(true);
-        //imageView.fitWidthProperty().bind(parcelWidthProperty);
-        imageView.fitHeightProperty().bind(heightProperty());
-        imageView.fitWidthProperty().bind(widthProperty());
-        //imageView.setImage(dirtImage);
-        getChildren().add(imageView);
 
+        farmer = new ImageView(new Image("farmer.png"));
+        farmer.setFitWidth(50);
+        farmer.setFitHeight(50);
+        farmer.setPreserveRatio(true);
+        displayDirt();
     }
 
-    public ParcelView(Image farmerImage){
-        this();
-        farmerImageView.setImage(farmerImage);
-        farmerImageView.setFitWidth(50);
-        farmerImageView.setFitHeight(50);
-        farmerImageView.setPreserveRatio(true);
-        setAlignment(farmerImageView, Pos.TOP_LEFT);
-        getChildren().add(farmerImageView);
-
-    }
-    public ParcelView(ParcelViewModel parcelViewModel){
-        setPadding(Insets.EMPTY);
-        imageView.fitHeightProperty().bind(heightProperty());
-        imageView.fitWidthProperty().bind(widthProperty());
-        getChildren().add(imageView);
-
-//        ReadOnlyObjectProperty<ParcelValue> valueProp = parcelViewModel.valueProperty();
-//        valueProp.addListener((obs,old,newVal)->setFarmImage(imageView,newVal));
- //   this.setOnMouseClicked(e -> parcelViewModel.teleportFarmer());
+    public int[] getCoordinates() {
+        return coordinates;
     }
 
-    private void setFarmImage(ImageView farmerImageView,ParcelValue parcelValue){
-        imageView.setImage(parcelValue == ParcelValue.DIRT
-                ? dirtImage
-                : grassImage
-        );
+    public void setMyBackground(String png) {
+        this.setBackground(new Background(
+                new BackgroundImage(new Image(png), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                        BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
     }
+
+    public void displayDirt() {
+        isDirt = true;
+        this.setMyBackground("dirt.png");
+    }
+
+    public void displayGrass() {
+        isDirt = false;
+        this.setMyBackground("grass.png");
+    }
+
+    public void putFarmer() {
+        getChildren().add(farmer);
+        setAlignment(farmer, Pos.CENTER);
+    }
+
+    public void removeFarmer() {
+        getChildren().remove(farmer);
+    }
+
+
 }

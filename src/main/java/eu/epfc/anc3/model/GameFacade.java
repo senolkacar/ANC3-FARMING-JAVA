@@ -1,6 +1,5 @@
 package eu.epfc.anc3.model;
 
-import eu.epfc.anc3.view.ParcelView;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -13,7 +12,7 @@ public class GameFacade {
     private final BooleanProperty isStarted = new SimpleBooleanProperty(false);
 
     public GameFacade(){
-        isStarted.bind(gameStatusProperty().isEqualTo(GameStatus.START));
+        isStarted.bind(gameStatusProperty().isEqualTo(Mode.START));
 
     }
 
@@ -40,11 +39,11 @@ public class GameFacade {
     public ReadOnlyObjectProperty<ParcelValue> valueProperty(int line, int col){
         return game.valueProperty(line,col);
     }
-    public ReadOnlyObjectProperty<GameStatus> gameStatusProperty() {
-        return game.gameStatusProperty();
+    public ReadOnlyObjectProperty<Mode> gameStatusProperty() {
+        return game.gameModeProperty();
     }
 
-    private GameStatus status() {
+    private Mode status() {
         return gameStatusProperty().get();
     }
 

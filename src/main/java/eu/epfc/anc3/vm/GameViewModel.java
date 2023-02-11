@@ -8,12 +8,13 @@ public class GameViewModel {
     private final CountViewModel countViewModel;
     private final FarmViewModel farmViewModel;
     private final MenuViewModel menuViewModel;
-    private final GameFacade game = new GameFacade();
+    private final GameFacade gameFacade = new GameFacade();
 
     public GameViewModel(){
-        countViewModel = new CountViewModel(game);
-        farmViewModel = new FarmViewModel(game);
-        menuViewModel = new MenuViewModel(game);
+        gameFacade.start();
+        countViewModel = new CountViewModel(gameFacade);
+        farmViewModel = new FarmViewModel(gameFacade);
+        menuViewModel = new MenuViewModel(gameFacade);
     }
 
     public MenuViewModel getMenuViewModel() {
@@ -29,7 +30,7 @@ public class GameViewModel {
     }
 
     public ReadOnlyBooleanProperty isGameStartedProperty() {
-        return game.isStartedProperty();
+        return gameFacade.isStartedProperty();
     }
 
 

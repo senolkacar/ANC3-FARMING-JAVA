@@ -17,7 +17,13 @@ public class CountView extends HBox {
     }
 
     private void configCount() {
+        countPercel.setDisable(true);
         getChildren().addAll(countLabel,countPercel);
+    }
+
+    private String setCountPercel (){
+        String nombreGrass = countLabel.getText();
+        return String.valueOf (Integer.valueOf(nombreGrass)+1);
     }
 
 
