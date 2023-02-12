@@ -1,53 +1,38 @@
 package eu.epfc.anc3.view;
 
-import eu.epfc.anc3.vm.GameViewModel;
+import eu.epfc.anc3.model.Mode;
 import eu.epfc.anc3.vm.MenuViewModel;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
-import static eu.epfc.anc3.view.GameView.MOVEMENTENABLED;
-
 public class MenuView extends HBox {
-    private final Button startButton = new Button("Démarrer");
-    private final Button plantButton = new Button("Planter du gazon");
-    private final Button removeButton = new Button("Enlever du gazon");
+    private final Button startButton;
+    private final Button plantButton;
+    private final Button removeButton;
 
-    private final MenuViewModel menuViewModel;
+    private final MenuViewModel menuVM;
 
-    public MenuView(MenuViewModel menuViewModel) {
-        this.menuViewModel = menuViewModel;
-        configMenu();
-        manageStartButton();
+    public MenuView(MenuViewModel menuVM) {
+        this.menuVM = menuVM;
+
+        startButton = new Button("Arrêter");
+        plantButton = new Button("Planter du gazon");
+        removeButton = new Button("Enlever du gazon");
+
+        startButton.setOnAction(e -> this.onStartButtonAction());
+        plantButton.setOnAction(e -> menuVM.setMode(Mode.PLANT));
+        removeButton.setOnAction(e -> menuVM.setMode(Mode.REMOVE));
+
+        getChildren().addAll(startButton, plantButton, removeButton);
     }
 
-    private void configMenu() {
-        getChildren().addAll(startButton,plantButton,removeButton);
-
+    private void onStartButtonAction() {
+        if (startButton.getText().equals("Démarrer")) {
+            menuVM.reset();
+            startButton.setText("Arrêter");
+        } else {
+            menuVM.stop();
+            startButton.setText("Démarrer");
+        }
     }
-
-    private void manageStartButton() {
-        startButton.setOnAction(e->{
-            if (startButton.getText().equals("Démarrer") ){
-                menuViewModel.start();
-                MOVEMENTENABLED = true;
-                startButton.setText("Areter");
-            }
-            else {
-                MOVEMENTENABLED = false;
-                menuViewModel.stop();
-                startButton.setText("Démarrer");
-            }
-        });
-
-    }
-
-
-
-
-
-
-
-
-
-
 }

@@ -3,20 +3,13 @@ package eu.epfc.anc3.app;
 
 import eu.epfc.anc3.view.GameView;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class App extends Application  {
+public class App extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
-        GameView gameView = new GameView(stage);
+    public void start(Stage stage) {
+        new GameView(stage);
     }
 
     public static void main(String[] args) {

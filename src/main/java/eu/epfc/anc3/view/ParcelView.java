@@ -1,59 +1,59 @@
 package eu.epfc.anc3.view;
 
+import eu.epfc.anc3.model.ParcelValue;
+import eu.epfc.anc3.vm.ParcelViewModel;
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 public class ParcelView extends StackPane {
 
-    private final int[] coordinates;
-    boolean isDirt;
+    private final ImageView imageView = new ImageView();
+    private final Image grassImage = new Image("grass.png");
+    private final Image dirtImage = new Image("dirt.png");
+    private final ImageView farmer = new ImageView("farmer.png");
 
-    private ImageView farmer; //  pass it through the viewModel instead of here
+    public ParcelView(ParcelViewModel parcelViewModel) {
+        imageView.setFitWidth(50);
+        imageView.setFitHeight(50);
+        imageView.setPreserveRatio(false);
+        this.setBackground(imageView, ParcelValue.DIRT);
 
-    public ParcelView(int[] coordinates) {
-        this.requestFocus();
-        this.coordinates = coordinates;
+        getChildren().add(imageView);
 
-        setPadding(Insets.EMPTY);
-
-        farmer = new ImageView(new Image("farmer.png"));
         farmer.setFitWidth(50);
         farmer.setFitHeight(50);
         farmer.setPreserveRatio(true);
-        displayDirt();
+
+        ObjectProperty<ParcelValue> valueProperty = parcelViewModel.valueProperty();
+        valueProperty.addListener((obs, old, newVal) -> this.setBackground(imageView, newVal));
+
+        setOnMouseClicked(e -> parcelViewModel.onMouseClicked());
     }
 
-    public int[] getCoordinates() {
-        return coordinates;
+    private void setBackground(ImageView imageView, ParcelValue value) {
+        switch (value) {
+            case DIRT:
+                imageView.setImage(dirtImage);
+                getChildren().remove(farmer);
+                break;
+            case GRASS:
+                imageView.setImage(grassImage);
+                getChildren().remove(farmer);
+            case DIRT_AND_FARMER:
+                imageView.setImage(dirtImage);
+                getChildren().remove(farmer); // TODO why ?
+                getChildren().add(farmer);
+            case GRASS_AND_FARMER:
+                imageView.setImage(grassImage);
+                getChildren().remove(farmer); // TODO why ?
+                getChildren().add(farmer);
+        }
     }
-
-    public void setMyBackground(String png) {
-        this.setBackground(new Background(
-                new BackgroundImage(new Image(png), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
-                        BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
-    }
-
-    public void displayDirt() {
-        isDirt = true;
-        this.setMyBackground("dirt.png");
-    }
-
-    public void displayGrass() {
-        isDirt = false;
-        this.setMyBackground("grass.png");
-    }
-
-    public void putFarmer() {
-        getChildren().add(farmer);
-        setAlignment(farmer, Pos.CENTER);
-    }
-
-    public void removeFarmer() {
-        getChildren().remove(farmer);
-    }
-
-
 }

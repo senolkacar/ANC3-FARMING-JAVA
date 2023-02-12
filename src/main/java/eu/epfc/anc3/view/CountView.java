@@ -1,30 +1,25 @@
 package eu.epfc.anc3.view;
 
 import eu.epfc.anc3.vm.CountViewModel;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
 public class CountView extends HBox {
-    private final Label countLabel = new Label("Nombre de percelles de gazon : ");
-    private final TextField countPercel = new TextField("0");
+    private final CountViewModel countVM;
+    private final Label parcelCountLabel;
+    private final TextField parcelCountInput;
 
-    private final CountViewModel countViewModel;
-    public CountView(CountViewModel countViewModel) {
-        this.countViewModel = countViewModel;
-        configCount();
+    public CountView(CountViewModel countVM) {
+        this.countVM = countVM;
 
+        parcelCountLabel = new Label("Nombre de parcelles: ");
+        parcelCountInput = new TextField("0");
+        parcelCountInput.setDisable(true);
+        getChildren().addAll(parcelCountLabel, parcelCountInput);
+
+        ReadOnlyObjectProperty<Integer> valueProperty = countVM.valueProperty();
+        valueProperty.addListener((obs, old, newVal) -> parcelCountInput.setText("" + newVal));
     }
-
-    private void configCount() {
-        countPercel.setDisable(true);
-        getChildren().addAll(countLabel,countPercel);
-    }
-
-    private String setCountPercel (){
-        String nombreGrass = countLabel.getText();
-        return String.valueOf (Integer.valueOf(nombreGrass)+1);
-    }
-
-
 }

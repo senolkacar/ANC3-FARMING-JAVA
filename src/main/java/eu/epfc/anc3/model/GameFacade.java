@@ -1,62 +1,60 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 
 public class GameFacade {
-
     private final Game game = new Game();
 
-    private final BooleanProperty isStarted = new SimpleBooleanProperty(false);
-
-    public GameFacade(){
-        isStarted.bind(gameModeProperty().isEqualTo(Mode.START));
-
+    public ObjectProperty<ParcelValue> getParcelValueProperty(int[] position) {
+        return game.getParcelValueProperty(position);
     }
 
-    public static int farmWidth(){
-        return Farm.FARM_WIDTH;
+    public ParcelValue getParcelValue(int[] position) {
+        return game.getParcelValue(position);
     }
 
-    public static int farmHeight(){//
-        return Farm.FARM_HEIGHT;
+    public void setParcelValue(int[] position, ParcelValue value) {
+        game.setParcelValue(position, value);
     }
 
-    public void start() {
-        game.start();
+    public int[] getFarmerPosition() {
+        return game.getFarmerPosition();
     }
 
-    public void stop() {
-        game.stop();
+    public void setFarmerPosition(int[] position) {
+        game.setFarmerPosition(position);
     }
 
-    public void newGame() {
-        game.newGame();
+    public boolean isMovementEnabled() {
+        return game.isMovementEnabled();
     }
 
-    public ParcelValue teleportFarmer (int line, int col) {
-        return game.teleportFarmer(line, col);
+    public void setMovementEnabled(boolean movementEnabled) {
+        game.setMovementEnabled(movementEnabled);
     }
 
-    public ReadOnlyObjectProperty<ParcelValue> valueProperty(int line, int col){
-        return game.valueProperty(line,col);
+    public Mode getMode() {
+        return game.getMode();
     }
 
-    public ReadOnlyObjectProperty<Mode> gameModeProperty() {
-        return game.gameModeProperty();
+    public void setMode(Mode mode) {
+        game.setMode(mode);
     }
 
-    private Mode mode() {
-        return gameModeProperty().get();
+    public ReadOnlyObjectProperty<Integer> getGrassParcelCountValueProperty() {
+        return game.getGrassParcelCountValueProperty();
     }
 
-    public ReadOnlyBooleanProperty isStartedProperty() {
-        return isStarted;
+    public void increaseGrassParcelCount() {
+        game.increaseGrassParcelCount();
     }
 
+    public void decreaseGrassParcelCount() {
+        game.decreaseGrassParcelCount();
+    }
 
-
-
+    public void reset() {
+        game.reset();
+    }
 }

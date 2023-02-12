@@ -5,56 +5,65 @@ import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 public class Game {
-    private Farm farm;
-    private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);
+    private Farm farm = new Farm();
+    private Farmer farmer = new Farmer();
+    private boolean movementEnabled = false;
+    private Mode mode = Mode.FREE;
+    private final ObjectProperty<Integer> grassParcelCount = new SimpleObjectProperty<>(0);
 
-    void start() {
-        gameMode.set(Mode.START);
-        farm = new Farm();
-        System.err.println("start " + gameModeProperty());//
+    public ObjectProperty<ParcelValue> getParcelValueProperty(int[] position) {
+        return farm.valueProperty(position);
     }
 
-    private Mode status() {
-        return this.gameMode.get();
+    public ParcelValue getParcelValue(int[] position) {
+        return farm.getValue(position);
     }
 
-    ParcelValue teleportFarmer(int line, int col) {// like game.play
-        if (farm.teleportFarmer(line,col,getCurrentParcelValue())){
-            ParcelValue parcelValue = ParcelValue.FARMER;//remove farmer from the last stackPane
-            return farm.getValue(line, col);
-        }
-        return ParcelValue.DIRT;
+    public void setParcelValue(int[] position, ParcelValue value) {
+        farm.setValue(position, value);
     }
 
-    private ParcelValue getCurrentParcelValue() {
-        return  ParcelValue.FARMER;
+    public int[] getFarmerPosition() {
+        return farmer.getPosition();
     }
 
-    ReadOnlyObjectProperty<ParcelValue> valueProperty(int line, int col) {
-        return farm.valueProperty(line, col);// farm == null ?
+    public void setFarmerPosition(int[] position) {
+        farmer.setPosition(position);
     }
 
-    ReadOnlyObjectProperty<Mode> gameModeProperty() {
-        return gameMode;
+    public boolean isMovementEnabled() {
+        return movementEnabled;
     }
 
-    public void stop() {
-        gameMode.set(Mode.STOP);
-        System.err.println("stop " + gameMode);
+    public void setMovementEnabled(boolean movementEnabled) {
+        this.movementEnabled = movementEnabled;
     }
 
-    public void newGame() {
-        gameMode.set(Mode.START);
+    public Mode getMode() {
+        return this.mode;
     }
 
+    public void setMode(Mode mode) {
+        this.mode = mode;
+    }
 
+    public ReadOnlyObjectProperty<Integer> getGrassParcelCountValueProperty() {
+        return grassParcelCount;
+    }
 
+    public void increaseGrassParcelCount() {
+        grassParcelCount.setValue(grassParcelCount.getValue() + 1);
+    }
 
+    public void decreaseGrassParcelCount() {
+        grassParcelCount.setValue(grassParcelCount.getValue() - 1);
+    }
 
-
-
-
-
-
-
+    public void reset() {
+        farmer.setPosition(new int[]{0, 0});
+        farm.reset();
+        movementEnabled = true;
+        mode = Mode.FREE;
+        grassParcelCount.setValue(0);
+    }
 }

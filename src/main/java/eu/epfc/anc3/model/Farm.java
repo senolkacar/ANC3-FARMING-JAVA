@@ -1,37 +1,42 @@
 package eu.epfc.anc3.model;
 
-import eu.epfc.anc3.view.ParcelView;
-import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.property.ObjectProperty;
 
 public class Farm {
-    static final int FARM_WIDTH = 25;
-    static final int FARM_HEIGHT = 15;
+    public static final int FARM_WIDTH = 15;
+    public static final int FARM_HEIGHT = 25;
 
-    private final Parcel[][] matrix;
+    private final Parcel[][] grid;
 
-    Farm(){
-        matrix = new Parcel[FARM_HEIGHT][];
-        for(int i = 0; i < FARM_HEIGHT; ++i){
-            matrix[i] = new Parcel[FARM_WIDTH];
-            for(int j=0; j<FARM_WIDTH;++j){
-                matrix[i][j] = new Parcel();
+    Farm() {
+        grid = new Parcel[FARM_HEIGHT][];
+        for (int i = 0; i < FARM_HEIGHT; ++i) {
+            grid[i] = new Parcel[FARM_WIDTH];
+            for (int j = 0; j < FARM_WIDTH; ++j) {
+                grid[i][j] = new Parcel();
             }
         }
     }
 
-    ReadOnlyObjectProperty<ParcelValue> valueProperty(int line, int col) {
-        return matrix[line][col].valueProperty();
+    ObjectProperty<ParcelValue> valueProperty(int[] position) {
+        return grid[position[0]][position[1]].valueProperty();
     }
 
-    ParcelValue getValue(int line, int col) {
-        return matrix[line][col].getValue();
+    ParcelValue getValue(int[] position) {
+        return grid[position[0]][position[1]].getValue();
     }
 
-    public boolean teleportFarmer(int line, int col, ParcelValue currentParcelValue) {
-        return matrix[line][col].setValue(currentParcelValue);//?
+    public boolean setValue(int[] position, ParcelValue value) {
+        return grid[position[0]][position[1]].setValue(value);
     }
 
-
-
-
+    public void reset() {
+        for (int i = 0; i < FARM_HEIGHT; ++i) {
+            for (int j = 0; j < FARM_WIDTH; ++j) {
+                grid[i][j].setValue(i == 0 && j == 0
+                        ? ParcelValue.DIRT_AND_FARMER
+                        : ParcelValue.DIRT);
+            }
+        }
+    }
 }
