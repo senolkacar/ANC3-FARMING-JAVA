@@ -2,6 +2,7 @@ package eu.epfc.anc3.vm;
 
 import eu.epfc.anc3.model.GameFacade;
 import eu.epfc.anc3.model.ParcelValue;
+import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 
 public class CountViewModel {
@@ -11,7 +12,7 @@ public class CountViewModel {
         this.game = game;
     }
 
-    public ReadOnlyObjectProperty<Integer> valueProperty() {
+    public ReadOnlyIntegerProperty valueProperty() {
         return game.getGrassParcelCountValueProperty();
     }
 }

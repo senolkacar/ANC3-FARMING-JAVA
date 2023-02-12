@@ -1,15 +1,13 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 
 public class Game {
     private Farm farm = new Farm();
     private Farmer farmer = new Farmer();
     private boolean movementEnabled = false;
     private Mode mode = Mode.FREE;
-    private final ObjectProperty<Integer> grassParcelCount = new SimpleObjectProperty<>(0);
+    private final IntegerProperty grassParcelCount = new SimpleIntegerProperty(0);
 
     public ObjectProperty<ParcelValue> getParcelValueProperty(int[] position) {
         return farm.valueProperty(position);
@@ -47,7 +45,7 @@ public class Game {
         this.mode = mode;
     }
 
-    public ReadOnlyObjectProperty<Integer> getGrassParcelCountValueProperty() {
+    public ReadOnlyIntegerProperty getGrassParcelCountValueProperty() {
         return grassParcelCount;
     }
 

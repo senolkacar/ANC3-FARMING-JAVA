@@ -1,6 +1,7 @@
 package eu.epfc.anc3.model;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 
 public class GameFacade {
@@ -42,7 +43,7 @@ public class GameFacade {
         game.setMode(mode);
     }
 
-    public ReadOnlyObjectProperty<Integer> getGrassParcelCountValueProperty() {
+    public ReadOnlyIntegerProperty getGrassParcelCountValueProperty() {
         return game.getGrassParcelCountValueProperty();
     }
 
