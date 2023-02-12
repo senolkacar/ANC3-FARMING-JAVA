@@ -57,11 +57,20 @@ public class Game {
         grassParcelCount.setValue(grassParcelCount.getValue() - 1);
     }
 
+    public void start(){
+        farmer.setPosition(new int[]{0, 0});
+        farm.reset();
+        movementEnabled = false;
+        mode = Mode.FREE;//
+        grassParcelCount.setValue(0);
+
+    }
+
     public void reset() {
         farmer.setPosition(new int[]{0, 0});
         farm.reset();
-        movementEnabled = true;
-        mode = Mode.FREE;
+        movementEnabled = true;//?
+        mode = Mode.FREE;//
         grassParcelCount.setValue(0);
     }
 }

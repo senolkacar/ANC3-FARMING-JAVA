@@ -18,12 +18,14 @@ public class ParcelViewModel {
     }
 
     public void onMouseClicked() {
-        ParcelValue newValueOfParcelWithFarmer = game.getParcelValue(game.getFarmerPosition()) == ParcelValue.DIRT_AND_FARMER ? ParcelValue.DIRT : ParcelValue.GRASS;
-        game.setParcelValue(game.getFarmerPosition(), newValueOfParcelWithFarmer);
+        if (game.isMovementEnabled()) {
+            ParcelValue newValueOfParcelWithFarmer = game.getParcelValue(game.getFarmerPosition()) == ParcelValue.DIRT_AND_FARMER ? ParcelValue.DIRT : ParcelValue.GRASS;
+            game.setParcelValue(game.getFarmerPosition(), newValueOfParcelWithFarmer);
 
-        game.setFarmerPosition(position);
+            game.setFarmerPosition(position);
 
-        ParcelValue newValueOfParcelWithoutFarmer = game.getParcelValue(game.getFarmerPosition()) == ParcelValue.DIRT ? ParcelValue.DIRT_AND_FARMER : ParcelValue.GRASS_AND_FARMER;
-        game.setParcelValue(game.getFarmerPosition(), newValueOfParcelWithoutFarmer);
+            ParcelValue newValueOfParcelWithoutFarmer = game.getParcelValue(game.getFarmerPosition()) == ParcelValue.DIRT ? ParcelValue.DIRT_AND_FARMER : ParcelValue.GRASS_AND_FARMER;
+            game.setParcelValue(game.getFarmerPosition(), newValueOfParcelWithoutFarmer);
+        }
     }
 }

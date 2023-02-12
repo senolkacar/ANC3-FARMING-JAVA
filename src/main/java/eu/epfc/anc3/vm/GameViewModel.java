@@ -26,6 +26,10 @@ public class GameViewModel {
         return menuViewModel;
     }
 
+    public void start() {
+        game.start();
+    }
+
     public void reset() {
         game.reset();
     }

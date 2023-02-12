@@ -55,6 +55,9 @@ public class GameFacade {
         game.decreaseGrassParcelCount();
     }
 
+    public void start() {
+        game.start();
+    }
     public void reset() {
         game.reset();
     }

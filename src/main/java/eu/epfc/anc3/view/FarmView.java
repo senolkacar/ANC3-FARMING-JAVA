@@ -12,10 +12,10 @@ public class FarmView extends GridPane {
         this.farmVM = farmViewModel;
         super.setGridLinesVisible(true);
 
-        for (int i = 0; i < Farm.FARM_HEIGHT; ++i) {
-            for (int j = 0; j < Farm.FARM_WIDTH; ++j) {
-                ParcelView parcelView = new ParcelView(farmVM.getParcelViewModel(new int[]{i, j}));
-                super.add(parcelView, i, j);
+        for (int i = 0; i < Farm.FARM_HEIGHT; ++i) {//line
+            for (int j = 0; j < Farm.FARM_WIDTH; ++j) {//col
+                ParcelView parcelView = new ParcelView(farmVM.getParcelViewModel(new int[]{i, j}));//line,col
+                super.add(parcelView, i, j);//inverser ?
             }
         }
     }

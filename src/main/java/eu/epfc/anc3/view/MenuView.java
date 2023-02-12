@@ -15,9 +15,11 @@ public class MenuView extends HBox {
     public MenuView(MenuViewModel menuVM) {
         this.menuVM = menuVM;
 
-        startButton = new Button("Arrêter");
+        startButton = new Button("Démarrer");
         plantButton = new Button("Planter du gazon");
         removeButton = new Button("Enlever du gazon");
+        plantButton.setDisable(true);
+        removeButton.setDisable(true);
 
         startButton.setOnAction(e -> this.onStartButtonAction());
         plantButton.setOnAction(e -> menuVM.setMode(Mode.PLANT));
@@ -29,9 +31,13 @@ public class MenuView extends HBox {
     private void onStartButtonAction() {
         if (startButton.getText().equals("Démarrer")) {
             menuVM.reset();
+            plantButton.setDisable(false);
+            removeButton.setDisable(false);
             startButton.setText("Arrêter");
         } else {
             menuVM.stop();
+            plantButton.setDisable(true);
+            removeButton.setDisable(true);
             startButton.setText("Démarrer");
         }
     }

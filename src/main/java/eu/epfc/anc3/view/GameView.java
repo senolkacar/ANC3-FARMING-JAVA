@@ -31,6 +31,6 @@ public class GameView extends BorderPane {
         stage.setMinHeight(stage.getHeight());
         scene.setOnKeyPressed(e -> gameVM.onKeyPressed(e.getCode().getChar()));
 
-        gameVM.reset();
+        gameVM.start();
     }
 }
