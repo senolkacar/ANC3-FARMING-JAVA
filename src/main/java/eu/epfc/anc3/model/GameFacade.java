@@ -2,20 +2,19 @@ package eu.epfc.anc3.model;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
-import javafx.beans.property.ReadOnlyObjectProperty;
 
 public class GameFacade {
     private final Game game = new Game();
 
-    public ObjectProperty<ParcelValue> getParcelValueProperty(int[] position) {
+    public ObjectProperty<ElementValue> getParcelValueProperty(int[] position) {
         return game.getParcelValueProperty(position);
     }
 
-    public ParcelValue getParcelValue(int[] position) {
+    public ElementValue getParcelValue(int[] position) {
         return game.getParcelValue(position);
     }
 
-    public void setParcelValue(int[] position, ParcelValue value) {
+    public void setParcelValue(int[] position, ElementValue value) {
         game.setParcelValue(position, value);
     }
 

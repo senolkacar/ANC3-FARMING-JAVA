@@ -18,24 +18,27 @@ public class Farm {
         }
     }
 
-    ObjectProperty<ParcelValue> valueProperty(int[] position) {
+    ObjectProperty<ElementValue> valueProperty(int[] position) {
         return grid[position[0]][position[1]].valueProperty();
     }
 
-    ParcelValue getValue(int[] position) {
+    ElementValue getValue(int[] position) {
         return grid[position[0]][position[1]].getValue();
     }
 
-    public boolean setValue(int[] position, ParcelValue value) {
+    public boolean setValue(int[] position, ElementValue value) {
         return grid[position[0]][position[1]].setValue(value);
     }
 
     public void reset() {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
-                grid[i][j].setValue(i == 0 && j == 0
-                        ? ParcelValue.DIRT_AND_FARMER
-                        : ParcelValue.DIRT);
+                grid[i][j].setValue(ElementValue.DIRT);
+//                grid[i][j].setValue(i == 0 && j == 0
+//                        ? ElementValue.DIRT_AND_FARMER
+//                        : ElementValue.DIRT);
+
+
             }
         }
     }

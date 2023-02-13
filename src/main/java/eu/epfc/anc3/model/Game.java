@@ -9,15 +9,15 @@ public class Game {
     private Mode mode = Mode.FREE;
     private final IntegerProperty grassParcelCount = new SimpleIntegerProperty(0);
 
-    public ObjectProperty<ParcelValue> getParcelValueProperty(int[] position) {
+    public ObjectProperty<ElementValue> getParcelValueProperty(int[] position) {
         return farm.valueProperty(position);
     }
 
-    public ParcelValue getParcelValue(int[] position) {
+    public ElementValue getParcelValue(int[] position) {
         return farm.getValue(position);
     }
 
-    public void setParcelValue(int[] position, ParcelValue value) {
+    public void setParcelValue(int[] position, ElementValue value) {
         farm.setValue(position, value);
     }
 

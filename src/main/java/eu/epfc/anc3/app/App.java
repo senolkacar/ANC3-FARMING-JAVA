@@ -10,6 +10,9 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         new GameView(stage);
+        //model: logique de jeu. ex:  planter du gazon
+        //vue(on key pressed) - mv-model
+       //ViewModel gere etat de bouton.ex: on key pressed methode
     }
 
     public static void main(String[] args) {

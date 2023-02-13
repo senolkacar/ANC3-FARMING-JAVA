@@ -1,7 +1,7 @@
 package eu.epfc.anc3.vm;
 
 import eu.epfc.anc3.model.GameFacade;
-import eu.epfc.anc3.model.ParcelValue;
+import eu.epfc.anc3.model.ElementValue;
 import javafx.beans.property.ObjectProperty;
 
 public class ParcelViewModel {
@@ -13,18 +13,18 @@ public class ParcelViewModel {
         this.game = game;
     }
 
-    public ObjectProperty<ParcelValue> valueProperty() {
+    public ObjectProperty<ElementValue> valueProperty() {
         return game.getParcelValueProperty(position);
     }
 
-    public void onMouseClicked() {
+    public void onMouseClicked() {// ElementValue.DIRT doesn't work
         if (game.isMovementEnabled()) {
-            ParcelValue newValueOfParcelWithFarmer = game.getParcelValue(game.getFarmerPosition()) == ParcelValue.DIRT_AND_FARMER ? ParcelValue.DIRT : ParcelValue.GRASS;
+            ElementValue newValueOfParcelWithFarmer = game.getParcelValue(game.getFarmerPosition()) == ElementValue.DIRT_AND_FARMER ? ElementValue.DIRT : ElementValue.GRASS;
             game.setParcelValue(game.getFarmerPosition(), newValueOfParcelWithFarmer);
 
             game.setFarmerPosition(position);
 
-            ParcelValue newValueOfParcelWithoutFarmer = game.getParcelValue(game.getFarmerPosition()) == ParcelValue.DIRT ? ParcelValue.DIRT_AND_FARMER : ParcelValue.GRASS_AND_FARMER;
+            ElementValue newValueOfParcelWithoutFarmer = game.getParcelValue(game.getFarmerPosition()) == ElementValue.DIRT ? ElementValue.DIRT_AND_FARMER : ElementValue.GRASS_AND_FARMER;
             game.setParcelValue(game.getFarmerPosition(), newValueOfParcelWithoutFarmer);
         }
     }

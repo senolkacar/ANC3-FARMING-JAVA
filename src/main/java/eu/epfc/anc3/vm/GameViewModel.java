@@ -36,7 +36,7 @@ public class GameViewModel {
 
     public void onKeyPressed(String character) {
         if ("Z".equalsIgnoreCase(character)) {
-            farmViewModel.moveFarmerUp();
+            farmViewModel.moveFarmerUp();//game model gere le logique du jeu
         } else if ("Q".equalsIgnoreCase(character)) {
             farmViewModel.moverFarmerLeft();
         } else if ("S".equalsIgnoreCase(character)) {
