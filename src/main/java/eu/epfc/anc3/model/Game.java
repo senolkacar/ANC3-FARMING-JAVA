@@ -9,23 +9,23 @@ public class Game {
     private Mode mode = Mode.FREE;
     private final IntegerProperty grassParcelCount = new SimpleIntegerProperty(0);
 
-    public ObjectProperty<ElementValue> getParcelValueProperty(int[] position) {
+    public ObjectProperty<ElementValue> getParcelValueProperty(Position position) {
         return farm.valueProperty(position);
     }
 
-    public ElementValue getParcelValue(int[] position) {
+    public ElementValue getParcelValue(Position position) {
         return farm.getValue(position);
     }
 
-    public void setParcelValue(int[] position, ElementValue value) {
+    public void setParcelValue(Position position, ElementValue value) {
         farm.setValue(position, value);
     }
 
-    public int[] getFarmerPosition() {
+    public Position getFarmerPosition() {
         return farmer.getPosition();
     }
 
-    public void setFarmerPosition(int[] position) {
+    public void setFarmerPosition(Position position) {
         farmer.setPosition(position);
     }
 
@@ -58,7 +58,7 @@ public class Game {
     }
 
     public void start(){
-        farmer.setPosition(new int[]{0, 0});
+        farmer.setPosition(new Position(0, 0));
         farm.reset();
         movementEnabled = false;
         mode = Mode.FREE;//
@@ -67,7 +67,7 @@ public class Game {
     }
 
     public void reset() {
-        farmer.setPosition(new int[]{0, 0});
+        farmer.setPosition(new Position(0, 0));
         farm.reset();
         movementEnabled = true;//?
         mode = Mode.FREE;//

@@ -5,6 +5,4 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.ImageView;
 
 public class Element  {
-
-
 }

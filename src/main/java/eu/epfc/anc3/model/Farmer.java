@@ -1,13 +1,13 @@
 package eu.epfc.anc3.model;
 
 public class Farmer extends Element{
-    private int[] position;
+    private Position position;
 
-    public int[] getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(int[] position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 }

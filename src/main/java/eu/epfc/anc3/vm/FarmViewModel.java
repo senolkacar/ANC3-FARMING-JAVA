@@ -1,9 +1,6 @@
 package eu.epfc.anc3.vm;
 
-import eu.epfc.anc3.model.Farm;
-import eu.epfc.anc3.model.GameFacade;
-import eu.epfc.anc3.model.Mode;
-import eu.epfc.anc3.model.ElementValue;
+import eu.epfc.anc3.model.*;
 
 
 public class FarmViewModel {
@@ -13,7 +10,7 @@ public class FarmViewModel {
         this.game = game;
     }
 
-    public ParcelViewModel getParcelViewModel(int[] position) {
+    public ParcelViewModel getParcelViewModel(Position position) {
         return new ParcelViewModel(position, game);
     }
 
@@ -32,33 +29,37 @@ public class FarmViewModel {
     }
 
     public void moveFarmerUp() {
-        if (game.isMovementEnabled() && game.getFarmerPosition()[1] > 0) {
+        if (game.isMovementEnabled() && game.getFarmerPosition().getY() > 0) {
             this.removeFarmerFromParcel();
-            game.setFarmerPosition(new int[]{game.getFarmerPosition()[0], game.getFarmerPosition()[1] - 1});
+            game.setFarmerPosition(new Position(game.getFarmerPosition().getX(),game.getFarmerPosition().getY()-1));
+            System.out.println(game.getFarmerPosition().getX()+" "+game.getFarmerPosition().getY());
             this.putFarmerOnParcel();
         }
     }
 
     public void moverFarmerLeft() {
-        if (game.isMovementEnabled() && game.getFarmerPosition()[0] > 0) {
+        if (game.isMovementEnabled() && game.getFarmerPosition().getX() > 0) {
             this.removeFarmerFromParcel();
-            game.setFarmerPosition(new int[]{game.getFarmerPosition()[0] - 1, game.getFarmerPosition()[1]});
+            game.setFarmerPosition(new Position(game.getFarmerPosition().getX()-1,game.getFarmerPosition().getY()));
+            System.out.println(game.getFarmerPosition().getX()+" "+game.getFarmerPosition().getY());
             this.putFarmerOnParcel();
         }
     }
 
     public void moveFarmerRight() {
-        if (game.isMovementEnabled() && game.getFarmerPosition()[0] < Farm.FARM_WIDTH - 1) {
+        if (game.isMovementEnabled() && game.getFarmerPosition().getX() < Farm.FARM_WIDTH - 1) {
             this.removeFarmerFromParcel();
-            game.setFarmerPosition(new int[]{game.getFarmerPosition()[0] + 1, game.getFarmerPosition()[1]});
+            game.setFarmerPosition(new Position(game.getFarmerPosition().getX()+1,game.getFarmerPosition().getY()));
+           System.out.println(game.getFarmerPosition().getX()+" "+game.getFarmerPosition().getY());
             this.putFarmerOnParcel();
         }
     }
 
     public void moveFarmerDown() {
-        if (game.isMovementEnabled() && game.getFarmerPosition()[1] < Farm.FARM_HEIGHT - 1) {
+        if (game.isMovementEnabled() && game.getFarmerPosition().getY() < Farm.FARM_HEIGHT - 1) {
             this.removeFarmerFromParcel();
-            game.setFarmerPosition(new int[]{game.getFarmerPosition()[0], game.getFarmerPosition()[1] + 1});
+            game.setFarmerPosition(new Position(game.getFarmerPosition().getX(),game.getFarmerPosition().getY()+1));
+            System.out.println(game.getFarmerPosition().getX()+" "+game.getFarmerPosition().getY());
             this.putFarmerOnParcel();
         }
     }
