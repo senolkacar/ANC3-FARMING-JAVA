@@ -11,7 +11,6 @@ public class ParcelView extends StackPane {
 
     private final ImageView imageView = new ImageView();
     private final Image grassImage = new Image("grass.png");
-    private final ImageView grass = new ImageView("grass.png");
     private final Image dirtImage = new Image("dirt.png");
     private final ImageView farmer = new ImageView("farmer.png");
 
@@ -44,16 +43,17 @@ public class ParcelView extends StackPane {
             case GRASS:
                 imageView.setImage(grassImage);
                 getChildren().remove(farmer);
+                break;
             case DIRT_AND_FARMER:
-//                imageView.setImage(dirtImage);
-//                getChildren().add(grass);
-//                getChildren().remove(grass);
-//                getChildren().remove(farmer); // TODO why ?
-//                getChildren().add(farmer);
+                imageView.setImage(dirtImage);
+                getChildren().remove(farmer); // TODO why ?
+                getChildren().add(farmer);
+                break;
             case GRASS_AND_FARMER:
                 imageView.setImage(grassImage);
                 getChildren().remove(farmer); // TODO why ?
                 getChildren().add(farmer);
+                break;
         }
     }
 }

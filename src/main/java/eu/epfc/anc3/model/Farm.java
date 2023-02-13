@@ -33,10 +33,9 @@ public class Farm {
     public void reset() {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
-                grid[i][j].setValue(ElementValue.DIRT);
-//                grid[i][j].setValue(i == 0 && j == 0
-//                        ? ElementValue.DIRT_AND_FARMER
-//                        : ElementValue.DIRT);
+                grid[i][j].setValue(i == 0 && j == 0
+                        ? ElementValue.DIRT_AND_FARMER
+                        : ElementValue.DIRT);
 
 
             }
