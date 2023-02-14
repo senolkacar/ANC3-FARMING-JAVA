@@ -2,6 +2,8 @@ package eu.epfc.anc3.vm;
 
 import eu.epfc.anc3.model.GameFacade;
 
+import java.util.Arrays;
+
 public class GameViewModel {
     private final GameFacade game = new GameFacade();
     private final CountViewModel countViewModel;
@@ -35,9 +37,9 @@ public class GameViewModel {
     }
 
     public void onKeyPressed(String character) {
-        if ("W".equalsIgnoreCase(character)) {
-            game.moveFarmerUp();//game model gere le logique du jeu
-        } else if ("A".equalsIgnoreCase(character)) {
+        if (Arrays.asList("W", "Z").stream().anyMatch(s -> s.equalsIgnoreCase(character))) {
+            game.moveFarmerUp();
+        } else if (Arrays.asList("A", "Q").stream().anyMatch(s -> s.equalsIgnoreCase(character))) {
             game.moverFarmerLeft();
         } else if ("S".equalsIgnoreCase(character)) {
             game.moveFarmerDown();

@@ -60,18 +60,14 @@ public class Game {
     public void start(){
         farmer.setPosition(new Position(0, 0));
         farm.reset();
-        movementEnabled = false;
-        mode = Mode.FREE;//
+        mode = Mode.FREE;
         grassParcelCount.setValue(0);
-
+        movementEnabled = false;
     }
 
     public void reset() {
-        farmer.setPosition(new Position(0, 0));
-        farm.reset();
-        movementEnabled = true;//?
-        mode = Mode.FREE;//
-        grassParcelCount.setValue(0);
+        this.start();
+        movementEnabled = true;
     }
 
 
