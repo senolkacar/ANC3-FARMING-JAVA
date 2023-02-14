@@ -17,7 +17,7 @@ public class FarmView extends GridPane {
     public FarmView(FarmViewModel farmViewModel) {
         setPadding(new Insets(PADDING));
         this.farmVM = farmViewModel;
-        super.setGridLinesVisible(true);
+        //super.setGridLinesVisible(true);
 
         for (int i = 0; i < Farm.FARM_WIDTH; ++i) {//line
             for (int j = 0; j < Farm.FARM_HEIGHT; ++j) {//col

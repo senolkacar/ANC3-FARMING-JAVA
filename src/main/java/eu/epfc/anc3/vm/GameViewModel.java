@@ -3,6 +3,7 @@ package eu.epfc.anc3.vm;
 import eu.epfc.anc3.model.GameFacade;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class GameViewModel {
     private final GameFacade game = new GameFacade();
@@ -37,9 +38,9 @@ public class GameViewModel {
     }
 
     public void onKeyPressed(String character) {
-        if (Arrays.asList("W", "Z").stream().anyMatch(s -> s.equalsIgnoreCase(character))) {
+        if (Stream.of("W", "Z").anyMatch(s -> s.equalsIgnoreCase(character))) {
             game.moveFarmerUp();
-        } else if (Arrays.asList("A", "Q").stream().anyMatch(s -> s.equalsIgnoreCase(character))) {
+        } else if (Stream.of("A", "Q").anyMatch(s -> s.equalsIgnoreCase(character))) {
             game.moveFarmerLeft();
         } else if ("S".equalsIgnoreCase(character)) {
             game.moveFarmerDown();
