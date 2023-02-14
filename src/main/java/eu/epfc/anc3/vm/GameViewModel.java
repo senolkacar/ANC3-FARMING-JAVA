@@ -36,15 +36,15 @@ public class GameViewModel {
 
     public void onKeyPressed(String character) {
         if ("W".equalsIgnoreCase(character)) {
-            farmViewModel.moveFarmerUp();//game model gere le logique du jeu
+            game.moveFarmerUp();//game model gere le logique du jeu
         } else if ("A".equalsIgnoreCase(character)) {
-            farmViewModel.moverFarmerLeft();
+            game.moverFarmerLeft();
         } else if ("S".equalsIgnoreCase(character)) {
-            farmViewModel.moveFarmerDown();
+            game.moveFarmerDown();
         } else if ("D".equalsIgnoreCase(character)) {
-            farmViewModel.moveFarmerRight();
+            game.moveFarmerRight();
         } else if (" ".equals(character)) {
-            farmViewModel.plantOrRemoveGrass();
+            game.plantOrRemoveGrass();
         }
     }
 }

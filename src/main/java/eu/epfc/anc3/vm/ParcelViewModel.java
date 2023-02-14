@@ -18,15 +18,7 @@ public class ParcelViewModel {
         return game.getParcelValueProperty(position);
     }
 
-    public void onMouseClicked() {// ElementValue.DIRT doesn't work
-        if (game.isMovementEnabled()) {
-            ElementValue newValueOfParcelWithFarmer = game.getParcelValue(game.getFarmerPosition()) == ElementValue.DIRT_AND_FARMER ? ElementValue.DIRT : ElementValue.GRASS;
-            game.setParcelValue(game.getFarmerPosition(), newValueOfParcelWithFarmer);
-
-            game.setFarmerPosition(position);
-
-            ElementValue newValueOfParcelWithoutFarmer = game.getParcelValue(game.getFarmerPosition()) == ElementValue.DIRT ? ElementValue.DIRT_AND_FARMER : ElementValue.GRASS_AND_FARMER;
-            game.setParcelValue(game.getFarmerPosition(), newValueOfParcelWithoutFarmer);
-        }
+    public void onMouseClicked(){
+        game.onMouseClicked(position);
     }
 }
