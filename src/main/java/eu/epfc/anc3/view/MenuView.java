@@ -59,6 +59,6 @@
             } else {
                 plantButton.setSelected(false);
             }
-            menuVM.setMode(mode);
+            menuVM.setMode(actionToggleGroup.getSelectedToggle() == null ? Mode.FREE : mode);
         }
     }
