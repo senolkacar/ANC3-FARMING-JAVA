@@ -38,7 +38,7 @@ public class GameViewModel {
         if ("W".equalsIgnoreCase(character)) {
             game.moveFarmerUp();//game model gere le logique du jeu
         } else if ("A".equalsIgnoreCase(character)) {
-            game.moverFarmerLeft();
+            game.moveFarmerLeft();
         } else if ("S".equalsIgnoreCase(character)) {
             game.moveFarmerDown();
         } else if ("D".equalsIgnoreCase(character)) {

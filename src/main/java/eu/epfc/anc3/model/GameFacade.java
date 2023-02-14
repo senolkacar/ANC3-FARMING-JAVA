@@ -62,72 +62,37 @@ public class GameFacade {
     }
 
     public void plantOrRemoveGrass() { // dans game model
-        if (!game.isMovementEnabled())
-            return;
-
-        ElementValue elementValueAtFarmerPosition = game.getParcelValue(game.getFarmerPosition());
-        if (game.getMode() == Mode.PLANT && elementValueAtFarmerPosition == ElementValue.DIRT_AND_FARMER) {
-            game.setParcelValue(game.getFarmerPosition(), ElementValue.GRASS_AND_FARMER);
-            game.increaseGrassParcelCount();
-        } else if (game.getMode() == Mode.REMOVE && elementValueAtFarmerPosition == ElementValue.GRASS_AND_FARMER) {
-            game.setParcelValue(game.getFarmerPosition(), ElementValue.DIRT_AND_FARMER);
-            game.decreaseGrassParcelCount();
-        }
+        game.plantOrRemoveGrass();
     }
 
     public void onMouseClicked(Position position) {
-        if (game.isMovementEnabled()) {
-            ElementValue newValueOfParcelWithFarmer = game.getParcelValue(game.getFarmerPosition()) == ElementValue.DIRT_AND_FARMER ? ElementValue.DIRT : ElementValue.GRASS;
-            game.setParcelValue(game.getFarmerPosition(), newValueOfParcelWithFarmer);
-
-            game.setFarmerPosition(position);
-
-            ElementValue newValueOfParcelWithoutFarmer = game.getParcelValue(game.getFarmerPosition()) == ElementValue.DIRT ? ElementValue.DIRT_AND_FARMER : ElementValue.GRASS_AND_FARMER;
-            game.setParcelValue(game.getFarmerPosition(), newValueOfParcelWithoutFarmer);
-        }
+        game.onMouseClicked(position);
     }
 
     public void moveFarmerUp() {
-        if (game.isMovementEnabled() && game.getFarmerPosition().getY() > 0) {
-            this.removeFarmerFromParcel();
-            game.setFarmerPosition(new Position(game.getFarmerPosition().getX(),game.getFarmerPosition().getY()-1));
-            this.putFarmerOnParcel();
-        }
+        game.moveFarmerUp();
     }
 
-    public void moverFarmerLeft() {
-        if (game.isMovementEnabled() && game.getFarmerPosition().getX() > 0) {
-            this.removeFarmerFromParcel();
-            game.setFarmerPosition(new Position(game.getFarmerPosition().getX()-1,game.getFarmerPosition().getY()));
-            this.putFarmerOnParcel();
-        }
+    public void moveFarmerLeft() {
+       game.moveFarmerLeft();
     }
 
     public void moveFarmerRight() {
-        if (game.isMovementEnabled() && game.getFarmerPosition().getX() < Farm.FARM_WIDTH - 1) {
-            this.removeFarmerFromParcel();
-            game.setFarmerPosition(new Position(game.getFarmerPosition().getX()+1,game.getFarmerPosition().getY()));
-            this.putFarmerOnParcel();
-        }
+        game.moveFarmerRight();
     }
 
     public void moveFarmerDown() {
-        if (game.isMovementEnabled() && game.getFarmerPosition().getY() < Farm.FARM_HEIGHT - 1) {
-            this.removeFarmerFromParcel();
-            game.setFarmerPosition(new Position(game.getFarmerPosition().getX(),game.getFarmerPosition().getY()+1));
-            this.putFarmerOnParcel();
-        }
+       game.moveFarmerDown();
     }
 
     private void removeFarmerFromParcel() {
-        ElementValue elementValueAtFarmerPosition = game.getParcelValue(game.getFarmerPosition());
-        game.setParcelValue(game.getFarmerPosition(), elementValueAtFarmerPosition == ElementValue.DIRT_AND_FARMER ? ElementValue.DIRT : ElementValue.GRASS);
+        game.removeFarmerFromParcel();
     }
 
     private void putFarmerOnParcel() {
-        ElementValue elementValueAtNewFarmerPosition = game.getParcelValue(game.getFarmerPosition());
-        game.setParcelValue(game.getFarmerPosition(), elementValueAtNewFarmerPosition == ElementValue.DIRT ? ElementValue.DIRT_AND_FARMER : ElementValue.GRASS_AND_FARMER);
+        game.putFarmerOnParcel();
     }
+
 
 
 }
