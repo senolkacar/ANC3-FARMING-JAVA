@@ -15,15 +15,15 @@ public class ParcelView extends StackPane {
     private final ImageView farmer = new ImageView("farmer.png");
 
     public ParcelView(ParcelViewModel parcelViewModel) {
-        imageView.setFitWidth(50);
-        imageView.setFitHeight(50);
+        imageView.setFitWidth(35);
+        imageView.setFitHeight(35);
         imageView.setPreserveRatio(false);
         this.setElementsImages(imageView, ElementValue.DIRT);
 
         getChildren().add(imageView);
 
-        farmer.setFitWidth(50);
-        farmer.setFitHeight(50);
+        farmer.setFitWidth(35);
+        farmer.setFitHeight(35);
         farmer.setPreserveRatio(true);
 
         ObjectProperty<ElementValue> valueProperty = parcelViewModel.valueProperty();

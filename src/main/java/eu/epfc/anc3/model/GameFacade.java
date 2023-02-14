@@ -75,7 +75,7 @@ public class GameFacade {
         }
     }
 
-    public void onMouseClicked(Position position) {// ElementValue.DIRT doesn't work
+    public void onMouseClicked(Position position) {
         if (game.isMovementEnabled()) {
             ElementValue newValueOfParcelWithFarmer = game.getParcelValue(game.getFarmerPosition()) == ElementValue.DIRT_AND_FARMER ? ElementValue.DIRT : ElementValue.GRASS;
             game.setParcelValue(game.getFarmerPosition(), newValueOfParcelWithFarmer);
@@ -91,7 +91,6 @@ public class GameFacade {
         if (game.isMovementEnabled() && game.getFarmerPosition().getY() > 0) {
             this.removeFarmerFromParcel();
             game.setFarmerPosition(new Position(game.getFarmerPosition().getX(),game.getFarmerPosition().getY()-1));
-            System.out.println(game.getFarmerPosition().getX()+" "+game.getFarmerPosition().getY());
             this.putFarmerOnParcel();
         }
     }
@@ -100,7 +99,6 @@ public class GameFacade {
         if (game.isMovementEnabled() && game.getFarmerPosition().getX() > 0) {
             this.removeFarmerFromParcel();
             game.setFarmerPosition(new Position(game.getFarmerPosition().getX()-1,game.getFarmerPosition().getY()));
-            System.out.println(game.getFarmerPosition().getX()+" "+game.getFarmerPosition().getY());
             this.putFarmerOnParcel();
         }
     }
@@ -109,7 +107,6 @@ public class GameFacade {
         if (game.isMovementEnabled() && game.getFarmerPosition().getX() < Farm.FARM_WIDTH - 1) {
             this.removeFarmerFromParcel();
             game.setFarmerPosition(new Position(game.getFarmerPosition().getX()+1,game.getFarmerPosition().getY()));
-            System.out.println(game.getFarmerPosition().getX()+" "+game.getFarmerPosition().getY());
             this.putFarmerOnParcel();
         }
     }
@@ -118,7 +115,6 @@ public class GameFacade {
         if (game.isMovementEnabled() && game.getFarmerPosition().getY() < Farm.FARM_HEIGHT - 1) {
             this.removeFarmerFromParcel();
             game.setFarmerPosition(new Position(game.getFarmerPosition().getX(),game.getFarmerPosition().getY()+1));
-            System.out.println(game.getFarmerPosition().getX()+" "+game.getFarmerPosition().getY());
             this.putFarmerOnParcel();
         }
     }
@@ -132,4 +128,6 @@ public class GameFacade {
         ElementValue elementValueAtNewFarmerPosition = game.getParcelValue(game.getFarmerPosition());
         game.setParcelValue(game.getFarmerPosition(), elementValueAtNewFarmerPosition == ElementValue.DIRT ? ElementValue.DIRT_AND_FARMER : ElementValue.GRASS_AND_FARMER);
     }
+
+
 }

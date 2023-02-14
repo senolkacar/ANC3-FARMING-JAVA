@@ -73,4 +73,6 @@ public class Game {
         mode = Mode.FREE;//
         grassParcelCount.setValue(0);
     }
+
+
 }
