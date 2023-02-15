@@ -6,15 +6,15 @@ import javafx.beans.property.ReadOnlyIntegerProperty;
 public class GameFacade {
     private final Game game = new Game();
 
-    public ObjectProperty<ElementValue> getParcelValueProperty(Position position) {
+    public ObjectProperty<Element> getParcelValueProperty(Position position) {
         return game.getParcelValueProperty(position);
     }
 
-    public ElementValue getParcelValue(Position position) {
+    public Element getParcelValue(Position position) {
         return game.getParcelValue(position);
     }
 
-    public void setParcelValue(Position position, ElementValue value) {
+    public void setParcelValue(Position position, Element value) {
         game.setParcelValue(position, value);
     }
 

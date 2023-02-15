@@ -1,7 +1,7 @@
 package eu.epfc.anc3.vm;
 
+import eu.epfc.anc3.model.Element;
 import eu.epfc.anc3.model.GameFacade;
-import eu.epfc.anc3.model.ElementValue;
 import eu.epfc.anc3.model.Position;
 import javafx.beans.property.ObjectProperty;
 
@@ -14,7 +14,7 @@ public class ParcelViewModel {
         this.game = game;
     }
 
-    public ObjectProperty<ElementValue> valueProperty() {
+    public ObjectProperty<Element> valueProperty() {
         return game.getParcelValueProperty(position);
     }
 

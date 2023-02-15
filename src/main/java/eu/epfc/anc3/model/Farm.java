@@ -20,15 +20,15 @@ public class Farm {
         }
     }
 
-    ObjectProperty<ElementValue> valueProperty(Position position) {
+    ObjectProperty<Element> valueProperty(Position position) {
         return farm[position.getY()][position.getX()].valueProperty();
     }
 
-    ElementValue getValue(Position position) {
+    Element getValue(Position position) {
         return farm[position.getY()][position.getX()].getValue();
     }
 
-    public boolean setValue(Position position, ElementValue value) {
+    public boolean setValue(Position position, Element value) {
         return farm[position.getY()][position.getX()].setValue(value);
     }
 
@@ -36,8 +36,8 @@ public class Farm {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
                 farm[i][j].setValue(i == 0 && j == 0
-                        ? ElementValue.DIRT_AND_FARMER
-                        : ElementValue.DIRT);
+                        ? new Element(Type.DIRT_AND_FARMER)
+                        : new Element(Type.DIRT));
 
 
             }

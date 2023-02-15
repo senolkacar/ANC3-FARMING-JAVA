@@ -9,15 +9,15 @@ public class Game {
     private Mode mode = Mode.FREE;
     private final IntegerProperty grassParcelCount = new SimpleIntegerProperty(0);
 
-    public ObjectProperty<ElementValue> getParcelValueProperty(Position position) {
+    public ObjectProperty<Element> getParcelValueProperty(Position position) {
         return farm.valueProperty(position);
     }
 
-    public ElementValue getParcelValue(Position position) {
+    public Element getParcelValue(Position position) {
         return farm.getValue(position);
     }
 
-    public void setParcelValue(Position position, ElementValue value) {
+    public void setParcelValue(Position position, Element value) {
         farm.setValue(position, value);
     }
 
@@ -74,24 +74,24 @@ public class Game {
         if (!isMovementEnabled())
             return;
 
-        ElementValue elementValueAtFarmerPosition = getParcelValue(getFarmerPosition());
-        if (getMode() == Mode.PLANT && elementValueAtFarmerPosition == ElementValue.DIRT_AND_FARMER) {
-            setParcelValue(getFarmerPosition(), ElementValue.GRASS_AND_FARMER);
+        Element elementValueAtFarmerPosition = getParcelValue(getFarmerPosition());
+        if (getMode() == Mode.PLANT && elementValueAtFarmerPosition.getType() == Type.DIRT_AND_FARMER) {
+            setParcelValue(getFarmerPosition(), new Element(Type.GRASS_AND_FARMER));
             increaseGrassParcelCount();
-        } else if (getMode() == Mode.REMOVE && elementValueAtFarmerPosition == ElementValue.GRASS_AND_FARMER) {
-            setParcelValue(getFarmerPosition(), ElementValue.DIRT_AND_FARMER);
+        } else if (getMode() == Mode.REMOVE && elementValueAtFarmerPosition.getType() == Type.GRASS_AND_FARMER) {
+            setParcelValue(getFarmerPosition(), new Element(Type.DIRT_AND_FARMER));
             decreaseGrassParcelCount();
         }
     }
 
     public void onMouseClicked(Position position) {
         if (isMovementEnabled()) {
-            ElementValue newValueOfParcelWithFarmer = getParcelValue(getFarmerPosition()) == ElementValue.DIRT_AND_FARMER ? ElementValue.DIRT : ElementValue.GRASS;
+            Element newValueOfParcelWithFarmer = getParcelValue(getFarmerPosition()).getType() == Type.DIRT_AND_FARMER ? new Element(Type.DIRT) : new Element(Type.GRASS);
             setParcelValue(getFarmerPosition(), newValueOfParcelWithFarmer);
 
             setFarmerPosition(position);
 
-            ElementValue newValueOfParcelWithoutFarmer = getParcelValue(getFarmerPosition()) == ElementValue.DIRT ? ElementValue.DIRT_AND_FARMER : ElementValue.GRASS_AND_FARMER;
+            Element newValueOfParcelWithoutFarmer = getParcelValue(getFarmerPosition()).getType() == Type.DIRT ? new Element(Type.DIRT_AND_FARMER) : new Element(Type.GRASS_AND_FARMER);
             setParcelValue(getFarmerPosition(), newValueOfParcelWithoutFarmer);
         }
     }
@@ -129,13 +129,13 @@ public class Game {
     }
 
     void removeFarmerFromParcel() {
-        ElementValue elementValueAtFarmerPosition = getParcelValue(getFarmerPosition());
-        setParcelValue(getFarmerPosition(), elementValueAtFarmerPosition == ElementValue.DIRT_AND_FARMER ? ElementValue.DIRT : ElementValue.GRASS);
+        Element elementAtFarmerPosition = getParcelValue(getFarmerPosition());
+        setParcelValue(getFarmerPosition(), elementAtFarmerPosition.getType() == Type.DIRT_AND_FARMER ? new Element(Type.DIRT) : new Element(Type.GRASS));
     }
 
     void putFarmerOnParcel() {
-        ElementValue elementValueAtNewFarmerPosition = getParcelValue(getFarmerPosition());
-        setParcelValue(getFarmerPosition(), elementValueAtNewFarmerPosition == ElementValue.DIRT ? ElementValue.DIRT_AND_FARMER : ElementValue.GRASS_AND_FARMER);
+        Element elementAtNewFarmerPosition = getParcelValue(getFarmerPosition());
+        setParcelValue(getFarmerPosition(), elementAtNewFarmerPosition.getType() == Type.DIRT ? new Element(Type.DIRT_AND_FARMER): new Element(Type.GRASS_AND_FARMER));
     }
 
 }

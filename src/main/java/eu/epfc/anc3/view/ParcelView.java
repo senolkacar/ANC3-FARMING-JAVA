@@ -1,6 +1,6 @@
 package eu.epfc.anc3.view;
 
-import eu.epfc.anc3.model.ElementValue;
+import eu.epfc.anc3.model.Element;
 import eu.epfc.anc3.vm.ParcelViewModel;
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.image.Image;
@@ -18,7 +18,7 @@ public class ParcelView extends StackPane {
         imageView.setFitWidth(35);
         imageView.setFitHeight(35);
         imageView.setPreserveRatio(false);
-        this.setElementsImages(imageView, ElementValue.DIRT);
+        this.setElementsImages(imageView, parcelViewModel.valueProperty().getValue());
 
         getChildren().add(imageView);
 
@@ -26,7 +26,7 @@ public class ParcelView extends StackPane {
         farmer.setFitHeight(35);
         farmer.setPreserveRatio(true);
 
-        ObjectProperty<ElementValue> valueProperty = parcelViewModel.valueProperty();
+        ObjectProperty<Element> valueProperty = parcelViewModel.valueProperty();
         valueProperty.addListener((obs, old, newVal) -> this.setElementsImages(imageView, newVal));
 
         setOnMouseClicked(e -> parcelViewModel.onMouseClicked());
@@ -34,8 +34,8 @@ public class ParcelView extends StackPane {
 
     }
 
-    private void setElementsImages(ImageView imageView, ElementValue value) {
-        switch (value) {
+    private void setElementsImages(ImageView imageView, Element value) {
+        switch (value.getType()) {
             case DIRT:
                 imageView.setImage(dirtImage);
                 getChildren().remove(farmer);

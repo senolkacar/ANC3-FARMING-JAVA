@@ -5,19 +5,19 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class Parcel {
 
-    private final ObjectProperty<ElementValue> value = new SimpleObjectProperty<>(ElementValue.DIRT);//?
+    private final ObjectProperty<Element> value = new SimpleObjectProperty<>(new Element(Type.DIRT));//?
 
-    ElementValue getValue() {
+    Element getValue() {
         return value.getValue();
 
     }
 
-    boolean setValue(ElementValue value) {
+    boolean setValue(Element value) {
         this.value.setValue(value);
         return true;
     }
 
-   ObjectProperty<ElementValue> valueProperty() {
+   ObjectProperty<Element> valueProperty() {
         return value;
     }
 }
