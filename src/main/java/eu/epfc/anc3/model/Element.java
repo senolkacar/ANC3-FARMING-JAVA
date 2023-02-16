@@ -4,5 +4,5 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.ImageView;
 
-public class Element  {
+class Element  {
 }

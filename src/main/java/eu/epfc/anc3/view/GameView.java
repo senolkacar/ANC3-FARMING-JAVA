@@ -1,5 +1,6 @@
 package eu.epfc.anc3.view;
 
+import eu.epfc.anc3.model.GameFacade;
 import eu.epfc.anc3.vm.GameViewModel;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,6 +12,9 @@ public class GameView extends BorderPane {
     private final CountView countView;
     private final FarmView farmView;
     private final MenuView menuView;
+    static final int FARM_WIDTH = GameFacade.getFarmWidth();
+    static final int FARM_HEIGHT = GameFacade.getFarmHeight();
+    static final int PADDING = GameFacade.getPadding();
 
     public GameView(Stage stage) {
         gameVM = new GameViewModel();

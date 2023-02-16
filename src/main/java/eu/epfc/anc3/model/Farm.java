@@ -2,7 +2,7 @@ package eu.epfc.anc3.model;
 
 import javafx.beans.property.ObjectProperty;
 
-public class Farm {
+class Farm {
     public static final int FARM_WIDTH = 25;
     public static final int FARM_HEIGHT = 15;
 

@@ -2,7 +2,7 @@ package eu.epfc.anc3.model;
 
 import javafx.beans.property.*;
 
-public class Game {
+class Game {
     private Farm farm = new Farm();
     private Farmer farmer = new Farmer();
     private boolean movementEnabled = false;

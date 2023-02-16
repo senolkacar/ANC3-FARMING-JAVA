@@ -3,7 +3,7 @@ package eu.epfc.anc3.model;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
-public class Parcel {
+class Parcel {
 
     private final ObjectProperty<ElementValue> value = new SimpleObjectProperty<>(ElementValue.DIRT);//?
 

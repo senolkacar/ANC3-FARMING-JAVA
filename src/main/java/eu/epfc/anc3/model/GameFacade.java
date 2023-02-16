@@ -61,6 +61,18 @@ public class GameFacade {
         game.reset();
     }
 
+    public static int getFarmWidth(){
+        return Farm.FARM_WIDTH;
+    }
+
+    public static int getFarmHeight(){
+        return Farm.FARM_HEIGHT;
+    }
+
+    public static int getPadding(){
+        return Farm.PADDING;
+    }
+
     public void plantOrRemoveGrass() { // dans game model
         game.plantOrRemoveGrass();
     }
