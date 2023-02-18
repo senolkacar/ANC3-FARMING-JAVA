@@ -6,8 +6,17 @@ class Game {
     private Farm farm = new Farm();
     private Farmer farmer = new Farmer();
     private boolean movementEnabled = false;
-    private Mode mode = Mode.FREE;
+    //private Mode mode = Mode.FREE;
     private final IntegerProperty grassParcelCount = new SimpleIntegerProperty(0);
+    private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);
+
+    ObjectProperty<Mode> gameModeProperty() {
+        return gameMode;
+    }
+
+    public void setGameMode(Mode gameMode) {
+        this.gameMode.set(gameMode);
+    }
 
     public ObjectProperty<ElementValue> getParcelValueProperty(Position position) {
         return farm.valueProperty(position);
@@ -37,13 +46,13 @@ class Game {
         this.movementEnabled = movementEnabled;
     }
 
-    public Mode getMode() {
-        return this.mode;
-    }
-
-    public void setMode(Mode mode) {
-        this.mode = mode;
-    }
+//    public Mode getMode() {
+//        return this.mode;
+//    }
+//
+//    public void setMode(Mode mode) {
+//        this.mode = mode;
+//    }
 
     public ReadOnlyIntegerProperty getGrassParcelCountValueProperty() {
         return grassParcelCount;
@@ -60,7 +69,8 @@ class Game {
     public void start(){
         farmer.setPosition(new Position(0, 0));
         farm.reset();
-        mode = Mode.FREE;
+        gameMode.set(Mode.FREE);
+        //mode = Mode.FREE;
         grassParcelCount.setValue(0);
         movementEnabled = false;
     }
@@ -75,10 +85,10 @@ class Game {
             return;
 
         ElementValue elementValueAtFarmerPosition = getParcelValue(getFarmerPosition());
-        if (getMode() == Mode.PLANT && elementValueAtFarmerPosition == ElementValue.DIRT_AND_FARMER) {
+        if (gameMode.get() == Mode.PLANT && elementValueAtFarmerPosition == ElementValue.DIRT_AND_FARMER) {
             setParcelValue(getFarmerPosition(), ElementValue.GRASS_AND_FARMER);
             increaseGrassParcelCount();
-        } else if (getMode() == Mode.REMOVE && elementValueAtFarmerPosition == ElementValue.GRASS_AND_FARMER) {
+        } else if (gameMode.get() == Mode.REMOVE && elementValueAtFarmerPosition == ElementValue.GRASS_AND_FARMER) {
             setParcelValue(getFarmerPosition(), ElementValue.DIRT_AND_FARMER);
             decreaseGrassParcelCount();
         }

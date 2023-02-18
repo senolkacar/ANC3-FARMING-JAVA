@@ -6,6 +6,14 @@ import javafx.beans.property.ReadOnlyIntegerProperty;
 public class GameFacade {
     private final Game game = new Game();
 
+    public ObjectProperty<Mode> gameModeProperty() {
+        return game.gameModeProperty();
+    }
+
+    public void setGameMode(Mode gameMode) {
+        game.setGameMode(gameMode);
+    }
+
     public ObjectProperty<ElementValue> getParcelValueProperty(Position position) {
         return game.getParcelValueProperty(position);
     }
@@ -34,13 +42,13 @@ public class GameFacade {
         game.setMovementEnabled(movementEnabled);
     }
 
-    public Mode getMode() {
-        return game.getMode();
-    }
-
-    public void setMode(Mode mode) {
-        game.setMode(mode);
-    }
+//    public Mode getMode() {
+//        return game.getMode();
+//    }
+//
+//    public void setMode(Mode mode) {
+//        game.setMode(mode);
+//    }
 
     public ReadOnlyIntegerProperty getGrassParcelCountValueProperty() {
         return game.getGrassParcelCountValueProperty();
