@@ -1,6 +1,7 @@
 package eu.epfc.anc3.view;
 
 import eu.epfc.anc3.model.Element;
+import eu.epfc.anc3.model.Type;
 import eu.epfc.anc3.vm.ParcelViewModel;
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.image.Image;
@@ -35,25 +36,26 @@ public class ParcelView extends StackPane {
     }
 
     private void setElementsImages(ImageView imageView, Element value) {
-        switch (value.getType()) {
-            case DIRT:
-                imageView.setImage(dirtImage);
-                getChildren().remove(farmer);
-                break;
-            case GRASS:
-                imageView.setImage(grassImage);
-                getChildren().remove(farmer);
-                break;
-            case DIRT_AND_FARMER:
-                imageView.setImage(dirtImage);
-                getChildren().remove(farmer); // TODO why ?
-                getChildren().add(farmer);
-                break;
-            case GRASS_AND_FARMER:
-                imageView.setImage(grassImage);
-                getChildren().remove(farmer); // TODO why ?
-                getChildren().add(farmer);
-                break;
-        }
+            if(value.getType()==Type.DIRT){
+                if(value.isFarmerOnParcel()){
+                    imageView.setImage(dirtImage);
+                    getChildren().remove(farmer);
+                    getChildren().add(farmer);
+                }
+                else{
+                    imageView.setImage(dirtImage);
+                    getChildren().remove(farmer);
+                }
+            }else if(value.getType()==Type.GRASS){
+                if(value.isFarmerOnParcel()){
+                    imageView.setImage(grassImage);
+                    getChildren().remove(farmer);
+                    getChildren().add(farmer);
+                }
+                else{
+                    imageView.setImage(grassImage);
+                    getChildren().remove(farmer);
+                }
+            }
     }
 }

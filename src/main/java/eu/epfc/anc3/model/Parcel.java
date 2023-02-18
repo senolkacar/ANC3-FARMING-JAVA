@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class Parcel {
 
-    private final ObjectProperty<Element> value = new SimpleObjectProperty<>(new Element(Type.DIRT));//?
+    private final ObjectProperty<Element> value = new SimpleObjectProperty<>(new Element(Type.DIRT,false));//?
 
     Element getValue() {
         return value.getValue();
