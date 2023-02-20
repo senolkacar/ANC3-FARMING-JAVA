@@ -1,6 +1,7 @@
 package eu.epfc.anc3.model;
 
 import javafx.beans.property.*;
+import javafx.collections.ObservableSet;
 
 import java.util.List;
 import java.util.Set;
@@ -25,11 +26,11 @@ class Game {
         this.gameMode.set(gameMode);
     }
 
-    public ListProperty<Element> getParcelValueProperty(Position position) {
+    public SetProperty<Element> getParcelValueProperty(Position position) {
         return farm.valueProperty(position);
     }
 
-    public List<Element> getParcelValue(Position position) {
+    public Set<Element> getParcelValue(Position position) {
         return farm.getValue(position);
     }
 
@@ -45,7 +46,7 @@ class Game {
         farm.addElement(position, element);
     }
 
-    public void setParcelValue(Position position, List<Element> element) {
+    public void setParcelValue(Position position, Set<Element> element) {
         farm.setValue(position, element);
     }
 
@@ -113,9 +114,15 @@ class Game {
 
     public void onMouseClicked(Position position) {
         if (isMovementEnabled()) {
+            System.out.println("old farmer position : " +getFarmerPosition());//
+
             this.removeElement(getFarmerPosition(), farmer);
+            System.out.println("old values : "+ this.getParcelValue(getFarmerPosition()));//
             setFarmerPosition(position);
             this.addElement(getFarmerPosition(), farmer);
+            System.out.println("new farmer position : " +getFarmerPosition());//
+            System.out.println("new values : "+ this.getParcelValue(getFarmerPosition()));//
+
         }
     }
 

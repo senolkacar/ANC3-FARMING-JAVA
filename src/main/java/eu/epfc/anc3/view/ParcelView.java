@@ -33,7 +33,7 @@ public class ParcelView extends StackPane {
         farmer.setFitHeight(35);
         farmer.setPreserveRatio(true);
 
-        ListProperty<Element> valueProperty = parcelViewModel.valueProperty();
+        SetProperty<Element> valueProperty = parcelViewModel.valueProperty();
         valueProperty.addListener((obs, old, newVal) -> this.setElementsImages(imageView, newVal));
 
         setOnMouseClicked(e -> parcelViewModel.onMouseClicked());
@@ -41,11 +41,11 @@ public class ParcelView extends StackPane {
 
     }
 
-    private void setElementsImages(ImageView imageView, List<Element> elements) {
+    private void setElementsImages(ImageView imageView, Set<Element> elements) {
                 for (Element element : elements) {
                     if(element.getType()==Type.DIRT){
                         imageView.setImage(dirtImage);
-                        getChildren().remove(farmer);
+                       // getChildren().remove(farmer);
                     }
                     if(element.getType()==Type.GRASS){
                         imageView.setImage(grassImage);

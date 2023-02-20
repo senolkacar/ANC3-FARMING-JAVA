@@ -17,7 +17,7 @@ public class ParcelViewModel {
         this.game = game;
     }
 
-    public ListProperty<Element> valueProperty() {
+    public SetProperty<Element> valueProperty() {
         return game.getParcelValueProperty(position);
     }
 

@@ -1,17 +1,24 @@
 package eu.epfc.anc3.model;
 
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableSet;
 
 import java.util.List;
+import java.util.Set;
 
 import static javafx.collections.FXCollections.observableArrayList;
+import static javafx.collections.FXCollections.observableSet;
+import javafx.beans.property.SimpleSetProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableSet;
 
 class Parcel {
 
 
-    SimpleListProperty<Element> elements = new SimpleListProperty<>(observableArrayList(new Dirt()));
+    SimpleSetProperty<Element> elements = new SimpleSetProperty<>(FXCollections.observableSet(new Dirt()));//new Dirt()
 
-    SimpleListProperty<Element> elementProperty() {
+    SimpleSetProperty<Element> elementProperty() {
         return elements;
     }
 
@@ -19,15 +26,16 @@ class Parcel {
         this.elements.add(newElement);
     }
 
-    public void setElement(List<Element> newElement){
-      this.elements.setAll(newElement);
+    public void setElement(Set<Element> newElement){
+        ObservableSet<Element> observableNewElements = FXCollections.observableSet(newElement);
+        this.elements.set(observableNewElements);
     }
 
     public void clearElements(){
         elements.clear();
     }
 
-    List<Element> getValue() {
+    Set<Element> getValue() {
         return elements.getValue();
     }
 

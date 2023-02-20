@@ -24,15 +24,15 @@ class Farm {
         }
     }
 
-    ListProperty<Element> valueProperty(Position position) {
+    SetProperty<Element> valueProperty(Position position) {
         return farm[position.getY()][position.getX()].elementProperty();
     }
 
-    List<Element> getValue(Position position) {
+    Set<Element> getValue(Position position) {
         return farm[position.getY()][position.getX()].getValue();
     }
 
-    public void setValue(Position position, List<Element> element) {
+    public void setValue(Position position, Set<Element> element) {
             farm[position.getY()][position.getX()].setElement(element);
     }
 
@@ -51,12 +51,13 @@ class Farm {
     public void reset() {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
+                //farm[i][j].addElement(new Dirt());
                if(i==0&&j==0){
-                   farm[i][j].addElement(new Farmer());
-               }else{
-                   farm[i][j].addElement(new Dirt());
+                  farm[i][j].addElement(new Farmer());
                }
+                //System.out.println( farm[i][j].getValue());
             }
+
         }
     }
 

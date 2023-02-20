@@ -19,7 +19,7 @@ public class GameFacade {
         game.setGameMode(gameMode);
     }
 
-    public ListProperty<Element> getParcelValueProperty(Position position) {
+    public SetProperty<Element> getParcelValueProperty(Position position) {
         return game.getParcelValueProperty(position);
     }
 
@@ -35,11 +35,11 @@ public class GameFacade {
         game.addElement(position, element);
     }
 
-    public List<Element> getParcelValue(Position position) {
+    public Set<Element> getParcelValue(Position position) {
         return game.getParcelValue(position);
     }
 
-    public void setParcelValue(Position position, List<Element> element) {
+    public void setParcelValue(Position position, Set<Element> element) {
         game.setParcelValue(position, element);
     }
 
