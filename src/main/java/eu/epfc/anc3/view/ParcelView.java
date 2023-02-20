@@ -7,6 +7,7 @@ import eu.epfc.anc3.vm.ParcelViewModel;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SetProperty;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -32,6 +33,7 @@ public class ParcelView extends StackPane {
         farmer.setFitWidth(35);
         farmer.setFitHeight(35);
         farmer.setPreserveRatio(true);
+        setAlignment(farmer, Pos.TOP_LEFT);
 
         ListProperty<Element> valueProperty = parcelViewModel.valueProperty();
         valueProperty.addListener((obs, old, newVal) -> this.setElementsImages(imageView, newVal));
@@ -43,18 +45,25 @@ public class ParcelView extends StackPane {
 
     private void setElementsImages(ImageView imageView, List<Element> elements) {
                 for (Element element : elements) {
-                    if(element.getType()==Type.DIRT){
+
+                    if(element.getType()==Type.GRASS){
+                        imageView.setImage(grassImage);
+                    }else if(element.getType()==Type.DIRT){
                         imageView.setImage(dirtImage);
                         getChildren().remove(farmer);
                     }
-                    if(element.getType()==Type.GRASS){
-                        imageView.setImage(grassImage);
-                        getChildren().remove(farmer);
-                    }
+
+                 }
+
+                for (Element element : elements) {
                     if(element.getType()==Type.FARMER){
                         getChildren().remove(farmer);
                         getChildren().add(farmer);
+                    }
+
+
                 }
-            }
+
+
     }
 }

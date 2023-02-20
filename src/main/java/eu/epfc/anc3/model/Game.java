@@ -74,7 +74,9 @@ class Game {
     }
 
     public void decreaseGrassParcelCount() {
-        grassParcelCount.setValue(grassParcelCount.getValue() - 1);
+        if (grassParcelCount.getValue()>0) {
+            grassParcelCount.setValue(grassParcelCount.getValue() - 1);
+        }
     }
 
     public void start(){
@@ -97,16 +99,16 @@ class Game {
 
         if(gameMode.get() == Mode.PLANT&& !this.containsElement(getFarmerPosition(), grass)) {
                 this.addElement(getFarmerPosition(), grass);
-                this.addElement(getFarmerPosition(), farmer);
-                this.removeElement(getFarmerPosition(), farmer);////should add remove farmer in order to show farmer in the top of grass
-                this.removeElement(getFarmerPosition(), dirt);
+//                this.addElement(getFarmerPosition(), farmer);
+//                this.removeElement(getFarmerPosition(), farmer);////should add remove farmer in order to show farmer in the top of grass
+//                this.removeElement(getFarmerPosition(), dirt);
                 increaseGrassParcelCount();
             }
         else if (gameMode.get() == Mode.REMOVE && !this.containsElement(getFarmerPosition(), dirt)) {
                 this.addElement(getFarmerPosition(), dirt);
-                this.addElement(getFarmerPosition(), farmer);
-                this.removeElement(getFarmerPosition(), farmer);//should add remove farmer in order to show farmer in the top of dirt
-                this.removeElement(getFarmerPosition(), grass);
+//                this.addElement(getFarmerPosition(), farmer);
+//                this.removeElement(getFarmerPosition(), farmer);//should add remove farmer in order to show farmer in the top of dirt
+//                this.removeElement(getFarmerPosition(), grass);
                 decreaseGrassParcelCount();
         }
     }

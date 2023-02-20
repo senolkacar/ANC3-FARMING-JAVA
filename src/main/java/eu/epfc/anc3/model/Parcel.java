@@ -32,7 +32,7 @@ class Parcel {
     }
 
     public void removeElement(Element oldElement){
-        this.elements.remove(oldElement);
+        this.elements.removeAll(oldElement);
     }
 
     public boolean containsElement(Element newElement) {
