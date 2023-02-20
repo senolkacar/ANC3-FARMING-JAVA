@@ -1,6 +1,10 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SetProperty;
+
+import java.util.List;
+import java.util.Set;
 
 class Farm {
     public static final int FARM_WIDTH = 25;
@@ -20,26 +24,38 @@ class Farm {
         }
     }
 
-    ObjectProperty<ElementValue> valueProperty(Position position) {
-        return farm[position.getY()][position.getX()].valueProperty();
+    ListProperty<Element> valueProperty(Position position) {
+        return farm[position.getY()][position.getX()].elementProperty();
     }
 
-    ElementValue getValue(Position position) {
+    List<Element> getValue(Position position) {
         return farm[position.getY()][position.getX()].getValue();
     }
 
-    public boolean setValue(Position position, ElementValue value) {
-        return farm[position.getY()][position.getX()].setValue(value);
+    public void setValue(Position position, List<Element> element) {
+            farm[position.getY()][position.getX()].setElement(element);
+    }
+
+    public boolean containsElement(Position position, Element element) {
+        return farm[position.getY()][position.getX()].containsElement(element);
+    }
+
+    public void removeElement(Position position, Element element) {
+        farm[position.getY()][position.getX()].removeElement(element);
+    }
+
+    public void addElement(Position position, Element element) {
+        farm[position.getY()][position.getX()].addElement(element);
     }
 
     public void reset() {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
-                farm[i][j].setValue(i == 0 && j == 0
-                        ? ElementValue.DIRT_AND_FARMER
-                        : ElementValue.DIRT);
-
-
+               if(i==0&&j==0){
+                   farm[i][j].addElement(new Farmer());
+               }else{
+                   farm[i][j].addElement(new Dirt());
+               }
             }
         }
     }

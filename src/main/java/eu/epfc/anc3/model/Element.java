@@ -4,5 +4,9 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.ImageView;
 
-class Element  {
+public abstract class Element  {
+    Type type;
+    public Type getType() {
+        return type;
+    }
 }

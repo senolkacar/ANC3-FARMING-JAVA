@@ -11,6 +11,8 @@ public class GameViewModel {
     private final FarmViewModel farmViewModel;
     private final MenuViewModel menuViewModel;
 
+    private boolean spaceBarPressed = false;
+
     public GameViewModel() {
         countViewModel = new CountViewModel(game);
         farmViewModel = new FarmViewModel(game);
