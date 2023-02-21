@@ -4,6 +4,8 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.ImageView;
 
+import java.util.Objects;
+
 public abstract class Element implements Comparable<Element> {
     Type type;
     public Type getType() {
@@ -19,5 +21,18 @@ public abstract class Element implements Comparable<Element> {
     @Override
     public String toString(){
         return type.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Element)) return false;
+        Element element = (Element) o;
+        return getType() == element.getType();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getType());
     }
 }

@@ -37,24 +37,24 @@ public class ParcelView extends StackPane {
         valueProperty.addListener((obs, old, newVal) -> this.setElementsImages(imageView, newVal));
 
         setOnMouseClicked(e -> parcelViewModel.onMouseClicked());
-
-
     }
 
     private void setElementsImages(ImageView imageView, Set<Element> elements) {
-                for (Element element : elements) {
-                    if(element.getType()==Type.DIRT){
-                        imageView.setImage(dirtImage);
-                       // getChildren().remove(farmer);
-                    }
-                    if(element.getType()==Type.GRASS){
-                        imageView.setImage(grassImage);
-                        getChildren().remove(farmer);
-                    }
-                    if(element.getType()==Type.FARMER){
-                        getChildren().remove(farmer);
-                        getChildren().add(farmer);
-                }
+        for (Element element : elements) {
+            if(element.getType()== Type.GRASS){
+                imageView.setImage(grassImage);
+                getChildren().remove(farmer);
+            }else if(element.getType()== Type.DIRT){
+                imageView.setImage(dirtImage);
+                getChildren().remove(farmer);
             }
+        }
+
+        for (Element element : elements) {
+            if(element.getType()== Type.FARMER){
+                getChildren().remove(farmer);
+                getChildren().add(farmer);
+            }
+        }
     }
 }
