@@ -1,16 +1,11 @@
 package eu.epfc.anc3.model;
-
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.SetProperty;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 class Farm {
     public static final int FARM_WIDTH = 25;
     public static final int FARM_HEIGHT = 15;
-
     public static final int PADDING = 10;
 
     private final Farmer farmer = new Farmer();

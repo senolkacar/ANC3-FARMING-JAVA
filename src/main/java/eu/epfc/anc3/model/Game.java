@@ -6,13 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 class Game {
-    private Farm farm = new Farm();
-    private Dirt dirt = new Dirt();
-    private Grass grass = new Grass();
-    private Farmer farmer = new Farmer();
+    private final Farm farm = new Farm();
+    private final Dirt dirt = new Dirt();
+    private final Grass grass = new Grass();
+    private final Farmer farmer = new Farmer();
     private boolean movementEnabled = false;
-    //private Mode mode = Mode.FREE;
-
 
     private final IntegerProperty grassParcelCount = new SimpleIntegerProperty(0);
     private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);
@@ -93,7 +91,7 @@ class Game {
         movementEnabled = true;
     }
 
-    public void plantOrRemoveGrass() { // dans game model
+    public void plantOrRemoveGrass() {
         if (!isMovementEnabled())
             return;
 

@@ -21,11 +21,6 @@ public class MenuViewModel {
         game.setMovementEnabled(false);
     }
 
-
-//    public void setMode(Mode mode) {
-//        game.setMode(mode);
-//    }
-
     public ObjectProperty<Mode> gameModeProperty() {
         return game.gameModeProperty();
     }

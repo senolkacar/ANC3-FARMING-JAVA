@@ -3,10 +3,7 @@ package eu.epfc.anc3.model;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
-import javafx.beans.property.SetProperty;
-
 import java.util.List;
-import java.util.Set;
 
 public class GameFacade {
     private final Game game = new Game();
@@ -74,6 +71,7 @@ public class GameFacade {
     public void start() {
         game.start();
     }
+
     public void reset() {
         game.reset();
     }

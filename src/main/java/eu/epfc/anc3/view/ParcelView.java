@@ -1,19 +1,15 @@
 package eu.epfc.anc3.view;
 
 import eu.epfc.anc3.model.Element;
-import eu.epfc.anc3.model.ElementValue;
-import eu.epfc.anc3.model.Type;
+import eu.epfc.anc3.model.ElementType;
 import eu.epfc.anc3.vm.ParcelViewModel;
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SetProperty;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.util.List;
-import java.util.Set;
 
 public class ParcelView extends StackPane {
 
@@ -39,31 +35,28 @@ public class ParcelView extends StackPane {
         valueProperty.addListener((obs, old, newVal) -> this.setElementsImages(imageView, newVal));
 
         setOnMouseClicked(e -> parcelViewModel.onMouseClicked());
-
-
     }
 
     private void setElementsImages(ImageView imageView, List<Element> elements) {
                 for (Element element : elements) {
-
-                    if(element.getType()==Type.GRASS){
+                    if(element.getType()== ElementType.GRASS){
                         imageView.setImage(grassImage);
                         getChildren().remove(farmer);
-                    }else if(element.getType()==Type.DIRT){
+                    }else if(element.getType()== ElementType.DIRT){
                         imageView.setImage(dirtImage);
                         getChildren().remove(farmer);
                     }
                  }
 
                 for (Element element : elements) {
-                    if(element.getType()==Type.FARMER){
+                    if(element.getType()== ElementType.FARMER){
                         getChildren().remove(farmer);
                         getChildren().add(farmer);
                     }
-
-
                 }
-
-
     }
+
+
+
+
 }

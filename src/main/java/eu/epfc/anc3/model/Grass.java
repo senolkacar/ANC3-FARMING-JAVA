@@ -3,10 +3,11 @@ package eu.epfc.anc3.model;
 class Grass extends Element {
 
     Grass() {
-        type = Type.GRASS;
+        elementType = ElementType.GRASS;
     }
+
     @Override
-    public Type getType() {
-        return this.type;
+    public ElementType getType() {
+        return this.elementType;
     }
 }

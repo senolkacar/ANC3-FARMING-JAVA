@@ -13,7 +13,6 @@ public class GameViewModel {
 
     private boolean isPlanting = false;
 
-
     public GameViewModel() {
         countViewModel = new CountViewModel(game);
         farmViewModel = new FarmViewModel(game);
