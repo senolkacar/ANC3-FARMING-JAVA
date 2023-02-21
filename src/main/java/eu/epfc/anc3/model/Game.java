@@ -100,7 +100,7 @@ class Game {
                 this.addElement(getFarmerPosition(), grass);
                 increaseGrassParcelCount();
             }
-        else if (gameMode.get() == Mode.REMOVE && !this.containsElement(getFarmerPosition(), dirt)) {
+        else if (gameMode.get() == Mode.REMOVE && this.containsElement(getFarmerPosition(), grass)) {
                 this.removeElement(getFarmerPosition(), grass);
                 this.addElement(getFarmerPosition(), dirt);
                 decreaseGrassParcelCount();

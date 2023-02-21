@@ -8,9 +8,9 @@ class Farm {
     public static final int FARM_HEIGHT = 15;
     public static final int PADDING = 10;
 
-    private final Farmer farmer = new Farmer();
-    private final Dirt dirt = new Dirt();
-    private final List<Element> elements = new ArrayList<>();
+//    private final Farmer farmer = new Farmer();
+//    private final Dirt dirt = new Dirt();
+//    private final List<Element> elements = new ArrayList<>();
 
     private final Parcel[][] farm;
 
@@ -51,13 +51,10 @@ class Farm {
     public void reset() {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
+                farm[i][j].clearElements();
+                farm[i][j].addElement(new Dirt());
                if(i==0&&j==0){
-                   elements.add(farmer);
-                   farm[i][j].setElement(elements);
-               }else{
-                   elements.clear();
-                   elements.add(dirt);
-                   farm[i][j].setElement(elements);
+                   farm[i][j].addElement(new Farmer());
                }
             }
         }
