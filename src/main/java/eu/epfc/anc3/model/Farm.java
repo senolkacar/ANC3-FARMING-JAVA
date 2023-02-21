@@ -3,6 +3,7 @@ package eu.epfc.anc3.model;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SetProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +12,10 @@ class Farm {
     public static final int FARM_HEIGHT = 15;
 
     public static final int PADDING = 10;
+
+    private final Farmer farmer = new Farmer();
+    private final Dirt dirt = new Dirt();
+    private final List<Element> elements = new ArrayList<>();
 
     private final Parcel[][] farm;
 
@@ -52,9 +57,12 @@ class Farm {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
                if(i==0&&j==0){
-                   farm[i][j].addElement(new Farmer());
+                   elements.add(farmer);
+                   farm[i][j].setElement(elements);
                }else{
-                   farm[i][j].addElement(new Dirt());
+                   elements.clear();
+                   elements.add(dirt);
+                   farm[i][j].setElement(elements);
                }
             }
         }

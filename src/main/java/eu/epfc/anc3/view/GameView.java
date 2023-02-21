@@ -2,6 +2,7 @@ package eu.epfc.anc3.view;
 
 import eu.epfc.anc3.model.GameFacade;
 import eu.epfc.anc3.vm.GameViewModel;
+import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -39,7 +40,16 @@ public class GameView extends BorderPane {
         stage.setMinWidth(stage.getWidth());
         stage.setMinHeight(stage.getHeight());
         scene.setOnKeyPressed(e -> gameVM.onKeyPressed(e.getCode().getChar()));
-
+        scene.setOnKeyReleased(e -> gameVM.onKeyReleased(e.getCode().getChar()));
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if (gameVM.isPlanting()) {
+                    gameVM.continuePlanting();
+                }
+            }
+        };
+        timer.start();
         gameVM.start();
     }
 }

@@ -48,11 +48,11 @@ public class ParcelView extends StackPane {
 
                     if(element.getType()==Type.GRASS){
                         imageView.setImage(grassImage);
+                        getChildren().remove(farmer);
                     }else if(element.getType()==Type.DIRT){
                         imageView.setImage(dirtImage);
                         getChildren().remove(farmer);
                     }
-
                  }
 
                 for (Element element : elements) {

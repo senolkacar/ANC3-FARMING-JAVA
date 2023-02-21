@@ -2,8 +2,8 @@ package eu.epfc.anc3.vm;
 
 import eu.epfc.anc3.model.GameFacade;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
+
 
 public class GameViewModel {
     private final GameFacade game = new GameFacade();
@@ -11,7 +11,8 @@ public class GameViewModel {
     private final FarmViewModel farmViewModel;
     private final MenuViewModel menuViewModel;
 
-    private boolean spaceBarPressed = false;
+    private boolean isPlanting = false;
+
 
     public GameViewModel() {
         countViewModel = new CountViewModel(game);
@@ -49,7 +50,24 @@ public class GameViewModel {
         } else if ("D".equalsIgnoreCase(character)) {
             game.moveFarmerRight();
         } else if (" ".equals(character)) {
+            isPlanting = true;
             game.plantOrRemoveGrass();
         }
     }
+
+    public void onKeyReleased(String character) {
+        if (" ".equals(character)) {
+            isPlanting = false;
+        }
+    }
+
+    public boolean isPlanting() {
+        return isPlanting;
+    }
+
+    public void continuePlanting() {
+        game.plantOrRemoveGrass();
+    }
+
+
 }
