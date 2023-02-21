@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ParcelView extends StackPane {
 
@@ -38,22 +39,36 @@ public class ParcelView extends StackPane {
     }
 
     private void setElementsImages(ImageView imageView, List<Element> elements) {
-                for (Element element : elements) {
-                    if(element.getType()== ElementType.GRASS){
-                        imageView.setImage(grassImage);
-                        getChildren().remove(farmer);
-                    }else if(element.getType()== ElementType.DIRT){
-                        imageView.setImage(dirtImage);
-                        getChildren().remove(farmer);
-                    }
-                 }
+        List<ElementType> newList = elements.stream().map(Element::getType).collect(Collectors.toList());
+        if (newList.contains(ElementType.GRASS)){
+            imageView.setImage(grassImage);
+            getChildren().remove(farmer);
+        } else {
+            imageView.setImage(dirtImage);
+            getChildren().remove(farmer);
 
-                for (Element element : elements) {
-                    if(element.getType()== ElementType.FARMER){
-                        getChildren().remove(farmer);
-                        getChildren().add(farmer);
-                    }
-                }
+        }
+        if (newList.contains(ElementType.FARMER)) {
+            getChildren().remove(farmer);
+            getChildren().add(farmer);
+
+        }
+//                for (Element element : elements) {
+//                    if(element.getType()== ElementType.GRASS){
+//                        imageView.setImage(grassImage);
+//                        getChildren().remove(farmer);
+//                    }else if(element.getType()== ElementType.DIRT){
+//                        imageView.setImage(dirtImage);
+//                        getChildren().remove(farmer);
+//                    }
+//                 }
+//
+//                for (Element element : elements) {
+//                    if(element.getType()== ElementType.FARMER){
+//                        getChildren().remove(farmer);
+//                        getChildren().add(farmer);
+//                    }
+//                }
     }
 
 
