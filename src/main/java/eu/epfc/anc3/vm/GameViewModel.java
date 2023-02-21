@@ -65,7 +65,7 @@ public class GameViewModel {
         return isPlanting;
     }
 
-    public void continuePlanting() {
+    public void continuePlantingOrRemoving() {
         game.plantOrRemoveGrass();
     }
 

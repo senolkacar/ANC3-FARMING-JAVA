@@ -45,7 +45,7 @@ public class GameView extends BorderPane {
             @Override
             public void handle(long now) {
                 if (gameVM.isPlanting()) {
-                    gameVM.continuePlanting();
+                    gameVM.continuePlantingOrRemoving();
                 }
             }
         };
