@@ -39,7 +39,6 @@
                 menuModeObjectProperty.set(Mode.REMOVE);
                 this.onModeButtonAction(menuModeObjectProperty);});
 
-
             setFocusTraversable(false);
             startButton.setFocusTraversable(false);
             plantButton.setFocusTraversable(false);
@@ -69,6 +68,5 @@
                 plantButton.setSelected(false);
             }
             menuModeObjectProperty.set(actionToggleGroup.getSelectedToggle() == null ? Mode.FREE : menuModeObjectProperty.get());
-            //menuVM.setMode(actionToggleGroup.getSelectedToggle() == null ? Mode.FREE : mode);
         }
     }

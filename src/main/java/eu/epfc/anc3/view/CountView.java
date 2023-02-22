@@ -19,9 +19,11 @@ public class CountView extends HBox {
         parcelCountLabel = new Label("Nombre de parcelles: ");
         parcelCountInput = new TextField("0");
         parcelCountInput.setDisable(true);
+
         getChildren().addAll(parcelCountLabel, parcelCountInput);
 
         ReadOnlyIntegerProperty valueProperty = countVM.valueProperty();
+
         valueProperty.addListener((obs, old, newVal) -> parcelCountInput.setText("" + newVal));
     }
 }

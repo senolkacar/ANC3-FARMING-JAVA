@@ -1,7 +1,9 @@
 package eu.epfc.anc3.model;
 
+import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
+import java.util.List;
 
 public class GameFacade {
     private final Game game = new Game();
@@ -14,16 +16,28 @@ public class GameFacade {
         game.setGameMode(gameMode);
     }
 
-    public ObjectProperty<ElementValue> getParcelValueProperty(Position position) {
+    public ListProperty<Element> getParcelValueProperty(Position position) {
         return game.getParcelValueProperty(position);
     }
 
-    public ElementValue getParcelValue(Position position) {
+    public boolean containsElement(Position position, Element element) {
+        return game.containsElement(position, element);
+    }
+
+    public void removeElement(Position position, Element element) {
+        game.removeElement(position, element);
+    }
+
+    public void addElement(Position position, Element element) {
+        game.addElement(position, element);
+    }
+
+    public List<Element> getParcelValue(Position position) {
         return game.getParcelValue(position);
     }
 
-    public void setParcelValue(Position position, ElementValue value) {
-        game.setParcelValue(position, value);
+    public void setParcelValue(Position position, List<Element> element) {
+        game.setParcelValue(position, element);
     }
 
     public Position getFarmerPosition() {
@@ -42,14 +56,6 @@ public class GameFacade {
         game.setMovementEnabled(movementEnabled);
     }
 
-//    public Mode getMode() {
-//        return game.getMode();
-//    }
-//
-//    public void setMode(Mode mode) {
-//        game.setMode(mode);
-//    }
-
     public ReadOnlyIntegerProperty getGrassParcelCountValueProperty() {
         return game.getGrassParcelCountValueProperty();
     }
@@ -65,6 +71,7 @@ public class GameFacade {
     public void start() {
         game.start();
     }
+
     public void reset() {
         game.reset();
     }
@@ -105,13 +112,6 @@ public class GameFacade {
        game.moveFarmerDown();
     }
 
-    private void removeFarmerFromParcel() {
-        game.removeFarmerFromParcel();
-    }
-
-    private void putFarmerOnParcel() {
-        game.putFarmerOnParcel();
-    }
 
 
 
