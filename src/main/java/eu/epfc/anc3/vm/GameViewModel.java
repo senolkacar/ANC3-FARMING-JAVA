@@ -1,6 +1,7 @@
 package eu.epfc.anc3.vm;
 
 import eu.epfc.anc3.model.GameFacade;
+import javafx.scene.input.KeyCode;
 
 import java.util.stream.Stream;
 
@@ -39,16 +40,16 @@ public class GameViewModel {
         game.reset();
     }
 
-    public void onKeyPressed(String character) {
-        if (Stream.of("W", "Z").anyMatch(s -> s.equalsIgnoreCase(character))) {
+    public void onKeyPressed(KeyCode key) {
+        if(key == KeyCode.W || key == KeyCode.Z || key == KeyCode.UP) {
             game.moveFarmerUp();
-        } else if (Stream.of("A", "Q").anyMatch(s -> s.equalsIgnoreCase(character))) {
+        } else if(key == KeyCode.A || key == KeyCode.Q || key == KeyCode.LEFT) {
             game.moveFarmerLeft();
-        } else if ("S".equalsIgnoreCase(character)) {
+        } else if(key == KeyCode.S || key == KeyCode.DOWN) {
             game.moveFarmerDown();
-        } else if ("D".equalsIgnoreCase(character)) {
+        } else if(key == KeyCode.D || key == KeyCode.RIGHT) {
             game.moveFarmerRight();
-        } else if (" ".equals(character)) {
+        } else if(key == KeyCode.SPACE) {
             isPlanting = true;
             game.plantOrRemoveGrass();
         }

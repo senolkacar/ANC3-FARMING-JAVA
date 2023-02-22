@@ -39,7 +39,7 @@ public class GameView extends BorderPane {
         stage.setTitle("Projet ANC3 2223 a02");
         stage.setMinWidth(stage.getWidth());
         stage.setMinHeight(stage.getHeight());
-        scene.setOnKeyPressed(e -> gameVM.onKeyPressed(e.getCode().getChar()));
+        scene.setOnKeyPressed(e -> gameVM.onKeyPressed(e.getCode()));
         scene.setOnKeyReleased(e -> gameVM.onKeyReleased(e.getCode().getChar()));
         AnimationTimer timer = new AnimationTimer() {
             @Override
