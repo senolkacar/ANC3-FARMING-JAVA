@@ -41,9 +41,11 @@ public class GameViewModel {
     }
 
     public void onKeyPressed(KeyCode key) {
-        if(key == KeyCode.W || key == KeyCode.Z || key == KeyCode.UP) {
+        //javafx is based on us keyboard layout so we need to handle the key pressed as
+        //if we were using a us keyboard, W instead of Z and A instead of Q
+        if(key == KeyCode.W || key == KeyCode.UP) {
             game.moveFarmerUp();
-        } else if(key == KeyCode.A || key == KeyCode.Q || key == KeyCode.LEFT) {
+        } else if(key == KeyCode.A || key == KeyCode.LEFT) {
             game.moveFarmerLeft();
         } else if(key == KeyCode.S || key == KeyCode.DOWN) {
             game.moveFarmerDown();
