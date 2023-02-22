@@ -40,7 +40,7 @@ public class GameView extends BorderPane {
         stage.setMinWidth(stage.getWidth());
         stage.setMinHeight(stage.getHeight());
         scene.setOnKeyPressed(e -> gameVM.onKeyPressed(e.getCode()));
-        scene.setOnKeyReleased(e -> gameVM.onKeyReleased(e.getCode().getChar()));
+        scene.setOnKeyReleased(e -> gameVM.onKeyReleased(e.getCode());
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
