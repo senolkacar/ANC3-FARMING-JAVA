@@ -5,22 +5,22 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 class Day {
 
-    private IntegerProperty dayProperty = new SimpleIntegerProperty(0);
+    private IntegerProperty dayProperty = new SimpleIntegerProperty(1);
 
     public int getDayProperty() {
         return dayProperty.get();
     }
 
-    public IntegerProperty dayPropertyProperty() {
+    IntegerProperty dayPropertyProperty() {
         return dayProperty;
     }
 
-    public void setDayProperty(int dayProperty) {
-        this.dayProperty.set(dayProperty);
+    void resetDayProperty() {
+        this.dayProperty.set(1);
     }
 
     void increaseDayProperty() {
-        dayProperty.set(dayProperty.get()+1);        
+        dayProperty.set(dayProperty.get()+1);
     }
 
 

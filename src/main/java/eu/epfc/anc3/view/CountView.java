@@ -13,17 +13,27 @@ public class CountView extends HBox {
     private final Label parcelCountLabel;
     private final TextField parcelCountInput;
 
+    private final Label dayCountLabel;
+    private final TextField dayCountInput;
+
     public CountView(CountViewModel countVM) {
         this.countVM = countVM;
+        ReadOnlyIntegerProperty valueProperty = countVM.valueProperty();
+
+        ReadOnlyIntegerProperty dayInputProperty = countVM.dayProperty();
 
         parcelCountLabel = new Label("Nombre de parcelles: ");
         parcelCountInput = new TextField("0");
-        parcelCountInput.setDisable(true);
+        parcelCountInput.setDisable(true);//binding
 
-        getChildren().addAll(parcelCountLabel, parcelCountInput);
+        dayCountLabel = new Label("Jour: ");
+        dayCountInput = new TextField("1");
+        dayCountInput.setDisable(true);//binding
 
-        ReadOnlyIntegerProperty valueProperty = countVM.valueProperty();
+        getChildren().addAll(parcelCountLabel, parcelCountInput,dayCountLabel,dayCountInput);
 
         valueProperty.addListener((obs, old, newVal) -> parcelCountInput.setText("" + newVal));
+
+        dayInputProperty.addListener((obs, old, newVal) -> dayCountInput.setText("" + newVal));
     }
 }

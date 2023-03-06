@@ -13,4 +13,8 @@ public class CountViewModel {
     public ReadOnlyIntegerProperty valueProperty() {
         return game.getGrassParcelCountValueProperty();
     }
+
+    public ReadOnlyIntegerProperty dayProperty() {
+        return game.getDayProperty();
+    }
 }
