@@ -38,7 +38,7 @@ public class ParcelView extends StackPane {
         setOnMouseClicked(e -> parcelViewModel.onMouseClicked());
     }
 
-    private void setElementsImages(ImageView imageView, List<Element> elements) {
+    void setElementsImages(ImageView imageView, List<Element> elements) {
         List<ElementType> newList = elements.stream().map(Element::getType).collect(Collectors.toList());
         if (newList.contains(ElementType.GRASS)){
             imageView.setImage(grassImage);

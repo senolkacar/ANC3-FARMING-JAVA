@@ -9,21 +9,21 @@ import static javafx.collections.FXCollections.observableArrayList;
 class Parcel {
 
 
-    SimpleListProperty<Element> elements = new SimpleListProperty<>(observableArrayList(new Dirt()));
+    private SimpleListProperty<Element> elements = new SimpleListProperty<>(observableArrayList(new Dirt()));
 
     SimpleListProperty<Element> elementProperty() {
         return elements;
     }
 
-    public void addElement(Element newElement){
+    void addElement(Element newElement){
         this.elements.add(newElement);
     }
 
-    public void setElement(List<Element> newElement){
+    void setElement(List<Element> newElement){
       this.elements.setAll(newElement);
     }
 
-    public void clearElements(){
+    void clearElements(){
         elements.clear();
     }
 
@@ -31,11 +31,11 @@ class Parcel {
         return elements.getValue();
     }
 
-    public void removeElement(Element oldElement){
+    void removeElement(Element oldElement){
         this.elements.removeIf(e->e.equals(oldElement));
     }
 
-    public boolean containsElement(Element newElement) {
+    boolean containsElement(Element newElement) {
         return elements.contains(newElement);
     }
 }

@@ -19,65 +19,65 @@ class Game {
         return gameMode;
     }
 
-    public void setGameMode(Mode gameMode) {
+    void setGameMode(Mode gameMode) {
         this.gameMode.set(gameMode);
     }
 
-    public ListProperty<Element> getParcelValueProperty(Position position) {
+    ListProperty<Element> getParcelValueProperty(Position position) {
         return farm.valueProperty(position);
     }
 
-    public List<Element> getParcelValue(Position position) {
+    List<Element> getParcelValue(Position position) {
         return farm.getValue(position);
     }
 
-    public boolean containsElement(Position position, Element element) {
+    boolean containsElement(Position position, Element element) {
         return farm.containsElement(position, element);
     }
 
-    public void removeElement(Position position, Element element) {
+    void removeElement(Position position, Element element) {
         farm.removeElement(position, element);
     }
 
-    public void addElement(Position position, Element element) {
+    void addElement(Position position, Element element) {
         farm.addElement(position, element);
     }
 
-    public void setParcelValue(Position position, List<Element> element) {
+    void setParcelValue(Position position, List<Element> element) {
         farm.setValue(position, element);
     }
 
-    public Position getFarmerPosition() {
+    Position getFarmerPosition() {
         return farmer.getPosition();
     }
 
-    public void setFarmerPosition(Position position) {
+    void setFarmerPosition(Position position) {
         farmer.setPosition(position);
     }
 
-    public boolean isMovementEnabled() {
+    boolean isMovementEnabled() {
         return movementEnabled;
     }
 
-    public void setMovementEnabled(boolean movementEnabled) {
+    void setMovementEnabled(boolean movementEnabled) {
         this.movementEnabled = movementEnabled;
     }
 
-    public ReadOnlyIntegerProperty getGrassParcelCountValueProperty() {
+    ReadOnlyIntegerProperty getGrassParcelCountValueProperty() {
         return grassParcelCount;
     }
 
-    public void increaseGrassParcelCount() {
+    void increaseGrassParcelCount() {
         grassParcelCount.setValue(grassParcelCount.getValue() + 1);
     }
 
-    public void decreaseGrassParcelCount() {
+    void decreaseGrassParcelCount() {
         if (grassParcelCount.getValue()>0) {
             grassParcelCount.setValue(grassParcelCount.getValue() - 1);
         }
     }
 
-    public void start(){
+    void start(){
         farmer.setPosition(new Position(0, 0));
         farm.reset();
         gameMode.set(Mode.FREE);
@@ -86,12 +86,12 @@ class Game {
         movementEnabled = false;
     }
 
-    public void reset() {
+    void reset() {
         this.start();
         movementEnabled = true;
     }
 
-    public void plantOrRemoveGrass() {
+    void plantOrRemoveGrass() {
         if (!isMovementEnabled())
             return;
 
@@ -107,7 +107,7 @@ class Game {
         }
     }
 
-    public void onMouseClicked(Position position) {
+    void onMouseClicked(Position position) {
         if (isMovementEnabled()) {
             this.removeElement(getFarmerPosition(), farmer);
             setFarmerPosition(position);
@@ -115,7 +115,7 @@ class Game {
         }
     }
 
-    public void moveFarmerUp() {
+    void moveFarmerUp() {
         if (isMovementEnabled() && getFarmerPosition().getY() > 0) {
             this.removeElement(getFarmerPosition(), farmer);
             setFarmerPosition(new Position(getFarmerPosition().getX(),getFarmerPosition().getY()-1));
@@ -123,7 +123,7 @@ class Game {
         }
     }
 
-    public void moveFarmerLeft() {
+    void moveFarmerLeft() {
         if (isMovementEnabled() && getFarmerPosition().getX() > 0) {
             this.removeElement(getFarmerPosition(), farmer);
             setFarmerPosition(new Position(getFarmerPosition().getX()-1,getFarmerPosition().getY()));
@@ -131,7 +131,7 @@ class Game {
         }
     }
 
-    public void moveFarmerRight() {
+    void moveFarmerRight() {
         if (isMovementEnabled() && getFarmerPosition().getX() < Farm.FARM_WIDTH - 1) {
             this.removeElement(getFarmerPosition(), farmer);
             setFarmerPosition(new Position(getFarmerPosition().getX()+1,getFarmerPosition().getY()));
@@ -139,7 +139,7 @@ class Game {
         }
     }
 
-    public void moveFarmerDown() {
+    void moveFarmerDown() {
         if (isMovementEnabled() && getFarmerPosition().getY() < Farm.FARM_HEIGHT - 1) {
             this.removeElement(getFarmerPosition(), farmer);
             setFarmerPosition(new Position(getFarmerPosition().getX(),getFarmerPosition().getY()+1));

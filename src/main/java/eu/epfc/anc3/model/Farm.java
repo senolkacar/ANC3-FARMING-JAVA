@@ -32,23 +32,23 @@ class Farm {
         return farm[position.getY()][position.getX()].getValue();
     }
 
-    public void setValue(Position position, List<Element> element) {
+    void setValue(Position position, List<Element> element) {
             farm[position.getY()][position.getX()].setElement(element);
     }
 
-    public boolean containsElement(Position position, Element element) {
+    boolean containsElement(Position position, Element element) {
         return farm[position.getY()][position.getX()].containsElement(element);
     }
 
-    public void removeElement(Position position, Element element) {
+    void removeElement(Position position, Element element) {
         farm[position.getY()][position.getX()].removeElement(element);
     }
 
-    public void addElement(Position position, Element element) {
+    void addElement(Position position, Element element) {
         farm[position.getY()][position.getX()].addElement(element);
     }
 
-    public void reset() {
+    void reset() {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
                 farm[i][j].clearElements();

@@ -1,5 +1,7 @@
 package eu.epfc.anc3.model;
 
+import java.util.Objects;
+
 public abstract class Element  {
     ElementType elementType;
     public ElementType getType() {
@@ -13,5 +15,11 @@ public abstract class Element  {
         Element element = (Element) o;
         return elementType == element.elementType;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(elementType);
+    }
+
 
 }
