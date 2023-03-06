@@ -1,6 +1,7 @@
 package eu.epfc.anc3.model;
 
 class CarrotState1 implements CarrotState{
+
     int getCarrotState1Duration () {
         return CARROT_STATE1_DURATION;
     }
