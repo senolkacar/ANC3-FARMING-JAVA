@@ -38,4 +38,11 @@ class Parcel {
     boolean containsElement(Element newElement) {
         return elements.contains(newElement);
     }
+
+    void incrementDay(){
+        elements.forEach(Element::incrementDay);
+    }
+
+
+
 }

@@ -5,6 +5,7 @@ import java.util.Objects;
 public abstract class Element  {
 
     ElementType elementType;
+    private int state;
 
     public ElementType getType() {
         return elementType;
@@ -24,4 +25,10 @@ public abstract class Element  {
     }
 
 
+    public void incrementDay() {
+    }
+
+    public int getState() {
+        return state;
+    }
 }

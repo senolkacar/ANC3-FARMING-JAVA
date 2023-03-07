@@ -9,6 +9,9 @@ class Game {
     private final Farm farm = new Farm();
     private final Dirt dirt = new Dirt();
     private final Grass grass = new Grass();
+
+    private final Carrot carrot = new Carrot();
+    private final Cabbage cabbage = new Cabbage();
     private final Farmer farmer = new Farmer();
     private final Day day = new Day();
     private boolean movementEnabled = false;
@@ -22,6 +25,8 @@ class Game {
 
     void increaseDayProperty() {
         day.increaseDayProperty();
+        farm.incrementDay();
+
     }
 
     ObjectProperty<Mode> gameModeProperty() {
@@ -101,16 +106,27 @@ class Game {
         movementEnabled = true;
     }
 
-    void plantOrRemoveGrass() {
+    void plantOrRemove() {
         if (!isMovementEnabled())
             return;
-
-        if(gameMode.get() == Mode.PLANT&& !this.containsElement(getFarmerPosition(), grass)) {
+        if(gameMode.get() == Mode.PLANT_GRASS&& !this.containsElement(getFarmerPosition(), grass)) {
                 this.removeElement(getFarmerPosition(), dirt);
                 this.addElement(getFarmerPosition(), grass);
                 increaseGrassParcelCount();
             }
-        else if (gameMode.get() == Mode.REMOVE && this.containsElement(getFarmerPosition(), grass)) {
+        else if(gameMode.get() == Mode.PLANT_CARROT && !this.containsElement(getFarmerPosition(), carrot)) {
+                this.addElement(getFarmerPosition(), carrot);
+            }
+        else if (gameMode.get() == Mode.PLANT_CABBAGE && !this.containsElement(getFarmerPosition(), cabbage)) {
+                this.addElement(getFarmerPosition(), cabbage);
+            }
+        else if (gameMode.get() == Mode.HARVEST && this.containsElement(getFarmerPosition(), carrot)) {
+                this.removeElement(getFarmerPosition(), carrot);
+            }
+        else if (gameMode.get() == Mode.HARVEST && this.containsElement(getFarmerPosition(), cabbage)) {
+                this.removeElement(getFarmerPosition(), cabbage);
+        }
+        else if (gameMode.get() == Mode.HARVEST && this.containsElement(getFarmerPosition(), grass)) {
                 this.removeElement(getFarmerPosition(), grass);
                 this.addElement(getFarmerPosition(), dirt);
                 decreaseGrassParcelCount();
@@ -130,6 +146,9 @@ class Game {
             this.removeElement(getFarmerPosition(), farmer);
             setFarmerPosition(new Position(getFarmerPosition().getX(),getFarmerPosition().getY()-1));
             this.addElement(getFarmerPosition(), farmer);
+            for(Element element : getParcelValue(getFarmerPosition())) {
+                System.out.println(element.getType());
+            }
         }
     }
 
@@ -138,6 +157,9 @@ class Game {
             this.removeElement(getFarmerPosition(), farmer);
             setFarmerPosition(new Position(getFarmerPosition().getX()-1,getFarmerPosition().getY()));
             this.addElement(getFarmerPosition(), farmer);
+            for(Element element : getParcelValue(getFarmerPosition())) {
+                System.out.println(element.getType());
+            }
         }
     }
 
@@ -146,6 +168,9 @@ class Game {
             this.removeElement(getFarmerPosition(), farmer);
             setFarmerPosition(new Position(getFarmerPosition().getX()+1,getFarmerPosition().getY()));
             this.addElement(getFarmerPosition(), farmer);
+            for(Element element : getParcelValue(getFarmerPosition())) {
+                System.out.println(element.getType());
+            }
         }
     }
 
@@ -154,6 +179,9 @@ class Game {
             this.removeElement(getFarmerPosition(), farmer);
             setFarmerPosition(new Position(getFarmerPosition().getX(),getFarmerPosition().getY()+1));
             this.addElement(getFarmerPosition(), farmer);
+            for(Element element : getParcelValue(getFarmerPosition())) {
+                System.out.println(element.getType());
+            }
         }
     }
 
