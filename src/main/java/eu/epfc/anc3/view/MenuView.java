@@ -62,7 +62,10 @@
             harvestButton.setToggleGroup(actionToggleGroup);
 
 
-            sleepButton.setOnAction(e->menuVM.sleepButtonAction());
+            sleepButton.setOnAction(e->{
+                menuVM.sleepButtonAction();
+                requestFocus();
+            });
             startButton.setOnAction(e -> this.onStartButtonAction());
             plantGrassButton.setOnAction(e -> {
                 menuModeObjectProperty.set(Mode.PLANT_GRASS);
