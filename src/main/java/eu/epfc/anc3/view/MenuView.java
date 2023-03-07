@@ -34,7 +34,10 @@
             removeButton.setDisable(true);
             sleepButton.setDisable(true);
 
-            sleepButton.setOnAction(e->menuVM.sleepButtonAction());
+            sleepButton.setOnAction(e->{
+                menuVM.sleepButtonAction();
+                requestFocus();//TODO
+            });
             startButton.setOnAction(e -> this.onStartButtonAction());
             plantButton.setOnAction(e -> {
                 menuModeObjectProperty.set(Mode.PLANT);
