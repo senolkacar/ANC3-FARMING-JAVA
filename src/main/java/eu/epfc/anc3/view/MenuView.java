@@ -11,6 +11,7 @@
 
     public class MenuView extends HBox {
         private final Button startButton;
+        private final Button sleepButton;
 
         private final ToggleGroup actionToggleGroup;
         private final ToggleButton plantButton;
@@ -24,13 +25,16 @@
 
             actionToggleGroup = new ToggleGroup();
             startButton = new Button("Démarrer");
+            sleepButton = new Button("Dormir");
             plantButton = new ToggleButton("Planter du gazon");
             removeButton = new ToggleButton("Enlever du gazon");
             plantButton.setToggleGroup(actionToggleGroup);
             removeButton.setToggleGroup(actionToggleGroup);
             plantButton.setDisable(true);
             removeButton.setDisable(true);
+            sleepButton.setDisable(true);
 
+            sleepButton.setOnAction(e->menuVM.sleepButtonAction());
             startButton.setOnAction(e -> this.onStartButtonAction());
             plantButton.setOnAction(e -> {
                 menuModeObjectProperty.set(Mode.PLANT);
@@ -43,12 +47,13 @@
             startButton.setFocusTraversable(false);
             plantButton.setFocusTraversable(false);
             removeButton.setFocusTraversable(false);
-            getChildren().addAll(startButton, plantButton, removeButton);
+            getChildren().addAll(startButton, sleepButton, plantButton, removeButton);
         }
 
         private void onStartButtonAction() {
             if (startButton.getText().equals("Démarrer")) {
                 menuVM.reset();
+                sleepButton.setDisable(false);
                 plantButton.setDisable(false);
                 removeButton.setDisable(false);
                 removeButton.setSelected(false);
@@ -56,6 +61,7 @@
                 startButton.setText("Arrêter");
             } else {
                 menuVM.stop();
+                sleepButton.setDisable(true);
                 plantButton.setDisable(true);
                 removeButton.setDisable(true);
                 startButton.setText("Démarrer");

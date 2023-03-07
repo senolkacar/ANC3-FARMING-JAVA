@@ -10,10 +10,19 @@ class Game {
     private final Dirt dirt = new Dirt();
     private final Grass grass = new Grass();
     private final Farmer farmer = new Farmer();
+    private final Day day = new Day();
     private boolean movementEnabled = false;
 
     private final IntegerProperty grassParcelCount = new SimpleIntegerProperty(0);
     private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);
+
+    IntegerProperty getDayProperty(){
+        return day.dayPropertyProperty();
+    }
+
+    void increaseDayProperty() {
+        day.increaseDayProperty();
+    }
 
     ObjectProperty<Mode> gameModeProperty() {
         return gameMode;
@@ -88,6 +97,7 @@ class Game {
 
     void reset() {
         this.start();
+        day.resetDayProperty();
         movementEnabled = true;
     }
 
