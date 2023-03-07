@@ -13,6 +13,7 @@ public class GameView extends BorderPane {
     private final CountView countView;
     private final FarmView farmView;
     private final MenuView menuView;
+    private final MenuRightView menuRightView;
     static final int FARM_WIDTH = GameFacade.getFarmWidth();
     static final int FARM_HEIGHT = GameFacade.getFarmHeight();
     static final int PADDING = GameFacade.getPadding();
@@ -30,6 +31,13 @@ public class GameView extends BorderPane {
         menuView.setAlignment(Pos.CENTER);
         super.setBottom(menuView);
         menuView.setFocusTraversable(true);
+
+        menuRightView = new MenuRightView(gameVM.getMenuRightViewModel());
+        menuRightView.setAlignment(Pos.CENTER);
+        super.setRight(menuRightView);
+        menuRightView.setFocusTraversable(true);
+
+
 
         Scene scene = new Scene(this, 1000, 700);
         scene.getRoot().setStyle("-fx-font-family: 'serif'");

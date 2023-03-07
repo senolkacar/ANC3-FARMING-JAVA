@@ -11,6 +11,7 @@ public class GameViewModel {
     private final CountViewModel countViewModel;
     private final FarmViewModel farmViewModel;
     private final MenuViewModel menuViewModel;
+    private final MenuRightViewModel menuRightViewModel;
 
     private boolean isPlanting = false;
 
@@ -18,6 +19,7 @@ public class GameViewModel {
         countViewModel = new CountViewModel(game);
         farmViewModel = new FarmViewModel(game);
         menuViewModel = new MenuViewModel(game);
+        menuRightViewModel = new MenuRightViewModel(game);
     }
 
     public CountViewModel getCountViewModel() {
@@ -30,6 +32,10 @@ public class GameViewModel {
 
     public MenuViewModel getMenuViewModel() {
         return menuViewModel;
+    }
+
+    public MenuRightViewModel getMenuRightViewModel() {
+        return menuRightViewModel;
     }
 
     public void start() {
