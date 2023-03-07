@@ -11,9 +11,11 @@ class Game {
     private final Grass grass = new Grass();
     private final Farmer farmer = new Farmer();
     private final Day day = new Day();
-    private boolean movementEnabled = false;
+    //private boolean movementEnabled = false;
+    private BooleanProperty farmerMovementEnable = new SimpleBooleanProperty(false);
 
     private final IntegerProperty grassParcelCount = new SimpleIntegerProperty(0);
+    private final IntegerProperty scoreProperty = new SimpleIntegerProperty(0);
     private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);
 
     IntegerProperty getDayProperty(){
@@ -65,11 +67,11 @@ class Game {
     }
 
     boolean isMovementEnabled() {
-        return movementEnabled;
+        return farmerMovementEnable.get();
     }
 
     void setMovementEnabled(boolean movementEnabled) {
-        this.movementEnabled = movementEnabled;
+        this.farmerMovementEnable.set(movementEnabled);
     }
 
     ReadOnlyIntegerProperty getGrassParcelCountValueProperty() {
@@ -92,13 +94,15 @@ class Game {
         gameMode.set(Mode.FREE);
         //mode = Mode.FREE;
         grassParcelCount.setValue(0);
-        movementEnabled = false;
+        farmerMovementEnable.set(false);
+        //movementEnabled = false;
     }
 
     void reset() {
         this.start();
         day.resetDayProperty();
-        movementEnabled = true;
+        farmerMovementEnable.set(true);
+        //movementEnabled = true;
     }
 
     void plantOrRemoveGrass() {
@@ -157,5 +161,17 @@ class Game {
         }
     }
 
+
+    public BooleanProperty farmerMovementEnableProperty() {
+        return farmerMovementEnable;
+    }
+
+    public ReadOnlyIntegerProperty getScoreProperty() {
+        return scoreProperty;
+    }
+
+    public void setScoreProperty(int score) {
+        scoreProperty.set(scoreProperty.get()+score);
+    }
 
 }

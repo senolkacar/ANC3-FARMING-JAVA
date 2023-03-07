@@ -17,4 +17,8 @@ public class CountViewModel {
     public ReadOnlyIntegerProperty dayProperty() {
         return game.getDayProperty();
     }
+
+    public ReadOnlyIntegerProperty scoreProperty() {
+        return game.getScoreProperty();
+    }
 }

@@ -1,9 +1,7 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ReadOnlyIntegerProperty;
+import javafx.beans.property.*;
+
 import java.util.List;
 
 public class GameFacade {
@@ -122,6 +120,11 @@ public class GameFacade {
     }
 
 
+    public BooleanProperty farmerMovementEnableProperty() {
+        return game.farmerMovementEnableProperty();
+    }
 
-
+    public ReadOnlyIntegerProperty getScoreProperty() {
+        return game.getScoreProperty();
+    }
 }
