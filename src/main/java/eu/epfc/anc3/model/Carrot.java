@@ -21,7 +21,6 @@ class Carrot extends Element implements VegetableState {
         elementType = ElementType.CARROT;
         this.state = 1;
         this.daysSincePlanting = 0;
-        this.stateProperty.set(state);
     }
 
     @Override

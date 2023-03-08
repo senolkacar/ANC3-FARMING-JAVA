@@ -117,32 +117,6 @@
             }
         }
         private void onModeButtonAction(ObjectProperty<Mode> menuModeObjectProperty) {
-            if (menuModeObjectProperty.get() == Mode.PLANT_GRASS) {
-                plantCabbageButton.setSelected(false);
-                plantCarrotButton.setSelected(false);
-                fertilizeButton.setSelected(false);
-                harvestButton.setSelected(false);
-            } else if(menuModeObjectProperty.get() == Mode.PLANT_CARROT) {
-                plantGrassButton.setSelected(false);
-                plantCabbageButton.setSelected(false);
-                fertilizeButton.setSelected(false);
-                harvestButton.setSelected(false);
-            } else if(menuModeObjectProperty.get() == Mode.PLANT_CABBAGE) {
-                plantGrassButton.setSelected(false);
-                plantCarrotButton.setSelected(false);
-                fertilizeButton.setSelected(false);
-                harvestButton.setSelected(false);
-            } else if(menuModeObjectProperty.get() == Mode.FERTILIZE) {
-                plantGrassButton.setSelected(false);
-                plantCarrotButton.setSelected(false);
-                plantCabbageButton.setSelected(false);
-                harvestButton.setSelected(false);
-            } else if(menuModeObjectProperty.get() == Mode.HARVEST) {
-                plantGrassButton.setSelected(false);
-                plantCarrotButton.setSelected(false);
-                plantCabbageButton.setSelected(false);
-                fertilizeButton.setSelected(false);
-            }
             menuModeObjectProperty.set(actionToggleGroup.getSelectedToggle() == null ? Mode.FREE : menuModeObjectProperty.get());
         }
     }
