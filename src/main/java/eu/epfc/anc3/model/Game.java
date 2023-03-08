@@ -10,6 +10,8 @@ class Game {
     private final Dirt dirt = new Dirt();
     private final Grass grass = new Grass();
     private final Farmer farmer = new Farmer();
+    private final Carrot carrot = new Carrot();
+    private final Cabbage cabbage = new Cabbage();
     private final Day day = new Day();
     //private boolean movementEnabled = false;
     private BooleanProperty farmerMovementEnable = new SimpleBooleanProperty(false);
@@ -105,20 +107,29 @@ class Game {
         //movementEnabled = true;
     }
 
-    void plantOrRemoveGrass() {
+    void plantOrRemove() {
         if (!isMovementEnabled())
             return;
 
-        if(gameMode.get() == Mode.PLANT&& !this.containsElement(getFarmerPosition(), grass)) {
+        if(gameMode.get() == Mode.PLANT_GRASS&& !this.containsElement(getFarmerPosition(), grass)) {//with legumes?
                 this.removeElement(getFarmerPosition(), dirt);
                 this.addElement(getFarmerPosition(), grass);
                 increaseGrassParcelCount();
+            } else if (gameMode.get() == Mode.PLANT_CARROT && !this.containsElement(getFarmerPosition(),carrot)){
+                this.addElement(getFarmerPosition(),carrot);
+            } else if (gameMode.get() == Mode.PLANT_CABBAGE && !this.containsElement(getFarmerPosition(),cabbage)) {
+                this.addElement(getFarmerPosition(),cabbage);
+            } else if (gameMode.get() == Mode.HARVEST) {
+                if (this.containsElement(getFarmerPosition(),carrot))
+                    this.removeElement(getFarmerPosition(),carrot);
+                else if (this.containsElement(getFarmerPosition(),cabbage))
+                    this.removeElement(getFarmerPosition(),cabbage);
             }
-        else if (gameMode.get() == Mode.REMOVE && this.containsElement(getFarmerPosition(), grass)) {
-                this.removeElement(getFarmerPosition(), grass);
-                this.addElement(getFarmerPosition(), dirt);
-                decreaseGrassParcelCount();
-        }
+//        else if (gameMode.get() == Mode.REMOVE && this.containsElement(getFarmerPosition(), grass)) {
+//                this.removeElement(getFarmerPosition(), grass);
+//                this.addElement(getFarmerPosition(), dirt);
+//                decreaseGrassParcelCount();
+//        }
     }
 
     void onMouseClicked(Position position) {

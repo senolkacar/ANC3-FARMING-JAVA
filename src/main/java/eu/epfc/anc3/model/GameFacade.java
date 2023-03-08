@@ -95,8 +95,8 @@ public class GameFacade {
         return Farm.PADDING;
     }
 
-    public void plantOrRemoveGrass() { // dans game model
-        game.plantOrRemoveGrass();
+    public void plantOrRemove() { // dans game model
+        game.plantOrRemove();
     }
 
     public void onMouseClicked(Position position) {

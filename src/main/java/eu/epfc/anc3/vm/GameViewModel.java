@@ -57,7 +57,7 @@ public class GameViewModel {
             game.moveFarmerRight();
         } else if(key == KeyCode.SPACE) {
             isPlanting = true;
-            game.plantOrRemoveGrass();
+            game.plantOrRemove();
         }
     }
 
@@ -72,7 +72,7 @@ public class GameViewModel {
     }
 
     public void continuePlantingOrRemoving() {
-        game.plantOrRemoveGrass();
+        game.plantOrRemove();
     }
 
 
