@@ -1,7 +1,10 @@
 package eu.epfc.anc3.model;
 
+import javafx.beans.property.SimpleIntegerProperty;
+
 class Cabbage extends Element implements VegetableState{
 
+    SimpleIntegerProperty stateProperty = new SimpleIntegerProperty(1);
     private final int MAX_POINTS = 200;
     private final double STATE_1_PERCENTAGE = 0;
     private final double STATE_2_PERCENTAGE = 0;
@@ -22,6 +25,7 @@ class Cabbage extends Element implements VegetableState{
         daysSincePlanting++;
         if (daysSincePlanting % 3 == 0) {
             state++;
+            stateProperty.set(state);
         }
     }
     @Override
@@ -50,5 +54,10 @@ class Cabbage extends Element implements VegetableState{
     @Override
     public int getState() {
         return state;
+    }
+
+    @Override
+    public SimpleIntegerProperty getStateProperty() {
+        return stateProperty;
     }
 }

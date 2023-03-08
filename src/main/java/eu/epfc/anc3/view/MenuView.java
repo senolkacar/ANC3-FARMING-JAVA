@@ -41,7 +41,6 @@
         public MenuView(MenuViewModel menuVM) {
             this.menuVM = menuVM;
             menuModeObjectProperty.bindBidirectional(menuVM.gameModeProperty());
-
             actionToggleGroup = new ToggleGroup();
             startButton = new Button("Démarrer");
             sleepButton = new Button("Dormir");

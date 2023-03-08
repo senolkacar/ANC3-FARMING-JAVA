@@ -1,10 +1,13 @@
 package eu.epfc.anc3.model;
 
+import javafx.beans.property.SimpleIntegerProperty;
+
 import java.util.Objects;
 
 public abstract class Element  {
 
     ElementType elementType;
+    SimpleIntegerProperty stateProperty = new SimpleIntegerProperty(1);
     private int state;
 
     public ElementType getType() {
@@ -30,5 +33,9 @@ public abstract class Element  {
 
     public int getState() {
         return state;
+    }
+
+    public SimpleIntegerProperty getStateProperty() {
+        return stateProperty;
     }
 }

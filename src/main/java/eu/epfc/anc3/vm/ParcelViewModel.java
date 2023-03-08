@@ -3,6 +3,7 @@ package eu.epfc.anc3.vm;
 import eu.epfc.anc3.model.Element;
 import eu.epfc.anc3.model.GameFacade;
 import eu.epfc.anc3.model.Position;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
 
 public class ParcelViewModel {
@@ -21,4 +22,5 @@ public class ParcelViewModel {
     public void onMouseClicked(){
         game.onMouseClicked(position);
     }
+    
 }

@@ -10,6 +10,7 @@ class Parcel {
 
 
     private SimpleListProperty<Element> elements = new SimpleListProperty<>(observableArrayList(new Dirt()));
+    private SimpleIntegerProperty state = new SimpleIntegerProperty(0);
 
     SimpleListProperty<Element> elementProperty() {
         return elements;
@@ -44,5 +45,7 @@ class Parcel {
     }
 
 
-
+    public int getElementState(Element element) {
+        return elements.stream().filter(e->e.equals(element)).findFirst().get().getState();
+    }
 }

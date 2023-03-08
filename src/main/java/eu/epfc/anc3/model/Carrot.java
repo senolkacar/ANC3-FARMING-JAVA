@@ -1,5 +1,7 @@
 package eu.epfc.anc3.model;
 
+import javafx.beans.property.SimpleIntegerProperty;
+
 import java.util.List;
 
 class Carrot extends Element implements VegetableState {
@@ -11,6 +13,7 @@ class Carrot extends Element implements VegetableState {
     private final double STATE_4_PERCENTAGE = 1;
     private final double STATE_5_PERCENTAGE = 0;
 
+    SimpleIntegerProperty stateProperty = new SimpleIntegerProperty(1);
     private int state;
     private int daysSincePlanting;
 
@@ -18,6 +21,7 @@ class Carrot extends Element implements VegetableState {
         elementType = ElementType.CARROT;
         this.state = 1;
         this.daysSincePlanting = 0;
+        this.stateProperty.set(state);
     }
 
     @Override
@@ -25,6 +29,7 @@ class Carrot extends Element implements VegetableState {
         daysSincePlanting++;
         if (daysSincePlanting % 3 == 0) {
             state++;
+            stateProperty.set(state);
         }
     }
 
@@ -59,6 +64,11 @@ class Carrot extends Element implements VegetableState {
                break;
        }
        return points;
+    }
+
+    @Override
+    public SimpleIntegerProperty getStateProperty() {
+        return stateProperty;
     }
 
 }
