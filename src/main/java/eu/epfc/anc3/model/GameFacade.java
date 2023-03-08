@@ -36,6 +36,10 @@ public class GameFacade {
     public Cabbage getCabbage(Position position) {
         return game.getCabbage(position);
     }
+
+    public ReadOnlyIntegerProperty getScoreProperty() {
+        return game.getScoreProperty();
+    }
     public boolean containsElement(Position position, Element element) {
         return game.containsElement(position, element);
     }

@@ -17,6 +17,7 @@ class Game {
 
     private final IntegerProperty grassParcelCount = new SimpleIntegerProperty(0);
     private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);
+    private final IntegerProperty scoreProperty = new SimpleIntegerProperty(0);
 
     IntegerProperty getDayProperty(){
         return day.dayPropertyProperty();
@@ -83,6 +84,14 @@ class Game {
         this.movementEnabled = movementEnabled;
     }
 
+    ReadOnlyIntegerProperty getScoreProperty() {
+        return scoreProperty;
+    }
+
+    void setScoreProperty(int score) {
+        scoreProperty.setValue(this.scoreProperty.getValue() + score);
+    }
+
     ReadOnlyIntegerProperty getGrassParcelCountValueProperty() {
         return grassParcelCount;
     }
@@ -127,9 +136,11 @@ class Game {
                 this.addElement(getFarmerPosition(), new Cabbage());
             }
         else if (gameMode.get() == Mode.HARVEST && this.containsElement(getFarmerPosition(), carrot)) {
+                this.setScoreProperty((int)this.getCarrot(getFarmerPosition()).harvest());
                 this.removeElement(getFarmerPosition(), new Carrot());
             }
         else if (gameMode.get() == Mode.HARVEST && this.containsElement(getFarmerPosition(), cabbage)) {
+                this.setScoreProperty((int)this.getCabbage(getFarmerPosition()).harvest());
                 this.removeElement(getFarmerPosition(), new Cabbage());
         }
         else if (gameMode.get() == Mode.HARVEST && this.containsElement(getFarmerPosition(), grass)) {
