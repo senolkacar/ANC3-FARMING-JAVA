@@ -6,6 +6,7 @@
     import javafx.beans.property.BooleanProperty;
     import javafx.beans.property.ObjectProperty;
     import javafx.beans.property.SimpleObjectProperty;
+    import javafx.geometry.Insets;
     import javafx.scene.control.Button;
     import javafx.scene.control.ToggleButton;
     import javafx.scene.control.ToggleGroup;
@@ -15,6 +16,10 @@
     import javafx.scene.layout.VBox;
 
     public class MenuRightView extends VBox {
+        private final static int SPACE = 10;
+        private final static int BUTTON_WIDTH = 180;
+        private final static int BUTTON_HEIGHT = 50;
+
         private final ToggleGroup actionToggleGroup;
 
         private final ToggleButton plantGrassButton;
@@ -39,6 +44,9 @@
         BooleanProperty farmerMovementEnableProperty ;
 
         public MenuRightView(MenuRightViewModel menuRightVM) {
+            this.setSpacing(SPACE);
+            this.setPadding(new Insets(20));
+            
             this.menuRightVM = menuRightVM;
             menuModeObjectProperty.bindBidirectional(menuRightVM.gameModeProperty());
             farmerMovementEnableProperty = menuRightVM.farmerMovementEnableProperty();
@@ -50,6 +58,17 @@
             plantCabbageButton = new ToggleButton("Planter du chou");
             fertilizeButton = new ToggleButton("Fertiliser");
             harvestButton = new ToggleButton("Récolter");
+
+            plantGrassButton.setPrefWidth(BUTTON_WIDTH);
+            plantGrassButton.setPrefWidth(BUTTON_WIDTH);
+            plantCarrotButton.setPrefWidth(BUTTON_WIDTH);
+            plantCarrotButton.setPrefWidth(BUTTON_WIDTH);
+            plantCabbageButton.setPrefWidth(BUTTON_WIDTH);
+            plantCabbageButton.setPrefWidth(BUTTON_WIDTH);
+            fertilizeButton.setPrefWidth(BUTTON_WIDTH);
+            fertilizeButton.setPrefWidth(BUTTON_WIDTH);
+            harvestButton.setPrefWidth(BUTTON_WIDTH);
+            harvestButton.setPrefWidth(BUTTON_WIDTH);
 
             plantGrassButton.setGraphic(grassImageView);
             plantCarrotButton.setGraphic(carrotImageView);
