@@ -35,12 +35,16 @@ class Game {
         this.gameMode.set(gameMode);
     }
 
-    ListProperty<Element> getParcelValueProperty(Position position) {
-        return farm.valueProperty(position);
+    Carrot getCarrot(Position position) {
+        return farm.getCarrot(position);
     }
 
-    int getElementState(Position position, Element element){
-        return farm.getElementState(position,element);
+    Cabbage getCabbage(Position position) {
+        return farm.getCabbage(position);
+    }
+
+    ListProperty<Element> getParcelValueProperty(Position position) {
+        return farm.valueProperty(position);
     }
 
     List<Element> getParcelValue(Position position) {
@@ -132,6 +136,11 @@ class Game {
                 this.removeElement(getFarmerPosition(), grass);
                 this.addElement(getFarmerPosition(), dirt);
                 decreaseGrassParcelCount();
+        }else if (gameMode.get() == Mode.FERTILIZE && this.containsElement(getFarmerPosition(), carrot)) {
+            if(this.getCarrot(getFarmerPosition()).getState()<3){
+                this.getCarrot(getFarmerPosition()).setState(3);
+            }
+
         }
     }
 

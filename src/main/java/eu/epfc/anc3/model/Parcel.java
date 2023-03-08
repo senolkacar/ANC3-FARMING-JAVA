@@ -10,7 +10,6 @@ class Parcel {
 
 
     private SimpleListProperty<Element> elements = new SimpleListProperty<>(observableArrayList(new Dirt()));
-    private SimpleIntegerProperty state = new SimpleIntegerProperty(0);
 
     SimpleListProperty<Element> elementProperty() {
         return elements;
@@ -44,8 +43,13 @@ class Parcel {
         elements.forEach(Element::incrementDay);
     }
 
-
-    public int getElementState(Element element) {
-        return elements.stream().filter(e->e.equals(element)).findFirst().get().getState();
+    Carrot getCarrot(){
+        return (Carrot) elements.stream().filter(e->e instanceof Carrot).findFirst().orElse(null);
     }
+
+    Cabbage getCabbage(){
+        return (Cabbage) elements.stream().filter(e->e instanceof Cabbage).findFirst().orElse(null);
+    }
+
+
 }

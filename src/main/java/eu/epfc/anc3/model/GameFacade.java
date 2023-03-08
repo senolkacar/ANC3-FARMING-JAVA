@@ -29,10 +29,13 @@ public class GameFacade {
         return game.getParcelValueProperty(position);
     }
 
-    public int getElementState(Position position, Element element){
-        return game.getElementState(position,element);
+    public Carrot getCarrot(Position position) {
+        return game.getCarrot(position);
     }
 
+    public Cabbage getCabbage(Position position) {
+        return game.getCabbage(position);
+    }
     public boolean containsElement(Position position, Element element) {
         return game.containsElement(position, element);
     }

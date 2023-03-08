@@ -27,9 +27,6 @@ class Farm {
     ListProperty<Element> valueProperty(Position position) {
         return farm[position.getY()][position.getX()].elementProperty();
     }
-    int getElementState(Position position,Element element){
-        return farm[position.getY()][position.getX()].getElementState(element);
-    }
 
     List<Element> getValue(Position position) {
         return farm[position.getY()][position.getX()].getValue();
@@ -45,6 +42,14 @@ class Farm {
 
     void removeElement(Position position, Element element) {
         farm[position.getY()][position.getX()].removeElement(element);
+    }
+
+    Carrot getCarrot(Position position) {
+        return farm[position.getY()][position.getX()].getCarrot();
+    }
+
+    Cabbage getCabbage(Position position) {
+        return farm[position.getY()][position.getX()].getCabbage();
     }
 
     void addElement(Position position, Element element) {
@@ -70,5 +75,4 @@ class Farm {
             }
         }
     }
-
 }
