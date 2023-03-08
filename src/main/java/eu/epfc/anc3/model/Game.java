@@ -129,10 +129,10 @@ class Game {
                 this.addElement(getFarmerPosition(), grass);
                 increaseGrassParcelCount();
             }
-        else if(gameMode.get() == Mode.PLANT_CARROT && !this.containsElement(getFarmerPosition(), carrot)) {
+        else if(gameMode.get() == Mode.PLANT_CARROT && !this.containsElement(getFarmerPosition(), carrot) && !this.containsElement(getFarmerPosition(), cabbage)) {
                 this.addElement(getFarmerPosition(), new Carrot());
             }
-        else if (gameMode.get() == Mode.PLANT_CABBAGE && !this.containsElement(getFarmerPosition(), cabbage)) {
+        else if (gameMode.get() == Mode.PLANT_CABBAGE && !this.containsElement(getFarmerPosition(), cabbage) && !this.containsElement(getFarmerPosition(), carrot)) {
                 this.addElement(getFarmerPosition(), new Cabbage());
             }
         else if (gameMode.get() == Mode.HARVEST && this.containsElement(getFarmerPosition(), carrot)) {
