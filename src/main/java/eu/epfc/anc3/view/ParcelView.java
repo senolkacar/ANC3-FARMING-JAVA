@@ -138,7 +138,6 @@ public class ParcelView extends StackPane {
             getChildren().removeAll(carrot1,carrot2, carrot3, carrot4, rotten_carrot);
         }
 
-        // Handle cabbage elements
         if (newList.contains(ElementType.CABBAGE)) {
             int cabbageState = 0;
             for (Element element : elements) {
@@ -190,22 +189,6 @@ public class ParcelView extends StackPane {
             getChildren().remove(farmer);
             getChildren().add(farmer);
         }
-//                for (Element element : elements) {
-//                    if(element.getType()== ElementType.GRASS){
-//                        imageView.setImage(grassImage);
-//                        getChildren().remove(farmer);
-//                    }else if(element.getType()== ElementType.DIRT){
-//                        imageView.setImage(dirtImage);
-//                        getChildren().remove(farmer);
-//                    }
-//                 }
-//
-//                for (Element element : elements) {
-//                    if(element.getType()== ElementType.FARMER){
-//                        getChildren().remove(farmer);
-//                        getChildren().add(farmer);
-//                    }
-//                }
     }
 
 

@@ -14,6 +14,7 @@ class Cabbage extends Element implements VegetableState{
 
     private int state;
     private int daysSincePlanting;
+    private int duration =0;
 
     Cabbage() {
         elementType = ElementType.CABBAGE;
@@ -23,7 +24,24 @@ class Cabbage extends Element implements VegetableState{
     @Override
     public void incrementDay() {
         daysSincePlanting++;
-        if (daysSincePlanting % 3 == 0) {
+        duration++;
+        if (duration % 5 == 0 && state==1) {
+            state++;
+            stateProperty.set(state);
+            duration = 0;
+        }else if(duration % 4 == 0 && state==2){
+            state++;
+            stateProperty.set(state);
+            duration = 0;
+        }else if(duration % 3 == 0 && state==3){
+            state++;
+            stateProperty.set(state);
+            duration = 0;
+        } else if(duration % 2 == 0 && state==4){
+            state++;
+            stateProperty.set(state);
+            duration = 0;
+        }else if (duration %10==0 && state == 5){
             state++;
             stateProperty.set(state);
         }

@@ -9,6 +9,11 @@ class Grass extends Element {
     }
 
     @Override
+    public void incrementDay() {
+        daysSincePlanting++;
+    }
+
+    @Override
     public ElementType getType() {
         return this.elementType;
     }
