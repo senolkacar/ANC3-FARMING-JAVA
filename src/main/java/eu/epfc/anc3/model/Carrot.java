@@ -26,7 +26,11 @@ class Carrot extends Element implements VegetableState {
     @Override
     public void incrementDay() {
         daysSincePlanting++;
-        if (daysSincePlanting % 3 == 0) {
+        if (daysSincePlanting % 3 == 0 && state < 5) {
+            state++;
+            stateProperty.set(state);
+            daysSincePlanting = 0;
+        }else if (daysSincePlanting %10==0 && state == 5){
             state++;
             stateProperty.set(state);
         }
