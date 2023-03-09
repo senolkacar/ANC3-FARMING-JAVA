@@ -1,8 +1,11 @@
 package eu.epfc.anc3.model;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 class CarrotState2 extends CarrotState{
+
+    ImageView imageView = new ImageView("carrot3.png");
 
     int getCarrotState1Duration () {
         return CARROT_STATE2_DURATION;
@@ -21,6 +24,7 @@ class CarrotState2 extends CarrotState{
         if (carrot.getDaysInCurrentState() == CARROT_STATE2_DURATION + 1) {
             carrot.setCarrotState(new CarrotState3(carrot));
             carrot.setDaysInCurrentState(1);
+            carrot.setImageView(imageView);
         }
     }
 

@@ -1,5 +1,6 @@
 package eu.epfc.anc3.view;
 
+import eu.epfc.anc3.model.Carrot;
 import eu.epfc.anc3.model.Element;
 import eu.epfc.anc3.model.ElementType;
 import eu.epfc.anc3.vm.ParcelViewModel;
@@ -18,6 +19,7 @@ public class ParcelView extends StackPane {
     private final Image grassImage = new Image("grass.png");
     private final Image dirtImage = new Image("dirt.png");
     private final ImageView farmer = new ImageView("farmer.png");
+    private ImageView carrot = new ImageView();
 
     private final ImageView carrot1 = new ImageView("carrot1.png");
     private final ImageView carrot2 = new ImageView("carrot2.png");
@@ -44,6 +46,10 @@ public class ParcelView extends StackPane {
         farmer.setPreserveRatio(true);
         setAlignment(farmer, Pos.TOP_LEFT);
 
+        carrot.setFitHeight(35);
+        carrot.setFitWidth(35);
+        carrot.setPreserveRatio(true);
+
         carrot1.setFitHeight(35);
         carrot1.setFitWidth(35);
         carrot1.setPreserveRatio(true);
@@ -52,12 +58,21 @@ public class ParcelView extends StackPane {
         cabbage1.setPreserveRatio(true);
 
         ListProperty<Element> valueProperty = parcelViewModel.valueProperty();
-        valueProperty.addListener((obs, old, newVal) -> this.setElementsImages(imageView, newVal));//TODO
+        valueProperty.addListener((obs, old, newVal) ->{
+            this.setElementsImages(imageView, newVal);} );//TODO
 
         setOnMouseClicked(e -> parcelViewModel.onMouseClicked());//TODO
     }
 
     void setElementsImages(ImageView imageView, List<Element> elements) {
+        for (int i = 0; i < elements.size(); i++) {
+            if (elements.get(i) instanceof Carrot) {
+                //System.out.println(((Carrot) elements.get(i)).getCarrotState());
+                //couldn't remove  carrot; corrot image change only clicked on
+                carrot = ((Carrot) elements.get(i)).getImageView();
+
+            }
+        }
         List<ElementType> newList = elements.stream().map(Element::getType).collect(Collectors.toList());
 
         if (newList.contains(ElementType.GRASS)) {
@@ -68,12 +83,15 @@ public class ParcelView extends StackPane {
             getChildren().remove(farmer);
         }
         if (newList.contains(ElementType.CARROT)) {
-            if (!getChildren().contains(carrot1)) {
-                getChildren().add(carrot1);
+
+            if (!getChildren().contains(carrot)) {
+                getChildren().add(carrot);
             }
         } else {
-            getChildren().remove(carrot1);
+            getChildren().remove(carrot);
         }
+
+
         if (newList.contains(ElementType.CABBAGE)) {
             if (!getChildren().contains(cabbage1)) {
                 getChildren().add(cabbage1);

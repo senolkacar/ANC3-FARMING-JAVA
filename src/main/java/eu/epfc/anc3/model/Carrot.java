@@ -2,11 +2,12 @@ package eu.epfc.anc3.model;
 
 import javafx.scene.image.ImageView;
 
-class Carrot extends Element{
+public class Carrot extends Element{
 
     private CarrotState carrotState;
     private final int MAX_POINTS = 100;
     private int daysInCurrentState = 1;
+    private ImageView imageView = new ImageView("carrot1.png");
 
     Carrot() {
         elementType = ElementType.CARROT;
@@ -41,5 +42,13 @@ class Carrot extends Element{
         incrementDaysInCurrentState();
         carrotState.incrementDay();
 
+    }
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
     }
 }

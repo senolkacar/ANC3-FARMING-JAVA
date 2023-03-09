@@ -16,6 +16,7 @@ abstract class CarrotState {
 
     protected Carrot carrot;
 
+
     public CarrotState (Carrot carrot) {
         this.carrot = carrot;
 
@@ -29,4 +30,6 @@ abstract class CarrotState {
                 "carrot=" + carrot +
                 '}';
     }
+
+
 }
