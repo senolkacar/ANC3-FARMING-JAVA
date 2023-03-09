@@ -60,4 +60,13 @@ class Farm {
         }
     }
 
+    void incrementDay() {
+        for (int i = 0; i < FARM_HEIGHT; ++i) {
+            for (int j = 0; j < FARM_WIDTH; ++j) {
+                farm[i][j].incrementDay();
+            }
+        }
+    }
+
+
 }

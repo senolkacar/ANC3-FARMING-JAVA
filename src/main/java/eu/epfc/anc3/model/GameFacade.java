@@ -127,4 +127,8 @@ public class GameFacade {
     public ReadOnlyIntegerProperty getScoreProperty() {
         return game.getScoreProperty();
     }
+
+    public boolean containsCarrot(Position position) {
+       return game.containsCarrot(position);
+    }
 }

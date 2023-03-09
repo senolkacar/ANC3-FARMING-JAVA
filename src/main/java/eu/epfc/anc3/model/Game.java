@@ -24,8 +24,28 @@ class Game {
         return day.dayPropertyProperty();
     }
 
+
+    void start(){
+        farmer.setPosition(new Position(0, 0));
+        farm.reset();
+        gameMode.set(Mode.FREE);
+        //mode = Mode.FREE;
+        grassParcelCount.setValue(0);
+        farmerMovementEnable.set(false);
+        //movementEnabled = false;
+    }
+
+    void reset() {
+        this.start();
+        day.resetDayProperty();
+        farmerMovementEnable.set(true);
+        //movementEnabled = true;
+    }
+
+
     void increaseDayProperty() {
         day.increaseDayProperty();
+        farm.incrementDay();
     }
 
     ObjectProperty<Mode> gameModeProperty() {
@@ -90,22 +110,6 @@ class Game {
         }
     }
 
-    void start(){
-        farmer.setPosition(new Position(0, 0));
-        farm.reset();
-        gameMode.set(Mode.FREE);
-        //mode = Mode.FREE;
-        grassParcelCount.setValue(0);
-        farmerMovementEnable.set(false);
-        //movementEnabled = false;
-    }
-
-    void reset() {
-        this.start();
-        day.resetDayProperty();
-        farmerMovementEnable.set(true);
-        //movementEnabled = true;
-    }
 
     void plantOrRemove() {
         if (!isMovementEnabled())
@@ -115,9 +119,9 @@ class Game {
                 this.removeElement(getFarmerPosition(), dirt);
                 this.addElement(getFarmerPosition(), grass);
                 increaseGrassParcelCount();
-            } else if (gameMode.get() == Mode.PLANT_CARROT && !this.containsElement(getFarmerPosition(),carrot)){
+            } else if (gameMode.get() == Mode.PLANT_CARROT && !this.containsElement(getFarmerPosition(),new Carrot())){
                 this.addElement(getFarmerPosition(),carrot);
-            } else if (gameMode.get() == Mode.PLANT_CABBAGE && !this.containsElement(getFarmerPosition(),cabbage)) {
+            } else if (gameMode.get() == Mode.PLANT_CABBAGE && !this.containsElement(getFarmerPosition(),new Cabbage())) {
                 this.addElement(getFarmerPosition(),cabbage);
             } else if (gameMode.get() == Mode.HARVEST) {
                 if (this.containsElement(getFarmerPosition(),carrot))
@@ -125,11 +129,7 @@ class Game {
                 else if (this.containsElement(getFarmerPosition(),cabbage))
                     this.removeElement(getFarmerPosition(),cabbage);
             }
-//        else if (gameMode.get() == Mode.REMOVE && this.containsElement(getFarmerPosition(), grass)) {
-//                this.removeElement(getFarmerPosition(), grass);
-//                this.addElement(getFarmerPosition(), dirt);
-//                decreaseGrassParcelCount();
-//        }
+
     }
 
     void onMouseClicked(Position position) {
@@ -185,4 +185,8 @@ class Game {
         scoreProperty.set(scoreProperty.get()+score);
     }
 
+
+    public boolean containsCarrot(Position position) {
+        return containsElement(position,carrot);
+    }
 }
