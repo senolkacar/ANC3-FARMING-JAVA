@@ -4,27 +4,21 @@ import javafx.scene.image.ImageView;
 
 class Carrot extends Element{
 
-    //private CarrotState carrotState;
-    private StateType stateType = StateType.STATE1;
-    //private ImageView imageView = new ImageView();
-
+    private CarrotState carrotState;
     private final int MAX_POINTS = 100;
-    private int daysInCurrentState ;
-    private int daysSincePlanting;
+    private int daysInCurrentState = 1;
 
     Carrot() {
         elementType = ElementType.CARROT;
-        daysSincePlanting = 1;
-        daysInCurrentState=1;
-      //  carrotState = new CarrotState1();
+        carrotState = new CarrotState1(this);
     }
 
-    StateType getStateType() {
-        return stateType;
+    public CarrotState getCarrotState() {
+        return carrotState;
     }
 
-    void setStateType(StateType stateType) {
-        this.stateType = stateType;
+    public void setCarrotState(CarrotState carrotState) {
+        this.carrotState = carrotState;
     }
 
     int getMAX_POINTS() {
@@ -35,22 +29,17 @@ class Carrot extends Element{
         return daysInCurrentState;
     }
 
+    public void setDaysInCurrentState(int daysInCurrentState) {
+        this.daysInCurrentState = daysInCurrentState;
+    }
 
     void incrementDaysInCurrentState() {
         this.daysInCurrentState++;
     }
 
-    int getDaysSincePlanting() {
-        return daysSincePlanting;
-    }
-
-    void incrementDaysSincePlanting() {
-        this.daysSincePlanting ++;
-    }
-
     public void incrementDay() {
-        incrementDaysSincePlanting();
         incrementDaysInCurrentState();
+        carrotState.incrementDay();
 
     }
 }

@@ -8,15 +8,13 @@ import javafx.beans.property.SimpleObjectProperty;
 public class ParcelViewModel {
     private final Position position;
     private final GameFacade game;
-    private ObjectProperty<CarrotState> state = new SimpleObjectProperty<>(new CarrotState1());//public ?
-    ListProperty<Element> valueProperty;
+//    private ObjectProperty<CarrotState> state = new SimpleObjectProperty<>(new CarrotState1());//public ?
+//    ListProperty<Element> valueProperty;
 
     public ParcelViewModel(Position position, GameFacade game) {
         this.position = position;
         this.game = game;
-        valueProperty = game.getParcelValueProperty(position);
-        if (containsCarrot(position))
-            state.set(new CarrotState1());
+
 
     }
 

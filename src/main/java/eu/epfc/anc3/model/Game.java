@@ -10,7 +10,7 @@ class Game {
     private final Dirt dirt = new Dirt();
     private final Grass grass = new Grass();
     private final Farmer farmer = new Farmer();
-    private final Carrot carrot = new Carrot();
+    private  Carrot carrot = new Carrot();
     private final Cabbage cabbage = new Cabbage();
     private final Day day = new Day();
     //private boolean movementEnabled = false;
@@ -46,6 +46,7 @@ class Game {
     void increaseDayProperty() {
         day.increaseDayProperty();
         farm.incrementDay();
+
     }
 
     ObjectProperty<Mode> gameModeProperty() {
@@ -115,20 +116,31 @@ class Game {
         if (!isMovementEnabled())
             return;
 
+
         if(gameMode.get() == Mode.PLANT_GRASS&& !this.containsElement(getFarmerPosition(), grass)) {//with legumes?
                 this.removeElement(getFarmerPosition(), dirt);
                 this.addElement(getFarmerPosition(), grass);
                 increaseGrassParcelCount();
-            } else if (gameMode.get() == Mode.PLANT_CARROT && !this.containsElement(getFarmerPosition(),new Carrot())){
-                this.addElement(getFarmerPosition(),carrot);
-            } else if (gameMode.get() == Mode.PLANT_CABBAGE && !this.containsElement(getFarmerPosition(),new Cabbage())) {
-                this.addElement(getFarmerPosition(),cabbage);
+            } else if (gameMode.get() == Mode.PLANT_CARROT && !this.containsElement(getFarmerPosition(),carrot)){
+                this.addElement(getFarmerPosition(), new Carrot());
+            } else if (gameMode.get() == Mode.PLANT_CABBAGE && !this.containsElement(getFarmerPosition(),cabbage)) {
+                this.addElement(getFarmerPosition(),new Cabbage());
             } else if (gameMode.get() == Mode.HARVEST) {
                 if (this.containsElement(getFarmerPosition(),carrot))
                     this.removeElement(getFarmerPosition(),carrot);
                 else if (this.containsElement(getFarmerPosition(),cabbage))
                     this.removeElement(getFarmerPosition(),cabbage);
             }
+
+//        System.out.println("position : " + getFarmerPosition());
+//        System.out.println("list : " + getParcelValue(getFarmerPosition()));
+//        List<Element> list = getParcelValue(getFarmerPosition());
+//        for (int i = 0; i < list.size() ; i++) {
+//            System.out.println(list.get(i));
+//            if (list.get(i) instanceof Carrot){
+//                System.out.println(((Carrot) list.get(i)).getCarrotState());
+//            }
+//        }
 
     }
 

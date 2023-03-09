@@ -27,4 +27,10 @@ public abstract class Element  {
     public void incrementDay() {
     }
 
+    @Override
+    public String toString(){
+        return elementType.toString();
+    }
+
+
 }
