@@ -28,9 +28,9 @@ public class ParcelViewModel {
         return game.getParcelValueProperty(position);
     }
 
-    public StringProperty carrotImage() {
-        return game.getCarrotImageProperty(position);
-    }
+//    public StringProperty carrotImage() {
+//        return game.getCarrotImageProperty(position);
+//    }
 
     public void onMouseClicked(){
         game.onMouseClicked(position);

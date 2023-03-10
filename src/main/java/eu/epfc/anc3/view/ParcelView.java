@@ -58,7 +58,7 @@ public class ParcelView extends StackPane {
         cabbage1.setFitWidth(35);
         cabbage1.setPreserveRatio(true);
 
-        StringProperty carrotImagePropety = parcelViewModel.carrotImage();//"" ?
+//        StringProperty carrotImagePropety = parcelViewModel.carrotImage();//"" ?
 
         ListProperty<Element> valueProperty = parcelViewModel.valueProperty();
         valueProperty.addListener((obs, old, newVal) ->{
@@ -66,32 +66,34 @@ public class ParcelView extends StackPane {
             this.setElementsImages(imageView, newVal);} );//TODO
 
 
-        carrotImagePropety.addListener((obs, old, newVal) ->{
-            System.out.println(carrotImagePropety);
-            this.setCarrotImage(imageView,newVal);
-        });
+//        carrotImagePropety.addListener((obs, old, newVal) ->{
+//            System.out.println(carrotImagePropety);
+//            this.setCarrotImage(imageView,newVal);
+//        });
 
         setOnMouseClicked(e -> parcelViewModel.onMouseClicked());//TODO
     }
 
     private void setCarrotImage(ImageView imageView, String newVal) {
         getChildren().remove(carrot);
-        carrot.setImage(new Image(newVal));
-        getChildren().add(carrot);
+        if (newVal !="") {
+            carrot.setImage(new Image(newVal));
+            getChildren().add(carrot);
+        }
 
 
     }
 
     void setElementsImages(ImageView imageView, List<Element> elements) {
 
-        for (int i = 0; i < elements.size(); i++) {
-            if (elements.get(i) instanceof Carrot) {
-                //System.out.println(((Carrot) elements.get(i)).getCarrotState());
-                //couldn't remove  carrot; corrot image change only clicked on
-                carrot = ((Carrot) elements.get(i)).getImageView();
-
-            }
-        }
+//        for (int i = 0; i < elements.size(); i++) {
+//            if (elements.get(i) instanceof Carrot) {
+//                //System.out.println(((Carrot) elements.get(i)).getCarrotState());
+//                //couldn't remove  carrot; corrot image change only clicked on
+//                carrot = ((Carrot) elements.get(i)).getImageView();
+//
+//            }
+//        }
         List<ElementType> newList = elements.stream().map(Element::getType).collect(Collectors.toList());
 
         if (newList.contains(ElementType.GRASS)) {

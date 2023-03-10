@@ -132,7 +132,7 @@ public class GameFacade {
        return game.containsCarrot(position);
     }
 
-    public StringProperty getCarrotImageProperty(Position position) {
-        return game.getCarrotImageProperty(position);
-    }
+//    public StringProperty getCarrotImageProperty(Position position) {
+//        return game.getCarrotImageProperty(position);
+//    }
 }
