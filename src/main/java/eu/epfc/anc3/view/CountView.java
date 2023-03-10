@@ -10,8 +10,6 @@ import javafx.scene.layout.HBox;
 
 public class CountView extends HBox {
     private final CountViewModel countVM;
-    private final Label parcelCountLabel;
-    private final TextField parcelCountInput;
 
     private final Label dayCountLabel;
     private final TextField dayCountInput;
@@ -21,13 +19,8 @@ public class CountView extends HBox {
 
     public CountView(CountViewModel countVM) {
         this.countVM = countVM;
-        ReadOnlyIntegerProperty valueProperty = countVM.valueProperty();
         ReadOnlyIntegerProperty dayInputProperty = countVM.dayProperty();
         ReadOnlyIntegerProperty scoreProperty = countVM.scoreProperty();
-
-        parcelCountLabel = new Label("Nombre de parcelles: ");
-        parcelCountInput = new TextField("0");
-        parcelCountInput.setDisable(true);//binding
 
         dayCountLabel = new Label("Jour: ");
         dayCountInput = new TextField("1");
@@ -37,10 +30,7 @@ public class CountView extends HBox {
         scoreInput = new TextField("0");
         scoreInput.setDisable(true);
 
-
-        getChildren().addAll(parcelCountLabel, parcelCountInput,scoreLabel,scoreInput,dayCountLabel,dayCountInput);
-
-        valueProperty.addListener((obs, old, newVal) -> parcelCountInput.setText("" + newVal));
+        getChildren().addAll(scoreLabel,scoreInput,dayCountLabel,dayCountInput);
 
         dayInputProperty.addListener((obs, old, newVal) -> dayCountInput.setText("" + newVal));
 

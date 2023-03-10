@@ -17,7 +17,6 @@ class Game {
     private final Day day = new Day();
 
     private BooleanProperty farmerMovementEnable = new SimpleBooleanProperty(false);
-    private final IntegerProperty grassParcelCount = new SimpleIntegerProperty(0);
     private final IntegerProperty scoreProperty = new SimpleIntegerProperty(0);
     private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);
 
@@ -29,7 +28,6 @@ class Game {
         farmer.setPosition(new Position(0, 0));
         farm.reset();
         gameMode.set(Mode.FREE);
-        grassParcelCount.setValue(0);
         scoreProperty.setValue(0);
         farmerMovementEnable.set(false);
     }
@@ -104,25 +102,6 @@ class Game {
         this.farmerMovementEnable.set(movementEnabled);
     }
 
-    ReadOnlyIntegerProperty getGrassParcelCountValueProperty() {
-        return grassParcelCount;
-    }
-
-    void increaseGrassParcelCount() {
-        grassParcelCount.setValue(grassParcelCount.getValue() + 1);
-    }
-
-
-    void decreaseGrassParcelCount() {
-        if (grassParcelCount.getValue()>0) {
-            grassParcelCount.setValue(grassParcelCount.getValue() - 1);
-        }
-    }
-
-//    void changeScoreCount(int newScore) {
-//        scoreProperty.setValue(scoreProperty.getValue() + newScore);
-//    }
-
     void plantOrRemove() {
         if (!isMovementEnabled())
             return;
@@ -187,9 +166,6 @@ class Game {
             }
 
         }
-
-//        System.out.println("position : " + getFarmerPosition());
-//        System.out.println("list : " + getParcelValue(getFarmerPosition()));
 //        List<Element> list = getParcelValue(getFarmerPosition());
 //        for (int i = 0; i < list.size() ; i++) {
 //            System.out.println(list.get(i));
@@ -197,9 +173,6 @@ class Game {
 //                System.out.println(((Carrot) list.get(i)).getCarrotState());
 //            }
 //        }
-//        System.out.println(this.getCarrotImageProperty(getFarmerPosition()));
-//        System.out.println(this.getCarrotImage(getFarmerPosition()));
-
     }
 
     void onMouseClicked(Position position) {

@@ -63,18 +63,6 @@ public class GameFacade {
         game.setMovementEnabled(movementEnabled);
     }
 
-    public ReadOnlyIntegerProperty getGrassParcelCountValueProperty() {
-        return game.getGrassParcelCountValueProperty();
-    }
-
-    public void increaseGrassParcelCount() {
-        game.increaseGrassParcelCount();
-    }
-
-    public void decreaseGrassParcelCount() {
-        game.decreaseGrassParcelCount();
-    }
-
     public void start() {
         game.start();
     }

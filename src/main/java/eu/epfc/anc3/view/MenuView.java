@@ -13,9 +13,6 @@
         private final Button startButton;
         private final Button sleepButton;
 
-        private final ToggleGroup actionToggleGroup;
-        private final ToggleButton plantButton;
-        private final ToggleButton removeButton;
         private final MenuViewModel menuVM;
         ObjectProperty<Mode> menuModeObjectProperty = new SimpleObjectProperty<>();
 
@@ -23,15 +20,8 @@
             this.menuVM = menuVM;
             menuModeObjectProperty.bindBidirectional(menuVM.gameModeProperty());
 
-            actionToggleGroup = new ToggleGroup();
             startButton = new Button("Démarrer");
             sleepButton = new Button("Dormir");
-            plantButton = new ToggleButton("Planter du gazon");
-            removeButton = new ToggleButton("Enlever du gazon");
-            plantButton.setToggleGroup(actionToggleGroup);
-            removeButton.setToggleGroup(actionToggleGroup);
-            plantButton.setDisable(true);
-            removeButton.setDisable(true);
             sleepButton.setDisable(true);
 
             sleepButton.setOnAction(e->{
@@ -39,43 +29,20 @@
                 requestFocus();//TODO
             });
             startButton.setOnAction(e -> this.onStartButtonAction());
-            plantButton.setOnAction(e -> {
-                menuModeObjectProperty.set(Mode.PLANT);
-                this.onModeButtonAction(menuModeObjectProperty);});
-            removeButton.setOnAction(e -> {
-                menuModeObjectProperty.set(Mode.REMOVE);
-                this.onModeButtonAction(menuModeObjectProperty);});
 
-            setFocusTraversable(false);
-            startButton.setFocusTraversable(false);
-            plantButton.setFocusTraversable(false);
-            removeButton.setFocusTraversable(false);
-            getChildren().addAll(startButton, sleepButton, plantButton, removeButton);
+            getChildren().addAll(startButton, sleepButton);
         }
 
         private void onStartButtonAction() {
             if (startButton.getText().equals("Démarrer")) {
                 menuVM.reset();
                 sleepButton.setDisable(false);
-                plantButton.setDisable(false);
-                removeButton.setDisable(false);
-                removeButton.setSelected(false);
-                plantButton.setSelected(false);
                 startButton.setText("Arrêter");
             } else {
                 menuVM.stop();
                 sleepButton.setDisable(true);
-                plantButton.setDisable(true);
-                removeButton.setDisable(true);
                 startButton.setText("Démarrer");
             }
         }
-        private void onModeButtonAction(ObjectProperty<Mode> menuModeObjectProperty) {
-            if (menuModeObjectProperty.get() == Mode.PLANT) {
-                removeButton.setSelected(false);
-            } else {
-                plantButton.setSelected(false);
-            }
-            menuModeObjectProperty.set(actionToggleGroup.getSelectedToggle() == null ? Mode.FREE : menuModeObjectProperty.get());
-        }
+
     }

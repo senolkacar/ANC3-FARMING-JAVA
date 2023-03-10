@@ -29,7 +29,6 @@ public class MenuViewModel {
         game.setGameMode(gameMode);
     }
 
-
     public void sleepButtonAction() {
          game.increaseDayProperty();
     }
