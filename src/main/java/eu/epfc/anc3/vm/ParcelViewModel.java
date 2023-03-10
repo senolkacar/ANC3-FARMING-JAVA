@@ -16,8 +16,6 @@ public class ParcelViewModel {
     public ParcelViewModel(Position position, GameFacade game) {
         this.position = position;
         this.game = game;
-
-
     }
 
     boolean containsCarrot(Position position) {

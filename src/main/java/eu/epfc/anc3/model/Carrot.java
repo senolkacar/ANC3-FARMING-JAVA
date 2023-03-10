@@ -5,7 +5,6 @@ import javafx.scene.image.ImageView;
 
 public class Carrot extends Element{
 
-
     private CarrotState carrotState;
     private static final int MAX_POINTS = 100;
     private int daysInCurrentState = 1;

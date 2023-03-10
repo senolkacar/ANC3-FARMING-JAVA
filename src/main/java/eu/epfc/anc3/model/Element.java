@@ -6,8 +6,9 @@ import java.util.Objects;
 
 public abstract class Element  {
 
-   public ElementType elementType;
+    public ElementType elementType;
     private BooleanProperty isFertilied = new SimpleBooleanProperty();
+    private BooleanProperty hasGrass = new SimpleBooleanProperty();
     private StringProperty image = new SimpleStringProperty("");
     public ElementType getType() {
         return elementType;
@@ -25,7 +26,6 @@ public abstract class Element  {
     public int hashCode() {
         return Objects.hash(elementType);
     }
-
 
     public void incrementDay() {
     }
@@ -48,6 +48,13 @@ public abstract class Element  {
     }
 
     public void fertilize(){
+    }
+
+    public void setHasGrass(boolean hasGrass) {
+        this.hasGrass.set(hasGrass);
+    }
+
+    public void plantGrass(){
     }
 
     public IntegerProperty getHarvestScore(){

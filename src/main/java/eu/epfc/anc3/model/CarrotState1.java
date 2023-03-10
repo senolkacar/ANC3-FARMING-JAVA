@@ -4,23 +4,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class CarrotState1 extends CarrotState{
-
     ImageView imageView = new ImageView("carrot2.png");
-
     String image = "carrot2.png";
 
     public CarrotState1(Carrot carrot) {
         super(carrot);
     }
-
-    int getCarrotState1Duration () {
-        return CARROT_STATE1_DURATION;
-    }
-
-    double getCarrotState1PointPercentage() {
-      return CARROT_STATE1_POINT_PERCENTAGE;
-    }
-
+//
+//    int getCarrotState1Duration () {
+//        return CARROT_STATE1_DURATION;
+//    }
+//
+//    double getCarrotState1PointPercentage() {
+//      return CARROT_STATE1_POINT_PERCENTAGE;
+//    }
 
     @Override
     public void incrementDay() {

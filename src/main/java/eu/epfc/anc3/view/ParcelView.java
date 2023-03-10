@@ -20,7 +20,8 @@ public class ParcelView extends StackPane {
     private final Image grassImage = new Image("grass.png");
     private final Image dirtImage = new Image("dirt.png");
     private final ImageView farmer = new ImageView("farmer.png");
-    private ImageView carrot = new ImageView("carrot1.png");
+    private final ImageView carrot = new ImageView("carrot1.png");
+    private final ImageView cabbage = new ImageView("cabbage1.png");
 
     private final ImageView carrot1 = new ImageView("carrot1.png");
 //    private final ImageView carrot2 = new ImageView("carrot2.png");
@@ -51,6 +52,10 @@ public class ParcelView extends StackPane {
         carrot.setFitWidth(35);
         carrot.setPreserveRatio(true);
 
+        cabbage.setFitHeight(35);
+        cabbage.setFitWidth(35);
+        cabbage.setPreserveRatio(true);
+
         carrot1.setFitHeight(35);
         carrot1.setFitWidth(35);
         carrot1.setPreserveRatio(true);
@@ -58,14 +63,11 @@ public class ParcelView extends StackPane {
         cabbage1.setFitWidth(35);
         cabbage1.setPreserveRatio(true);
 
-//        StringProperty carrotImagePropety = parcelViewModel.carrotImage();//"" ?
-
         ListProperty<Element> valueProperty = parcelViewModel.valueProperty();
         valueProperty.addListener((obs, old, newVal) ->{
-            this.setElementsImages(imageView, newVal);} );//TODO
+            this.setElementsImages(imageView, newVal);} );
 
-
-        setOnMouseClicked(e -> parcelViewModel.onMouseClicked());//TODO
+        setOnMouseClicked(e -> parcelViewModel.onMouseClicked());
     }
 
     private void setCarrotImage(ImageView imageView, String newVal) {
@@ -74,13 +76,18 @@ public class ParcelView extends StackPane {
             carrot.setImage(new Image(newVal));
             getChildren().add(carrot);
         }
+    }
 
+    private void setCabbageImage(ImageView imageView, String newVal) {
+        getChildren().remove(cabbage);
+        if (newVal !="") {
+            cabbage.setImage(new Image(newVal));
+            getChildren().add(cabbage);
+        }
     }
 
     void setElementsImages(ImageView imageView, List<Element> elements) {
-
         List<ElementType> newList = elements.stream().map(Element::getType).collect(Collectors.toList());
-
         if (newList.contains(ElementType.GRASS)) {
             imageView.setImage(grassImage);
             getChildren().remove(farmer);
@@ -88,40 +95,47 @@ public class ParcelView extends StackPane {
             imageView.setImage(dirtImage);
             getChildren().remove(farmer);
         }
-        if (newList.contains(ElementType.CARROT)) {
 
+        if (newList.contains(ElementType.CARROT)) {
             if (!getChildren().contains(carrot)) {
                 getChildren().add(carrot);
             }
-
             List<Element> list = elements.stream().filter(e->e.elementType==ElementType.CARROT).limit(1).collect(Collectors.toList());
-
             if (list.size()>0){
                // System.out.println(list.get(0).imageProperty());
                 list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> setCarrotImage(imageView, newVal));// carrot public ?
             }
 
-
         } else {
             getChildren().remove(carrot);
         }
 
-
         if (newList.contains(ElementType.CABBAGE)) {
-            if (!getChildren().contains(cabbage1)) {
-                getChildren().add(cabbage1);
+            if (!getChildren().contains(cabbage)) {
+                getChildren().add(cabbage);
+            }
+            List<Element> list = elements.stream().filter(e->e.elementType==ElementType.CABBAGE).limit(1).collect(Collectors.toList());
+            if (list.size()>0){
+                list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> setCabbageImage(imageView, newVal));
             }
         } else {
-            getChildren().remove(cabbage1);
+            getChildren().remove(cabbage);
         }
+
+//        if (newList.contains(ElementType.CABBAGE)) {
+//            if (!getChildren().contains(cabbage1)) {
+//                getChildren().add(cabbage1);
+//            }
+//        } else {
+//            getChildren().remove(cabbage1);
+//        }
+
         if (newList.contains(ElementType.FARMER)) {
             getChildren().remove(farmer);
             getChildren().add(farmer);
-
-
         }
-
-
     }
+
+
 
 }

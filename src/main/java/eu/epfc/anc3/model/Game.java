@@ -12,12 +12,11 @@ class Game {
     private final Dirt dirt = new Dirt();
     private final Grass grass = new Grass();
     private final Farmer farmer = new Farmer();
-    private  Carrot carrot = new Carrot();
-    private final Cabbage cabbage = new Cabbage();
+    private Carrot carrot = new Carrot();
+    private Cabbage cabbage = new Cabbage();
     private final Day day = new Day();
-    //private boolean movementEnabled = false;
-    private BooleanProperty farmerMovementEnable = new SimpleBooleanProperty(false);
 
+    private BooleanProperty farmerMovementEnable = new SimpleBooleanProperty(false);
     private final IntegerProperty grassParcelCount = new SimpleIntegerProperty(0);
     private final IntegerProperty scoreProperty = new SimpleIntegerProperty(0);
     private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);
@@ -26,30 +25,24 @@ class Game {
         return day.dayPropertyProperty();
     }
 
-
     void start(){
         farmer.setPosition(new Position(0, 0));
         farm.reset();
         gameMode.set(Mode.FREE);
-        //mode = Mode.FREE;
         grassParcelCount.setValue(0);
         scoreProperty.setValue(0);
         farmerMovementEnable.set(false);
-        //movementEnabled = false;
     }
 
     void reset() {
         this.start();
         day.resetDayProperty();
         farmerMovementEnable.set(true);
-        //movementEnabled = true;
     }
-
 
     void increaseDayProperty() {
         day.increaseDayProperty();
         farm.incrementDay();
-
     }
 
     ObjectProperty<Mode> gameModeProperty() {
@@ -126,27 +119,40 @@ class Game {
         }
     }
 
-    void changeScoreCount(int newScore) {
-        scoreProperty.setValue(scoreProperty.getValue() + newScore);
-    }
+//    void changeScoreCount(int newScore) {
+//        scoreProperty.setValue(scoreProperty.getValue() + newScore);
+//    }
 
     void plantOrRemove() {
         if (!isMovementEnabled())
             return;
+
         List<Element> list = null;
         if (this.containsElement(getFarmerPosition(),carrot))
             list = this.getParcelValue(getFarmerPosition()).stream().filter(e->e.elementType==ElementType.CARROT).limit(1).collect(Collectors.toList());
+        else if (this.containsElement(getFarmerPosition(),cabbage))
+            list = this.getParcelValue(getFarmerPosition()).stream().filter(e->e.elementType==ElementType.CABBAGE).limit(1).collect(Collectors.toList());
 
-        if(gameMode.get() == Mode.PLANT_GRASS&& !this.containsElement(getFarmerPosition(), grass)) {//with legumes?
+        if(gameMode.get() == Mode.PLANT_GRASS && !this.containsElement(getFarmerPosition(), grass)) {
             this.removeElement(getFarmerPosition(), dirt);
             this.addElement(getFarmerPosition(), grass);
-            increaseGrassParcelCount();
-        } else if (gameMode.get() == Mode.PLANT_CARROT && !this.containsElement(getFarmerPosition(),carrot)){//with cabbage?
+            if (this.containsElement(getFarmerPosition(),cabbage)){
+                if (list.size()>0){
+                    list.get(0).setHasGrass(true);
+                }
+            }
+            //increaseGrassParcelCount();
+        } else if (gameMode.get() == Mode.PLANT_CARROT && !this.containsElement(getFarmerPosition(),carrot) && !this.containsElement(getFarmerPosition(),cabbage)){
             this.addElement(getFarmerPosition(), new Carrot());
             // this.setCorrotimageProperty(getFarmerPosition());//
 
-        } else if (gameMode.get() == Mode.PLANT_CABBAGE && !this.containsElement(getFarmerPosition(),cabbage)) {
+        } else if (gameMode.get() == Mode.PLANT_CABBAGE && !this.containsElement(getFarmerPosition(),cabbage) && !this.containsElement(getFarmerPosition(),carrot)) {
             this.addElement(getFarmerPosition(),new Cabbage());
+            if (this.containsElement(getFarmerPosition(),grass)) {
+                if (list != null && list.size()>0){
+                    list.get(0).setHasGrass(true); //doesn't work ?
+                }
+            }
         } else if (gameMode.get() == Mode.HARVEST) {
             if (this.containsElement(getFarmerPosition(),carrot)){
                 if (list != null && list.size()>0){
@@ -154,8 +160,24 @@ class Game {
                     this.setScoreProperty(list.get(0).getHarvestScore().get());
                 }
                 this.removeElement(getFarmerPosition(),carrot);
-            } else if (this.containsElement(getFarmerPosition(),cabbage))
+            } else if (this.containsElement(getFarmerPosition(),cabbage)){
+                if (list != null && list.size()>0){
+                    list.get(0).setElementHarvestScore();
+                    this.setScoreProperty(list.get(0).getHarvestScore().get());
+                }
                 this.removeElement(getFarmerPosition(),cabbage);
+            }
+
+//            if (this.containsElement(getFarmerPosition(),carrot) ||this.containsElement(getFarmerPosition(),cabbage) ) {
+//                if (list != null && list.size()>0){
+//                    list.get(0).setElementHarvestScore();
+//                    this.setScoreProperty(list.get(0).getHarvestScore().get());
+//                }
+//                if (this.containsElement(getFarmerPosition(),carrot)) {
+//                    this.removeElement(getFarmerPosition(),carrot);
+//                }else if (this.containsElement(getFarmerPosition(),cabbage))
+//                    this.removeElement(getFarmerPosition(),cabbage);
+//            }
         } else if (gameMode.get() == Mode.FERTILIZE) {
             if (this.containsElement(getFarmerPosition(),carrot)) {
                 if (list.size()>0){
@@ -221,20 +243,20 @@ class Game {
     }
 
 
-    public BooleanProperty farmerMovementEnableProperty() {
+    BooleanProperty farmerMovementEnableProperty() {
         return farmerMovementEnable;
     }
 
-    public ReadOnlyIntegerProperty getScoreProperty() {
+    ReadOnlyIntegerProperty getScoreProperty() {
         return scoreProperty;
     }
 
-    public void setScoreProperty(int score) {
+    void setScoreProperty(int score) {
         scoreProperty.set(scoreProperty.get()+score);
     }
 
 
-    public boolean containsCarrot(Position position) {
+    boolean containsCarrot(Position position) {
         return containsElement(position,carrot);
     }
 }
