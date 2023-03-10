@@ -1,16 +1,17 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.scene.image.ImageView;
 
 public class Carrot extends Element{
 
+
     private CarrotState carrotState;
-    private final int MAX_POINTS = 100;
+    private static final int MAX_POINTS = 100;
     private int daysInCurrentState = 1;
-    private ImageView imageView = new ImageView("carrot1.png");
+    private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
     private StringProperty image = new SimpleStringProperty("carrot1.png");
+    private BooleanProperty isFertilied = new SimpleBooleanProperty(false);
 
     Carrot() {
         elementType = ElementType.CARROT;
@@ -46,14 +47,6 @@ public class Carrot extends Element{
         carrotState.incrementDay();
     }
 
-    public ImageView getImageView() {
-        return imageView;
-    }
-
-    public void setImageView(ImageView imageView) {
-        this.imageView = imageView;
-    }
-
     @Override
     public String getImage() {
         return image.get();
@@ -65,5 +58,37 @@ public class Carrot extends Element{
 
     public void setImage(String image) {
         this.image.set(image);
+    }
+
+    public boolean isIsFertilied() {
+        return isFertilied.get();
+    }
+
+    public BooleanProperty isFertiliedProperty() {
+        return isFertilied;
+    }
+
+    @Override
+    public void setIsFertilied(boolean isFertilied) {
+        this.isFertilied.set(isFertilied);
+    }
+
+    @Override
+    public void fertilize(){
+        carrotState.fertilize();
+    }
+
+    @Override
+    public IntegerProperty getHarvestScore(){
+        return harvestScore;
+    }
+
+    @Override
+    public void   setElementHarvestScore() {
+        carrotState.setHarvestScore();
+    }
+
+    public void setHarvestScore(int harvestScore) {
+        this.harvestScore.set(harvestScore);
     }
 }

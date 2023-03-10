@@ -97,7 +97,7 @@ public class ParcelView extends StackPane {
             List<Element> list = elements.stream().filter(e->e.elementType==ElementType.CARROT).limit(1).collect(Collectors.toList());
 
             if (list.size()>0){
-                System.out.println(list.get(0).imageProperty());
+               // System.out.println(list.get(0).imageProperty());
                 list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> setCarrotImage(imageView, newVal));// carrot public ?
             }
 

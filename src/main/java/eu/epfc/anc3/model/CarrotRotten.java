@@ -26,4 +26,9 @@ class CarrotRotten extends CarrotState{
         }
     }
 
+    @Override
+    public void setHarvestScore() {
+        carrot.setHarvestScore(-(int)(carrot.getMAX_POINTS()*CARROT_STATE1_POINT_PERCENTAGE*carrot.getDaysInCurrentState()));
+    }
+
 }

@@ -30,6 +30,17 @@ class CarrotState2 extends CarrotState{
         }
     }
 
+    public void fertilize(){
+        carrot.setCarrotState(new CarrotState3(carrot));
+        carrot.setDaysInCurrentState(1);
+        carrot.setImage("carrot3.png");
+    }
+
+    @Override
+    public void setHarvestScore() {
+        carrot.setHarvestScore((int)(carrot.getMAX_POINTS()*CARROT_STATE2_POINT_PERCENTAGE));
+    }
+
     @Override
     public String toString() {
         return "CarrotState2{" +

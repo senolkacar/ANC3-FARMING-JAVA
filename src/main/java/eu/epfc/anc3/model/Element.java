@@ -1,13 +1,13 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 import java.util.Objects;
 
 public abstract class Element  {
 
    public ElementType elementType;
+    private BooleanProperty isFertilied = new SimpleBooleanProperty();
     private StringProperty image = new SimpleStringProperty("");
     public ElementType getType() {
         return elementType;
@@ -42,4 +42,17 @@ public abstract class Element  {
     public StringProperty imageProperty() {
         return image;
     }
+
+    public void setIsFertilied(boolean isFertilied) {
+        this.isFertilied.set(isFertilied);
+    }
+
+    public void fertilize(){
+    }
+
+    public IntegerProperty getHarvestScore(){
+        return new SimpleIntegerProperty();
+    }
+
+    public void setElementHarvestScore(){}
 }

@@ -31,6 +31,11 @@ class CarrotState3 extends CarrotState{
     }
 
     @Override
+    public void setHarvestScore() {
+        carrot.setHarvestScore((int)(carrot.getMAX_POINTS()*CARROT_STATE3_POINT_PERCENTAGE));
+    }
+
+    @Override
     public String toString() {
         return "CarrotState3{" +
                 "carrot=" + carrot +"stateDays=" + carrot.getDaysInCurrentState()+
