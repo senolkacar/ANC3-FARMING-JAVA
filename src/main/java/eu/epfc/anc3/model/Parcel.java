@@ -42,6 +42,13 @@ class Parcel {
         return elements.contains(newElement);
     }
 
+    public void incrementDay() {
+        ObservableList<Element> elementList = elements.get();
+        elementList.forEach(element -> {
+            element.incrementDay();
+        });
+    }
+
 //    Element getCarrot(){
 //       return elements.get().filtered(element -> element.getType()==ElementType.CARROT).stream().findFirst().orElse(null);
 //        //return (Carrot) elements.stream().filter(e->e instanceof Carrot).findFirst().orElse(null);
@@ -81,10 +88,5 @@ class Parcel {
 //        this.carrotImage.set(carrotImage);
 //    }
 
-    public void incrementDay() {
-        ObservableList<Element> elementList = elements.get();
-        elementList.forEach(element -> {
-            element.incrementDay();
-        });
-    }
+
 }

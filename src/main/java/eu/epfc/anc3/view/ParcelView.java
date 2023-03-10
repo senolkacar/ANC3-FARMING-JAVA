@@ -23,16 +23,16 @@ public class ParcelView extends StackPane {
     private ImageView carrot = new ImageView("carrot1.png");
 
     private final ImageView carrot1 = new ImageView("carrot1.png");
-    private final ImageView carrot2 = new ImageView("carrot2.png");
-    private final ImageView carrot3 = new ImageView("carrot3.png");
-    private final ImageView carrot4 = new ImageView("carrot4.png");
-    private final ImageView rotten_carrot = new ImageView("rotten_carrot.png");
+//    private final ImageView carrot2 = new ImageView("carrot2.png");
+//    private final ImageView carrot3 = new ImageView("carrot3.png");
+//    private final ImageView carrot4 = new ImageView("carrot4.png");
+//    private final ImageView rotten_carrot = new ImageView("rotten_carrot.png");
 
     private final ImageView cabbage1 = new ImageView("cabbage1.png");
-    private final ImageView cabbage2 = new ImageView("cabbage2.png");
-    private final ImageView cabbage3 = new ImageView("cabbage3.png");
-    private final ImageView cabbage4 = new ImageView("cabbage4.png");
-    private final ImageView rotten_cabbage = new ImageView("rotten_cabbage.png");
+//    private final ImageView cabbage2 = new ImageView("cabbage2.png");
+//    private final ImageView cabbage3 = new ImageView("cabbage3.png");
+//    private final ImageView cabbage4 = new ImageView("cabbage4.png");
+//    private final ImageView rotten_cabbage = new ImageView("rotten_cabbage.png");
 
     public ParcelView(ParcelViewModel parcelViewModel) {
         imageView.setFitWidth(35);
@@ -62,14 +62,8 @@ public class ParcelView extends StackPane {
 
         ListProperty<Element> valueProperty = parcelViewModel.valueProperty();
         valueProperty.addListener((obs, old, newVal) ->{
-           // System.out.println(carrotImagePropety);
             this.setElementsImages(imageView, newVal);} );//TODO
 
-
-//        carrotImagePropety.addListener((obs, old, newVal) ->{
-//            System.out.println(carrotImagePropety);
-//            this.setCarrotImage(imageView,newVal);
-//        });
 
         setOnMouseClicked(e -> parcelViewModel.onMouseClicked());//TODO
     }
@@ -81,19 +75,10 @@ public class ParcelView extends StackPane {
             getChildren().add(carrot);
         }
 
-
     }
 
     void setElementsImages(ImageView imageView, List<Element> elements) {
 
-//        for (int i = 0; i < elements.size(); i++) {
-//            if (elements.get(i) instanceof Carrot) {
-//                //System.out.println(((Carrot) elements.get(i)).getCarrotState());
-//                //couldn't remove  carrot; corrot image change only clicked on
-//                carrot = ((Carrot) elements.get(i)).getImageView();
-//
-//            }
-//        }
         List<ElementType> newList = elements.stream().map(Element::getType).collect(Collectors.toList());
 
         if (newList.contains(ElementType.GRASS)) {
@@ -113,7 +98,7 @@ public class ParcelView extends StackPane {
 
             if (list.size()>0){
                 System.out.println(list.get(0).imageProperty());
-                list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> setCarrotImage(imageView, newVal));
+                list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> setCarrotImage(imageView, newVal));// carrot public ?
             }
 
 
@@ -133,20 +118,6 @@ public class ParcelView extends StackPane {
             getChildren().remove(farmer);
             getChildren().add(farmer);
 
-
-//        if (newList.contains(ElementType.GRASS)){
-//            imageView.setImage(grassImage);
-//            getChildren().remove(farmer);
-//        } else {
-//            imageView.setImage(dirtImage);
-//            getChildren().remove(farmer);
-//
-//        }
-//        if (newList.contains(ElementType.FARMER)) {
-//            getChildren().remove(farmer);
-//            getChildren().add(farmer);
-//
-//        }
 
         }
 
