@@ -4,12 +4,14 @@ import eu.epfc.anc3.model.*;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.StringProperty;
 
 public class ParcelViewModel {
     private final Position position;
     private final GameFacade game;
 //    private ObjectProperty<CarrotState> state = new SimpleObjectProperty<>(new CarrotState1());//public ?
 //    ListProperty<Element> valueProperty;
+
 
     public ParcelViewModel(Position position, GameFacade game) {
         this.position = position;
@@ -24,6 +26,10 @@ public class ParcelViewModel {
 
     public ListProperty<Element> valueProperty() {
         return game.getParcelValueProperty(position);
+    }
+
+    public StringProperty carrotImage() {
+        return game.getCarrotImageProperty(position);
     }
 
     public void onMouseClicked(){

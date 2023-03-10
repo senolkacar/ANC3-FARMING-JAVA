@@ -1,11 +1,14 @@
 package eu.epfc.anc3.model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.Objects;
 
 public abstract class Element  {
 
-    ElementType elementType;
-
+   public ElementType elementType;
+    private StringProperty image = new SimpleStringProperty("");
     public ElementType getType() {
         return elementType;
     }
@@ -32,5 +35,11 @@ public abstract class Element  {
         return elementType.toString();
     }
 
+    public String getImage() {
+        return image.get();
+    }
 
+    public StringProperty imageProperty() {
+        return image;
+    }
 }

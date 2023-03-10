@@ -5,6 +5,7 @@ import eu.epfc.anc3.model.Element;
 import eu.epfc.anc3.model.ElementType;
 import eu.epfc.anc3.vm.ParcelViewModel;
 import javafx.beans.property.ListProperty;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,7 +20,7 @@ public class ParcelView extends StackPane {
     private final Image grassImage = new Image("grass.png");
     private final Image dirtImage = new Image("dirt.png");
     private final ImageView farmer = new ImageView("farmer.png");
-    private ImageView carrot = new ImageView();
+    private ImageView carrot = new ImageView("carrot1.png");
 
     private final ImageView carrot1 = new ImageView("carrot1.png");
     private final ImageView carrot2 = new ImageView("carrot2.png");
@@ -57,14 +58,32 @@ public class ParcelView extends StackPane {
         cabbage1.setFitWidth(35);
         cabbage1.setPreserveRatio(true);
 
+        StringProperty carrotImagePropety = parcelViewModel.carrotImage();//"" ?
+
         ListProperty<Element> valueProperty = parcelViewModel.valueProperty();
         valueProperty.addListener((obs, old, newVal) ->{
+           // System.out.println(carrotImagePropety);
             this.setElementsImages(imageView, newVal);} );//TODO
+
+
+        carrotImagePropety.addListener((obs, old, newVal) ->{
+            System.out.println(carrotImagePropety);
+            this.setCarrotImage(imageView,newVal);
+        });
 
         setOnMouseClicked(e -> parcelViewModel.onMouseClicked());//TODO
     }
 
+    private void setCarrotImage(ImageView imageView, String newVal) {
+        getChildren().remove(carrot);
+        carrot.setImage(new Image(newVal));
+        getChildren().add(carrot);
+
+
+    }
+
     void setElementsImages(ImageView imageView, List<Element> elements) {
+
         for (int i = 0; i < elements.size(); i++) {
             if (elements.get(i) instanceof Carrot) {
                 //System.out.println(((Carrot) elements.get(i)).getCarrotState());
@@ -87,6 +106,15 @@ public class ParcelView extends StackPane {
             if (!getChildren().contains(carrot)) {
                 getChildren().add(carrot);
             }
+
+            List<Element> list = elements.stream().filter(e->e.elementType==ElementType.CARROT).limit(1).collect(Collectors.toList());
+
+            if (list.size()>0){
+                System.out.println(list.get(0).imageProperty());
+                list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> setCarrotImage(imageView, newVal));
+            }
+
+
         } else {
             getChildren().remove(carrot);
         }

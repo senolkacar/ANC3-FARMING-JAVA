@@ -7,6 +7,8 @@ public class CarrotState1 extends CarrotState{
 
     ImageView imageView = new ImageView("carrot2.png");
 
+    String image = "carrot2.png";
+
     public CarrotState1(Carrot carrot) {
         super(carrot);
     }
@@ -25,7 +27,8 @@ public class CarrotState1 extends CarrotState{
         if (carrot.getDaysInCurrentState() == CARROT_STATE1_DURATION + 1) {
             carrot.setCarrotState(new CarrotState2(carrot));
             carrot.setDaysInCurrentState(1);
-            carrot.setImageView(imageView);
+            //carrot.setImageView(imageView);
+            carrot.setImage(image);
         }
     }
 

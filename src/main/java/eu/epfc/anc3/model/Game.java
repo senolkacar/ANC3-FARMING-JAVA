@@ -1,6 +1,7 @@
 package eu.epfc.anc3.model;
 
 import javafx.beans.property.*;
+import javafx.geometry.Pos;
 
 import java.util.List;
 import java.util.Set;
@@ -65,6 +66,17 @@ class Game {
         return farm.getValue(position);
     }
 
+    String getCarrotImage(Position position) {
+        return farm.getCarrotImage(position);
+    }
+
+    StringProperty getCarrotImageProperty(Position position) {
+        return farm.getCarrotImageProperty(position);
+    }
+
+    void setCorrotimageProperty(Position position) {
+        farm.setCarrotImage(position);
+    }
     boolean containsElement(Position position, Element element) {
         return farm.containsElement(position, element);
     }
@@ -123,6 +135,8 @@ class Game {
                 increaseGrassParcelCount();
             } else if (gameMode.get() == Mode.PLANT_CARROT && !this.containsElement(getFarmerPosition(),carrot)){
                 this.addElement(getFarmerPosition(), new Carrot());
+               // this.setCorrotimageProperty(getFarmerPosition());//
+
             } else if (gameMode.get() == Mode.PLANT_CABBAGE && !this.containsElement(getFarmerPosition(),cabbage)) {
                 this.addElement(getFarmerPosition(),new Cabbage());
             } else if (gameMode.get() == Mode.HARVEST) {
@@ -141,6 +155,8 @@ class Game {
 //                System.out.println(((Carrot) list.get(i)).getCarrotState());
 //            }
 //        }
+//        System.out.println(this.getCarrotImageProperty(getFarmerPosition()));
+//        System.out.println(this.getCarrotImage(getFarmerPosition()));
 
     }
 

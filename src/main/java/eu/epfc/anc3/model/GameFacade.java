@@ -131,4 +131,8 @@ public class GameFacade {
     public boolean containsCarrot(Position position) {
        return game.containsCarrot(position);
     }
+
+    public StringProperty getCarrotImageProperty(Position position) {
+        return game.getCarrotImageProperty(position);
+    }
 }

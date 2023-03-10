@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 class CarrotRotten extends CarrotState{
 
     ImageView imageView = new ImageView();
+    String image = "";
     int getCarrotState1Duration () {
         return CARROT_ROTTEN_DURATION;
     }
@@ -19,7 +20,9 @@ class CarrotRotten extends CarrotState{
         if (carrot.getDaysInCurrentState() == CARROT_ROTTEN_DURATION + 1) {
             //carrot.setCarrotState(null);//?
             carrot.setDaysInCurrentState(0);
-            carrot.setImageView(imageView);
+            //carrot.setImageView(imageView);
+            carrot.setImage(image);
+
         }
     }
 
