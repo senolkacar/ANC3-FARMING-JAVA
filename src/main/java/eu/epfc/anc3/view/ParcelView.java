@@ -81,7 +81,10 @@ public class ParcelView extends StackPane {
         if (!Objects.equals(newVal, "0")) {
             carrot.setImage(new Image(newVal));
             getChildren().add(carrot);
+        }else {
+            parcelVM.removeElement(ElementType.CARROT);
         }
+
     }
 
     private void setCabbageImage(ImageView imageView, String newVal) {
@@ -89,14 +92,18 @@ public class ParcelView extends StackPane {
         if (!Objects.equals(newVal, "0")) {
             cabbage.setImage(new Image(newVal));
             getChildren().add(cabbage);
-        }
+        }else
+        parcelVM.removeElement(ElementType.CABBAGE);
     }
 
     private void setGrassImage(String newVal) {
         imageView.setImage(dirtImage);
         if (!Objects.equals(newVal, "0")) {
           imageView.setImage(new Image(newVal));
+        }else {
+            parcelVM.removeElement(ElementType.GRASS);
         }
+
     }
 
     void setElementsImages(ImageView imageView, List<Element> elements) {
@@ -109,9 +116,6 @@ public class ParcelView extends StackPane {
             if (list.size()>0){
                 list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> {setGrassImage( newVal);
                 });
-//
-//                if(list.get(0).imageProperty().get().equals("dirt.png"))
-//                    parcelVM.removeElement(ElementType.GRASS);
             }
 
         } else if (newList.contains(ElementType.DIRT)) {
@@ -120,27 +124,33 @@ public class ParcelView extends StackPane {
         }
 
         if (newList.contains(ElementType.CARROT)) {
-            if (!getChildren().contains(carrot)) {
-                getChildren().add(carrot);
-            }
             List<Element> list = elements.stream().filter(e->e.elementType==ElementType.CARROT).limit(1).collect(Collectors.toList());
             if (list.size()>0){
+                carrot.setImage(new Image(list.get(0).imageProperty().get()));
+                if (!getChildren().contains(carrot)) {
+                    getChildren().add(carrot);
+                    getChildren().remove(farmer);
+                }
                 list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> setCarrotImage(imageView, newVal));// carrot public ?
             }
         } else {
             getChildren().remove(carrot);
+            getChildren().remove(farmer);
         }
 
         if (newList.contains(ElementType.CABBAGE)) {
-            if (!getChildren().contains(cabbage)) {
-                getChildren().add(cabbage);
-            }
             List<Element> list = elements.stream().filter(e->e.elementType==ElementType.CABBAGE).limit(1).collect(Collectors.toList());
             if (list.size()>0){
+                carrot.setImage(new Image(list.get(0).imageProperty().get()));
+                if (!getChildren().contains(carrot)) {
+                    getChildren().add(carrot);
+                    getChildren().remove(farmer);
+                }
                 list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> setCabbageImage(imageView, newVal));
             }
         } else {
             getChildren().remove(cabbage);
+            getChildren().remove(farmer);
         }
 
         if (newList.contains(ElementType.FARMER)) {

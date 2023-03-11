@@ -12,7 +12,7 @@ class Parcel {
 //    private String carrotImageString = this.setCarrotImage();
 //    private StringProperty carrotImage = new SimpleStringProperty(carrotImageString);
 
-    private SimpleListProperty<Element> elements = new SimpleListProperty<>(observableArrayList(new Dirt()));
+    private final SimpleListProperty<Element> elements = new SimpleListProperty<>(observableArrayList(new Dirt()));
 
     SimpleListProperty<Element> elementProperty() {
         return elements;
@@ -43,13 +43,11 @@ class Parcel {
     }
 
     public void incrementDay() {
-        ObservableList<Element> elementList = elements.get();
-        if (elementList.size()> 0) {
-            elementList.forEach(element -> {
-                element.incrementDay();
-            });
+//         elements.forEach(Element::incrementDay);//cause runtime exception when remove element
+        ObservableList<Element> list = this.elements.get();
+        for (int i=0; i<list.size(); i++) {
+            list.get(i).incrementDay();
         }
-
     }
 
 //    Element getCarrot(){
