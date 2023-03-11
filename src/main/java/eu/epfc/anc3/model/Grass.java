@@ -25,7 +25,7 @@ class Grass extends Element {
     public void incrementDay() {
         this.daysInCurrentState++;
         if (getDaysInCurrentState()==12+1) {
-            setImage("dirt.png");
+           this.setImage("0");
         }
     }
 

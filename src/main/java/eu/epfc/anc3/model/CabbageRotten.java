@@ -2,7 +2,7 @@ package eu.epfc.anc3.model;
 
 class CabbageRotten extends CabbageState {
 
-    String image = "";
+    String image = "0";
 
     public CabbageRotten(Cabbage cabbage) {
         super(cabbage);
@@ -12,7 +12,6 @@ class CabbageRotten extends CabbageState {
     public void incrementDay() {
         if (cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION -4
                 || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION + 1)){
-           // cabbage.setDaysInCurrentState(0);
             cabbage.setImage(image);
             cabbage.setHarvestScore(-(int)(cabbage.getMAX_POINTS()));
 

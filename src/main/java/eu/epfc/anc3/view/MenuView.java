@@ -30,9 +30,11 @@
 
             sleepButton.setOnAction(e->{
                 menuVM.sleepButtonAction();
-                requestFocus();//TODO
+                requestFocus();
             });
-            startButton.setOnAction(e -> this.onStartButtonAction());
+            startButton.setOnAction(e -> {
+                requestFocus();
+                this.onStartButtonAction();});
 
             getChildren().addAll(startButton, sleepButton);
         }

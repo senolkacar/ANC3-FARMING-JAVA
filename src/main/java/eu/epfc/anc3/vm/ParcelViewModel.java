@@ -33,4 +33,8 @@ public class ParcelViewModel {
     public void onMouseClicked(){
         game.onMouseClicked(position);
     }
+
+    public void removeElement(ElementType elementType) {
+        game.removeElement(position, elementType);
+    }
 }

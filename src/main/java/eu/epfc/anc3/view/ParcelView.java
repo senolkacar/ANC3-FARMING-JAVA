@@ -6,15 +6,19 @@ import eu.epfc.anc3.model.ElementType;
 import eu.epfc.anc3.vm.ParcelViewModel;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ParcelView extends StackPane {
+
+    private final ParcelViewModel parcelVM;
 
     private final ImageView imageView = new ImageView();
     private final Image grassImage = new Image("grass.png");
@@ -36,6 +40,7 @@ public class ParcelView extends StackPane {
 //    private final ImageView rotten_cabbage = new ImageView("rotten_cabbage.png");
 
     public ParcelView(ParcelViewModel parcelViewModel) {
+        parcelVM = parcelViewModel;
         imageView.setFitWidth(35);
         imageView.setFitHeight(35);
         imageView.setPreserveRatio(false);
@@ -65,14 +70,15 @@ public class ParcelView extends StackPane {
 
         ListProperty<Element> valueProperty = parcelViewModel.valueProperty();
         valueProperty.addListener((obs, old, newVal) ->{
-            this.setElementsImages(imageView, newVal);} );
+            this.setElementsImages(imageView, newVal);
+        } );
 
         setOnMouseClicked(e -> parcelViewModel.onMouseClicked());
     }
 
     private void setCarrotImage(ImageView imageView, String newVal) {
         getChildren().remove(carrot);
-        if (newVal !="") {
+        if (!Objects.equals(newVal, "0")) {
             carrot.setImage(new Image(newVal));
             getChildren().add(carrot);
         }
@@ -80,7 +86,7 @@ public class ParcelView extends StackPane {
 
     private void setCabbageImage(ImageView imageView, String newVal) {
         getChildren().remove(cabbage);
-        if (newVal !="") {
+        if (!Objects.equals(newVal, "0")) {
             cabbage.setImage(new Image(newVal));
             getChildren().add(cabbage);
         }
@@ -88,7 +94,7 @@ public class ParcelView extends StackPane {
 
     private void setGrassImage(String newVal) {
         imageView.setImage(dirtImage);
-        if (newVal !="") {
+        if (!Objects.equals(newVal, "0")) {
           imageView.setImage(new Image(newVal));
         }
     }
@@ -101,7 +107,11 @@ public class ParcelView extends StackPane {
             getChildren().remove(farmer);
             List<Element> list = elements.stream().filter(e->e.elementType==ElementType.GRASS).limit(1).collect(Collectors.toList());
             if (list.size()>0){
-                list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> setGrassImage( newVal));
+                list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> {setGrassImage( newVal);
+                });
+//
+//                if(list.get(0).imageProperty().get().equals("dirt.png"))
+//                    parcelVM.removeElement(ElementType.GRASS);
             }
 
         } else if (newList.contains(ElementType.DIRT)) {

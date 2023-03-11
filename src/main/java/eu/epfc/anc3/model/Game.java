@@ -106,6 +106,7 @@ class Game {
         if (!isMovementEnabled())
             return;
         List<ElementType> newElementList = this.getParcelValue(getFarmerPosition()).stream().map(Element::getType).collect(Collectors.toList());
+
         List<Element> list = null;
         if (newElementList.contains(ElementType.CARROT))
             list = this.getParcelValue(getFarmerPosition()).stream().filter(e->e.elementType==ElementType.CARROT).limit(1).collect(Collectors.toList());
@@ -114,6 +115,7 @@ class Game {
 
         if(gameMode.get() == Mode.PLANT_GRASS && !newElementList.contains(ElementType.GRASS)) {
             this.removeElement(getFarmerPosition(), ElementType.DIRT);
+            this.removeElement(getFarmerPosition(), ElementType.GRASS);//?
             this.addElement(getFarmerPosition(), new Grass());
             if (newElementList.contains(ElementType.CABBAGE)){
                 if (list != null && list.size()>0){
@@ -121,8 +123,10 @@ class Game {
                 }
             }
         } else if (gameMode.get() == Mode.PLANT_CARROT && !newElementList.contains(ElementType.CARROT) && !newElementList.contains(ElementType.CABBAGE)){
+            this.removeElement(getFarmerPosition(), ElementType.CARROT);
             this.addElement(getFarmerPosition(), new Carrot());
         } else if (gameMode.get() == Mode.PLANT_CABBAGE && !newElementList.contains(ElementType.CABBAGE) && !newElementList.contains(ElementType.CARROT)) {
+            this.removeElement(getFarmerPosition(), ElementType.CABBAGE);
             this.addElement(getFarmerPosition(),new Cabbage());
             if (newElementList.contains(ElementType.GRASS)) {
                 if (list != null && list.size()>0){
@@ -135,14 +139,15 @@ class Game {
                     list.get(0).setElementHarvestScore();
                     this.setScoreProperty(list.get(0).getHarvestScore().get());
                 }
-                if (newElementList.contains(ElementType.CARROT)) {
-                    this.removeElement(getFarmerPosition(),ElementType.CARROT);
-                }else if (newElementList.contains(ElementType.CABBAGE) )
-                    this.removeElement(getFarmerPosition(),ElementType.CABBAGE);
             }
+            if (newElementList.contains(ElementType.CARROT)) {
+                this.removeElement(getFarmerPosition(),ElementType.CARROT);
+            }else if (newElementList.contains(ElementType.CABBAGE) )
+                this.removeElement(getFarmerPosition(),ElementType.CABBAGE);
+
         } else if (gameMode.get() == Mode.FERTILIZE) {
             if (this.containsElement(getFarmerPosition(),carrot)) {
-                if (list.size()>0){
+                if (list != null && list.size()>0){
                     list.get(0).setIsFertilied(true);
                     list.get(0).fertilize();
                 }

@@ -44,9 +44,12 @@ class Parcel {
 
     public void incrementDay() {
         ObservableList<Element> elementList = elements.get();
-        elementList.forEach(element -> {
-            element.incrementDay();
-        });
+        if (elementList.size()> 0) {
+            elementList.forEach(element -> {
+                element.incrementDay();
+            });
+        }
+
     }
 
 //    Element getCarrot(){
