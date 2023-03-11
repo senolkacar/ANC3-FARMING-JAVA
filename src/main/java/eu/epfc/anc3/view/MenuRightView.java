@@ -22,11 +22,11 @@
 
         private final ToggleGroup actionToggleGroup;
 
-        private final ToggleButton plantGrassButton;
-        private final ToggleButton plantCarrotButton;
-        private final ToggleButton plantCabbageButton;
-        private final ToggleButton fertilizeButton;
-        private final ToggleButton harvestButton;
+        private final ToggleButton plantGrassButton = new ToggleButton("Planter du gazon");
+        private final ToggleButton plantCarrotButton =new ToggleButton("Planter des carottes");
+        private final ToggleButton plantCabbageButton =new ToggleButton("Planter du chou");
+        private final ToggleButton fertilizeButton =new ToggleButton("Fertiliser");
+        private final ToggleButton harvestButton =new ToggleButton("Récolter");
 
         private final Image grass = new Image("grass.png");
         ImageView grassImageView = new ImageView(grass);
@@ -51,13 +51,9 @@
             menuModeObjectProperty.bindBidirectional(menuRightVM.gameModeProperty());
             farmerMovementEnableProperty = menuRightVM.farmerMovementEnableProperty();
 
-            actionToggleGroup = new ToggleGroup();
+            configLogicBinding();
 
-            plantGrassButton = new ToggleButton("Planter du gazon");
-            plantCarrotButton = new ToggleButton("Planter des carottes");
-            plantCabbageButton = new ToggleButton("Planter du chou");
-            fertilizeButton = new ToggleButton("Fertiliser");
-            harvestButton = new ToggleButton("Récolter");
+            actionToggleGroup = new ToggleGroup();
 
             plantGrassButton.setPrefWidth(BUTTON_WIDTH);
             plantGrassButton.setPrefWidth(BUTTON_WIDTH);
@@ -82,8 +78,6 @@
             fertilizeButton.setToggleGroup(actionToggleGroup);
             harvestButton.setToggleGroup(actionToggleGroup);
 
-
-
             plantGrassButton.setOnAction(e -> {
                 this.pantGrassAction(menuModeObjectProperty);});
             plantCarrotButton.setOnAction(e -> {
@@ -96,6 +90,14 @@
                 this.harvestAction(menuModeObjectProperty);});
 
             getChildren().addAll(plantGrassButton, plantCarrotButton, plantCabbageButton, fertilizeButton, harvestButton);
+        }
+
+        private void configLogicBinding() {
+            plantGrassButton.disableProperty().bind(menuRightVM.farmerMovementEnableProperty().not());
+            plantCabbageButton.disableProperty().bind(menuRightVM.farmerMovementEnableProperty().not());
+            plantCarrotButton.disableProperty().bind(menuRightVM.farmerMovementEnableProperty().not());
+            fertilizeButton.disableProperty().bind(menuRightVM.farmerMovementEnableProperty().not());
+            harvestButton.disableProperty().bind(menuRightVM.farmerMovementEnableProperty().not());
         }
 
         private void harvestAction(ObjectProperty<Mode> menuModeObjectProperty) {
