@@ -116,13 +116,12 @@ class Game {
             this.removeElement(getFarmerPosition(), ElementType.DIRT);
             this.addElement(getFarmerPosition(), new Grass());
             if (newElementList.contains(ElementType.CABBAGE)){
-                if (list.size()>0){
+                if (list != null && list.size()>0){
                     list.get(0).setHasGrass(true);
                 }
             }
         } else if (gameMode.get() == Mode.PLANT_CARROT && !newElementList.contains(ElementType.CARROT) && !newElementList.contains(ElementType.CABBAGE)){
             this.addElement(getFarmerPosition(), new Carrot());
-            // this.setCorrotimageProperty(getFarmerPosition());
         } else if (gameMode.get() == Mode.PLANT_CABBAGE && !newElementList.contains(ElementType.CABBAGE) && !newElementList.contains(ElementType.CARROT)) {
             this.addElement(getFarmerPosition(),new Cabbage());
             if (newElementList.contains(ElementType.GRASS)) {
@@ -131,30 +130,16 @@ class Game {
                 }
             }
         } else if (gameMode.get() == Mode.HARVEST) {
-            if (newElementList.contains(ElementType.CARROT)){
+            if (newElementList.contains(ElementType.CARROT) ||newElementList.contains(ElementType.CABBAGE) ) {
                 if (list != null && list.size()>0){
                     list.get(0).setElementHarvestScore();
                     this.setScoreProperty(list.get(0).getHarvestScore().get());
                 }
-                this.removeElement(getFarmerPosition(),ElementType.CARROT);
-            } else if (newElementList.contains(ElementType.CABBAGE)){
-                if (list != null && list.size()>0){
-                    list.get(0).setElementHarvestScore();
-                    this.setScoreProperty(list.get(0).getHarvestScore().get());
-                }
-                this.removeElement(getFarmerPosition(),ElementType.CABBAGE);
+                if (newElementList.contains(ElementType.CARROT)) {
+                    this.removeElement(getFarmerPosition(),ElementType.CARROT);
+                }else if (newElementList.contains(ElementType.CABBAGE) )
+                    this.removeElement(getFarmerPosition(),ElementType.CABBAGE);
             }
-
-//            if (this.containsElement(getFarmerPosition(),carrot) ||this.containsElement(getFarmerPosition(),cabbage) ) {
-//                if (list != null && list.size()>0){
-//                    list.get(0).setElementHarvestScore();
-//                    this.setScoreProperty(list.get(0).getHarvestScore().get());
-//                }
-//                if (this.containsElement(getFarmerPosition(),carrot)) {
-//                    this.removeElement(getFarmerPosition(),carrot);
-//                }else if (this.containsElement(getFarmerPosition(),cabbage))
-//                    this.removeElement(getFarmerPosition(),cabbage);
-//            }
         } else if (gameMode.get() == Mode.FERTILIZE) {
             if (this.containsElement(getFarmerPosition(),carrot)) {
                 if (list.size()>0){
@@ -162,15 +147,7 @@ class Game {
                     list.get(0).fertilize();
                 }
             }
-
         }
-//        List<Element> list = getParcelValue(getFarmerPosition());
-//        for (int i = 0; i < list.size() ; i++) {
-//            System.out.println(list.get(i));
-//            if (list.get(i) instanceof Carrot){
-//                System.out.println(((Carrot) list.get(i)).getCarrotState());
-//            }
-//        }
     }
 
     void onMouseClicked(Position position) {
