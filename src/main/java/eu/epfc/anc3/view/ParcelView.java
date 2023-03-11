@@ -86,11 +86,23 @@ public class ParcelView extends StackPane {
         }
     }
 
+    private void setGrassImage(String newVal) {
+        imageView.setImage(dirtImage);
+        if (newVal !="") {
+          imageView.setImage(new Image(newVal));
+        }
+    }
+
     void setElementsImages(ImageView imageView, List<Element> elements) {
         List<ElementType> newList = elements.stream().map(Element::getType).collect(Collectors.toList());
         if (newList.contains(ElementType.GRASS)) {
             imageView.setImage(grassImage);
             getChildren().remove(farmer);
+            List<Element> list = elements.stream().filter(e->e.elementType==ElementType.GRASS).limit(1).collect(Collectors.toList());
+            if (list.size()>0){
+                list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> setGrassImage( newVal));
+            }
+
         } else if (newList.contains(ElementType.DIRT)) {
             imageView.setImage(dirtImage);
             getChildren().remove(farmer);
@@ -102,10 +114,8 @@ public class ParcelView extends StackPane {
             }
             List<Element> list = elements.stream().filter(e->e.elementType==ElementType.CARROT).limit(1).collect(Collectors.toList());
             if (list.size()>0){
-               // System.out.println(list.get(0).imageProperty());
                 list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> setCarrotImage(imageView, newVal));// carrot public ?
             }
-
         } else {
             getChildren().remove(carrot);
         }
@@ -122,19 +132,12 @@ public class ParcelView extends StackPane {
             getChildren().remove(cabbage);
         }
 
-//        if (newList.contains(ElementType.CABBAGE)) {
-//            if (!getChildren().contains(cabbage1)) {
-//                getChildren().add(cabbage1);
-//            }
-//        } else {
-//            getChildren().remove(cabbage1);
-//        }
-
         if (newList.contains(ElementType.FARMER)) {
             getChildren().remove(farmer);
             getChildren().add(farmer);
         }
     }
+
 
 
 

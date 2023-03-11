@@ -114,16 +114,15 @@ class Game {
 
         if(gameMode.get() == Mode.PLANT_GRASS && !newElementList.contains(ElementType.GRASS)) {
             this.removeElement(getFarmerPosition(), ElementType.DIRT);
-            this.addElement(getFarmerPosition(), grass);
-            if (this.containsElement(getFarmerPosition(),cabbage)){
+            this.addElement(getFarmerPosition(), new Grass());
+            if (newElementList.contains(ElementType.CABBAGE)){
                 if (list.size()>0){
                     list.get(0).setHasGrass(true);
                 }
             }
-            //increaseGrassParcelCount();
         } else if (gameMode.get() == Mode.PLANT_CARROT && !newElementList.contains(ElementType.CARROT) && !newElementList.contains(ElementType.CABBAGE)){
             this.addElement(getFarmerPosition(), new Carrot());
-            // this.setCorrotimageProperty(getFarmerPosition());//
+            // this.setCorrotimageProperty(getFarmerPosition());
         } else if (gameMode.get() == Mode.PLANT_CABBAGE && !newElementList.contains(ElementType.CABBAGE) && !newElementList.contains(ElementType.CARROT)) {
             this.addElement(getFarmerPosition(),new Cabbage());
             if (newElementList.contains(ElementType.GRASS)) {
@@ -137,13 +136,13 @@ class Game {
                     list.get(0).setElementHarvestScore();
                     this.setScoreProperty(list.get(0).getHarvestScore().get());
                 }
-                this.removeElement(getFarmerPosition(),ElementType.CARROT);//?
+                this.removeElement(getFarmerPosition(),ElementType.CARROT);
             } else if (newElementList.contains(ElementType.CABBAGE)){
                 if (list != null && list.size()>0){
                     list.get(0).setElementHarvestScore();
                     this.setScoreProperty(list.get(0).getHarvestScore().get());
                 }
-                this.removeElement(getFarmerPosition(),ElementType.CABBAGE);//?
+                this.removeElement(getFarmerPosition(),ElementType.CABBAGE);
             }
 
 //            if (this.containsElement(getFarmerPosition(),carrot) ||this.containsElement(getFarmerPosition(),cabbage) ) {
