@@ -21,7 +21,7 @@ public class CountView extends HBox {
     public CountView(CountViewModel countVM) {
         this.setPadding(new Insets(20));
         this.setSpacing(50);
-        
+
         this.countVM = countVM;
         ReadOnlyIntegerProperty dayInputProperty = countVM.dayProperty();
         ReadOnlyIntegerProperty scoreProperty = countVM.scoreProperty();
