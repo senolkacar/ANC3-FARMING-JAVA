@@ -42,7 +42,7 @@ class Farm {
         return farm[position.getY()][position.getX()].containsElement(element);
     }
 
-    void removeElement(Position position, Element element) {
+    void removeElement(Position position, ElementType element) {
         farm[position.getY()][position.getX()].removeElement(element);
     }
 

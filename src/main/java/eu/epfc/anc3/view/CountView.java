@@ -4,6 +4,7 @@ import eu.epfc.anc3.vm.CountViewModel;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -18,6 +19,9 @@ public class CountView extends HBox {
     private final TextField scoreInput;
 
     public CountView(CountViewModel countVM) {
+        this.setPadding(new Insets(20));
+        this.setSpacing(50);
+        
         this.countVM = countVM;
         ReadOnlyIntegerProperty dayInputProperty = countVM.dayProperty();
         ReadOnlyIntegerProperty scoreProperty = countVM.scoreProperty();

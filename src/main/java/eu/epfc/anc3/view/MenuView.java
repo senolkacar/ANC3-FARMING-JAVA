@@ -4,6 +4,7 @@
     import eu.epfc.anc3.vm.MenuViewModel;
     import javafx.beans.property.ObjectProperty;
     import javafx.beans.property.SimpleObjectProperty;
+    import javafx.geometry.Insets;
     import javafx.scene.control.Button;
     import javafx.scene.control.ToggleButton;
     import javafx.scene.control.ToggleGroup;
@@ -17,6 +18,9 @@
         ObjectProperty<Mode> menuModeObjectProperty = new SimpleObjectProperty<>();
 
         public MenuView(MenuViewModel menuVM) {
+            this.setSpacing(50);
+            this.setPadding(new Insets(20));
+
             this.menuVM = menuVM;
             menuModeObjectProperty.bindBidirectional(menuVM.gameModeProperty());
 

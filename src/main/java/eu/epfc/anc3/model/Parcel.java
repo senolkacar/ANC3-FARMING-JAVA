@@ -34,8 +34,8 @@ class Parcel {
         return elements.getValue();
     }
 
-    void removeElement(Element oldElement){
-        this.elements.removeIf(e->e.equals(oldElement));
+    void removeElement(ElementType oldElement){
+        this.elements.removeIf(e->e.getType()==oldElement);
     }
 
     boolean containsElement(Element newElement) {

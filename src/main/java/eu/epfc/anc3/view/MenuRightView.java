@@ -85,19 +85,14 @@
 
 
             plantGrassButton.setOnAction(e -> {
-                //menuModeObjectProperty.set(Mode.PLANT_GRASS);
                 this.pantGrassAction(menuModeObjectProperty);});
             plantCarrotButton.setOnAction(e -> {
-               // menuModeObjectProperty.set(Mode.PLANT_CARROT);
                 this.plantCarrotAction(menuModeObjectProperty);});
             plantCabbageButton.setOnAction(e -> {
-               // menuModeObjectProperty.set(Mode.PLANT_CABBAGE);
                 this.plantCabbageAction(menuModeObjectProperty);});
             fertilizeButton.setOnAction(e -> {
-                //menuModeObjectProperty.set(Mode.FERTILIZE);
                 this.fertilizeAction(menuModeObjectProperty);});
             harvestButton.setOnAction(e -> {
-                //menuModeObjectProperty.set(Mode.HARVEST);
                 this.harvestAction(menuModeObjectProperty);});
 
             getChildren().addAll(plantGrassButton, plantCarrotButton, plantCabbageButton, fertilizeButton, harvestButton);
@@ -133,9 +128,7 @@
             } else{
                 menuRightVM.setGameMode(Mode.PLANT_CABBAGE);
                 plantCabbageButton.isSelected();
-
             }
-
         }
 
         private void plantCarrotAction(ObjectProperty<Mode> menuModeObjectProperty) {
@@ -145,7 +138,6 @@
             } else{
                 menuRightVM.setGameMode(Mode.PLANT_CARROT);
                 plantCarrotButton.isSelected();
-
             }
         }
 

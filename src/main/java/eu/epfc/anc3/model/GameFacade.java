@@ -31,7 +31,7 @@ public class GameFacade {
         return game.containsElement(position, element);
     }
 
-    public void removeElement(Position position, Element element) {
+    public void removeElement(Position position, ElementType element) {
         game.removeElement(position, element);
     }
 
