@@ -1,6 +1,6 @@
 package eu.epfc.anc3.model;
 
-abstract class CabbageState {
+abstract class CabbageState implements State {
     public static int CABBAGE_STATE1_DURATION = 5;
     public static int CABBAGE_STATE2_DURATION = 4;
     public static int CABBAGE_STATE3_DURATION = 3;

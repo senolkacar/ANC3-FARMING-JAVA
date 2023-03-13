@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 public class Carrot extends Element{
 
     private CarrotState carrotState;
+    private ObjectProperty<StateType> stateType;
     private static final int MAX_POINTS = 100;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
@@ -15,6 +16,7 @@ public class Carrot extends Element{
     Carrot() {
         elementType = ElementType.CARROT;
         carrotState = new CarrotState1(this);
+        stateType.set(StateType.STATE1);
     }
 
     public CarrotState getCarrotState() {
@@ -89,5 +91,15 @@ public class Carrot extends Element{
 
     public void setHarvestScore(int harvestScore) {
         this.harvestScore.set(harvestScore);
+    }
+
+    @Override
+    public ObjectProperty<StateType> getStateType() {
+        return stateType;
+    }
+
+    @Override
+    public void setStateType(StateType stateType) {
+        this.stateType.set(stateType);
     }
 }

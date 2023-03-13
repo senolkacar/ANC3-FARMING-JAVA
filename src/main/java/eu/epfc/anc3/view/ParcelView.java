@@ -3,6 +3,7 @@ package eu.epfc.anc3.view;
 import eu.epfc.anc3.model.Carrot;
 import eu.epfc.anc3.model.Element;
 import eu.epfc.anc3.model.ElementType;
+import eu.epfc.anc3.model.StateType;
 import eu.epfc.anc3.vm.ParcelViewModel;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.StringProperty;
@@ -27,24 +28,24 @@ public class ParcelView extends StackPane {
     private final ImageView carrot = new ImageView("carrot1.png");
     private final ImageView cabbage = new ImageView("cabbage1.png");
 
-    private final ImageView carrot1 = new ImageView("carrot1.png");
-//    private final ImageView carrot2 = new ImageView("carrot2.png");
-//    private final ImageView carrot3 = new ImageView("carrot3.png");
-//    private final ImageView carrot4 = new ImageView("carrot4.png");
-//    private final ImageView rotten_carrot = new ImageView("rotten_carrot.png");
+    private final Image carrot1 = new Image("carrot1.png");
+    private final Image carrot2 = new Image("carrot2.png");
+    private final Image carrot3 = new Image("carrot3.png");
+    private final Image carrot4 = new Image("carrot4.png");
+    private final Image rotten_carrot = new Image("rotten_carrot.png");
 
-    private final ImageView cabbage1 = new ImageView("cabbage1.png");
-//    private final ImageView cabbage2 = new ImageView("cabbage2.png");
-//    private final ImageView cabbage3 = new ImageView("cabbage3.png");
-//    private final ImageView cabbage4 = new ImageView("cabbage4.png");
-//    private final ImageView rotten_cabbage = new ImageView("rotten_cabbage.png");
+    private final Image cabbage1 = new Image("cabbage1.png");
+    private final Image cabbage2 = new Image("cabbage2.png");
+    private final Image cabbage3 = new Image("cabbage3.png");
+    private final Image cabbage4 = new Image("cabbage4.png");
+    private final Image rotten_cabbage = new Image("rotten_cabbage.png");
 
     public ParcelView(ParcelViewModel parcelViewModel) {
         parcelVM = parcelViewModel;
         imageView.setFitWidth(35);
         imageView.setFitHeight(35);
         imageView.setPreserveRatio(false);
-        this.setElementsImages(imageView, parcelViewModel.valueProperty().getValue());
+        this.setElementsImages(imageView, parcelViewModel.valueProperty());
 
         getChildren().add(imageView);
 
@@ -61,12 +62,6 @@ public class ParcelView extends StackPane {
         cabbage.setFitWidth(35);
         cabbage.setPreserveRatio(true);
 
-        carrot1.setFitHeight(35);
-        carrot1.setFitWidth(35);
-        carrot1.setPreserveRatio(true);
-        cabbage1.setFitHeight(35);
-        cabbage1.setFitWidth(35);
-        cabbage1.setPreserveRatio(true);
 
         ListProperty<Element> valueProperty = parcelViewModel.valueProperty();
         valueProperty.addListener((obs, old, newVal) ->{
@@ -76,33 +71,76 @@ public class ParcelView extends StackPane {
         setOnMouseClicked(e -> parcelViewModel.onMouseClicked());
     }
 
-    private void setCarrotImage(ImageView imageView, String newVal) {
+//    private void setElementsImages(ImageView imageView, ObservableList<Element> value) {
+//    }
+
+    private void setCarrotImage(StateType stateType) {
         getChildren().remove(carrot);
-        if (!Objects.equals(newVal, "0")) {
-            carrot.setImage(new Image(newVal));
-            getChildren().add(carrot);
-        }else {
+
+        switch (stateType) {
+            case STATE1:
+                carrot.setImage(carrot1);
+                break;
+            case STATE2:
+                carrot.setImage(carrot2);
+                break;
+            case STATE3:
+                carrot.setImage(carrot3);
+                break;
+            case STATE4:
+                carrot.setImage(carrot4);
+                break;
+            case STATEROTTEN:
+                carrot.setImage(rotten_carrot);
+                break;
+        }
+        getChildren().add(carrot);
+
+        if (stateType == StateType.STATE0) {
+            getChildren().remove(carrot);
             parcelVM.removeElement(ElementType.CARROT);
         }
 
     }
 
-    private void setCabbageImage(ImageView imageView, String newVal) {
+    private void setCabbageImage(StateType stateType) {
         getChildren().remove(cabbage);
-        if (!Objects.equals(newVal, "0")) {
-            cabbage.setImage(new Image(newVal));
-            getChildren().add(cabbage);
-        }else
-        parcelVM.removeElement(ElementType.CABBAGE);
+
+        switch (stateType) {
+            case STATE1:
+                cabbage.setImage(cabbage1);
+                break;
+            case STATE2:
+                cabbage.setImage(cabbage2);
+                break;
+            case STATE3:
+                cabbage.setImage(cabbage3);
+                break;
+            case STATE4:
+                cabbage.setImage(cabbage4);
+                break;
+            case STATEROTTEN:
+                cabbage.setImage(rotten_cabbage);
+                break;
+        }
+        getChildren().add(cabbage);
+
+        if (stateType == StateType.STATE0) {
+            getChildren().remove(cabbage);
+            parcelVM.removeElement(ElementType.CABBAGE);
+        }
     }
 
-    private void setGrassImage(String newVal) {
+    private void setGrassImage(StateType stateType) {
         imageView.setImage(dirtImage);
-        if (!Objects.equals(newVal, "0")) {
-          imageView.setImage(new Image(newVal));
-        }else {
-            parcelVM.removeElement(ElementType.GRASS);
-        }
+        switch (stateType) {
+            case STATE1:
+                cabbage.setImage(grassImage);
+                break;
+            case STATE0:
+                cabbage.setImage(dirtImage);
+                parcelVM.removeElement(ElementType.GRASS);
+                break;
 
     }
 
@@ -114,7 +152,7 @@ public class ParcelView extends StackPane {
             getChildren().remove(farmer);
             List<Element> list = elements.stream().filter(e->e.elementType==ElementType.GRASS).limit(1).collect(Collectors.toList());
             if (list.size()>0){
-                list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> {setGrassImage( newVal);
+                list.get(0).getStateType().addListener((obs, oldVal, newVal) -> {setGrassImage(newVal);
                 });
             }
 
@@ -131,7 +169,7 @@ public class ParcelView extends StackPane {
                     getChildren().add(carrot);
                     getChildren().remove(farmer);
                 }
-                list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> setCarrotImage(imageView, newVal));// carrot public ?
+                list.get(0).getStateType().addListener((obs, oldVal, newVal) -> setCarrotImage(newVal));// carrot public ?
             }
         } else {
             getChildren().remove(carrot);
@@ -146,7 +184,7 @@ public class ParcelView extends StackPane {
                     getChildren().add(carrot);
                     getChildren().remove(farmer);
                 }
-                list.get(0).imageProperty().addListener((obs, oldVal, newVal) -> setCabbageImage(imageView, newVal));
+                list.get(0).getStateType().addListener((obs, oldVal, newVal) -> setCabbageImage(newVal));
             }
         } else {
             getChildren().remove(cabbage);

@@ -27,6 +27,7 @@ class CarrotState3 extends CarrotState{
             carrot.setDaysInCurrentState(1);
             //carrot.setImageView(imageView);
             carrot.setImage(image);
+            carrot.setStateType(StateType.STATE4);
         }
     }
 
@@ -40,5 +41,10 @@ class CarrotState3 extends CarrotState{
         return "CarrotState3{" +
                 "carrot=" + carrot +"stateDays=" + carrot.getDaysInCurrentState()+
                 '}';
+    }
+
+    @Override
+    public StateType getStateType() {
+        return carrot.getStateType();
     }
 }

@@ -19,6 +19,7 @@ class CarrotRotten extends CarrotState{
         if (carrot.getDaysInCurrentState() == CARROT_ROTTEN_DURATION + 1) {
             carrot.setImage(image);
             carrot.setHarvestScore(-carrot.getMAX_POINTS());
+            carrot.setStateType(StateType.STATE0);
         }
     }
 
@@ -27,4 +28,8 @@ class CarrotRotten extends CarrotState{
         carrot.setHarvestScore(-(int)(carrot.getMAX_POINTS()*CARROT_STATE1_POINT_PERCENTAGE*carrot.getDaysInCurrentState()));
     }
 
+    @Override
+    public StateType getStateType() {
+        return carrot.getStateType();
+    }
 }

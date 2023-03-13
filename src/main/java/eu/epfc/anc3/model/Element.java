@@ -7,6 +7,8 @@ import java.util.Objects;
 public abstract class Element  {
 
     public ElementType elementType;
+
+    public ObjectProperty<StateType> stateType;
     private BooleanProperty isFertilied = new SimpleBooleanProperty();
     private BooleanProperty hasGrass = new SimpleBooleanProperty();
     private StringProperty image = new SimpleStringProperty("");
@@ -62,4 +64,12 @@ public abstract class Element  {
     }
 
     public void setElementHarvestScore(){}
+
+    public ObjectProperty<StateType> getStateType() {
+        return stateType;
+    }
+
+    public void setStateType(StateType stateType) {
+        this.stateType.set(stateType);
+    }
 }

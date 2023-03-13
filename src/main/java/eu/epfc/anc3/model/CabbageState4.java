@@ -1,5 +1,7 @@
 package eu.epfc.anc3.model;
 
+import javafx.beans.property.ObjectProperty;
+
 class CabbageState4 extends CabbageState {
 
     String image = "rotten_cabbage.png";
@@ -15,6 +17,7 @@ class CabbageState4 extends CabbageState {
             cabbage.setCabbageState(new CabbageRotten(cabbage));
             cabbage.setDaysInCurrentState(1);
             cabbage.setImage(image);
+            cabbage.setStateType(StateType.STATEROTTEN);
         }
     }
 
@@ -23,4 +26,8 @@ class CabbageState4 extends CabbageState {
         cabbage.setHarvestScore((int)(cabbage.getMAX_POINTS()*CABBAGE_STATE4_POINT_PERCENTAGE));
     }
 
+    @Override
+    public ObjectProperty<StateType> getStateType() {
+        return cabbage.getStateType();
+    }
 }

@@ -5,6 +5,7 @@ import javafx.beans.property.*;
 public class Cabbage extends Element{
 
     private CabbageState cabbageState;
+    private ObjectProperty<StateType> stateType;
     private static final int MAX_POINTS = 200;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
@@ -14,6 +15,7 @@ public class Cabbage extends Element{
     Cabbage() {
         elementType = ElementType.CABBAGE;
         cabbageState = new CabbageState1(this);
+        stateType.set( StateType.STATE1);
     }
 
     public CabbageState getCabbageState() {
@@ -88,5 +90,15 @@ public class Cabbage extends Element{
 
     public void setHarvestScore(int harvestScore) {
         this.harvestScore.set(harvestScore);
+    }
+
+    @Override
+    public  ObjectProperty<StateType> getStateType() {
+        return stateType;
+    }
+
+    @Override
+    public void setStateType(StateType stateType) {
+        this.stateType.set(stateType);
     }
 }
