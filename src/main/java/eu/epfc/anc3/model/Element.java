@@ -7,11 +7,9 @@ import java.util.Objects;
 public abstract class Element  {
 
     public ElementType elementType;
-
    public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
     private BooleanProperty isFertilied = new SimpleBooleanProperty();
     private BooleanProperty hasGrass = new SimpleBooleanProperty();
-    private StringProperty image = new SimpleStringProperty("");
     public ElementType getType() {
         return elementType;
     }
@@ -36,15 +34,6 @@ public abstract class Element  {
     public String toString(){
         return elementType.toString();
     }
-
-    public String getImage() {
-        return image.get();
-    }
-
-    public StringProperty imageProperty() {
-        return image;
-    }
-
     public void setIsFertilied(boolean isFertilied) {
         this.isFertilied.set(isFertilied);
     }
@@ -63,13 +52,13 @@ public abstract class Element  {
         return new SimpleIntegerProperty();
     }
 
-    public void setElementHarvestScore(){}
+    void setElementHarvestScore(){}
 
     public ObjectProperty<StateType> getStateType() {
         return stateType;
     }
 
-    public void setStateType(StateType stateType) {
+    void setStateType(StateType stateType) {
         this.stateType.set(stateType);
     }
 }

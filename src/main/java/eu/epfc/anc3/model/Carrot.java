@@ -6,11 +6,9 @@ import javafx.scene.image.ImageView;
 public class Carrot extends Element{
 
     private CarrotState carrotState;
-    //private ObjectProperty<StateType> stateType;
     private static final int MAX_POINTS = 100;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
-    private StringProperty image = new SimpleStringProperty("carrot1.png");
     private BooleanProperty isFertilied = new SimpleBooleanProperty(false);
 
     Carrot() {
@@ -47,20 +45,6 @@ public class Carrot extends Element{
         incrementDaysInCurrentState();
         carrotState.incrementDay();
     }
-
-    @Override
-    public String getImage() {
-        return image.get();
-    }
-
-    public StringProperty imageProperty() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image.set(image);
-    }
-
     public boolean isIsFertilied() {
         return isFertilied.get();
     }

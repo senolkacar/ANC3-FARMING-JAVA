@@ -9,9 +9,6 @@ import javafx.beans.property.StringProperty;
 public class ParcelViewModel {
     private final Position position;
     private final GameFacade game;
-//    private ObjectProperty<CarrotState> state = new SimpleObjectProperty<>(new CarrotState1());//public ?
-//    ListProperty<Element> valueProperty;
-
 
     public ParcelViewModel(Position position, GameFacade game) {
         this.position = position;
@@ -25,10 +22,6 @@ public class ParcelViewModel {
     public ListProperty<Element> valueProperty() {
         return game.getParcelValueProperty(position);
     }
-
-//    public StringProperty carrotImage() {
-//        return game.getCarrotImageProperty(position);
-//    }
 
     public void onMouseClicked(){
         game.onMouseClicked(position);

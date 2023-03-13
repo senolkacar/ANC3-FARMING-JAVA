@@ -9,11 +9,6 @@ class Farm {
     public static final int FARM_WIDTH = 25;
     public static final int FARM_HEIGHT = 15;
     public static final int PADDING = 10;
-
-//    private final Farmer farmer = new Farmer();
-//    private final Dirt dirt = new Dirt();
-//    private final List<Element> elements = new ArrayList<>();
-
     private final Parcel[][] farm;
 
     Farm() {
@@ -50,24 +45,11 @@ class Farm {
         farm[position.getY()][position.getX()].addElement(element);
     }
 
-//    void setCarrotImage(Position position) {
-//        farm[position.getY()][position.getX()].setCarrotImage();
-//    }
-//    String getCarrotImage(Position position) {
-//        return farm[position.getY()][position.getX()].getCarrotImage();
-//    }
-//
-//    StringProperty getCarrotImageProperty(Position position) {
-//        return farm[position.getY()][position.getX()].getCarrotImageProperty();
-//
-//    }
-
     void reset() {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
                 farm[i][j].clearElements();
                 farm[i][j].addElement(new Dirt());
-//                farm[i][j].setCarrotImageProperty();
                if(i==0&&j==0){
                    farm[i][j].addElement(new Farmer());
                }

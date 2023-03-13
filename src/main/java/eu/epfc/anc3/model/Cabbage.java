@@ -5,11 +5,9 @@ import javafx.beans.property.*;
 public class Cabbage extends Element{
 
     private CabbageState cabbageState;
-    //private ObjectProperty<StateType> stateType;
     private static final int MAX_POINTS = 200;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
-    private StringProperty image = new SimpleStringProperty("cabbage1.png");
     private BooleanProperty hasGrass = new SimpleBooleanProperty(false);
 
     Cabbage() {
@@ -45,19 +43,6 @@ public class Cabbage extends Element{
     public void incrementDay() {
         incrementDaysInCurrentState();
         cabbageState.incrementDay();
-    }
-
-    @Override
-    public String getImage() {
-        return image.get();
-    }
-
-    public StringProperty imageProperty() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image.set(image);
     }
 
     public boolean hasGrass() {

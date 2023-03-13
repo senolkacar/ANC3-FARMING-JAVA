@@ -58,18 +58,6 @@ class Game {
     List<Element> getParcelValue(Position position) {
         return farm.getValue(position);
     }
-
-//    String getCarrotImage(Position position) {
-//        return farm.getCarrotImage(position);
-//    }
-//
-//    StringProperty getCarrotImageProperty(Position position) {
-//        return farm.getCarrotImageProperty(position);
-//    }
-//
-//    void setCorrotimageProperty(Position position) {
-//        farm.setCarrotImage(position);
-//    }
     boolean containsElement(Position position, Element element) {
         return farm.containsElement(position, element);
     }
