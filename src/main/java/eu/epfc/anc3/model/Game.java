@@ -108,16 +108,15 @@ class Game {
         List<ElementType> newElementList = this.getParcelValue(getFarmerPosition()).stream().map(Element::getType).collect(Collectors.toList());
 
         List<Element> list = null;
-        if (newElementList.contains(ElementType.CARROT))
-            list = this.getParcelValue(getFarmerPosition()).stream().filter(e->e.elementType==ElementType.CARROT).limit(1).collect(Collectors.toList());
-        else if (newElementList.contains(ElementType.CABBAGE))
-            list = this.getParcelValue(getFarmerPosition()).stream().filter(e->e.elementType==ElementType.CABBAGE).limit(1).collect(Collectors.toList());
+        if (newElementList.contains(ElementType.CARROT) || newElementList.contains(ElementType.CABBAGE) )
+            list = this.getParcelValue(getFarmerPosition()).stream().filter(e->e.elementType==ElementType.CARROT ||e.elementType==ElementType.CABBAGE ).limit(1).collect(Collectors.toList());
 
         if(gameMode.get() == Mode.PLANT_GRASS && !newElementList.contains(ElementType.GRASS)) {
             this.removeElement(getFarmerPosition(), ElementType.DIRT);
-            this.removeElement(getFarmerPosition(), ElementType.GRASS);//?
+            this.removeElement(getFarmerPosition(), ElementType.GRASS);
             this.addElement(getFarmerPosition(), new Grass());
             if (newElementList.contains(ElementType.CABBAGE)){
+
                 if (list != null && list.size()>0){
                     list.get(0).setHasGrass(true);
                 }
@@ -127,11 +126,10 @@ class Game {
             this.addElement(getFarmerPosition(), new Carrot());
         } else if (gameMode.get() == Mode.PLANT_CABBAGE && !newElementList.contains(ElementType.CABBAGE) && !newElementList.contains(ElementType.CARROT)) {
             this.removeElement(getFarmerPosition(), ElementType.CABBAGE);
-            this.addElement(getFarmerPosition(),new Cabbage());
+            Cabbage newCabbage = new Cabbage();
+            this.addElement(getFarmerPosition(),newCabbage);
             if (newElementList.contains(ElementType.GRASS)) {
-                if (list != null && list.size()>0){
-                    list.get(0).setHasGrass(true); //doesn't work ?
-                }
+               newCabbage.setHasGrass(true);
             }
         } else if (gameMode.get() == Mode.HARVEST) {
             if (newElementList.contains(ElementType.CARROT) ||newElementList.contains(ElementType.CABBAGE) ) {

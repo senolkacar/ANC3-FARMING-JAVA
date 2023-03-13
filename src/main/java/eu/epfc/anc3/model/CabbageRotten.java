@@ -16,13 +16,17 @@ class CabbageRotten extends CabbageState {
                 || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION + 1)){
             cabbage.setImage(image);
             cabbage.setStateType(StateType.STATE0);
-            cabbage.setHarvestScore(-(int)(cabbage.getMAX_POINTS()));
+            //cabbage.setHarvestScore(-(int)(cabbage.getMAX_POINTS()));
+            cabbage.setElementHarvestScore();//TODO WITH CARROT
 
         }
     }
 
     @Override
     public void setHarvestScore() {
+        if (cabbage.getStateType().get() == StateType.STATE0) {
+            cabbage.setHarvestScore(-(int)(cabbage.getMAX_POINTS()));
+        } else
         cabbage.setHarvestScore(-(int)(cabbage.getMAX_POINTS()* 0.1 *cabbage.getDaysInCurrentState()));
     }
 
