@@ -5,7 +5,7 @@ import javafx.beans.property.*;
 public class Cabbage extends Element{
 
     private CabbageState cabbageState;
-    private ObjectProperty<StateType> stateType;
+    //private ObjectProperty<StateType> stateType;
     private static final int MAX_POINTS = 200;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);

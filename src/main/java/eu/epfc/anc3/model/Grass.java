@@ -7,7 +7,7 @@ import javafx.beans.property.StringProperty;
 class Grass extends Element {
 
     private int daysInCurrentState = 1;
-    private ObjectProperty<StateType> stateType;
+    //private  ObjectProperty<StateType> stateType = new ;
     private StringProperty image = new SimpleStringProperty("grass.png");
 
     Grass() {

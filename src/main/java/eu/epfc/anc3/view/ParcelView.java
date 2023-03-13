@@ -45,7 +45,7 @@ public class ParcelView extends StackPane {
         imageView.setFitWidth(35);
         imageView.setFitHeight(35);
         imageView.setPreserveRatio(false);
-        this.setElementsImages(imageView, parcelViewModel.valueProperty());
+
 
         getChildren().add(imageView);
 
@@ -64,15 +64,69 @@ public class ParcelView extends StackPane {
 
 
         ListProperty<Element> valueProperty = parcelViewModel.valueProperty();
-        valueProperty.addListener((obs, old, newVal) ->{
+        this.setElementsImages(imageView, valueProperty);
+        valueProperty.addListener((obs, old, newVal) -> {
             this.setElementsImages(imageView, newVal);
-        } );
+        });
 
         setOnMouseClicked(e -> parcelViewModel.onMouseClicked());
     }
 
-//    private void setElementsImages(ImageView imageView, ObservableList<Element> value) {
-//    }
+    private void setElementsImages(ImageView imageView, ObservableList<Element> elements) {
+        List<ElementType> newList = elements.stream().map(Element::getType).collect(Collectors.toList());
+
+        if (newList.contains(ElementType.GRASS)) {
+            imageView.setImage(grassImage);
+            getChildren().remove(farmer);
+            List<Element> list = elements.stream().filter(e -> e.elementType == ElementType.GRASS).limit(1).collect(Collectors.toList());
+            if (list.size() > 0) {
+                list.get(0).getStateType().addListener((obs, oldVal, newVal) -> {
+                    setGrassImage(newVal);
+                });
+            }
+
+        } else if (newList.contains(ElementType.DIRT)) {
+            imageView.setImage(dirtImage);
+            getChildren().remove(farmer);
+        }
+
+        if (newList.contains(ElementType.CARROT)) {
+            List<Element> list = elements.stream().filter(e -> e.elementType == ElementType.CARROT).limit(1).collect(Collectors.toList());
+            if (list.size() > 0) {
+                carrot.setImage(new Image(list.get(0).imageProperty().get()));
+                if (!getChildren().contains(carrot)) {
+                    getChildren().add(carrot);
+                    getChildren().remove(farmer);
+                }
+                list.get(0).getStateType().addListener((obs, oldVal, newVal) -> setCarrotImage(newVal));// carrot public ?
+            }
+        } else {
+            getChildren().remove(carrot);
+            getChildren().remove(farmer);
+        }
+
+        if (newList.contains(ElementType.CABBAGE)) {
+            List<Element> list = elements.stream().filter(e -> e.elementType == ElementType.CABBAGE).limit(1).collect(Collectors.toList());
+            if (list.size() > 0) {
+                carrot.setImage(new Image(list.get(0).imageProperty().get()));
+                if (!getChildren().contains(carrot)) {
+                    getChildren().add(carrot);
+                    getChildren().remove(farmer);
+                }
+                list.get(0).getStateType().addListener((obs, oldVal, newVal) -> setCabbageImage(newVal));
+            }
+        } else {
+            getChildren().remove(cabbage);
+            getChildren().remove(farmer);
+        }
+
+        if (newList.contains(ElementType.FARMER)) {
+            getChildren().remove(farmer);
+            getChildren().add(farmer);
+        }
+
+    }
+
 
     private void setCarrotImage(StateType stateType) {
         getChildren().remove(carrot);
@@ -142,62 +196,8 @@ public class ParcelView extends StackPane {
                 parcelVM.removeElement(ElementType.GRASS);
                 break;
 
+        }
+
+
     }
-
-    void setElementsImages(ImageView imageView, List<Element> elements) {
-        List<ElementType> newList = elements.stream().map(Element::getType).collect(Collectors.toList());
-
-        if (newList.contains(ElementType.GRASS)) {
-            imageView.setImage(grassImage);
-            getChildren().remove(farmer);
-            List<Element> list = elements.stream().filter(e->e.elementType==ElementType.GRASS).limit(1).collect(Collectors.toList());
-            if (list.size()>0){
-                list.get(0).getStateType().addListener((obs, oldVal, newVal) -> {setGrassImage(newVal);
-                });
-            }
-
-        } else if (newList.contains(ElementType.DIRT)) {
-            imageView.setImage(dirtImage);
-            getChildren().remove(farmer);
-        }
-
-        if (newList.contains(ElementType.CARROT)) {
-            List<Element> list = elements.stream().filter(e->e.elementType==ElementType.CARROT).limit(1).collect(Collectors.toList());
-            if (list.size()>0){
-                carrot.setImage(new Image(list.get(0).imageProperty().get()));
-                if (!getChildren().contains(carrot)) {
-                    getChildren().add(carrot);
-                    getChildren().remove(farmer);
-                }
-                list.get(0).getStateType().addListener((obs, oldVal, newVal) -> setCarrotImage(newVal));// carrot public ?
-            }
-        } else {
-            getChildren().remove(carrot);
-            getChildren().remove(farmer);
-        }
-
-        if (newList.contains(ElementType.CABBAGE)) {
-            List<Element> list = elements.stream().filter(e->e.elementType==ElementType.CABBAGE).limit(1).collect(Collectors.toList());
-            if (list.size()>0){
-                carrot.setImage(new Image(list.get(0).imageProperty().get()));
-                if (!getChildren().contains(carrot)) {
-                    getChildren().add(carrot);
-                    getChildren().remove(farmer);
-                }
-                list.get(0).getStateType().addListener((obs, oldVal, newVal) -> setCabbageImage(newVal));
-            }
-        } else {
-            getChildren().remove(cabbage);
-            getChildren().remove(farmer);
-        }
-
-        if (newList.contains(ElementType.FARMER)) {
-            getChildren().remove(farmer);
-            getChildren().add(farmer);
-        }
-    }
-
-
-
-
 }

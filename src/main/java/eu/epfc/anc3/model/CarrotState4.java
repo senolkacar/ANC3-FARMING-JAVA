@@ -1,5 +1,6 @@
 package eu.epfc.anc3.model;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.scene.image.ImageView;
 
 class CarrotState4 extends CarrotState{
@@ -42,7 +43,7 @@ class CarrotState4 extends CarrotState{
     }
 
     @Override
-    public StateType getStateType() {
+    public ObjectProperty<StateType> getStateType() {
         return carrot.getStateType();
     }
 }

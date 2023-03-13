@@ -8,7 +8,7 @@ public abstract class Element  {
 
     public ElementType elementType;
 
-    public ObjectProperty<StateType> stateType;
+   public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
     private BooleanProperty isFertilied = new SimpleBooleanProperty();
     private BooleanProperty hasGrass = new SimpleBooleanProperty();
     private StringProperty image = new SimpleStringProperty("");

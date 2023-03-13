@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 public class Carrot extends Element{
 
     private CarrotState carrotState;
-    private ObjectProperty<StateType> stateType;
+    //private ObjectProperty<StateType> stateType;
     private static final int MAX_POINTS = 100;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
