@@ -27,13 +27,15 @@ class CarrotState2 extends CarrotState{
             carrot.setDaysInCurrentState(1);
            // carrot.setImageView(imageView);
             carrot.setImage(image);
+            carrot.setImageTypeObjectProperty(ImageType.CARROT_STATE3_IMAGE);
         }
     }
 
     public void fertilize(){
         carrot.setCarrotState(new CarrotState3(carrot));
         carrot.setDaysInCurrentState(1);
-        carrot.setImage("carrot3.png");
+        carrot.setImage("carrot3.png");//
+        carrot.setImageTypeObjectProperty(ImageType.CARROT_STATE3_IMAGE);
     }
 
     @Override

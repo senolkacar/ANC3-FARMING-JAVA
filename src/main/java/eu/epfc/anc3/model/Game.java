@@ -70,6 +70,10 @@ class Game {
 //    void setCorrotimageProperty(Position position) {
 //        farm.setCarrotImage(position);
 //    }
+
+    public ObjectProperty<ImageType> imageTypeObjectPropertyProperty(Position position) {
+        return farm.getImageProperty(position);
+    }
     boolean containsElement(Position position, Element element) {
         return farm.containsElement(position, element);
     }
@@ -153,6 +157,7 @@ class Game {
                 }
             }
         }
+        //System.out.println(newElementList);
     }
 
     void onMouseClicked(Position position) {

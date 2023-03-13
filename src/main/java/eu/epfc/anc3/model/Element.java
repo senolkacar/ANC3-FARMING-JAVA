@@ -9,7 +9,9 @@ public abstract class Element  {
     public ElementType elementType;
     private BooleanProperty isFertilied = new SimpleBooleanProperty();
     private BooleanProperty hasGrass = new SimpleBooleanProperty();
-    private StringProperty image = new SimpleStringProperty("");
+    private StringProperty image = new SimpleStringProperty("");//
+
+    private ObjectProperty<ImageType> imageTypeObjectProperty = new SimpleObjectProperty<>();
     public ElementType getType() {
         return elementType;
     }
@@ -41,6 +43,18 @@ public abstract class Element  {
 
     public StringProperty imageProperty() {
         return image;
+    }
+
+    public ImageType getImageTypeObjectProperty() {
+        return imageTypeObjectProperty.get();
+    }
+
+    public ObjectProperty<ImageType> imageTypeObjectPropertyProperty() {
+        return imageTypeObjectProperty;
+    }
+
+    public void setImageTypeObjectProperty(ImageType imageTypeObjectProperty) {
+        this.imageTypeObjectProperty.set(imageTypeObjectProperty);
     }
 
     public void setIsFertilied(boolean isFertilied) {

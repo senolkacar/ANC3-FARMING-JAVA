@@ -12,6 +12,8 @@ class Parcel {
 //    private String carrotImageString = this.setCarrotImage();
 //    private StringProperty carrotImage = new SimpleStringProperty(carrotImageString);
 
+    private final ObjectProperty<ImageType> imageTypeObjectProperty = new SimpleObjectProperty<>();// map <ElementType, ImageType>
+
     private final SimpleListProperty<Element> elements = new SimpleListProperty<>(observableArrayList(new Dirt()));
 
     SimpleListProperty<Element> elementProperty() {
@@ -50,6 +52,31 @@ class Parcel {
         }
     }
 
+    public ImageType getImageTypeObjectProperty() {
+        return imageTypeObjectProperty.get();
+    }
+
+    public ObjectProperty<ImageType> imageTypeObjectPropertyProperty() {
+        return imageTypeObjectProperty;
+    }
+
+    public void setImageTypeObjectProperty(ImageType imageTypeObjectProperty) {
+        this.imageTypeObjectProperty.set(imageTypeObjectProperty);
+    }
+
+    public ObjectProperty<ImageType> getImageProperty() {// map <ElementType, ImageType>
+        ObservableList<Element> list = this.elements.get();
+
+        for (int i=0; i<list.size(); i++) {
+            if (list.get(i).getType()==ElementType.CARROT ||list.get(i).getType()==ElementType.CABBAGE) {
+                setImageTypeObjectProperty(list.get(i).imageTypeObjectPropertyProperty().get());
+
+            } else
+                setImageTypeObjectProperty(ImageType.NOIMAGE);
+        }
+        return  imageTypeObjectProperty;
+    }
+
 //    Element getCarrot(){
 //       return elements.get().filtered(element -> element.getType()==ElementType.CARROT).stream().findFirst().orElse(null);
 //        //return (Carrot) elements.stream().filter(e->e instanceof Carrot).findFirst().orElse(null);
@@ -72,22 +99,7 @@ class Parcel {
 //
 //        return "";
 //    }
-//
-//    public void setCarrotImageProperty() {
-//        carrotImage.set(setCarrotImage());
-//    }
-//
-//    public String getCarrotImage() {
-//        return carrotImage.get();
-//    }
-//
-//    public StringProperty getCarrotImageProperty() {
-//        return carrotImage;
-//    }
-//
-//    public void setCarrotImage(String carrotImage) {
-//        this.carrotImage.set(carrotImage);
-//    }
+
 
 
 }

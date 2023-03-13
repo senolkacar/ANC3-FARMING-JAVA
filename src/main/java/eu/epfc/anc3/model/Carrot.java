@@ -9,7 +9,9 @@ public class Carrot extends Element{
     private static final int MAX_POINTS = 100;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
-    private StringProperty image = new SimpleStringProperty("carrot1.png");
+    private StringProperty image = new SimpleStringProperty("carrot1.png"); //
+
+    private ObjectProperty<ImageType> imageTypeObjectProperty = new SimpleObjectProperty<>(ImageType.CARROT_STATE1_IMAGE);
     private BooleanProperty isFertilied = new SimpleBooleanProperty(false);
 
     Carrot() {
@@ -57,6 +59,21 @@ public class Carrot extends Element{
 
     public void setImage(String image) {
         this.image.set(image);
+    }
+
+    @Override
+    public ImageType getImageTypeObjectProperty() {
+        return imageTypeObjectProperty.get();
+    }
+
+    @Override
+    public ObjectProperty<ImageType> imageTypeObjectPropertyProperty() {
+        return imageTypeObjectProperty;
+    }
+
+    @Override
+    public void setImageTypeObjectProperty(ImageType imageTypeObjectProperty) {
+        this.imageTypeObjectProperty.set(imageTypeObjectProperty);
     }
 
     public boolean isIsFertilied() {

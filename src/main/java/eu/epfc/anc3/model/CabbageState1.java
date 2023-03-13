@@ -4,7 +4,7 @@ import javafx.scene.image.ImageView;
 
 class CabbageState1 extends CabbageState{
 
-    String image = "cabbage2.png";
+    String image = "cabbage2.png";//
 
     public CabbageState1(Cabbage cabbage) {
         super(cabbage);
@@ -17,6 +17,7 @@ class CabbageState1 extends CabbageState{
             cabbage.setCabbageState(new CabbageState2(cabbage));
             cabbage.setDaysInCurrentState(1);
             cabbage.setImage(image);
+            cabbage.setImageTypeObjectProperty(ImageType.CABBAGE_STATE2_IMAGE);
         }
     }
 

@@ -123,4 +123,8 @@ public class GameFacade {
 //    public StringProperty getCarrotImageProperty(Position position) {
 //        return game.getCarrotImageProperty(position);
 //    }
+
+    public ObjectProperty<ImageType> imageTypeObjectPropertyProperty(Position position) {
+        return game.imageTypeObjectPropertyProperty(position);
+    }
 }

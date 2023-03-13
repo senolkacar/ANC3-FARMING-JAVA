@@ -15,6 +15,7 @@ class CabbageState2 extends CabbageState{
             cabbage.setCabbageState(new CabbageState3(cabbage));
             cabbage.setDaysInCurrentState(1);
             cabbage.setImage(image);
+            cabbage.setImageTypeObjectProperty(ImageType.CABBAGE_STATE3_IMAGE);
         }
     }
 

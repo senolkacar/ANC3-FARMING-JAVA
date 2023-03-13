@@ -8,7 +8,9 @@ public class Cabbage extends Element{
     private static final int MAX_POINTS = 200;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
-    private StringProperty image = new SimpleStringProperty("cabbage1.png");
+    private StringProperty image = new SimpleStringProperty("cabbage1.png");//
+
+    private ObjectProperty<ImageType> imageTypeObjectProperty = new SimpleObjectProperty<>(ImageType.CABBAGE_STATE1_IMAGE);
     private BooleanProperty hasGrass = new SimpleBooleanProperty(false);
 
     Cabbage() {
@@ -56,6 +58,21 @@ public class Cabbage extends Element{
 
     public void setImage(String image) {
         this.image.set(image);
+    }
+
+    @Override
+    public ImageType getImageTypeObjectProperty() {
+        return imageTypeObjectProperty.get();
+    }
+
+    @Override
+    public ObjectProperty<ImageType> imageTypeObjectPropertyProperty() {
+        return imageTypeObjectProperty;
+    }
+
+    @Override
+    public void setImageTypeObjectProperty(ImageType imageTypeObjectProperty) {
+        this.imageTypeObjectProperty.set(imageTypeObjectProperty);
     }
 
     public boolean hasGrass() {

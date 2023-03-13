@@ -13,6 +13,7 @@ class CabbageRotten extends CabbageState {
         if (cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION -4
                 || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION + 1)){
             cabbage.setImage(image);
+            cabbage.setImageTypeObjectProperty(ImageType.NOIMAGE);
             cabbage.setHarvestScore(-(int)(cabbage.getMAX_POINTS()));
 
         }

@@ -17,7 +17,8 @@ class CarrotRotten extends CarrotState{
     @Override
     public void incrementDay() {
         if (carrot.getDaysInCurrentState() == CARROT_ROTTEN_DURATION + 1) {
-            carrot.setImage(image);
+            carrot.setImage(image);//
+            carrot.setImageTypeObjectProperty(ImageType.NOIMAGE);
             carrot.setHarvestScore(-carrot.getMAX_POINTS());
         }
     }
