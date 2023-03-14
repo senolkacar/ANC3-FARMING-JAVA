@@ -120,6 +120,10 @@ public class GameFacade {
        return game.containsCarrot(position);
     }
 
+    public void autoHarvest(Position position, ElementType elementType){
+        game.autoHarvest(position,elementType);
+    }
+
 //    public StringProperty getCarrotImageProperty(Position position) {
 //        return game.getCarrotImageProperty(position);
 //    }

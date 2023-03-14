@@ -14,6 +14,7 @@ public class GameView extends BorderPane {
     private final FarmView farmView;
     private final MenuView menuView;
     private final MenuRightView menuRightView;
+
     static final int FARM_WIDTH = GameFacade.getFarmWidth();
     static final int FARM_HEIGHT = GameFacade.getFarmHeight();
     static final int PADDING = GameFacade.getPadding();
@@ -39,7 +40,7 @@ public class GameView extends BorderPane {
 
 
 
-        Scene scene = new Scene(this, 1000, 700);
+        Scene scene = new Scene(this, 1200, 700);
         scene.getRoot().setStyle("-fx-font-family: 'serif'");
 
         stage.setScene(scene);

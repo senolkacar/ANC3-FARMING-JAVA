@@ -37,4 +37,8 @@ public class ParcelViewModel {
     public void removeElement(ElementType elementType) {
         game.removeElement(position, elementType);
     }
+
+    public void autoHarvest(ElementType elementType) {
+        game.autoHarvest(position,elementType);
+    }
 }

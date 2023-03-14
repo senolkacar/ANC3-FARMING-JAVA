@@ -85,7 +85,7 @@ public class Carrot extends Element{
     }
 
     @Override
-    public void   setElementHarvestScore() {
+    public void setElementHarvestScore() {
         carrotState.setHarvestScore();
     }
 

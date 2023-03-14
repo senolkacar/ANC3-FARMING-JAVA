@@ -1,18 +1,12 @@
 package eu.epfc.anc3.model;
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.StringProperty;
 
-import java.util.ArrayList;
 import java.util.List;
 
 class Farm {
     public static final int FARM_WIDTH = 25;
     public static final int FARM_HEIGHT = 15;
     public static final int PADDING = 10;
-
-//    private final Farmer farmer = new Farmer();
-//    private final Dirt dirt = new Dirt();
-//    private final List<Element> elements = new ArrayList<>();
 
     private final Parcel[][] farm;
 
@@ -79,10 +73,7 @@ class Farm {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
                 farm[i][j].incrementDay();
-
             }
         }
     }
-
-
 }

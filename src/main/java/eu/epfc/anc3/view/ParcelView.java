@@ -1,12 +1,10 @@
 package eu.epfc.anc3.view;
 
-import eu.epfc.anc3.model.Carrot;
 import eu.epfc.anc3.model.Element;
 import eu.epfc.anc3.model.ElementType;
 import eu.epfc.anc3.model.StateType;
 import eu.epfc.anc3.vm.ParcelViewModel;
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -14,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ParcelView extends StackPane {
@@ -152,7 +149,8 @@ public class ParcelView extends StackPane {
 
         if (stateType == StateType.STATE0) {
             getChildren().remove(carrot);
-            parcelVM.removeElement(ElementType.CARROT);
+            //parcelVM.removeElement(ElementType.CARROT);
+            parcelVM.autoHarvest(ElementType.CARROT);
         }
 
     }
@@ -181,7 +179,8 @@ public class ParcelView extends StackPane {
 
         if (stateType == StateType.STATE0) {
             getChildren().remove(cabbage);
-            parcelVM.removeElement(ElementType.CABBAGE);
+            //parcelVM.removeElement(ElementType.CABBAGE);
+            parcelVM.autoHarvest(ElementType.CABBAGE);
         }
     }
 

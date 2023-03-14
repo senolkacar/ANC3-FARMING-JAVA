@@ -26,6 +26,8 @@
 
             startButton = new Button("Démarrer");
             sleepButton = new Button("Dormir");
+            startButton.setFocusTraversable(false);
+            sleepButton.setFocusTraversable(false);
             sleepButton.setDisable(true);
 
             sleepButton.setOnAction(e->{

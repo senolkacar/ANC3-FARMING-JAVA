@@ -1,10 +1,8 @@
 package eu.epfc.anc3.model;
 
 import javafx.beans.property.*;
-import javafx.geometry.Pos;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 class Game {
@@ -41,6 +39,7 @@ class Game {
     void increaseDayProperty() {
         day.increaseDayProperty();
         farm.incrementDay();
+
     }
 
     ObjectProperty<Mode> gameModeProperty() {
@@ -49,6 +48,21 @@ class Game {
 
     void setGameMode(Mode gameMode) {
         this.gameMode.set(gameMode);
+    }
+
+    void autoHarvest(Position position, ElementType elementType) {
+       List<Element> elements = farm.getValue(position);
+       for(Element element : elements) {
+           if(element.getType() == ElementType.CARROT) {
+               Carrot carrot = (Carrot) element;
+               scoreProperty.setValue(scoreProperty.getValue() + carrot.getHarvestScore().get());
+           }
+              if(element.getType() == ElementType.CABBAGE) {
+                Cabbage cabbage = (Cabbage) element;
+                scoreProperty.setValue(scoreProperty.getValue() + cabbage.getHarvestScore().get());
+              }
+       }
+        farm.removeElement(position, elementType);
     }
 
     ListProperty<Element> getParcelValueProperty(Position position) {

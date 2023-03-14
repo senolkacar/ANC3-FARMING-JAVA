@@ -50,6 +50,8 @@ class Parcel {
         }
     }
 
+
+
 //    Element getCarrot(){
 //       return elements.get().filtered(element -> element.getType()==ElementType.CARROT).stream().findFirst().orElse(null);
 //        //return (Carrot) elements.stream().filter(e->e instanceof Carrot).findFirst().orElse(null);
