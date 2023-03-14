@@ -146,6 +146,10 @@ public class ParcelView extends StackPane {
                 break;
         }
         getChildren().add(carrot);
+        if(getChildren().contains(farmer)){
+            getChildren().remove(farmer);
+            getChildren().add(farmer);
+        }
 
         if (stateType == StateType.STATE0) {
             getChildren().remove(carrot);
@@ -176,6 +180,10 @@ public class ParcelView extends StackPane {
                 break;
         }
         getChildren().add(cabbage);
+        if(getChildren().contains(farmer)){
+            getChildren().remove(farmer);
+            getChildren().add(farmer);
+        }
 
         if (stateType == StateType.STATE0) {
             getChildren().remove(cabbage);
