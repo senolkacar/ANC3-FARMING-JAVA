@@ -14,7 +14,6 @@ class Game {
     private Carrot carrot = new Carrot();
     private Cabbage cabbage = new Cabbage();
     private final Day day = new Day();
-
     private BooleanProperty farmerMovementEnable = new SimpleBooleanProperty(false);
     private final IntegerProperty scoreProperty = new SimpleIntegerProperty(0);
     private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);

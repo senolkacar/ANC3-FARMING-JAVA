@@ -24,11 +24,14 @@
             this.menuVM = menuVM;
             menuModeObjectProperty.bindBidirectional(menuVM.gameModeProperty());
 
-            startButton = new Button("Démarrer");
-            sleepButton = new Button("Dormir");
+            startButton = new Button();
+            sleepButton = new Button();
             startButton.setFocusTraversable(false);
             sleepButton.setFocusTraversable(false);
-            sleepButton.setDisable(true);
+            //sleepButton.setDisable(true);
+
+            buttonNameLogic();
+            buttonLogic();
 
             sleepButton.setOnAction(e->{
                 menuVM.sleepButtonAction();
@@ -36,12 +39,21 @@
             });
             startButton.setOnAction(e -> {
                 requestFocus();
-                this.onStartButtonAction();});
+                menuVM.OnStartButtonAction();});
 
             getChildren().addAll(startButton, sleepButton);
         }
 
-        private void onStartButtonAction() {
+        private void buttonNameLogic() {
+            startButton.textProperty().bind(menuVM.startButtonTextProperty());
+            sleepButton.textProperty().bind(menuVM.sleepButtonTextProperty());
+        }
+
+        private void buttonLogic(){
+            sleepButton.disableProperty().bind(menuVM.farmerMovementEnableProperty().not());
+        }
+        /*private void onStartButtonAction() {
+
             if (startButton.getText().equals("Démarrer")) {
                 menuVM.reset();
                 sleepButton.setDisable(false);
@@ -51,6 +63,6 @@
                 sleepButton.setDisable(true);
                 startButton.setText("Démarrer");
             }
-        }
 
+        }*/
     }

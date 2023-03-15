@@ -8,6 +8,7 @@
     import javafx.beans.property.SimpleObjectProperty;
     import javafx.geometry.Insets;
     import javafx.scene.control.Button;
+    import javafx.scene.control.Toggle;
     import javafx.scene.control.ToggleButton;
     import javafx.scene.control.ToggleGroup;
     import javafx.scene.image.Image;
@@ -98,7 +99,19 @@
             plantCarrotButton.disableProperty().bind(menuRightVM.farmerMovementEnableProperty().not());
             fertilizeButton.disableProperty().bind(menuRightVM.farmerMovementEnableProperty().not());
             harvestButton.disableProperty().bind(menuRightVM.farmerMovementEnableProperty().not());
+
+            farmerMovementEnableProperty.addListener((observable, oldValue, newValue) -> {
+                if (!newValue) {
+                    Toggle toggle = actionToggleGroup.getSelectedToggle();
+                    if (toggle != null) {
+                        actionToggleGroup.getToggles().forEach(tg -> (toggle).setSelected(false));
+                    }
+
+                }
+            });
         }
+
+
 
         private void harvestAction(ObjectProperty<Mode> menuModeObjectProperty) {
             requestFocus();
