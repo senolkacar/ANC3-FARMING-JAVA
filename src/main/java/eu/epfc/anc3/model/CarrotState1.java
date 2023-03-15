@@ -38,6 +38,7 @@ public class CarrotState1 extends CarrotState{
 
     public void fertilize(){
         carrot.setCarrotState(new CarrotState3(carrot));
+        carrot.setStateType(StateType.STATE3);
         carrot.setDaysInCurrentState(1);
         carrot.setImage("carrot3.png");
     }
