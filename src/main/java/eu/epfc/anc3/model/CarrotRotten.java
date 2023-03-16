@@ -11,12 +11,12 @@ class CarrotRotten extends CarrotState{
         return CARROT_ROTTEN_DURATION;
     }
 
-    public CarrotRotten(Carrot carrot) {
+    CarrotRotten(Carrot carrot) {
         super(carrot);
     }
 
     @Override
-    public void incrementDay() {
+    void incrementDay() {
         if (carrot.getDaysInCurrentState() == CARROT_ROTTEN_DURATION + 1) {
             carrot.setImage(image);
             carrot.setDaysInCurrentState(carrot.getDaysInCurrentState()-1);
@@ -26,7 +26,7 @@ class CarrotRotten extends CarrotState{
     }
 
     @Override
-    public void setHarvestScore() {
+    void setHarvestScore() {
         carrot.setHarvestScore(-(int)(carrot.getMAX_POINTS()*CARROT_STATE1_POINT_PERCENTAGE*carrot.getDaysInCurrentState()));
     }
 

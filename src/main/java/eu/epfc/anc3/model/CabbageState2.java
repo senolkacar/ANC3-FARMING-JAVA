@@ -6,12 +6,12 @@ class CabbageState2 extends CabbageState{
 
     String image = "cabbage3.png";
 
-    public CabbageState2(Cabbage cabbage) {
+    CabbageState2(Cabbage cabbage) {
         super(cabbage);
     }
 
     @Override
-    public void incrementDay() {
+    void incrementDay() {
         if (cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE2_DURATION
                 || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE2_DURATION + 1)){
             cabbage.setCabbageState(new CabbageState3(cabbage));
@@ -22,7 +22,7 @@ class CabbageState2 extends CabbageState{
     }
 
     @Override
-    public void setHarvestScore() {
+    void setHarvestScore() {
         cabbage.setHarvestScore((int)(cabbage.getMAX_POINTS()*CABBAGE_STATE2_POINT_PERCENTAGE));
     }
 

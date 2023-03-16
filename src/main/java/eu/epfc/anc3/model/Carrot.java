@@ -23,7 +23,7 @@ public class Carrot extends Element{
         return carrotState;
     }
 
-    public void setCarrotState(CarrotState carrotState) {
+     void setCarrotState(CarrotState carrotState) {
         this.carrotState = carrotState;
     }
 
@@ -35,7 +35,7 @@ public class Carrot extends Element{
         return daysInCurrentState;
     }
 
-    public void setDaysInCurrentState(int daysInCurrentState) {
+    void setDaysInCurrentState(int daysInCurrentState) {
         this.daysInCurrentState = daysInCurrentState;
     }
 
@@ -43,7 +43,7 @@ public class Carrot extends Element{
         this.daysInCurrentState++;
     }
 
-    public void incrementDay() {
+    void incrementDay() {
         incrementDaysInCurrentState();
         carrotState.incrementDay();
     }
@@ -53,43 +53,43 @@ public class Carrot extends Element{
         return image.get();
     }
 
-    public StringProperty imageProperty() {
+    StringProperty imageProperty() {
         return image;
     }
 
-    public void setImage(String image) {
+    void setImage(String image) {
         this.image.set(image);
     }
 
-    public boolean isIsFertilied() {
+    boolean isIsFertilied() {
         return isFertilied.get();
     }
 
-    public BooleanProperty isFertiliedProperty() {
+     BooleanProperty isFertiliedProperty() {
         return isFertilied;
     }
 
     @Override
-    public void setIsFertilied(boolean isFertilied) {
+    void setIsFertilied(boolean isFertilied) {
         this.isFertilied.set(isFertilied);
     }
 
     @Override
-    public void fertilize(){
+    void fertilize(){
         carrotState.fertilize();
     }
 
     @Override
-    public IntegerProperty getHarvestScore(){
+    IntegerProperty getHarvestScore(){
         return harvestScore;
     }
 
     @Override
-    public void setElementHarvestScore() {
+    void setElementHarvestScore() {
         carrotState.setHarvestScore();
     }
 
-    public void setHarvestScore(int harvestScore) {
+    void setHarvestScore(int harvestScore) {
         this.harvestScore.set(harvestScore);
     }
 
@@ -99,7 +99,7 @@ public class Carrot extends Element{
     }
 
     @Override
-    public void setStateType(StateType stateType) {
+    void setStateType(StateType stateType) {
         this.stateType.set(stateType);
     }
 }

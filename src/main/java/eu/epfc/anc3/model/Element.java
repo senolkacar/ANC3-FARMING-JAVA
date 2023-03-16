@@ -7,8 +7,7 @@ import java.util.Objects;
 public abstract class Element  {
 
     public ElementType elementType;
-
-   public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
+    public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
     private BooleanProperty isFertilied = new SimpleBooleanProperty();
     private BooleanProperty hasGrass = new SimpleBooleanProperty();
     private StringProperty image = new SimpleStringProperty("");
@@ -29,7 +28,7 @@ public abstract class Element  {
         return Objects.hash(elementType);
     }
 
-    public void incrementDay() {
+    void incrementDay() {
     }
 
     @Override
@@ -41,35 +40,35 @@ public abstract class Element  {
         return image.get();
     }
 
-    public StringProperty imageProperty() {
-        return image;
-    }
+//  public StringProperty imageProperty() {
+//        return image;
+//    }
 
-    public void setIsFertilied(boolean isFertilied) {
+    void setIsFertilied(boolean isFertilied) {
         this.isFertilied.set(isFertilied);
     }
 
-    public void fertilize(){
+    void fertilize(){
     }
 
-    public void setHasGrass(boolean hasGrass) {
+    void setHasGrass(boolean hasGrass) {
         this.hasGrass.set(hasGrass);
     }
 
-    public void plantGrass(){
+    void plantGrass(){
     }
 
-    public IntegerProperty getHarvestScore(){
+    IntegerProperty getHarvestScore(){
         return new SimpleIntegerProperty();
     }
 
-    public void setElementHarvestScore(){}
+    void setElementHarvestScore(){}
 
     public ObjectProperty<StateType> getStateType() {
         return stateType;
     }
 
-    public void setStateType(StateType stateType) {
+    void setStateType(StateType stateType) {
         this.stateType.set(stateType);
     }
 }

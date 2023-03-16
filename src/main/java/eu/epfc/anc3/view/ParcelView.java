@@ -19,23 +19,24 @@ public class ParcelView extends StackPane {
     private final ParcelViewModel parcelVM;
 
     private final ImageView imageView = new ImageView();
-    private final Image grassImage = new Image("grass.png");
-    private final Image dirtImage = new Image("dirt.png");
     private final ImageView farmer = new ImageView("farmer.png");
     private final ImageView carrot = new ImageView("carrot1.png");
     private final ImageView cabbage = new ImageView("cabbage1.png");
 
-    private final Image carrot1 = new Image("carrot1.png");
-    private final Image carrot2 = new Image("carrot2.png");
-    private final Image carrot3 = new Image("carrot3.png");
-    private final Image carrot4 = new Image("carrot4.png");
-    private final Image rotten_carrot = new Image("rotten_carrot.png");
+    private static final Image grassImage = new Image("grass.png");
+    private static final Image dirtImage = new Image("dirt.png");
 
-    private final Image cabbage1 = new Image("cabbage1.png");
-    private final Image cabbage2 = new Image("cabbage2.png");
-    private final Image cabbage3 = new Image("cabbage3.png");
-    private final Image cabbage4 = new Image("cabbage4.png");
-    private final Image rotten_cabbage = new Image("rotten_cabbage.png");
+    private static final Image carrot1 = new Image("carrot1.png");
+    private static final Image carrot2 = new Image("carrot2.png");
+    private static final Image carrot3 = new Image("carrot3.png");
+    private static final Image carrot4 = new Image("carrot4.png");
+    private static final Image rotten_carrot = new Image("rotten_carrot.png");
+
+    private static final Image cabbage1 = new Image("cabbage1.png");
+    private static final Image cabbage2 = new Image("cabbage2.png");
+    private static final Image cabbage3 = new Image("cabbage3.png");
+    private static final Image cabbage4 = new Image("cabbage4.png");
+    private static final Image rotten_cabbage = new Image("rotten_cabbage.png");
 
     public ParcelView(ParcelViewModel parcelViewModel) {
         parcelVM = parcelViewModel;

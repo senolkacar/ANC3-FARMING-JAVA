@@ -7,7 +7,7 @@ class Day {
 
     private IntegerProperty dayProperty = new SimpleIntegerProperty(1);
 
-    public int getDayProperty() {
+    int getDayProperty() {
         return dayProperty.get();
     }
 

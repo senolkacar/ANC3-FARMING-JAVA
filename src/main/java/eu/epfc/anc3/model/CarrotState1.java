@@ -8,7 +8,7 @@ public class CarrotState1 extends CarrotState{
     ImageView imageView = new ImageView("carrot2.png");
     String image = "carrot2.png";
 
-    public CarrotState1(Carrot carrot) {
+    CarrotState1(Carrot carrot) {
         super(carrot);
     }
 //
@@ -21,7 +21,7 @@ public class CarrotState1 extends CarrotState{
 //    }
 
     @Override
-    public void incrementDay() {
+    void incrementDay() {
         if (carrot.getDaysInCurrentState() == CARROT_STATE1_DURATION + 1) {
             carrot.setCarrotState(new CarrotState2(carrot));
             carrot.setDaysInCurrentState(1);
@@ -32,11 +32,11 @@ public class CarrotState1 extends CarrotState{
     }
 
     @Override
-    public void setHarvestScore() {
+    void setHarvestScore() {
         carrot.setHarvestScore((int)(carrot.getMAX_POINTS()*CARROT_STATE1_POINT_PERCENTAGE));
     }
 
-    public void fertilize(){
+    void fertilize(){
         carrot.setCarrotState(new CarrotState3(carrot));
         carrot.setStateType(StateType.STATE3);
         carrot.setDaysInCurrentState(1);

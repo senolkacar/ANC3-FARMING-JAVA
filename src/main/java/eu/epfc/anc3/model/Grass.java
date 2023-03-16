@@ -7,7 +7,6 @@ import javafx.beans.property.StringProperty;
 class Grass extends Element {
 
     private int daysInCurrentState = 1;
-    //private  ObjectProperty<StateType> stateType = new ;
     private StringProperty image = new SimpleStringProperty("grass.png");
 
     Grass() {
@@ -25,7 +24,7 @@ class Grass extends Element {
     }
 
     @Override
-    public void incrementDay() {
+    void incrementDay() {
         this.daysInCurrentState++;
         if (getDaysInCurrentState()==12+1) {
            this.setStateType(StateType.STATE0);
@@ -41,7 +40,7 @@ class Grass extends Element {
         return image;
     }
 
-    public void setImage(String image) {
+    void setImage(String image) {
         this.image.set(image);
     }
 
@@ -51,7 +50,7 @@ class Grass extends Element {
     }
 
     @Override
-    public void setStateType(StateType stateType) {
+    void setStateType(StateType stateType) {
         this.stateType.set(stateType);
     }
 

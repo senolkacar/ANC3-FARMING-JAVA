@@ -9,7 +9,7 @@ public class Cabbage extends Element{
     private static final int MAX_POINTS = 200;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
-    private StringProperty image = new SimpleStringProperty("cabbage1.png");
+    private StringProperty image = new SimpleStringProperty("cabbage1.png");// to delete
     private BooleanProperty hasGrass = new SimpleBooleanProperty(false);
 
     Cabbage() {
@@ -22,7 +22,7 @@ public class Cabbage extends Element{
         return cabbageState;
     }
 
-    public void setCabbageState(CabbageState cabbageState) {
+    void setCabbageState(CabbageState cabbageState) {
         this.cabbageState = cabbageState;
     }
 
@@ -34,7 +34,7 @@ public class Cabbage extends Element{
         return daysInCurrentState;
     }
 
-    public void setDaysInCurrentState(int daysInCurrentState) {
+    void setDaysInCurrentState(int daysInCurrentState) {
         this.daysInCurrentState = daysInCurrentState;
     }
 
@@ -42,7 +42,7 @@ public class Cabbage extends Element{
         this.daysInCurrentState++;
     }
 
-    public void incrementDay() {
+    void incrementDay() {
         incrementDaysInCurrentState();
         cabbageState.incrementDay();
     }
@@ -56,39 +56,39 @@ public class Cabbage extends Element{
         return image;
     }
 
-    public void setImage(String image) {
+    void setImage(String image) {
         this.image.set(image);
     }
 
-    public boolean hasGrass() {
+    boolean hasGrass() {
         return hasGrass.get();
     }
 
-    public BooleanProperty hasGrassProperty() {
+    BooleanProperty hasGrassProperty() {
         return hasGrass;
     }
 
     @Override
-    public void setHasGrass(boolean hasGrass) {
+    void setHasGrass(boolean hasGrass) {
         this.hasGrass.set(hasGrass);
     }
 
     @Override
-    public void plantGrass(){
+    void plantGrass(){
         cabbageState.plantGrass();
-    }
+    }//plantGrass should be called by farmer ?
 
     @Override
-    public IntegerProperty getHarvestScore(){
+    IntegerProperty getHarvestScore(){
         return harvestScore;
     }
 
     @Override
-    public void   setElementHarvestScore() {
+    void   setElementHarvestScore() {
         cabbageState.setHarvestScore();
     }
 
-    public void setHarvestScore(int harvestScore) {
+    void setHarvestScore(int harvestScore) {
         this.harvestScore.set(harvestScore);
     }
 
@@ -98,7 +98,7 @@ public class Cabbage extends Element{
     }
 
     @Override
-    public void setStateType(StateType stateType) {
+    void setStateType(StateType stateType) {
         this.stateType.set(stateType);
     }
 }

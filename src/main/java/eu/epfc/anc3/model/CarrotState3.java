@@ -17,12 +17,12 @@ class CarrotState3 extends CarrotState{
         return CARROT_STATE3_POINT_PERCENTAGE;
     }
 
-    public CarrotState3(Carrot carrot) {
+    CarrotState3(Carrot carrot) {
         super(carrot);
     }
 
     @Override
-    public void incrementDay() {
+    void incrementDay() {
         if (carrot.getDaysInCurrentState() == CARROT_STATE3_DURATION + 1) {
             carrot.setCarrotState(new CarrotState4(carrot));
             carrot.setDaysInCurrentState(1);
@@ -33,7 +33,7 @@ class CarrotState3 extends CarrotState{
     }
 
     @Override
-    public void setHarvestScore() {
+    void setHarvestScore() {
         carrot.setHarvestScore((int)(carrot.getMAX_POINTS()*CARROT_STATE3_POINT_PERCENTAGE));
     }
 
