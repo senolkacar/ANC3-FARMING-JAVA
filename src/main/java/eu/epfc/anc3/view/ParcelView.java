@@ -230,14 +230,14 @@ public class ParcelView extends StackPane {
         imageView.setImage(dirtImage);
         switch (stateType) {
             case STATE1:
-                cabbage.setImage(grassImage);
+                imageView.setImage(grassImage);
                 break;
             case STATE0:
-                cabbage.setImage(dirtImage);
+                imageView.setImage(dirtImage);
                 parcelVM.removeElement(ElementType.GRASS);
                 break;
-
         }
+
 
 
     }

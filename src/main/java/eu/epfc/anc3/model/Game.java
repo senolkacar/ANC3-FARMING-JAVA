@@ -124,8 +124,8 @@ class Game {
             }
         }
         if(gameMode.get() == Mode.PLANT_GRASS && !newElementList.contains(ElementType.GRASS)) {
-            this.removeElement(getFarmerPosition(), ElementType.DIRT);
-            this.removeElement(getFarmerPosition(), ElementType.GRASS);
+            //this.removeElement(getFarmerPosition(), ElementType.DIRT);
+            //this.removeElement(getFarmerPosition(), ElementType.GRASS);
             this.addElement(getFarmerPosition(), new Grass());
             if (newElementList.contains(ElementType.CABBAGE)){
                 cabbage.setHasGrass(true);
@@ -134,10 +134,10 @@ class Game {
                 }*/
             }
         } else if (gameMode.get() == Mode.PLANT_CARROT && !newElementList.contains(ElementType.CARROT) && !newElementList.contains(ElementType.CABBAGE)){
-            this.removeElement(getFarmerPosition(), ElementType.CARROT);
+            //this.removeElement(getFarmerPosition(), ElementType.CARROT);
             this.addElement(getFarmerPosition(), new Carrot());
         } else if (gameMode.get() == Mode.PLANT_CABBAGE && !newElementList.contains(ElementType.CABBAGE) && !newElementList.contains(ElementType.CARROT)) {
-            this.removeElement(getFarmerPosition(), ElementType.CABBAGE);
+            //this.removeElement(getFarmerPosition(), ElementType.CABBAGE);
             Cabbage newCabbage = new Cabbage();
             this.addElement(getFarmerPosition(),newCabbage);
             if (newElementList.contains(ElementType.GRASS)) {

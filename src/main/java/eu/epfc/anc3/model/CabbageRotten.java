@@ -12,10 +12,14 @@ class CabbageRotten extends CabbageState {
 
     @Override
     void incrementDay() {
-        if (cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION -4
-                || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION + 1)){
+        if (cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION -5
+                || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION+1)){
             cabbage.setImage(image);
-            cabbage.setDaysInCurrentState(cabbage.getDaysInCurrentState()-1);
+            //cabbage disappears on 11th day in dirt, but for the formula in harvestscore
+            //we need to pass the last rotten day of the cabbage which is 10th day
+            if(!cabbage.hasGrass()){
+                cabbage.setDaysInCurrentState(cabbage.getDaysInCurrentState()-1);
+            }
             cabbage.setElementHarvestScore();
             cabbage.setStateType(StateType.STATE0);
 
