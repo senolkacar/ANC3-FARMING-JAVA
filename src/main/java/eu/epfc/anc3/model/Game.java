@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 
 class Game {
     private final Farm farm = new Farm();
-//    private final Dirt dirt = new Dirt();
-//    private final Grass grass = new Grass();
     private final Farmer farmer = new Farmer();
     private Carrot carrot = new Carrot();
     private Cabbage cabbage = new Cabbage();
@@ -39,7 +37,6 @@ class Game {
     void increaseDayProperty() {
         day.increaseDayProperty();
         farm.incrementDay();
-
     }
 
     ObjectProperty<Mode> gameModeProperty() {
@@ -72,10 +69,6 @@ class Game {
     List<Element> getParcelValue(Position position) {
         return farm.getValue(position);
     }
-
-    //boolean containsElement(Position position, Element element) {
-//        return farm.containsElement(position, element);
-//    }
 
     void removeElement(Position position, ElementType element) {
         farm.removeElement(position, element);
@@ -124,8 +117,6 @@ class Game {
             }
         }
         if(gameMode.get() == Mode.PLANT_GRASS && !newElementList.contains(ElementType.GRASS)) {
-            //this.removeElement(getFarmerPosition(), ElementType.DIRT);
-            //this.removeElement(getFarmerPosition(), ElementType.GRASS);
             this.addElement(getFarmerPosition(), new Grass());
             if (newElementList.contains(ElementType.CABBAGE)){
                 cabbage.setHasGrass(true);
@@ -134,10 +125,8 @@ class Game {
                 }*/
             }
         } else if (gameMode.get() == Mode.PLANT_CARROT && !newElementList.contains(ElementType.CARROT) && !newElementList.contains(ElementType.CABBAGE)){
-            //this.removeElement(getFarmerPosition(), ElementType.CARROT);
             this.addElement(getFarmerPosition(), new Carrot());
         } else if (gameMode.get() == Mode.PLANT_CABBAGE && !newElementList.contains(ElementType.CABBAGE) && !newElementList.contains(ElementType.CARROT)) {
-            //this.removeElement(getFarmerPosition(), ElementType.CABBAGE);
             Cabbage newCabbage = new Cabbage();
             this.addElement(getFarmerPosition(),newCabbage);
             if (newElementList.contains(ElementType.GRASS)) {
@@ -230,8 +219,4 @@ class Game {
         scoreProperty.set(scoreProperty.get()+score);
     }
 
-
-//    boolean containsCarrot(Position position) {
-//        return containsElement(position,carrot);
-//    }
 }

@@ -4,7 +4,6 @@ import javafx.beans.property.ObjectProperty;
 import javafx.scene.image.ImageView;
 
 class CarrotState4 extends CarrotState{
-//    String image = "rotten_carrot.png";
 
     CarrotState4(Carrot carrot) {
         super(carrot);
@@ -15,7 +14,6 @@ class CarrotState4 extends CarrotState{
         if (carrot.getDaysInCurrentState() == CARROT_STATE4_DURATION + 1) {
             carrot.setCarrotState(new CarrotRotten(carrot));
             carrot.setDaysInCurrentState(1);
-//            carrot.setImage(image);
             carrot.setStateType(StateType.STATEROTTEN);
         }
     }

@@ -46,19 +46,6 @@ public class Cabbage extends Element{
         cabbageState.incrementDay();
     }
 
-//    @Override
-//    public String getImage() {
-//        return image.get();
-//    }
-//
-//    public StringProperty imageProperty() {
-//        return image;
-//    }
-//
-//    void setImage(String image) {
-//        this.image.set(image);
-//    }
-
     boolean hasGrass() {
         return hasGrass.get();
     }
