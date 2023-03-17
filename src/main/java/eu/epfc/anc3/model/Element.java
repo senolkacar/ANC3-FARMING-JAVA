@@ -10,7 +10,8 @@ public abstract class Element  {
     public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
     private BooleanProperty isFertilied = new SimpleBooleanProperty();
     private BooleanProperty hasGrass = new SimpleBooleanProperty();
-    private StringProperty image = new SimpleStringProperty("");
+//    private StringProperty image = new SimpleStringProperty("");
+
     public ElementType getType() {
         return elementType;
     }
@@ -36,9 +37,9 @@ public abstract class Element  {
         return elementType.toString();
     }
 
-    public String getImage() {
-        return image.get();
-    }
+//    public String getImage() {
+//        return image.get();
+//    }
 
 //  public StringProperty imageProperty() {
 //        return image;

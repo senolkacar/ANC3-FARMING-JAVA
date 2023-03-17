@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 class Game {
     private final Farm farm = new Farm();
-    private final Dirt dirt = new Dirt();
-    private final Grass grass = new Grass();
+//    private final Dirt dirt = new Dirt();
+//    private final Grass grass = new Grass();
     private final Farmer farmer = new Farmer();
     private Carrot carrot = new Carrot();
     private Cabbage cabbage = new Cabbage();
@@ -73,9 +73,9 @@ class Game {
         return farm.getValue(position);
     }
 
-    boolean containsElement(Position position, Element element) {
-        return farm.containsElement(position, element);
-    }
+    //boolean containsElement(Position position, Element element) {
+//        return farm.containsElement(position, element);
+//    }
 
     void removeElement(Position position, ElementType element) {
         farm.removeElement(position, element);
@@ -117,7 +117,7 @@ class Game {
         */
         for(Element element : list) {
             if(element.getType() == ElementType.CARROT) {
-                carrot = (Carrot) element;
+                carrot = (Carrot) element; // is it better to avoid transtypage ?
             }
             if(element.getType() == ElementType.CABBAGE) {
                 cabbage = (Cabbage) element;
@@ -142,6 +142,8 @@ class Game {
             this.addElement(getFarmerPosition(),newCabbage);
             if (newElementList.contains(ElementType.GRASS)) {
                newCabbage.setHasGrass(true);
+            } else {
+                newCabbage.setHasGrass(false);//BooleanProperty hasGrass shouldn't have the input par default value 'false'.
             }
         } else if (gameMode.get() == Mode.HARVEST) {
             if(newElementList.contains(ElementType.CARROT)){
@@ -229,7 +231,7 @@ class Game {
     }
 
 
-    boolean containsCarrot(Position position) {
-        return containsElement(position,carrot);
-    }
+//    boolean containsCarrot(Position position) {
+//        return containsElement(position,carrot);
+//    }
 }

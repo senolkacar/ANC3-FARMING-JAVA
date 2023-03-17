@@ -3,7 +3,7 @@ package eu.epfc.anc3.model;
 import javafx.beans.property.ObjectProperty;
 
 class CabbageState3 extends CabbageState {
-    String image = "cabbage4.png";
+//    String image = "cabbage4.png";
 
     CabbageState3(Cabbage cabbage) {
         super(cabbage);
@@ -15,7 +15,7 @@ class CabbageState3 extends CabbageState {
                 || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE3_DURATION + 1)){
             cabbage.setCabbageState(new CabbageState4(cabbage));
             cabbage.setDaysInCurrentState(1);
-            cabbage.setImage(image);
+//            cabbage.setImage(image);
             cabbage.setStateType(StateType.STATE4);
         }
     }

@@ -4,7 +4,7 @@ import javafx.beans.property.ObjectProperty;
 
 class CabbageState2 extends CabbageState{
 
-    String image = "cabbage3.png";
+//    String image = "cabbage3.png";
 
     CabbageState2(Cabbage cabbage) {
         super(cabbage);
@@ -16,7 +16,7 @@ class CabbageState2 extends CabbageState{
                 || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE2_DURATION + 1)){
             cabbage.setCabbageState(new CabbageState3(cabbage));
             cabbage.setDaysInCurrentState(1);
-            cabbage.setImage(image);
+//            cabbage.setImage(image);
             cabbage.setStateType(StateType.STATE3);
         }
     }

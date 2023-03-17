@@ -6,10 +6,7 @@ import javafx.scene.image.ImageView;
 
 class CarrotRotten extends CarrotState{
 
-    String image = "0";
-    int getCarrotState1Duration () {
-        return CARROT_ROTTEN_DURATION;
-    }
+   // String image = "0";
 
     CarrotRotten(Carrot carrot) {
         super(carrot);
@@ -18,8 +15,8 @@ class CarrotRotten extends CarrotState{
     @Override
     void incrementDay() {
         if (carrot.getDaysInCurrentState() == CARROT_ROTTEN_DURATION + 1) {
-            carrot.setImage(image);
-            carrot.setDaysInCurrentState(carrot.getDaysInCurrentState()-1);
+           // carrot.setImage(image);
+            carrot.setDaysInCurrentState(carrot.getDaysInCurrentState()-1);//should be harvested. if not the method become recursive
             carrot.setElementHarvestScore();
             carrot.setStateType(StateType.STATE0);
         }

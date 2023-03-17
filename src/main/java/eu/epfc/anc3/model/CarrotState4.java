@@ -4,16 +4,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.scene.image.ImageView;
 
 class CarrotState4 extends CarrotState{
-
-    private ImageView imageView = new ImageView("rotten_carrot.png");
-    String image = "rotten_carrot.png";
-    int getCarrotState1Duration () {
-        return CARROT_STATE4_DURATION;
-    }
-
-    double getCarrotState1PointPercentage() {
-        return CARROT_STATE4_POINT_PERCENTAGE;
-    }
+//    String image = "rotten_carrot.png";
 
     CarrotState4(Carrot carrot) {
         super(carrot);
@@ -24,8 +15,7 @@ class CarrotState4 extends CarrotState{
         if (carrot.getDaysInCurrentState() == CARROT_STATE4_DURATION + 1) {
             carrot.setCarrotState(new CarrotRotten(carrot));
             carrot.setDaysInCurrentState(1);
-            //carrot.setImageView(imageView);
-            carrot.setImage(image);
+//            carrot.setImage(image);
             carrot.setStateType(StateType.STATEROTTEN);
         }
     }

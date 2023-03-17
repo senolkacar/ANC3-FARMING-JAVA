@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 
 class CarrotState2 extends CarrotState{
 
-    String image = "carrot3.png";
+//    String image = "carrot3.png";
 
     CarrotState2(Carrot carrot) {
         super(carrot);
@@ -17,8 +17,7 @@ class CarrotState2 extends CarrotState{
         if (carrot.getDaysInCurrentState() == CARROT_STATE2_DURATION + 1) {
             carrot.setCarrotState(new CarrotState3(carrot));
             carrot.setDaysInCurrentState(1);
-           // carrot.setImageView(imageView);
-            carrot.setImage(image);
+//            carrot.setImage(image);
             carrot.setStateType(StateType.STATE3);
         }
     }
@@ -27,7 +26,7 @@ class CarrotState2 extends CarrotState{
         carrot.setCarrotState(new CarrotState3(carrot));
         carrot.setStateType(StateType.STATE3);
         carrot.setDaysInCurrentState(1);
-        carrot.setImage("carrot3.png");
+//        carrot.setImage("carrot3.png");
     }
 
     @Override
@@ -47,4 +46,5 @@ class CarrotState2 extends CarrotState{
     public ObjectProperty<StateType> getStateType() {
         return carrot.getStateType();
     }
+
 }

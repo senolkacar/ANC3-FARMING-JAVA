@@ -24,7 +24,7 @@ abstract class CabbageState implements State {
 
     abstract void setHarvestScore();
 
-    void plantGrass(){
+    void plantGrass(){//?
     }
 
 }

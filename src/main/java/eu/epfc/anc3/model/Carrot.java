@@ -48,18 +48,18 @@ public class Carrot extends Element{
         carrotState.incrementDay();
     }
 
-    @Override
-    public String getImage() {
-        return image.get();
-    }
-
-    StringProperty imageProperty() {
-        return image;
-    }
-
-    void setImage(String image) {
-        this.image.set(image);
-    }
+//    @Override
+//    public String getImage() {
+//        return image.get();
+//    }
+//
+//    StringProperty imageProperty() {
+//        return image;
+//    }
+//
+//    void setImage(String image) {
+//        this.image.set(image);
+//    }
 
     boolean isIsFertilied() {
         return isFertilied.get();

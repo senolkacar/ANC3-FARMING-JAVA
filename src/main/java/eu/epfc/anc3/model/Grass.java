@@ -30,19 +30,19 @@ class Grass extends Element {
            this.setStateType(StateType.STATE0);
         }
     }
+//
+//    @Override
+//    public String getImage() {
+//        return image.get();
+//    }
 
-    @Override
-    public String getImage() {
-        return image.get();
-    }
-
-    public StringProperty imageProperty() {
-        return image;
-    }
-
-    void setImage(String image) {
-        this.image.set(image);
-    }
+//    public StringProperty imageProperty() {
+//        return image;
+//    }
+//
+//    void setImage(String image) {
+//        this.image.set(image);
+//    }
 
     @Override
     public ObjectProperty<StateType> getStateType() {

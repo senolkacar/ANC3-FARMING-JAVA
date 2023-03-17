@@ -5,12 +5,11 @@ import javafx.beans.property.*;
 public class Cabbage extends Element{
 
     private CabbageState cabbageState;
-    //private ObjectProperty<StateType> stateType;
     private static final int MAX_POINTS = 200;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
-    private StringProperty image = new SimpleStringProperty("cabbage1.png");// to delete
-    private BooleanProperty hasGrass = new SimpleBooleanProperty(false);
+    //private StringProperty image = new SimpleStringProperty("cabbage1.png");// to delete
+    private BooleanProperty hasGrass = new SimpleBooleanProperty();//set when plant cabbage. to check if parcel contains grass or not
 
     Cabbage() {
         elementType = ElementType.CABBAGE;
@@ -47,18 +46,18 @@ public class Cabbage extends Element{
         cabbageState.incrementDay();
     }
 
-    @Override
-    public String getImage() {
-        return image.get();
-    }
-
-    public StringProperty imageProperty() {
-        return image;
-    }
-
-    void setImage(String image) {
-        this.image.set(image);
-    }
+//    @Override
+//    public String getImage() {
+//        return image.get();
+//    }
+//
+//    public StringProperty imageProperty() {
+//        return image;
+//    }
+//
+//    void setImage(String image) {
+//        this.image.set(image);
+//    }
 
     boolean hasGrass() {
         return hasGrass.get();
@@ -84,7 +83,7 @@ public class Cabbage extends Element{
     }
 
     @Override
-    void   setElementHarvestScore() {
+    void setElementHarvestScore() {
         cabbageState.setHarvestScore();
     }
 

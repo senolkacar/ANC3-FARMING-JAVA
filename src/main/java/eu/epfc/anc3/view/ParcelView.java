@@ -60,9 +60,10 @@ public class ParcelView extends StackPane {
         cabbage.setFitWidth(35);
         cabbage.setPreserveRatio(true);
 
-
         ListProperty<Element> valueProperty = parcelViewModel.valueProperty();
+
         this.setElementsImages(imageView, valueProperty);
+
         valueProperty.addListener((obs, old, newVal) -> {
             this.setElementsImages(imageView, newVal);
         });
@@ -81,14 +82,6 @@ public class ParcelView extends StackPane {
                     element.getStateType().addListener((obs, oldVal, newVal) -> setGrassImage(newVal));
                 }
             }
-
-            /*List<Element> list = elements.stream().filter(e -> e.elementType == ElementType.GRASS).limit(1).collect(Collectors.toList());
-            if (list.size() > 0) {
-                list.get(0).getStateType().addListener((obs, oldVal, newVal) -> {
-                    setGrassImage(newVal);
-                });
-            }*/
-
         } else if (newList.contains(ElementType.DIRT)) {
             imageView.setImage(dirtImage);
             getChildren().remove(farmer);
@@ -104,18 +97,6 @@ public class ParcelView extends StackPane {
                     element.getStateType().addListener((obs, oldVal, newVal) -> setCarrotImage(newVal));
                 }
             }
-
-
-
-            /*List<Element> list = elements.stream().filter(e -> e.elementType == ElementType.CARROT).limit(1).collect(Collectors.toList());
-            if (list.size() > 0) {
-                carrot.setImage(new Image(list.get(0).imageProperty().get()));
-                if (!getChildren().contains(carrot)) {
-                    getChildren().add(carrot);
-                    getChildren().remove(farmer);
-                }
-                list.get(0).getStateType().addListener((obs, oldVal, newVal) -> setCarrotImage(newVal));// carrot public ?
-            }*/
         } else {
             getChildren().remove(carrot);
             carrot.setImage(carrot1);
@@ -123,7 +104,6 @@ public class ParcelView extends StackPane {
         }
 
         if (newList.contains(ElementType.CABBAGE)) {
-
             for (Element element : elements) {
                 if (element.getType() == ElementType.CABBAGE) {
                     if (!getChildren().contains(cabbage)) {
@@ -133,16 +113,6 @@ public class ParcelView extends StackPane {
                     element.getStateType().addListener((obs, oldVal, newVal) -> setCabbageImage(newVal));
                 }
             }
-
-           /* List<Element> list = elements.stream().filter(e -> e.elementType == ElementType.CABBAGE).limit(1).collect(Collectors.toList());
-            if (list.size() > 0) {
-                carrot.setImage(new Image(list.get(0).imageProperty().get()));
-                if (!getChildren().contains(carrot)) {
-                    getChildren().add(carrot);
-                    getChildren().remove(farmer);
-                }
-                list.get(0).getStateType().addListener((obs, oldVal, newVal) -> setCabbageImage(newVal));
-            }*/
         } else {
             getChildren().remove(cabbage);
             cabbage.setImage(cabbage1);
@@ -153,7 +123,6 @@ public class ParcelView extends StackPane {
             getChildren().remove(farmer);
             getChildren().add(farmer);
         }
-
     }
 
 
@@ -186,7 +155,6 @@ public class ParcelView extends StackPane {
         if (stateType == StateType.STATE0) {
             getChildren().remove(carrot);
             carrot.setImage(carrot1);
-            //parcelVM.removeElement(ElementType.CARROT);
             parcelVM.autoHarvest(ElementType.CARROT);
         }
 
@@ -221,7 +189,6 @@ public class ParcelView extends StackPane {
         if (stateType == StateType.STATE0) {
             getChildren().remove(cabbage);
             cabbage.setImage(cabbage1);
-            //parcelVM.removeElement(ElementType.CABBAGE);
             parcelVM.autoHarvest(ElementType.CABBAGE);
         }
     }
@@ -237,8 +204,6 @@ public class ParcelView extends StackPane {
                 parcelVM.removeElement(ElementType.GRASS);
                 break;
         }
-
-
 
     }
 }
