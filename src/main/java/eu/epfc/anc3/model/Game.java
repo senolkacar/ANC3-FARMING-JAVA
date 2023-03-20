@@ -122,12 +122,16 @@ class Game {
             }
         }
         if(gameMode.get() == Mode.PLANT_GRASS && !newElementList.contains(ElementType.GRASS)) {
-            this.addElement(getFarmerPosition(), new Grass());
             if(newElementList.contains(ElementType.CABBAGE)){
+                this.removeElement(getFarmerPosition(), ElementType.CABBAGE);
+                this.addElement(getFarmerPosition(), new Grass());
+                this.addElement(getFarmerPosition(), cabbage);
                 cabbage.setHasGrass(true);
                 /*if (list != null && list.size()>0){
                     list.get(0).setHasGrass(true);
                 }*/
+            }else{
+                this.addElement(getFarmerPosition(), new Grass());
             }
         } else if (gameMode.get() == Mode.PLANT_CARROT && !newElementList.contains(ElementType.CARROT) && !newElementList.contains(ElementType.CABBAGE)){
             if(newElementList.contains(ElementType.GRASS)){
