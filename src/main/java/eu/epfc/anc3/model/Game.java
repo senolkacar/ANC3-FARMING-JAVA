@@ -11,6 +11,8 @@ class Game {
     private final Farmer farmer = new Farmer();
     private Carrot carrot = new Carrot();
     private Cabbage cabbage = new Cabbage();
+
+    private Grass grass = new Grass();
     private final Day day = new Day();
     private BooleanProperty farmerMovementEnable = new SimpleBooleanProperty(false);
     private final IntegerProperty scoreProperty = new SimpleIntegerProperty(0);
@@ -115,17 +117,26 @@ class Game {
             if(element.getType() == ElementType.CABBAGE) {
                 cabbage = (Cabbage) element;
             }
+            if(element.getType() == ElementType.GRASS) {
+               grass = (Grass) element;
+            }
         }
         if(gameMode.get() == Mode.PLANT_GRASS && !newElementList.contains(ElementType.GRASS)) {
             this.addElement(getFarmerPosition(), new Grass());
-            if (newElementList.contains(ElementType.CABBAGE)){
+            if(newElementList.contains(ElementType.CABBAGE)){
                 cabbage.setHasGrass(true);
                 /*if (list != null && list.size()>0){
                     list.get(0).setHasGrass(true);
                 }*/
             }
         } else if (gameMode.get() == Mode.PLANT_CARROT && !newElementList.contains(ElementType.CARROT) && !newElementList.contains(ElementType.CABBAGE)){
-            this.addElement(getFarmerPosition(), new Carrot());
+            if(newElementList.contains(ElementType.GRASS)){
+                this.removeElement(getFarmerPosition(), ElementType.GRASS);
+                this.addElement(getFarmerPosition(), new Carrot());
+                this.addElement(getFarmerPosition(), grass);
+            }else{
+                this.addElement(getFarmerPosition(), new Carrot());
+            }
         } else if (gameMode.get() == Mode.PLANT_CABBAGE && !newElementList.contains(ElementType.CABBAGE) && !newElementList.contains(ElementType.CARROT)) {
             Cabbage newCabbage = new Cabbage();
             this.addElement(getFarmerPosition(),newCabbage);
@@ -171,6 +182,8 @@ class Game {
             this.removeElement(getFarmerPosition(), ElementType.FARMER);
             setFarmerPosition(position);
             this.addElement(getFarmerPosition(), farmer);
+            /*List<Element> e = this.getParcelValue(getFarmerPosition());
+            System.out.println(e);*/
         }
     }
 

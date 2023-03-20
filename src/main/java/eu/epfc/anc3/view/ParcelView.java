@@ -201,7 +201,7 @@ public class ParcelView extends StackPane {
                 break;
             case STATE0:
                 imageView.setImage(dirtImage);
-                parcelVM.removeElement(ElementType.GRASS);
+                parcelVM.autoHarvest(ElementType.GRASS);
                 break;
         }
 
