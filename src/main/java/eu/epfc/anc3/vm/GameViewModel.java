@@ -1,6 +1,7 @@
 package eu.epfc.anc3.vm;
 
 import eu.epfc.anc3.model.GameFacade;
+import eu.epfc.anc3.model.Mode;
 import javafx.scene.input.KeyCode;
 
 import java.util.stream.Stream;
@@ -14,6 +15,7 @@ public class GameViewModel {
     private final MenuRightViewModel menuRightViewModel;
 
     private boolean isPlanting = false;
+    private long lastHarvestTime = 0;
 
     public GameViewModel() {
         countViewModel = new CountViewModel(game);
@@ -56,8 +58,17 @@ public class GameViewModel {
         } else if(key == KeyCode.D || key == KeyCode.RIGHT) {
             game.moveFarmerRight();
         } else if(key == KeyCode.SPACE) {
+            if(menuRightViewModel.gameModeProperty().get()== Mode.HARVEST) {
+                long currentTime = System.currentTimeMillis();
+                long timeSinceLastRemove = currentTime - lastHarvestTime;
+                if (timeSinceLastRemove >= 200) {
+                    game.plantOrRemove();
+                    lastHarvestTime = currentTime;
+                }
+            } else {
+                game.plantOrRemove();
+            }
             isPlanting = true;
-            game.plantOrRemove();
         }
     }
 
@@ -72,7 +83,17 @@ public class GameViewModel {
     }
 
     public void continuePlantingOrRemoving() {
-        game.plantOrRemove();
+        if(menuRightViewModel.gameModeProperty().get()== Mode.HARVEST) {
+            long currentTime = System.currentTimeMillis();
+            long timeSinceLastRemove = currentTime - lastHarvestTime;
+            if (timeSinceLastRemove >= 200) {
+                game.plantOrRemove();
+                lastHarvestTime = currentTime;
+            }
+        } else {
+            game.plantOrRemove();
+        }
+
     }
 
 
