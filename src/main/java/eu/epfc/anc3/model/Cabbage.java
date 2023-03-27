@@ -59,10 +59,10 @@ public class Cabbage extends Element{
         this.hasGrass.set(hasGrass);
     }
 
-    @Override
-    void plantGrass(){
-        cabbageState.plantGrass();
-    }//plantGrass should be called by farmer ?
+//    @Override
+//    void plantGrass(){
+//        cabbageState.plantGrass();
+//    }//plantGrass should be called by farmer ?
 
     @Override
     IntegerProperty getHarvestScore(){

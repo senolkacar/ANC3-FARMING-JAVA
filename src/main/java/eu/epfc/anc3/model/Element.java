@@ -47,8 +47,8 @@ public abstract class Element  {
         this.hasGrass.set(hasGrass);
     }
 
-    void plantGrass(){
-    }
+//    void plantGrass(){
+//    }
 
     IntegerProperty getHarvestScore(){
         return new SimpleIntegerProperty();

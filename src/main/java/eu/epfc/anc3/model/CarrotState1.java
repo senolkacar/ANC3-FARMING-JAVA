@@ -18,7 +18,7 @@ class CarrotState1 extends CarrotState{
             carrot.setStateType(StateType.STATE2);
         }
     }
-    
+
     @Override
     void setHarvestScore() {
         carrot.setHarvestScore((int)(carrot.getMAX_POINTS()*CARROT_STATE1_POINT_PERCENTAGE));
