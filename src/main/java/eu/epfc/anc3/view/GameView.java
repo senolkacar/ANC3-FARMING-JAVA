@@ -51,11 +51,13 @@ public class GameView extends BorderPane {
         scene.setOnKeyPressed(e -> gameVM.onKeyPressed(e.getCode()));
         scene.setOnKeyReleased(e -> gameVM.onKeyReleased(e.getCode()));
         AnimationTimer timer = new AnimationTimer() {
+
             @Override
             public void handle(long now) {
-                if (gameVM.isPlanting()) {
-                    gameVM.continuePlantingOrRemoving();
-                }
+                    if (gameVM.isPlanting()) {
+                        gameVM.continuePlantingOrRemoving();
+                    }
+
             }
         };
         timer.start();

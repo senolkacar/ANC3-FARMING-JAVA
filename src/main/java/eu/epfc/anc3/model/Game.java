@@ -154,11 +154,12 @@ class Game {
                 carrot.setElementHarvestScore();
                 this.setScoreProperty(carrot.getHarvestScore().get());
                 this.removeElement(getFarmerPosition(), ElementType.CARROT);
-            }
-            if(newElementList.contains(ElementType.CABBAGE)){
+            }else if(newElementList.contains(ElementType.CABBAGE)){
                 cabbage.setElementHarvestScore();
                 this.setScoreProperty(cabbage.getHarvestScore().get());
                 this.removeElement(getFarmerPosition(), ElementType.CABBAGE);
+            }else if(newElementList.contains(ElementType.GRASS)){
+                this.removeElement(getFarmerPosition(), ElementType.GRASS);
             }
             /*if (newElementList.contains(ElementType.CARROT) ||newElementList.contains(ElementType.CABBAGE) ) {
                 if (list != null && list.size()>0){
