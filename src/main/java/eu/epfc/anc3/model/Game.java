@@ -106,13 +106,10 @@ class Game {
         List<ElementType> newElementList = this.getParcelValue(getFarmerPosition()).stream().map(Element::getType).collect(Collectors.toList());
 
         List<Element> list = this.getParcelValue(getFarmerPosition());
-        /*List<Element> list = null;
-        if (newElementList.contains(ElementType.CARROT) || newElementList.contains(ElementType.CABBAGE) )
-            list = this.getParcelValue(getFarmerPosition()).stream().filter(e->e.elementType==ElementType.CARROT ||e.elementType==ElementType.CABBAGE ).limit(1).collect(Collectors.toList());
-        */
+
         for(Element element : list) {
             if(element.getType() == ElementType.CARROT) {
-                carrot = (Carrot) element; // is it better to avoid transtypage ?
+                carrot = (Carrot) element;
             }
             if(element.getType() == ElementType.CABBAGE) {
                 cabbage = (Cabbage) element;
@@ -127,9 +124,6 @@ class Game {
                 this.addElement(getFarmerPosition(), new Grass());
                 this.addElement(getFarmerPosition(), cabbage);
                 cabbage.setHasGrass(true);
-                /*if (list != null && list.size()>0){
-                    list.get(0).setHasGrass(true);
-                }*/
             }else{
                 this.addElement(getFarmerPosition(), new Grass());
             }
@@ -161,20 +155,11 @@ class Game {
             }else if(newElementList.contains(ElementType.GRASS)){
                 this.removeElement(getFarmerPosition(), ElementType.GRASS);
             }
-            /*if (newElementList.contains(ElementType.CARROT) ||newElementList.contains(ElementType.CABBAGE) ) {
-                if (list != null && list.size()>0){
-                    list.get(0).setElementHarvestScore();
-                    this.setScoreProperty(list.get(0).getHarvestScore().get());
-                }
-            }*/
+
         } else if (gameMode.get() == Mode.FERTILIZE) {
             if (newElementList.contains(ElementType.CARROT)) {
                 carrot.setIsFertilied(true);
                 carrot.fertilize();
-                /*if (list != null && list.size()>0){
-                    list.get(0).setIsFertilied(true);
-                    list.get(0).fertilize();
-                }*/
             }
         }
     }
@@ -184,8 +169,6 @@ class Game {
             this.removeElement(getFarmerPosition(), ElementType.FARMER);
             setFarmerPosition(position);
             this.addElement(getFarmerPosition(), farmer);
-            /*List<Element> e = this.getParcelValue(getFarmerPosition());
-            System.out.println(e);*/
         }
     }
 
@@ -220,8 +203,6 @@ class Game {
             this.addElement(getFarmerPosition(), farmer);
         }
     }
-
-
     BooleanProperty farmerMovementEnableProperty() {
         return farmerMovementEnable;
     }
