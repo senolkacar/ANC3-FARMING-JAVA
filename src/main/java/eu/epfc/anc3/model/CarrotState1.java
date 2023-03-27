@@ -4,7 +4,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class CarrotState1 extends CarrotState{
+class CarrotState1 extends CarrotState{
 
     CarrotState1(Carrot carrot) {
         super(carrot);
@@ -18,7 +18,7 @@ public class CarrotState1 extends CarrotState{
             carrot.setStateType(StateType.STATE2);
         }
     }
-
+    
     @Override
     void setHarvestScore() {
         carrot.setHarvestScore((int)(carrot.getMAX_POINTS()*CARROT_STATE1_POINT_PERCENTAGE));
