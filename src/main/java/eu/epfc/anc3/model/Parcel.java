@@ -1,29 +1,30 @@
 package eu.epfc.anc3.model;
 
 import javafx.beans.property.*;
+import javafx.collections.ObservableList;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
 class Parcel {
 
-
-    SimpleListProperty<Element> elements = new SimpleListProperty<>(observableArrayList(new Dirt()));
+    private final SimpleListProperty<Element> elements = new SimpleListProperty<>(observableArrayList(new Dirt()));
 
     SimpleListProperty<Element> elementProperty() {
         return elements;
     }
 
-    public void addElement(Element newElement){
+    void addElement(Element newElement){
         this.elements.add(newElement);
     }
 
-    public void setElement(List<Element> newElement){
+    void setElement(List<Element> newElement){
       this.elements.setAll(newElement);
     }
 
-    public void clearElements(){
+    void clearElements(){
         elements.clear();
     }
 
@@ -31,11 +32,22 @@ class Parcel {
         return elements.getValue();
     }
 
-    public void removeElement(Element oldElement){
-        this.elements.removeIf(e->e.equals(oldElement));
+    void removeElement(ElementType oldElement){
+        this.elements.removeIf(e->e.getType()==oldElement);
     }
 
-    public boolean containsElement(Element newElement) {
+    boolean containsElement(Element newElement) {
         return elements.contains(newElement);
     }
+
+    public void incrementDay() {
+//         elements.forEach(Element::incrementDay);//cause runtime exception when remove element
+        ObservableList<Element> list = this.elements.get();
+        for (int i=0; i<list.size(); i++) {
+            list.get(i).incrementDay();
+        }
+    }
+
+
+
 }

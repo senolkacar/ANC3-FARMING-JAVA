@@ -8,11 +8,11 @@ class Farmer extends Element{
         elementType = ElementType.FARMER;
     }
 
-    public Position getPosition() {
+    Position getPosition() {
         return position;
     }
 
-    public void setPosition(Position position) {
+    void setPosition(Position position) {
         this.position = position;
     }
 }
