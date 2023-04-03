@@ -8,31 +8,37 @@ class CarrotState3 extends CarrotState{
 
     CarrotState3(Carrot carrot) {
         super(carrot);
+        setStateType(StateType.STATE3);
     }
 
     @Override
-    void incrementDay() {
-        if (carrot.getDaysInCurrentState() == CARROT_STATE3_DURATION + 1) {
-            carrot.setCarrotState(new CarrotState4(carrot));
-            carrot.setDaysInCurrentState(1);
-            carrot.setStateType(StateType.STATE4);
+    public void incrementDay() {
+        if (getDaysInCurrentState() == CARROT_STATE3_DURATION + 1) {
+            carrot.setElementState(new CarrotState4(carrot));
+            setDaysInCurrentState(1);
+            setStateType(StateType.STATE4);
         }
     }
 
     @Override
-    void setHarvestScore() {
-        carrot.setHarvestScore((int)(carrot.getMAX_POINTS()*CARROT_STATE3_POINT_PERCENTAGE));
+    public void setHarvestScore() {
+        harvestScore.set((int)(carrot.getMAX_POINTS()*CARROT_STATE3_POINT_PERCENTAGE));
     }
 
     @Override
     public String toString() {
         return "CarrotState3{" +
-                "carrot=" + carrot +"stateDays=" + carrot.getDaysInCurrentState()+
+                "carrot=" + carrot +"stateDays=" + getDaysInCurrentState()+
                 '}';
     }
 
+//    @Override
+//    public ObjectProperty<StateType> getStateType() {
+//        return getStateType();
+//    }
+
     @Override
-    public ObjectProperty<StateType> getStateType() {
-        return carrot.getStateType();
+    public void fertilize() {
+
     }
 }

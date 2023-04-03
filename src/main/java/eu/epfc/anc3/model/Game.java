@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 class Game {
     private final Farm farm = new Farm();
     private final Farmer farmer = new Farmer();
-    private Carrot carrot = new Carrot();
-    private Cabbage cabbage = new Cabbage();
-
-    private Grass grass = new Grass();
+//    private Carrot carrot = new Carrot();
+//    private Cabbage cabbage = new Cabbage();
+//
+//    private Grass grass = new Grass();
     private final Day day = new Day();
     private BooleanProperty farmerMovementEnable = new SimpleBooleanProperty(false);
     private final IntegerProperty scoreProperty = new SimpleIntegerProperty(0);
@@ -52,13 +52,13 @@ class Game {
     void autoHarvest(Position position, ElementType elementType) {
        List<Element> elements = farm.getValue(position);
        for(Element element : elements) {
-           if(element.getType() == ElementType.CARROT) {
+           if(element.getType() == ElementType.CARROT && element.elementState != null) {
                Carrot carrot = (Carrot) element;
-               scoreProperty.setValue(scoreProperty.getValue() + carrot.getHarvestScore().get());
+               scoreProperty.setValue(scoreProperty.getValue() + carrot.elementState.getHarvestScore());
            }
-              if(element.getType() == ElementType.CABBAGE) {
+              if(element.getType() == ElementType.CABBAGE && element.elementState != null) {
                 Cabbage cabbage = (Cabbage) element;
-                scoreProperty.setValue(scoreProperty.getValue() + cabbage.getHarvestScore().get());
+                scoreProperty.setValue(scoreProperty.getValue() + cabbage.elementState.getHarvestScore());
               }
        }
         farm.removeElement(position, elementType);
@@ -107,31 +107,22 @@ class Game {
 
         List<Element> list = this.getParcelValue(getFarmerPosition());
 
-        for(Element element : list) {
-            if(element.getType() == ElementType.CARROT) {
-                carrot = (Carrot) element;
-            }
-            if(element.getType() == ElementType.CABBAGE) {
-                cabbage = (Cabbage) element;
-            }
-            if(element.getType() == ElementType.GRASS) {
-               grass = (Grass) element;
-            }
-        }
         if(gameMode.get() == Mode.PLANT_GRASS && !newElementList.contains(ElementType.GRASS)) {
             if(newElementList.contains(ElementType.CABBAGE)){
-                this.removeElement(getFarmerPosition(), ElementType.CABBAGE);
+                //this.removeElement(getFarmerPosition(), ElementType.CABBAGE);
                 this.addElement(getFarmerPosition(), new Grass());
-                this.addElement(getFarmerPosition(), cabbage);
-                cabbage.setHasGrass(true);
+                //this.addElement(getFarmerPosition(), cabbage);
+                for (Element element:list) {
+                    element.setHasGrass(true);
+                }
             }else{
                 this.addElement(getFarmerPosition(), new Grass());
             }
         } else if (gameMode.get() == Mode.PLANT_CARROT && !newElementList.contains(ElementType.CARROT) && !newElementList.contains(ElementType.CABBAGE)){
             if(newElementList.contains(ElementType.GRASS)){
-                this.removeElement(getFarmerPosition(), ElementType.GRASS);
+               // this.removeElement(getFarmerPosition(), ElementType.GRASS);
                 this.addElement(getFarmerPosition(), new Carrot());
-                this.addElement(getFarmerPosition(), grass);
+                //this.addElement(getFarmerPosition(), grass);
             }else{
                 this.addElement(getFarmerPosition(), new Carrot());
             }
@@ -144,22 +135,27 @@ class Game {
                 newCabbage.setHasGrass(false);//BooleanProperty hasGrass shouldn't have the input par default value 'false'.
             }
         } else if (gameMode.get() == Mode.HARVEST) {
-            if(newElementList.contains(ElementType.CARROT)){
-                carrot.setElementHarvestScore();
-                this.setScoreProperty(carrot.getHarvestScore().get());
+            for (Element element:list) {
+                if (element.elementState != null){
+                    element.elementState.setHarvestScore();
+                    this.setScoreProperty(element.elementState.getHarvestScore());
+                }
+
+                if(newElementList.contains(ElementType.CARROT))
                 this.removeElement(getFarmerPosition(), ElementType.CARROT);
-            }else if(newElementList.contains(ElementType.CABBAGE)){
-                cabbage.setElementHarvestScore();
-                this.setScoreProperty(cabbage.getHarvestScore().get());
-                this.removeElement(getFarmerPosition(), ElementType.CABBAGE);
-            }else if(newElementList.contains(ElementType.GRASS)){
-                this.removeElement(getFarmerPosition(), ElementType.GRASS);
+                else if(newElementList.contains(ElementType.CABBAGE))
+                    this.removeElement(getFarmerPosition(), ElementType.CABBAGE);
+                else if(newElementList.contains(ElementType.GRASS)){
+                    this.removeElement(getFarmerPosition(), ElementType.GRASS);
+                }
             }
 
         } else if (gameMode.get() == Mode.FERTILIZE) {
-            if (newElementList.contains(ElementType.CARROT)) {
-                carrot.setIsFertilied(true);
-                carrot.fertilize();
+            for (Element element:list){
+                element.setIsFertilied(true);
+
+                if( element.elementState != null)
+                    element.elementState.fertilize();
             }
         }
     }

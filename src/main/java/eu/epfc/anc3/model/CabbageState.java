@@ -1,6 +1,6 @@
 package eu.epfc.anc3.model;
 
-abstract class CabbageState implements State {
+abstract class CabbageState extends ElementState {
     public static final int CABBAGE_STATE1_DURATION = 5;
     public static final int CABBAGE_STATE2_DURATION = 4;
     public static final int CABBAGE_STATE3_DURATION = 3;
@@ -17,14 +17,8 @@ abstract class CabbageState implements State {
 
     CabbageState (Cabbage cabbage) {
         this.cabbage = cabbage;
-
     }
 
-    abstract void incrementDay();
 
-    abstract void setHarvestScore();
-
-//    void plantGrass(){//?
-//    }
 
 }

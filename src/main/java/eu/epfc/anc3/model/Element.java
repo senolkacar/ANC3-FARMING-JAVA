@@ -5,9 +5,10 @@ import javafx.beans.property.*;
 import java.util.Objects;
 
 public abstract class Element  {
-
+    public Parcel parcel;//TODO
+    public ElementState elementState;
     public ElementType elementType;
-    public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
+    //public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
     private BooleanProperty isFertilied = new SimpleBooleanProperty();
     private BooleanProperty hasGrass = new SimpleBooleanProperty();
 
@@ -31,10 +32,10 @@ public abstract class Element  {
     void incrementDay() {
     }
 
-    @Override
-    public String toString(){
-        return elementType.toString() +"stateType : " + getStateType() ;
-    }
+//    @Override
+//    public String toString(){
+//        return elementType.toString() +"stateType : " + getStateType() ;
+//    }
 
     void setIsFertilied(boolean isFertilied) {
         this.isFertilied.set(isFertilied);
@@ -50,17 +51,32 @@ public abstract class Element  {
 //    void plantGrass(){
 //    }
 
-    IntegerProperty getHarvestScore(){
-        return new SimpleIntegerProperty();
+//    IntegerProperty getHarvestScore(){
+//        return new SimpleIntegerProperty();
+//    }
+//
+//    void setElementHarvestScore(){}
+
+//    public ObjectProperty<StateType> getStateType() {
+//        return stateType;
+//    }
+//
+//    void setStateType(StateType stateType) {
+//        this.stateType.set(stateType);
+//    }
+
+    public Parcel getParcel() {
+        return parcel;
+    }
+    public void setParcel(Parcel parcel) {
+        this.parcel = parcel;
     }
 
-    void setElementHarvestScore(){}
-
-    public ObjectProperty<StateType> getStateType() {
-        return stateType;
+    public ElementState getElementState() {
+        return elementState;
     }
 
-    void setStateType(StateType stateType) {
-        this.stateType.set(stateType);
+    public void setElementState(ElementState elementState) {
+        this.elementState = elementState;
     }
 }

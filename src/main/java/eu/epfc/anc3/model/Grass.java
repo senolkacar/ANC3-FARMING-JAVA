@@ -11,7 +11,9 @@ class Grass extends Element {
 
     Grass() {
         elementType = ElementType.GRASS;
-        stateType.set(StateType.STATE1);
+        if (elementState != null)
+        elementState.setStateType(StateType.STATE1);
+
     }
 
     @Override
@@ -26,20 +28,20 @@ class Grass extends Element {
     @Override
     void incrementDay() {
         this.daysInCurrentState++;
-        if (getDaysInCurrentState()==12+1) {
-           this.setStateType(StateType.STATE0);
+        if (getDaysInCurrentState()==12+1 && elementState != null) {
+            elementState.setStateType(StateType.STATE0);
         }
     }
-
-    @Override
-    public ObjectProperty<StateType> getStateType() {
-        return stateType;
-    }
-
-    @Override
-    void setStateType(StateType stateType) {
-        this.stateType.set(stateType);
-    }
+//
+//    @Override
+//    public ObjectProperty<StateType> getStateType() {
+//        return stateType;
+//    }
+//
+//    @Override
+//    void setStateType(StateType stateType) {
+//        this.stateType.set(stateType);
+//    }
 
 
 

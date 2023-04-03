@@ -10,25 +10,31 @@ class CarrotRotten extends CarrotState{
 
     CarrotRotten(Carrot carrot) {
         super(carrot);
+        setStateType(StateType.STATEROTTEN);
     }
 
     @Override
-    void incrementDay() {
-        if (carrot.getDaysInCurrentState() == CARROT_ROTTEN_DURATION + 1) {
-           // carrot.setImage(image);
-            carrot.setDaysInCurrentState(carrot.getDaysInCurrentState()-1);//should be harvested. if not the method become recursive
-            carrot.setElementHarvestScore();
-            carrot.setStateType(StateType.STATE0);
+    public void incrementDay() {
+        if (getDaysInCurrentState() == CARROT_ROTTEN_DURATION + 1) {
+
+            setDaysInCurrentState(getDaysInCurrentState()-1);//should be harvested. if not the method become recursive
+            setHarvestScore();
+            setStateType(StateType.STATE0);
         }
     }
 
     @Override
-    void setHarvestScore() {
-        carrot.setHarvestScore(-(int)(carrot.getMAX_POINTS()*CARROT_STATE1_POINT_PERCENTAGE*carrot.getDaysInCurrentState()));
+    public void setHarvestScore() {
+        harvestScore.set(-(int)(carrot.getMAX_POINTS()*CARROT_STATE1_POINT_PERCENTAGE*getDaysInCurrentState()));
     }
 
+//    @Override
+//    public ObjectProperty<StateType> getStateType() {
+//        return getStateType();
+//    }
+
     @Override
-    public ObjectProperty<StateType> getStateType() {
-        return carrot.getStateType();
+    public void fertilize() {
+
     }
 }

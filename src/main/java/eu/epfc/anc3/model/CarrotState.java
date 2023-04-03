@@ -2,7 +2,7 @@ package eu.epfc.anc3.model;
 
 import javafx.scene.image.ImageView;
 
-abstract class CarrotState implements State {
+abstract class CarrotState extends ElementState {
     public static final int CARROT_STATE1_DURATION = 3;
     public static final int CARROT_STATE2_DURATION = 3;
     public static final int CARROT_STATE3_DURATION = 3;
@@ -20,13 +20,6 @@ abstract class CarrotState implements State {
     CarrotState (Carrot carrot) {
         this.carrot = carrot;
 
-    }
-
-    abstract void incrementDay();
-
-    abstract void setHarvestScore();
-
-    void fertilize(){
     }
 
     @Override

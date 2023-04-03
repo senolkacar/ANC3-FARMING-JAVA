@@ -78,8 +78,8 @@ public class ParcelView extends StackPane {
             imageView.setImage(grassImage);
             getChildren().remove(farmer);
             for(Element element : elements) {
-                if(element.getType() == ElementType.GRASS) {
-                    element.getStateType().addListener((obs, oldVal, newVal) -> setGrassImage(newVal));
+                if(element.getType() == ElementType.GRASS && element.elementState!= null) {
+                    element.elementState.getStateType().addListener((obs, oldVal, newVal) -> setGrassImage(newVal));
                 }
             }
         } else if (newList.contains(ElementType.DIRT)) {
@@ -89,12 +89,12 @@ public class ParcelView extends StackPane {
 
         if (newList.contains(ElementType.CARROT)) {
            for(Element element : elements) {
-                if(element.getType() == ElementType.CARROT) {
+                if(element.getType() == ElementType.CARROT && element.elementState!= null) {
                     if (!getChildren().contains(carrot)) {
                         getChildren().add(carrot);
                         getChildren().remove(farmer);
                     }
-                    element.getStateType().addListener((obs, oldVal, newVal) -> setCarrotImage(newVal));
+                    element.elementState.getStateType().addListener((obs, oldVal, newVal) -> setCarrotImage(newVal));
                 }
             }
         } else {
@@ -105,12 +105,12 @@ public class ParcelView extends StackPane {
 
         if (newList.contains(ElementType.CABBAGE)) {
             for (Element element : elements) {
-                if (element.getType() == ElementType.CABBAGE) {
+                if (element.getType() == ElementType.CABBAGE && element.elementState!= null) {
                     if (!getChildren().contains(cabbage)) {
                         getChildren().add(cabbage);
                         getChildren().remove(farmer);
                     }
-                    element.getStateType().addListener((obs, oldVal, newVal) -> setCabbageImage(newVal));
+                    element.elementState.getStateType().addListener((obs, oldVal, newVal) -> setCabbageImage(newVal));
                 }
             }
         } else {
