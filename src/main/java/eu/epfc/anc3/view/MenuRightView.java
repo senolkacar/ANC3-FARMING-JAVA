@@ -80,15 +80,15 @@
             harvestButton.setToggleGroup(actionToggleGroup);
 
             plantGrassButton.setOnAction(e -> {
-                this.pantGrassAction(menuModeObjectProperty);});
+                menuRightVM.plantGrassAction(menuModeObjectProperty,plantGrassButton,this);});
             plantCarrotButton.setOnAction(e -> {
-                this.plantCarrotAction(menuModeObjectProperty);});
+                menuRightVM.plantCarrotAction(menuModeObjectProperty,plantCarrotButton,this);});
             plantCabbageButton.setOnAction(e -> {
-                this.plantCabbageAction(menuModeObjectProperty);});
+                menuRightVM.plantCabbageAction(menuModeObjectProperty,plantCabbageButton,this);});
             fertilizeButton.setOnAction(e -> {
-                this.fertilizeAction(menuModeObjectProperty);});
+                menuRightVM.fertilizeAction(menuModeObjectProperty,fertilizeButton,this);});
             harvestButton.setOnAction(e -> {
-                this.harvestAction(menuModeObjectProperty);});
+                menuRightVM.harvestAction(menuModeObjectProperty,harvestButton,this);});
 
             getChildren().addAll(plantGrassButton, plantCarrotButton, plantCabbageButton, fertilizeButton, harvestButton);
         }
@@ -99,7 +99,6 @@
             plantCarrotButton.disableProperty().bind(menuRightVM.farmerMovementEnableProperty().not());
             fertilizeButton.disableProperty().bind(menuRightVM.farmerMovementEnableProperty().not());
             harvestButton.disableProperty().bind(menuRightVM.farmerMovementEnableProperty().not());
-
             farmerMovementEnableProperty.addListener((observable, oldValue, newValue) -> {
                 if (!newValue) {
                     Toggle toggle = actionToggleGroup.getSelectedToggle();
@@ -112,61 +111,6 @@
         }
 
 
-
-        private void harvestAction(ObjectProperty<Mode> menuModeObjectProperty) {
-            requestFocus();
-            if (menuModeObjectProperty.get()==Mode.HARVEST){
-                menuRightVM.setGameMode(Mode.FREE);
-            } else{
-                menuRightVM.setGameMode(Mode.HARVEST);
-                harvestButton.isSelected();
-
-            }
-        }
-
-        private void fertilizeAction(ObjectProperty<Mode> menuModeObjectProperty) {
-            requestFocus();
-            if (menuModeObjectProperty.get()==Mode.FERTILIZE){
-                menuRightVM.setGameMode(Mode.FREE);
-            } else{
-                menuRightVM.setGameMode(Mode.FERTILIZE);
-                fertilizeButton.isSelected();
-
-            }
-
-        }
-
-        private void plantCabbageAction(ObjectProperty<Mode> menuModeObjectProperty) {
-            requestFocus();
-            if (menuModeObjectProperty.get()==Mode.PLANT_CABBAGE){
-                menuRightVM.setGameMode(Mode.FREE);
-            } else{
-                menuRightVM.setGameMode(Mode.PLANT_CABBAGE);
-                plantCabbageButton.isSelected();
-            }
-        }
-
-        private void plantCarrotAction(ObjectProperty<Mode> menuModeObjectProperty) {
-            requestFocus();
-            if (menuModeObjectProperty.get()==Mode.PLANT_CARROT){
-                menuRightVM.setGameMode(Mode.FREE);
-            } else{
-                menuRightVM.setGameMode(Mode.PLANT_CARROT);
-                plantCarrotButton.isSelected();
-            }
-        }
-
-        private void pantGrassAction(ObjectProperty<Mode> menuModeObjectProperty) {
-            requestFocus();
-            if (menuModeObjectProperty.get()==Mode.PLANT_GRASS){
-                menuRightVM.setGameMode(Mode.FREE);
-            } else{
-                menuRightVM.setGameMode(Mode.PLANT_GRASS);
-                plantGrassButton.isSelected();
-
-            }
-
-        }
 
 
 

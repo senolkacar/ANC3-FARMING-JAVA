@@ -9,7 +9,6 @@ public class Carrot extends Element{
     private static final int MAX_POINTS = 100;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
-    private StringProperty image = new SimpleStringProperty("carrot1.png");
     private BooleanProperty isFertilied = new SimpleBooleanProperty(false);
 
     Carrot() {

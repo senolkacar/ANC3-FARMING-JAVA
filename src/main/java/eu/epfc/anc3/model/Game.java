@@ -49,7 +49,10 @@ class Game {
         this.gameMode.set(gameMode);
     }
 
-    void autoHarvest(Position position, ElementType elementType) {
+    void autoHarvest(Position position, ElementType elementType){
+        scoreProperty.setValue(scoreProperty.getValue() + farm.autoHarvest(position, elementType));
+    }
+    /*void autoHarvest(Position position, ElementType elementType) {
        List<Element> elements = farm.getValue(position);
        for(Element element : elements) {
            if(element.getType() == ElementType.CARROT) {
@@ -62,7 +65,7 @@ class Game {
               }
        }
         farm.removeElement(position, elementType);
-    }
+    }*/
 
     ListProperty<Element> getParcelValueProperty(Position position) {
         return farm.valueProperty(position);
@@ -100,7 +103,7 @@ class Game {
         this.farmerMovementEnable.set(movementEnabled);
     }
 
-    void plantOrRemove() {
+    /*void plantOrRemove() {
         if (!isMovementEnabled())
             return;
         List<ElementType> newElementList = this.getParcelValue(getFarmerPosition()).stream().map(Element::getType).collect(Collectors.toList());
@@ -163,45 +166,68 @@ class Game {
             }
         }
     }
+    */
+    void plantOrRemove(){
+        if (!isMovementEnabled())
+            return;
+        if(gameMode.get() == Mode.PLANT_GRASS || gameMode.get() == Mode.PLANT_CARROT || gameMode.get() == Mode.PLANT_CABBAGE) {
+            farm.plant(getFarmerPosition(), gameMode.get());
+        }else if(gameMode.get() == Mode.HARVEST){
+            scoreProperty.setValue(scoreProperty.getValue() + farm.harvest(getFarmerPosition()));
+        }else if(gameMode.get() == Mode.FERTILIZE){
+            farm.fertilize(getFarmerPosition());
+        }
+    }
 
     void onMouseClicked(Position position) {
         if (isMovementEnabled()) {
+            farmer.teleport(position,farm);
+            /*
             this.removeElement(getFarmerPosition(), ElementType.FARMER);
             setFarmerPosition(position);
-            this.addElement(getFarmerPosition(), farmer);
+            this.addElement(getFarmerPosition(), farmer);*/
         }
     }
 
     void moveFarmerUp() {
-        if (isMovementEnabled() && getFarmerPosition().getY() > 0) {
+        if(isMovementEnabled()){
+            farmer.moveUp(farm);
+        }
+
+        /*if (isMovementEnabled() && getFarmerPosition().getY() > 0) {
             this.removeElement(getFarmerPosition(),ElementType.FARMER);
             setFarmerPosition(new Position(getFarmerPosition().getX(),getFarmerPosition().getY()-1));
             this.addElement(getFarmerPosition(), farmer);
-        }
+        }*/
     }
 
     void moveFarmerLeft() {
-        if (isMovementEnabled() && getFarmerPosition().getX() > 0) {
+        farmer.moveLeft(farm);
+
+        /*if (isMovementEnabled() && getFarmerPosition().getX() > 0) {
             this.removeElement(getFarmerPosition(), ElementType.FARMER);
             setFarmerPosition(new Position(getFarmerPosition().getX()-1,getFarmerPosition().getY()));
             this.addElement(getFarmerPosition(), farmer);
-        }
+        }*/
     }
 
     void moveFarmerRight() {
-        if (isMovementEnabled() && getFarmerPosition().getX() < Farm.FARM_WIDTH - 1) {
+        farmer.moveRight(farm);
+
+        /*if (isMovementEnabled() && getFarmerPosition().getX() < Farm.FARM_WIDTH - 1) {
             this.removeElement(getFarmerPosition(), ElementType.FARMER);
             setFarmerPosition(new Position(getFarmerPosition().getX()+1,getFarmerPosition().getY()));
             this.addElement(getFarmerPosition(), farmer);
-        }
+        }*/
     }
 
     void moveFarmerDown() {
-        if (isMovementEnabled() && getFarmerPosition().getY() < Farm.FARM_HEIGHT - 1) {
+        farmer.moveDown(farm);
+        /*if (isMovementEnabled() && getFarmerPosition().getY() < Farm.FARM_HEIGHT - 1) {
             this.removeElement(getFarmerPosition(), ElementType.FARMER);
             setFarmerPosition(new Position(getFarmerPosition().getX(),getFarmerPosition().getY()+1));
             this.addElement(getFarmerPosition(), farmer);
-        }
+        }*/
     }
     BooleanProperty farmerMovementEnableProperty() {
         return farmerMovementEnable;

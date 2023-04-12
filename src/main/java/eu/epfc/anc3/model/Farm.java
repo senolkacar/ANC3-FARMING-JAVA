@@ -44,7 +44,20 @@ class Farm {
         farm[position.getY()][position.getX()].addElement(element);
     }
 
+    int autoHarvest(Position position,ElementType elementType) {
+        return farm[position.getY()][position.getX()].autoHarvest(elementType);
+    }
 
+    int harvest(Position position) {
+        return farm[position.getY()][position.getX()].harvest();
+    }
+    void plant(Position position, Mode mode) {
+        farm[position.getY()][position.getX()].plant(mode);
+    }
+
+    void fertilize(Position position) {
+        farm[position.getY()][position.getX()].fertilize();
+    }
     void reset() {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {

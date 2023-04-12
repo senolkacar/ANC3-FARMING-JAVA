@@ -61,7 +61,7 @@ public class GameViewModel {
             if(menuRightViewModel.gameModeProperty().get()== Mode.HARVEST) {
                 long currentTime = System.currentTimeMillis();
                 long timeSinceLastRemove = currentTime - lastHarvestTime;
-                if (timeSinceLastRemove >= 200) {
+                if (timeSinceLastRemove >= 500) {
                     game.plantOrRemove();
                     lastHarvestTime = currentTime;
                 }
