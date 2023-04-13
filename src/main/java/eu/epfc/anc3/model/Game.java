@@ -3,18 +3,16 @@ package eu.epfc.anc3.model;
 import javafx.beans.property.*;
 
 import java.util.List;
-import java.util.ListIterator;
-import java.util.stream.Collectors;
 
 class Game {
     private final Farm farm = new Farm();
     private final Farmer farmer = new Farmer();
-    private Carrot carrot = new Carrot();
-    private Cabbage cabbage = new Cabbage();
+//    private Carrot carrot = new Carrot();
+//    private Cabbage cabbage = new Cabbage();
 
-    private Grass grass = new Grass();
+//    private Grass grass = new Grass();
     private final Day day = new Day();
-    private BooleanProperty farmerMovementEnable = new SimpleBooleanProperty(false);
+    private final BooleanProperty farmerMovementEnable = new SimpleBooleanProperty(false);
     private final IntegerProperty scoreProperty = new SimpleIntegerProperty(0);
     private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);
 

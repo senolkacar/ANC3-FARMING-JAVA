@@ -1,7 +1,6 @@
 package eu.epfc.anc3.model;
 
 import javafx.beans.property.*;
-import javafx.scene.image.ImageView;
 
 public class Carrot extends Element{
 
@@ -9,12 +8,13 @@ public class Carrot extends Element{
     private static final int MAX_POINTS = 100;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
-    private BooleanProperty isFertilied = new SimpleBooleanProperty(false);
+    //private BooleanProperty isFertilied = new SimpleBooleanProperty(false);
 
     Carrot() {
         elementType = ElementType.CARROT;
         carrotState = new CarrotState1(this);
         stateType.set(StateType.STATE1);
+        setIsVegetable(true);
     }
 
     public CarrotState getCarrotState() {
@@ -46,18 +46,18 @@ public class Carrot extends Element{
         carrotState.incrementDay();
     }
 
-    boolean isIsFertilied() {
-        return isFertilied.get();
-    }
-
-     BooleanProperty isFertiliedProperty() {
-        return isFertilied;
-    }
-
-    @Override
-    void setIsFertilied(boolean isFertilied) {
-        this.isFertilied.set(isFertilied);
-    }
+//    boolean isIsFertilied() {
+//        return isFertilied.get();
+//    }
+//
+//     BooleanProperty isFertiliedProperty() {
+//        return isFertilied;
+//    }
+//
+//    @Override
+//    void setIsFertilied(boolean isFertilied) {
+//        this.isFertilied.set(isFertilied);
+//    }
 
     @Override
     void fertilize(){

@@ -8,8 +8,9 @@ public abstract class Element  {
 
     public ElementType elementType;
     public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
-    private BooleanProperty isFertilied = new SimpleBooleanProperty();
+    private BooleanProperty isFertilied = new SimpleBooleanProperty(false);
     private BooleanProperty hasGrass = new SimpleBooleanProperty();
+    private BooleanProperty isVegetable = new SimpleBooleanProperty(false);
 
     public ElementType getType() {
         return elementType;
@@ -43,12 +44,18 @@ public abstract class Element  {
     void fertilize(){
     }
 
+    public boolean hasGrass() {
+        return hasGrass.get();
+    }
+
+    public BooleanProperty hasGrassProperty() {
+        return hasGrass;
+    }
+
     void setHasGrass(boolean hasGrass) {
         this.hasGrass.set(hasGrass);
     }
 
-//    void plantGrass(){
-//    }
 
     IntegerProperty getHarvestScore(){
         return new SimpleIntegerProperty();
@@ -62,5 +69,17 @@ public abstract class Element  {
 
     void setStateType(StateType stateType) {
         this.stateType.set(stateType);
+    }
+
+    boolean getIsVegetable() {
+        return isVegetable.get();
+    }
+
+    BooleanProperty getIsVegetableProperty() {
+        return isVegetable;
+    }
+
+    void setIsVegetable(boolean isVegetable) {
+        this.isVegetable.set(isVegetable);
     }
 }

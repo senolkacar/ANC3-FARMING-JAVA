@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
@@ -36,12 +35,16 @@ class Parcel {
     void removeElement(ElementType oldElement){
         this.elements.removeIf(e->e.getType()==oldElement);
     }
+//
+//    boolean containsElement(Element newElement) {//?
+//        return elements.contains(newElement);
+//    }
 
-    boolean containsElement(Element newElement) {
-        return elements.contains(newElement);
+    boolean containsElementType(ElementType elementType) {
+        return elements.stream().anyMatch(element -> element.elementType ==elementType );
     }
 
-    public void incrementDay() {
+    void incrementDay() {
 //         elements.forEach(Element::incrementDay);//cause runtime exception when remove element
         ObservableList<Element> list = this.elements.get();
         for (int i=0; i<list.size(); i++) {
@@ -49,34 +52,44 @@ class Parcel {
         }
     }
 
-    public int autoHarvest(ElementType elementType){
+    int autoHarvest(ElementType elementType){
         int res = 0;
         for(Element element : elements) {
-            res = element.getHarvestScore().get();
+            if(element.elementType == elementType) {
+                res = element.getHarvestScore().get();
+                break;
+            }
         }
         removeElement(elementType);
         return res;
     }
 
-    public int harvest(){
+    int harvest(){
         int res = 0;
         boolean hasVegetables = false; // flag to check if there are any vegetables in the collection
         Iterator<Element> iterator = elements.iterator();
         while(iterator.hasNext()) {
             Element element = iterator.next();
-            if(element.getType() == ElementType.CARROT){
-                element.setElementHarvestScore();
-                res = element.getHarvestScore().get();
-                iterator.remove();
-                hasVegetables = true;
-                break;
-            } else if(element.getType() == ElementType.CABBAGE){
+            if(element.getIsVegetable()){
                 element.setElementHarvestScore();
                 res = element.getHarvestScore().get();
                 iterator.remove();
                 hasVegetables = true;
                 break;
             }
+//            if(element.getType() == ElementType.CARROT){
+//                element.setElementHarvestScore();
+//                res = element.getHarvestScore().get();
+//                iterator.remove();
+//                hasVegetables = true;
+//                break;
+//            } else if(element.getType() == ElementType.CABBAGE){
+//                element.setElementHarvestScore();
+//                res = element.getHarvestScore().get();
+//                iterator.remove();
+//                hasVegetables = true;
+//                break;
+//            }
         }
         if(!hasVegetables) { // if there are no vegetables, remove the grass
             elements.removeIf(e -> e.getType() == ElementType.GRASS);
@@ -85,29 +98,33 @@ class Parcel {
 
     }
 
-    public void plant(Mode mode){
-        if(mode == Mode.PLANT_CABBAGE && !containsElement(new Cabbage()) && !containsElement(new Carrot())){
-            Cabbage cabbage = new Cabbage();
-            if(containsElement(new Grass())){
-                cabbage.setHasGrass(true);
+    void plant(Mode mode){
+        if(mode == Mode.PLANT_CABBAGE && !containsElementType(ElementType.CABBAGE) && !containsElementType(ElementType.CARROT)){
+            //Cabbage cabbage = new Cabbage();
+            elements.add(new Cabbage());
+            if(containsElementType(ElementType.GRASS)){
+                //cabbage.setHasGrass(true);
+                this.setHasGrass(true);
             }
-            elements.add(cabbage);
-        }else if(mode == Mode.PLANT_CARROT && !containsElement(new Cabbage()) && !containsElement(new Carrot())){
+
+        }else if(mode == Mode.PLANT_CARROT && !containsElementType(ElementType.CABBAGE) && !containsElementType(ElementType.CARROT)){
             elements.add(new Carrot());
-        }else if(mode == Mode.PLANT_GRASS && !containsElement(new Grass())){
+        }else if(mode == Mode.PLANT_GRASS && !containsElementType(ElementType.GRASS)){
             elements.add(new Grass());
-            if(containsElement(new Cabbage())){
-                for(Element element : elements) {
-                    if(element.getType() == ElementType.CABBAGE){
-                        element.setHasGrass(true);
-                    }
-                }
-            }
+            this.setHasGrass(true);
+            PlaceGrassToLastPlace();
+//            if(containsElementType(ElementType.CABBAGE)){
+//                for(Element element : elements) {
+//                    if(element.getType() == ElementType.CABBAGE){
+//                        element.setHasGrass(true);
+//                    }
+//                }
+//            }
         }
-        PlaceGrassToLastPlace();
+
     }
 
-    public void fertilize(){
+    void fertilize(){
         for(Element element : elements) {
             if(element.getType() == ElementType.CARROT){
                 element.fertilize();
@@ -115,7 +132,13 @@ class Parcel {
         }
     }
 
-    public void PlaceGrassToLastPlace(){
+    void setHasGrass(boolean hasGrass) {
+        for (Element element : elements) {
+            element.setHasGrass(hasGrass);
+        }
+    }
+
+    void PlaceGrassToLastPlace(){
         for (int i = 0; i < elements.size() - 1; i++) {
             Element element = elements.get(i);
             if (element.getType() == ElementType.GRASS) {

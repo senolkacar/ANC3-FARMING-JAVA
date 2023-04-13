@@ -32,8 +32,8 @@ class Farm {
             farm[position.getY()][position.getX()].setElement(element);
     }
 
-    boolean containsElement(Position position, Element element) {
-        return farm[position.getY()][position.getX()].containsElement(element);
+    boolean containsElementType(Position position, ElementType elementType) {
+        return farm[position.getY()][position.getX()].containsElementType(elementType);
     }
 
     void removeElement(Position position, ElementType element) {

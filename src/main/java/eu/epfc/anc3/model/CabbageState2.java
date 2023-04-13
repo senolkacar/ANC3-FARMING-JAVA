@@ -26,9 +26,8 @@ class CabbageState2 extends CabbageState{
         cabbage.setHarvestScore((int)(cabbage.getMAX_POINTS()*CABBAGE_STATE2_POINT_PERCENTAGE));
     }
 
-
-    @Override
-    public ObjectProperty<StateType> getStateType() {
-        return cabbage.getStateType();
-    }
+//    @Override
+//    public ObjectProperty<StateType> getStateType() {
+//        return cabbage.getStateType();
+//    }
 }

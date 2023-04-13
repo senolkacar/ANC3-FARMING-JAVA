@@ -8,13 +8,13 @@ public class Cabbage extends Element{
     private static final int MAX_POINTS = 200;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
-    //private StringProperty image = new SimpleStringProperty("cabbage1.png");// to delete
-    private BooleanProperty hasGrass = new SimpleBooleanProperty();//set when plant cabbage. to check if parcel contains grass or not
+    //private BooleanProperty hasGrass = new SimpleBooleanProperty();//set when plant cabbage. to check if parcel contains grass or not
 
     Cabbage() {
         elementType = ElementType.CABBAGE;
         cabbageState = new CabbageState1(this);
         stateType.set( StateType.STATE1);
+        setIsVegetable(true);
     }
 
     public CabbageState getCabbageState() {
@@ -46,23 +46,19 @@ public class Cabbage extends Element{
         cabbageState.incrementDay();
     }
 
-    boolean hasGrass() {
-        return hasGrass.get();
-    }
-
-    BooleanProperty hasGrassProperty() {
-        return hasGrass;
-    }
-
-    @Override
-    void setHasGrass(boolean hasGrass) {
-        this.hasGrass.set(hasGrass);
-    }
-
+//    boolean hasGrass() {
+//        return hasGrass.get();
+//    }
+//
+//    BooleanProperty hasGrassProperty() {
+//        return hasGrass;
+//    }
+//
 //    @Override
-//    void plantGrass(){
-//        cabbageState.plantGrass();
-//    }//plantGrass should be called by farmer ?
+//    void setHasGrass(boolean hasGrass) {
+//        this.hasGrass.set(hasGrass);
+//    }
+
 
     @Override
     IntegerProperty getHarvestScore(){

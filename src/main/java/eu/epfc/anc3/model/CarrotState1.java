@@ -37,8 +37,8 @@ class CarrotState1 extends CarrotState{
                 '}';
     }
 
-    @Override
-    public ObjectProperty<StateType> getStateType() { // not necessary ?
-        return carrot.getStateType();
-    }
+//    @Override
+//    public ObjectProperty<StateType> getStateType() { // not necessary ?
+//        return carrot.getStateType();
+//    }
 }

@@ -14,17 +14,13 @@ abstract class CabbageState implements State {
 
     protected Cabbage cabbage;
 
-
     CabbageState (Cabbage cabbage) {
         this.cabbage = cabbage;
-
     }
 
     abstract void incrementDay();
 
     abstract void setHarvestScore();
 
-//    void plantGrass(){//?
-//    }
 
 }
