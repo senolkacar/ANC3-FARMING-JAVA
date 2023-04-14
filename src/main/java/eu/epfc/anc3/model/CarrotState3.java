@@ -1,26 +1,39 @@
 package eu.epfc.anc3.model;
 
 import javafx.beans.property.ObjectProperty;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 class CarrotState3 extends CarrotState{
 
-    CarrotState3(Carrot carrot) {
-        super(carrot);
+    CarrotState3(Carrot carrot,StateType stateType) {
+        super(carrot, stateType);
+
     }
 
     @Override
-    void incrementDay() {
+    public ObjectProperty<StateType> getStateType() {
+        return stateType;
+    }
+
+
+    @Override
+    public void incrementDay() {
         if (carrot.getDaysInCurrentState() == CARROT_STATE3_DURATION + 1) {
-            carrot.setCarrotState(new CarrotState4(carrot));
+            setStateType(StateType.STATE4);
+            carrot.setStateType(this.getStateType().get());
+            carrot.state = new CarrotState4(carrot,StateType.STATE4);
+            //carrot.state.setStateType(StateType.STATE4);
             carrot.setDaysInCurrentState(1);
-            carrot.setStateType(StateType.STATE4);
+           // setStateType(StateType.STATE4);
         }
     }
 
     @Override
-    void setHarvestScore() {
+    public void fertilize() {
+
+    }
+
+    @Override
+    public void setHarvestScore() {
         carrot.setHarvestScore((int)(carrot.getMAX_POINTS()*CARROT_STATE3_POINT_PERCENTAGE));
     }
 
@@ -30,9 +43,4 @@ class CarrotState3 extends CarrotState{
                 "carrot=" + carrot +"stateDays=" + carrot.getDaysInCurrentState()+
                 '}';
     }
-
-//    @Override
-//    public ObjectProperty<StateType> getStateType() {
-//        return carrot.getStateType();
-//    }
 }

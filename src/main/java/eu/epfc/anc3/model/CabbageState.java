@@ -1,5 +1,8 @@
 package eu.epfc.anc3.model;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+
 abstract class CabbageState implements State {
     public static final int CABBAGE_STATE1_DURATION = 5;
     public static final int CABBAGE_STATE2_DURATION = 4;
@@ -13,14 +16,21 @@ abstract class CabbageState implements State {
     public static double CABBAGE_STATE4_POINT_PERCENTAGE = 1;
 
     protected Cabbage cabbage;
+    public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
 
     CabbageState (Cabbage cabbage) {
         this.cabbage = cabbage;
+
     }
 
-    abstract void incrementDay();
+    @Override
+    public ObjectProperty<StateType> getStateType() {
+        return stateType;
+    }
 
-    abstract void setHarvestScore();
-
+    @Override
+    public void setStateType(StateType stateType) {
+        this.stateType.set(stateType);
+    }
 
 }

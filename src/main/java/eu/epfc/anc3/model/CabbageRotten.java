@@ -4,31 +4,40 @@ import javafx.beans.property.ObjectProperty;
 
 class CabbageRotten extends CabbageState {
 
-//    String image = "0";
 
-    CabbageRotten(Cabbage cabbage) {
+    public CabbageRotten(Cabbage cabbage) {
         super(cabbage);
+        setStateType(StateType.STATEROTTEN);
     }
 
     @Override
-    void incrementDay() {
+    public void incrementDay() {
         if (cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION -5
                 || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION+1)){
             if(!cabbage.hasGrass()){
                 cabbage.setDaysInCurrentState(cabbage.getDaysInCurrentState()-1);
             }
             cabbage.setElementHarvestScore();
-            cabbage.setStateType(StateType.STATE0);
+            cabbage.state.setStateType(StateType.STATE0);
+            cabbage.setStateType(this.getStateType().get());
+            //stateType.set(StateType.STATE0);
         }
     }
 
     @Override
-    void setHarvestScore() {
+    public void fertilize() {
+
+    }
+
+    @Override
+    public void setHarvestScore() {
         cabbage.setHarvestScore(-(int)(cabbage.getMAX_POINTS()* 0.1 *cabbage.getDaysInCurrentState()));
     }
-//
-//    @Override
-//    public ObjectProperty<StateType> getStateType() {
-//        return cabbage.getStateType();
-//    }
+
+    @Override
+    public ObjectProperty<StateType> getStateType() {
+        return stateType;
+    }
+
+
 }

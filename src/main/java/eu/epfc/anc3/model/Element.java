@@ -8,6 +8,7 @@ public abstract class Element  {
 
     public ElementType elementType;
     public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
+    public  State state;
     private BooleanProperty isFertilied = new SimpleBooleanProperty(false);
     private BooleanProperty hasGrass = new SimpleBooleanProperty();
     private BooleanProperty isVegetable = new SimpleBooleanProperty(false);
@@ -34,7 +35,7 @@ public abstract class Element  {
 
     @Override
     public String toString(){
-        return elementType.toString() +"stateType : " + getStateType() ;
+        return elementType.toString()  ;
     }
 
     void setIsFertilied(boolean isFertilied) {

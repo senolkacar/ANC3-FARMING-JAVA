@@ -1,17 +1,15 @@
 package eu.epfc.anc3.model;
 
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 class Grass extends Element {
 
     private int daysInCurrentState = 1;
-    //private StringProperty image = new SimpleStringProperty("grass.png");
 
     Grass() {
         elementType = ElementType.GRASS;
-        stateType.set(StateType.STATE1);
+        state = new GrassState1(this,StateType.STATE1);
+        //stateType.set(StateType.STATE1);
     }
 
     @Override
@@ -26,20 +24,18 @@ class Grass extends Element {
     @Override
     void incrementDay() {
         this.daysInCurrentState++;
-        if (getDaysInCurrentState()==12+1) {
-           this.setStateType(StateType.STATE0);
-        }
+        state.incrementDay();
     }
 
-    @Override
-    public ObjectProperty<StateType> getStateType() {
-        return stateType;
-    }
-
-    @Override
-    void setStateType(StateType stateType) {
-        this.stateType.set(stateType);
-    }
+//    @Override
+//    public ObjectProperty<StateType> getStateType() {
+//        return stateType;
+//    }
+//
+//    @Override
+//    void setStateType(StateType stateType) {
+//        this.stateType.set(stateType);
+//    }
 
 
 

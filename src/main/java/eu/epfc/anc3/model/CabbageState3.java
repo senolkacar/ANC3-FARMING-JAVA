@@ -4,22 +4,36 @@ import javafx.beans.property.ObjectProperty;
 
 class CabbageState3 extends CabbageState {
 
-    CabbageState3(Cabbage cabbage) {
+    public CabbageState3(Cabbage cabbage) {
         super(cabbage);
+        setStateType(StateType.STATE3);
     }
 
     @Override
-    void incrementDay() {
+    public ObjectProperty<StateType> getStateType() {
+        return stateType;
+    }
+
+    @Override
+    public void incrementDay() {
         if (cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE3_DURATION
                 || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE3_DURATION + 1)){
-            cabbage.setCabbageState(new CabbageState4(cabbage));
+            setStateType(StateType.STATE4);
+            cabbage.setStateType(this.getStateType().get());
+            cabbage.state = new CabbageState4(cabbage);
+            //cabbage.state.setStateType(StateType.STATE4);
             cabbage.setDaysInCurrentState(1);
-            cabbage.setStateType(StateType.STATE4);
+            //cabbage.setStateType(StateType.STATE4);
         }
     }
 
     @Override
-    void setHarvestScore() {
+    public void fertilize() {
+
+    }
+
+    @Override
+    public void setHarvestScore() {
         cabbage.setHarvestScore((int)(cabbage.getMAX_POINTS()*CABBAGE_STATE3_POINT_PERCENTAGE));
     }
 

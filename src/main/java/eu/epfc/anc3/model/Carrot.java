@@ -4,7 +4,7 @@ import javafx.beans.property.*;
 
 public class Carrot extends Element{
 
-    private CarrotState carrotState;
+    //private CarrotState carrotState;
     private static final int MAX_POINTS = 100;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
@@ -12,18 +12,19 @@ public class Carrot extends Element{
 
     Carrot() {
         elementType = ElementType.CARROT;
-        carrotState = new CarrotState1(this);
-        stateType.set(StateType.STATE1);
+        state = new CarrotState1(this,StateType.STATE1);
+        stateType.set(state.getStateType().get());
+        //stateType.set(StateType.STATE1);
         setIsVegetable(true);
     }
 
-    public CarrotState getCarrotState() {
-        return carrotState;
-    }
-
-     void setCarrotState(CarrotState carrotState) {
-        this.carrotState = carrotState;
-    }
+//    public CarrotState getCarrotState() {
+//        return carrotState;
+//    }
+//
+//     void setCarrotState(CarrotState carrotState) {
+//        this.carrotState = carrotState;
+//    }
 
     int getMAX_POINTS() {
         return MAX_POINTS;
@@ -43,7 +44,8 @@ public class Carrot extends Element{
 
     void incrementDay() {
         incrementDaysInCurrentState();
-        carrotState.incrementDay();
+        //carrotState.incrementDay();
+        state.incrementDay();
     }
 
 //    boolean isIsFertilied() {
@@ -61,7 +63,7 @@ public class Carrot extends Element{
 
     @Override
     void fertilize(){
-        carrotState.fertilize();
+        state.fertilize();
     }
 
     @Override
@@ -71,20 +73,20 @@ public class Carrot extends Element{
 
     @Override
     void setElementHarvestScore() {
-        carrotState.setHarvestScore();
+        state.setHarvestScore();
     }
 
     void setHarvestScore(int harvestScore) {
         this.harvestScore.set(harvestScore);
     }
 
-    @Override
-    public ObjectProperty<StateType> getStateType() {
-        return stateType;
-    }
-
-    @Override
-    void setStateType(StateType stateType) {
-        this.stateType.set(stateType);
-    }
+//    @Override
+//    public ObjectProperty<StateType> getStateType() {
+//        return stateType;
+//    }
+//
+//    @Override
+//    void setStateType(StateType stateType) {
+//        this.stateType.set(stateType);
+//    }
 }

@@ -4,7 +4,7 @@ import javafx.beans.property.*;
 
 public class Cabbage extends Element{
 
-    private CabbageState cabbageState;
+   // private CabbageState cabbageState;
     private static final int MAX_POINTS = 200;
     private int daysInCurrentState = 1;
     private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
@@ -12,18 +12,20 @@ public class Cabbage extends Element{
 
     Cabbage() {
         elementType = ElementType.CABBAGE;
-        cabbageState = new CabbageState1(this);
-        stateType.set( StateType.STATE1);
+        state = new CabbageState1(this);
+        stateType.set(state.getStateType().get());
+        //state.setStateType(StateType.STATE1);
+       // stateType.set( StateType.STATE1);
         setIsVegetable(true);
     }
-
-    public CabbageState getCabbageState() {
-        return cabbageState;
-    }
-
-    void setCabbageState(CabbageState cabbageState) {
-        this.cabbageState = cabbageState;
-    }
+//
+//    public CabbageState getCabbageState() {
+//        return cabbageState;
+//    }
+//
+//    void setCabbageState(CabbageState cabbageState) {
+//        this.cabbageState = cabbageState;
+//    }
 
     int getMAX_POINTS() {
         return MAX_POINTS;
@@ -43,7 +45,7 @@ public class Cabbage extends Element{
 
     void incrementDay() {
         incrementDaysInCurrentState();
-        cabbageState.incrementDay();
+        state.incrementDay();
     }
 
 //    boolean hasGrass() {
@@ -67,20 +69,20 @@ public class Cabbage extends Element{
 
     @Override
     void setElementHarvestScore() {
-        cabbageState.setHarvestScore();
+        state.setHarvestScore();
     }
 
     void setHarvestScore(int harvestScore) {
         this.harvestScore.set(harvestScore);
     }
 
-    @Override
-    public  ObjectProperty<StateType> getStateType() {
-        return stateType;
-    }
-
-    @Override
-    void setStateType(StateType stateType) {
-        this.stateType.set(stateType);
-    }
+//    @Override
+//    public  ObjectProperty<StateType> getStateType() {
+//        return stateType;
+//    }
+//
+//    @Override
+//    void setStateType(StateType stateType) {
+//        this.stateType.set(stateType);
+//    }
 }

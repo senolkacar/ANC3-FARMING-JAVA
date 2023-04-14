@@ -1,6 +1,7 @@
 package eu.epfc.anc3.model;
 
-import javafx.scene.image.ImageView;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 abstract class CarrotState implements State {
     public static final int CARROT_STATE1_DURATION = 3;
@@ -15,18 +16,22 @@ abstract class CarrotState implements State {
     public static final double CARROT_STATE4_POINT_PERCENTAGE = 1;
 
     protected Carrot carrot;
+    public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
 
-
-    CarrotState (Carrot carrot) {
+    CarrotState (Carrot carrot, StateType stateType) {
         this.carrot = carrot;
+        this.stateType.set(stateType);
 
     }
 
-    abstract void incrementDay();
+    @Override
+    public ObjectProperty<StateType> getStateType() {
+        return stateType;
+    }
 
-    abstract void setHarvestScore();
-
-    void fertilize(){
+    @Override
+    public void setStateType(StateType stateType) {
+        this.stateType.set(stateType);
     }
 
     @Override

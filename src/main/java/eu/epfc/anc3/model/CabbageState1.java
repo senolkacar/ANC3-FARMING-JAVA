@@ -7,25 +7,35 @@ class CabbageState1 extends CabbageState{
 
     CabbageState1(Cabbage cabbage) {
         super(cabbage);
+        setStateType(StateType.STATE1);
+    }
+    @Override
+    public ObjectProperty<StateType> getStateType() {
+        return stateType;
     }
 
     @Override
-    void incrementDay() {
+    public void incrementDay() {
         if (cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE1_DURATION
                 || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE1_DURATION + 1)){
-            cabbage.setCabbageState(new CabbageState2(cabbage));
+            setStateType(StateType.STATE2);
+            cabbage.setStateType(this.getStateType().get());
+            cabbage.state = new CabbageState2(cabbage);
+
+            //cabbage.state.setStateType(StateType.STATE2);
             cabbage.setDaysInCurrentState(1);
-            cabbage.setStateType(StateType.STATE2);
+            //cabbage.setStateType(StateType.STATE2);
         }
     }
 
     @Override
-    void setHarvestScore() {
+    public void fertilize() {
+
+    }
+
+    @Override
+    public void setHarvestScore() {
         cabbage.setHarvestScore((int)(cabbage.getMAX_POINTS()*CABBAGE_STATE1_POINT_PERCENTAGE));
     }
 
-//    @Override
-//    public ObjectProperty<StateType> getStateType() {
-//        return cabbage.getStateType();
-//    }
 }

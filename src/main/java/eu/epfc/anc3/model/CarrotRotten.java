@@ -6,26 +6,34 @@ import javafx.scene.image.ImageView;
 
 class CarrotRotten extends CarrotState{
 
-    CarrotRotten(Carrot carrot) {
-        super(carrot);
+    CarrotRotten(Carrot carrot, StateType stateType) {
+        super(carrot,stateType);
     }
 
     @Override
-    void incrementDay() {
+    public ObjectProperty<StateType> getStateType() {
+        return stateType;
+    }
+
+    @Override
+    public void incrementDay() {
         if (carrot.getDaysInCurrentState() == CARROT_ROTTEN_DURATION + 1) {
             carrot.setDaysInCurrentState(carrot.getDaysInCurrentState()-1);//should be harvested. if not the method become recursive
             carrot.setElementHarvestScore();
-            carrot.setStateType(StateType.STATE0);
+            carrot.state.setStateType(StateType.STATE0);
+            carrot.setStateType(this.getStateType().get());
+            //stateType.set(StateType.STATE0);
         }
     }
 
     @Override
-    void setHarvestScore() {
+    public void fertilize() {
+
+    }
+
+    @Override
+    public void setHarvestScore() {
         carrot.setHarvestScore(-(int)(carrot.getMAX_POINTS()*CARROT_STATE1_POINT_PERCENTAGE*carrot.getDaysInCurrentState()));
     }
 
-//    @Override
-//    public ObjectProperty<StateType> getStateType() {
-//        return carrot.getStateType();
-//    }
 }
