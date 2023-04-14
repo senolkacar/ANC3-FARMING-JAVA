@@ -38,8 +38,6 @@ public class GameView extends BorderPane {
         super.setRight(menuRightView);
         menuRightView.setFocusTraversable(true);
 
-
-
         Scene scene = new Scene(this, 1200, 700);
         scene.getRoot().setStyle("-fx-font-family: 'serif'");
 
@@ -57,7 +55,6 @@ public class GameView extends BorderPane {
                     if (gameVM.isPlanting()) {
                         gameVM.continuePlantingOrRemoving();
                     }
-
             }
         };
         timer.start();

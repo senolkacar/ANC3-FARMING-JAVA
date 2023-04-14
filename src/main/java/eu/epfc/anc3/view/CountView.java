@@ -28,7 +28,7 @@ public class CountView extends HBox {
 
         dayCountLabel = new Label("Jour: ");
         dayCountInput = new TextField("1");
-        dayCountInput.setDisable(true);//binding
+        dayCountInput.setDisable(true);
 
         scoreLabel = new Label("Score");
         scoreInput = new TextField("0");

@@ -2,18 +2,15 @@
 
     import eu.epfc.anc3.model.Mode;
     import eu.epfc.anc3.vm.MenuRightViewModel;
-    import eu.epfc.anc3.vm.MenuViewModel;
     import javafx.beans.property.BooleanProperty;
     import javafx.beans.property.ObjectProperty;
     import javafx.beans.property.SimpleObjectProperty;
     import javafx.geometry.Insets;
-    import javafx.scene.control.Button;
     import javafx.scene.control.Toggle;
     import javafx.scene.control.ToggleButton;
     import javafx.scene.control.ToggleGroup;
     import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
-    import javafx.scene.layout.HBox;
     import javafx.scene.layout.VBox;
 
     public class MenuRightView extends VBox {
@@ -31,18 +28,22 @@
 
         private final Image grass = new Image("grass.png");
         ImageView grassImageView = new ImageView(grass);
+
         private final Image carrot = new Image("carrot4.png");
         ImageView carrotImageView = new ImageView(carrot);
+
         private final Image cabbage = new Image("cabbage4.png");
         ImageView cabbageImageView = new ImageView(cabbage);
+
         private final Image fertilizer = new Image("watering_can.png");
         ImageView fertilizerImageView = new ImageView(fertilizer);
+
         private final Image harvest = new Image("shovel.png");
         ImageView harvestImageView = new ImageView(harvest);
 
         private final MenuRightViewModel menuRightVM;
         ObjectProperty<Mode> menuModeObjectProperty = new SimpleObjectProperty<>();
-        BooleanProperty farmerMovementEnableProperty ;
+        BooleanProperty farmerMovementEnableProperty;
 
         public MenuRightView(MenuRightViewModel menuRightVM) {
             this.setSpacing(SPACE);
@@ -57,14 +58,9 @@
             actionToggleGroup = new ToggleGroup();
 
             plantGrassButton.setPrefWidth(BUTTON_WIDTH);
-            plantGrassButton.setPrefWidth(BUTTON_WIDTH);
-            plantCarrotButton.setPrefWidth(BUTTON_WIDTH);
             plantCarrotButton.setPrefWidth(BUTTON_WIDTH);
             plantCabbageButton.setPrefWidth(BUTTON_WIDTH);
-            plantCabbageButton.setPrefWidth(BUTTON_WIDTH);
             fertilizeButton.setPrefWidth(BUTTON_WIDTH);
-            fertilizeButton.setPrefWidth(BUTTON_WIDTH);
-            harvestButton.setPrefWidth(BUTTON_WIDTH);
             harvestButton.setPrefWidth(BUTTON_WIDTH);
 
             plantGrassButton.setGraphic(grassImageView);
@@ -105,15 +101,9 @@
                     if (toggle != null) {
                         actionToggleGroup.getToggles().forEach(tg -> (toggle).setSelected(false));
                     }
-
                 }
             });
         }
-
-
-
-
-
 
 
     }

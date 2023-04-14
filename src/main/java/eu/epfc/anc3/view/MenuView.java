@@ -6,8 +6,6 @@
     import javafx.beans.property.SimpleObjectProperty;
     import javafx.geometry.Insets;
     import javafx.scene.control.Button;
-    import javafx.scene.control.ToggleButton;
-    import javafx.scene.control.ToggleGroup;
     import javafx.scene.layout.HBox;
 
     public class MenuView extends HBox {

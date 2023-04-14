@@ -25,7 +25,6 @@ public class MenuRightViewModel {
 
     public BooleanProperty farmerMovementEnableProperty() {
         return game.farmerMovementEnableProperty();
-
     }
 
     public void harvestAction(ObjectProperty<Mode> menuModeObjectProperty, ToggleButton harvestButton, MenuRightView menuRightView) {
@@ -46,9 +45,7 @@ public class MenuRightViewModel {
         } else{
             setGameMode(Mode.FERTILIZE);
             fertilizeButton.isSelected();
-
         }
-
     }
 
     public void plantCabbageAction(ObjectProperty<Mode> menuModeObjectProperty,ToggleButton plantCabbageButton, MenuRightView menuRightView) {
