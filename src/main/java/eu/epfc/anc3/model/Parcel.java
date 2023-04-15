@@ -112,7 +112,7 @@ class Parcel {
         }else if(mode == Mode.PLANT_GRASS && !containsElementType(ElementType.GRASS)){
             elements.add(new Grass());
             this.setHasGrass(true);
-            PlaceGrassToLastPlace();
+
 //            if(containsElementType(ElementType.CABBAGE)){
 //                for(Element element : elements) {
 //                    if(element.getType() == ElementType.CABBAGE){
@@ -121,6 +121,7 @@ class Parcel {
 //                }
 //            }
         }
+        PlaceGrassToLastPlace();
 
     }
 

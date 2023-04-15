@@ -73,7 +73,7 @@ public class ParcelView extends StackPane {
 
     private void setElementsImages(ImageView imageView, ObservableList<Element> elements) {
         List<ElementType> newList = elements.stream().map(Element::getType).collect(Collectors.toList());
-
+        System.out.println(elements);
         if (newList.contains(ElementType.GRASS)) {
             imageView.setImage(grassImage);
             getChildren().remove(farmer);
