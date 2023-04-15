@@ -19,9 +19,7 @@ class CarrotState2 extends CarrotState{
     public void incrementDay() {
         if (carrot.getDaysInCurrentState() == CARROT_STATE2_DURATION + 1) {
             setStateType(StateType.STATE3);
-            carrot.setStateType(this.getStateType().get());
-            carrot.state = new CarrotState3(carrot,StateType.STATE3 );
-           // carrot.state.setStateType(StateType.STATE3);
+            carrot.state.set(new CarrotState3(carrot,StateType.STATE3 ));
             carrot.setDaysInCurrentState(1);
         }
     }
@@ -29,10 +27,7 @@ class CarrotState2 extends CarrotState{
     @Override
     public void fertilize(){
         setStateType(StateType.STATE3);
-        carrot.setStateType(this.getStateType().get());
-        carrot.state = new CarrotState3(carrot , StateType.STATE3);
-        //carrot.state.setStateType(StateType.STATE3);
-        //setStateType(StateType.STATE3);
+        carrot.state.set(new CarrotState3(carrot , StateType.STATE3));
         carrot.setDaysInCurrentState(1);
     }
 

@@ -4,10 +4,8 @@ import javafx.beans.property.ObjectProperty;
 
 class CabbageRotten extends CabbageState {
 
-
-    public CabbageRotten(Cabbage cabbage) {
-        super(cabbage);
-        setStateType(StateType.STATEROTTEN);
+    public CabbageRotten(Cabbage cabbage, StateType stateType) {
+        super(cabbage,stateType);
     }
 
     @Override
@@ -18,16 +16,13 @@ class CabbageRotten extends CabbageState {
                 cabbage.setDaysInCurrentState(cabbage.getDaysInCurrentState()-1);
             }
             cabbage.setElementHarvestScore();
-            cabbage.state.setStateType(StateType.STATE0);
-            cabbage.setStateType(this.getStateType().get());
-            //stateType.set(StateType.STATE0);
+            cabbage.state.set(new CabbageState1(cabbage,StateType.STATE0));
+            setStateType(StateType.STATE0);
         }
     }
 
     @Override
-    public void fertilize() {
-
-    }
+    public void fertilize() {    }
 
     @Override
     public void setHarvestScore() {

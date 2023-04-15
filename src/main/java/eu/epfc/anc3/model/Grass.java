@@ -8,7 +8,7 @@ class Grass extends Element {
 
     Grass() {
         elementType = ElementType.GRASS;
-        state = new GrassState1(this,StateType.STATE1);
+        state.set(new GrassState1(this,StateType.STATE1));
         //stateType.set(StateType.STATE1);
     }
 
@@ -24,7 +24,7 @@ class Grass extends Element {
     @Override
     void incrementDay() {
         this.daysInCurrentState++;
-        state.incrementDay();
+        state.get().incrementDay();
     }
 
 //    @Override

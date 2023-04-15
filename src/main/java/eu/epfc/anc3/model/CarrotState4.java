@@ -17,11 +17,8 @@ class CarrotState4 extends CarrotState{
     public void incrementDay() {
         if (carrot.getDaysInCurrentState() == CARROT_STATE4_DURATION + 1) {
             setStateType(StateType.STATEROTTEN);
-            carrot.setStateType(this.getStateType().get());
-            carrot.state = new  CarrotRotten(carrot,StateType.STATEROTTEN);
-            //carrot.state.setStateType(StateType.STATEROTTEN);
+            carrot.state.set(new  CarrotRotten(carrot,StateType.STATEROTTEN));
             carrot.setDaysInCurrentState(1);
-            //carrot.setStateType(StateType.STATEROTTEN);
         }
     }
 

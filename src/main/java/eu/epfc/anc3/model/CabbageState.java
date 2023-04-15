@@ -18,9 +18,9 @@ abstract class CabbageState implements State {
     protected Cabbage cabbage;
     public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
 
-    CabbageState (Cabbage cabbage) {
+    CabbageState (Cabbage cabbage, StateType stateType) {
         this.cabbage = cabbage;
-
+        this.stateType.set(stateType);
     }
 
     @Override

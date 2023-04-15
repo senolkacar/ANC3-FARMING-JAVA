@@ -20,9 +20,8 @@ class CarrotRotten extends CarrotState{
         if (carrot.getDaysInCurrentState() == CARROT_ROTTEN_DURATION + 1) {
             carrot.setDaysInCurrentState(carrot.getDaysInCurrentState()-1);//should be harvested. if not the method become recursive
             carrot.setElementHarvestScore();
-            carrot.state.setStateType(StateType.STATE0);
-            carrot.setStateType(this.getStateType().get());
-            //stateType.set(StateType.STATE0);
+            carrot.state.set(new CarrotState1(carrot,StateType.STATE0));
+            setStateType(StateType.STATE0);
         }
     }
 

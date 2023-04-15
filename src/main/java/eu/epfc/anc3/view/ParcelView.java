@@ -80,10 +80,8 @@ public class ParcelView extends StackPane {
             for(Element element : elements) {
                 if(element.getType() == ElementType.GRASS) {
 
-                    if (element.state.getStateType() != null) {
-                        System.out.println("grass " + element.state.getStateType());
-                        element.state.getStateType().addListener((obs, oldVal, newVal) -> setGrassImage(newVal));
-
+                    if (element.state != null) {
+                        element.state.get().getStateType().addListener((obs, oldVal, newVal) -> setGrassImage(newVal));
                     }
                 }
             }
@@ -100,11 +98,10 @@ public class ParcelView extends StackPane {
                         getChildren().remove(farmer);
                     }
 
-                    if (element.getStateType() != null) {
-                        System.out.println("carrot " + element.state.getStateType());
-                        element.getStateType().addListener((obs, oldVal, newVal) -> {
-                            System.out.println("carrot listener");
-                            setCarrotImage(newVal);});
+                    if (element.state != null) {
+                        element.state.addListener((obs, oldVal, newVal) -> {
+                            setCarrotImage(newVal.getStateType().get());
+                        });
                     }
                 }
             }
@@ -121,9 +118,11 @@ public class ParcelView extends StackPane {
                         getChildren().add(cabbage);
                         getChildren().remove(farmer);
                     }
-                    System.out.println("cabbage " + element.state.getStateType());
-                    if (element.getStateType() != null)
-                    element.getStateType().addListener((obs, oldVal, newVal) -> setCabbageImage(newVal));
+                    if (element.state != null) {
+                        element.state.addListener((obs, oldVal, newVal) -> {
+                            setCabbageImage(newVal.getStateType().get());
+                        });
+                    }
                 }
             }
         } else {
@@ -138,10 +137,8 @@ public class ParcelView extends StackPane {
         }
     }
 
-
     private void setCarrotImage(StateType stateType) {
         getChildren().remove(carrot);
-        System.out.println("set carrot image");
         switch (stateType) {
             case STATE1:
                 carrot.setImage(carrot1);
@@ -207,7 +204,6 @@ public class ParcelView extends StackPane {
     }
 
     private void setGrassImage(StateType stateType) {
-        System.out.println("set grass image");
         imageView.setImage(dirtImage);
         switch (stateType) {
             case STATE1:

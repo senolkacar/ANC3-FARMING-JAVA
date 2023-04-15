@@ -5,9 +5,8 @@ import javafx.scene.image.ImageView;
 
 class CabbageState1 extends CabbageState{
 
-    CabbageState1(Cabbage cabbage) {
-        super(cabbage);
-        setStateType(StateType.STATE1);
+    CabbageState1(Cabbage cabbage, StateType stateType) {
+        super(cabbage,stateType);
     }
     @Override
     public ObjectProperty<StateType> getStateType() {
@@ -18,13 +17,8 @@ class CabbageState1 extends CabbageState{
     public void incrementDay() {
         if (cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE1_DURATION
                 || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE1_DURATION + 1)){
-            setStateType(StateType.STATE2);
-            cabbage.setStateType(this.getStateType().get());
-            cabbage.state = new CabbageState2(cabbage);
-
-            //cabbage.state.setStateType(StateType.STATE2);
+            cabbage.state.set(new CabbageState2(cabbage,StateType.STATE2));
             cabbage.setDaysInCurrentState(1);
-            //cabbage.setStateType(StateType.STATE2);
         }
     }
 
