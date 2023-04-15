@@ -27,10 +27,6 @@ public class GameFacade {
         return game.getParcelValueProperty(position);
     }
 
-//    public boolean containsElement(Position position, Element element) {
-//        return game.containsElement(position, element);
-//    }
-
     public void removeElement(Position position, ElementType element) {
         game.removeElement(position, element);
     }
@@ -116,15 +112,9 @@ public class GameFacade {
         return game.getScoreProperty();
     }
 
-//    public boolean containsCarrot(Position position) {
-//       return game.containsCarrot(position);
-//    }
 
     public void autoHarvest(Position position, ElementType elementType){
         game.autoHarvest(position,elementType);
     }
 
-//    public StringProperty getCarrotImageProperty(Position position) {
-//        return game.getCarrotImageProperty(position);
-//    }
 }

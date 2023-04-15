@@ -35,8 +35,8 @@ class Parcel {
     void removeElement(ElementType oldElement){
         this.elements.removeIf(e->e.getType()==oldElement);
     }
-//
-//    boolean containsElement(Element newElement) {//?
+
+//    boolean containsElement(Element newElement) {
 //        return elements.contains(newElement);
 //    }
 
@@ -103,7 +103,6 @@ class Parcel {
             //Cabbage cabbage = new Cabbage();
             elements.add(new Cabbage());
             if(containsElementType(ElementType.GRASS)){
-                //cabbage.setHasGrass(true);
                 this.setHasGrass(true);
             }
 
@@ -112,14 +111,6 @@ class Parcel {
         }else if(mode == Mode.PLANT_GRASS && !containsElementType(ElementType.GRASS)){
             elements.add(new Grass());
             this.setHasGrass(true);
-
-//            if(containsElementType(ElementType.CABBAGE)){
-//                for(Element element : elements) {
-//                    if(element.getType() == ElementType.CABBAGE){
-//                        element.setHasGrass(true);
-//                    }
-//                }
-//            }
         }
         PlaceGrassToLastPlace();
 
