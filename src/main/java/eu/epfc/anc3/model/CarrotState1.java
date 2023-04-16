@@ -2,10 +2,10 @@ package eu.epfc.anc3.model;
 
 import javafx.beans.property.ObjectProperty;
 
-class CarrotState1 extends CarrotState{
+class CarrotState1 extends VegetableState{
 
-    CarrotState1(Carrot carrot, StateType stateType) {
-        super(carrot, stateType);
+    CarrotState1(Element carrot, StateType stateType,int daysInCurrentState) {
+        super(carrot, stateType, daysInCurrentState);
     }
 
     @Override
@@ -15,29 +15,23 @@ class CarrotState1 extends CarrotState{
 
     @Override
     public void incrementDay() {
-        if (carrot.getDaysInCurrentState() == CARROT_STATE1_DURATION + 1) {
+        if (getDaysInCurrentState() == CARROT_STATE1_DURATION + 1) {
             setStateType(StateType.STATE2);
-            carrot.state.set(new CarrotState2(carrot,StateType.STATE2));
-            carrot.setDaysInCurrentState(1);
+            element.state.set(new CarrotState2(element,StateType.STATE2,1));
+            setDaysInCurrentState(1);
         }
     }
 
     @Override
     public void setHarvestScore() {
-        carrot.setHarvestScore((int)(carrot.getMAX_POINTS()*CARROT_STATE1_POINT_PERCENTAGE));
+        harvestScore.set((int)(MAX_POINTS_CARROT*CARROT_STATE1_POINT_PERCENTAGE));
+        //carrot.setHarvestScore((int)(carrot.getMAX_POINTS()*CARROT_STATE1_POINT_PERCENTAGE));
     }
     @Override
     public void fertilize(){
         setStateType(StateType.STATE3);
-        carrot.state.set(new  CarrotState3(carrot,StateType.STATE3));
-        carrot.setDaysInCurrentState(1);
-    }
-
-    @Override
-    public String toString() {
-        return "CarrotState1{" +
-                "carrot=" + carrot +"stateDays=" + carrot.getDaysInCurrentState()+
-                '}';
+        element.state.set(new  CarrotState3(element,StateType.STATE3,1));
+        setDaysInCurrentState(1);
     }
 
 }

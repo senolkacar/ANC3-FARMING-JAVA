@@ -3,10 +3,10 @@ package eu.epfc.anc3.model;
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.image.ImageView;
 
-class CabbageState1 extends CabbageState{
+class CabbageState1 extends VegetableState{
 
-    CabbageState1(Cabbage cabbage, StateType stateType) {
-        super(cabbage,stateType);
+    CabbageState1(Element cabbage, StateType stateType, int daysInCurrentState) {
+        super(cabbage,stateType,daysInCurrentState);
     }
     @Override
     public ObjectProperty<StateType> getStateType() {
@@ -15,10 +15,10 @@ class CabbageState1 extends CabbageState{
 
     @Override
     public void incrementDay() {
-        if (cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE1_DURATION
-                || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE1_DURATION + 1)){
-            cabbage.state.set(new CabbageState2(cabbage,StateType.STATE2));
-            cabbage.setDaysInCurrentState(1);
+        if (element.hasGrass() && getDaysInCurrentState() == CABBAGE_STATE1_DURATION
+                || (!element.hasGrass() && getDaysInCurrentState() == CABBAGE_STATE1_DURATION + 1)){
+            element.state.set(new CabbageState2(element,StateType.STATE2,1));
+            setDaysInCurrentState(1);
         }
     }
 
@@ -29,7 +29,8 @@ class CabbageState1 extends CabbageState{
 
     @Override
     public void setHarvestScore() {
-        cabbage.setHarvestScore((int)(cabbage.getMAX_POINTS()*CABBAGE_STATE1_POINT_PERCENTAGE));
+        harvestScore.set((int)(MAX_POINTS_CABBAGE*CABBAGE_STATE1_POINT_PERCENTAGE));
+
     }
 
 }

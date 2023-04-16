@@ -2,10 +2,10 @@ package eu.epfc.anc3.model;
 
 import javafx.beans.property.ObjectProperty;
 
-class CarrotState3 extends CarrotState{
+class CarrotState3 extends VegetableState{
 
-    CarrotState3(Carrot carrot,StateType stateType) {
-        super(carrot, stateType);
+    CarrotState3(Element carrot,StateType stateType,int daysInCurrentState) {
+        super(carrot, stateType,1);
 
     }
 
@@ -17,10 +17,10 @@ class CarrotState3 extends CarrotState{
 
     @Override
     public void incrementDay() {
-        if (carrot.getDaysInCurrentState() == CARROT_STATE3_DURATION + 1) {
+        if (getDaysInCurrentState() == CARROT_STATE3_DURATION + 1) {
             setStateType(StateType.STATE4);
-            carrot.state.set(new CarrotState4(carrot,StateType.STATE4));
-            carrot.setDaysInCurrentState(1);
+            element.state.set(new CarrotState4(element,StateType.STATE4,1));
+            setDaysInCurrentState(1);
         }
     }
 
@@ -31,13 +31,8 @@ class CarrotState3 extends CarrotState{
 
     @Override
     public void setHarvestScore() {
-        carrot.setHarvestScore((int)(carrot.getMAX_POINTS()*CARROT_STATE3_POINT_PERCENTAGE));
+        harvestScore.set((int)(MAX_POINTS_CARROT*CARROT_STATE1_POINT_PERCENTAGE));
     }
 
-    @Override
-    public String toString() {
-        return "CarrotState3{" +
-                "carrot=" + carrot +"stateDays=" + carrot.getDaysInCurrentState()+
-                '}';
-    }
+
 }

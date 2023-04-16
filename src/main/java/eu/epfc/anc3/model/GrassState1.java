@@ -2,10 +2,10 @@ package eu.epfc.anc3.model;
 
 import javafx.beans.property.ObjectProperty;
 
-public class GrassState1 extends GrassState{
+public class GrassState1 extends VegetableState{
 
-    GrassState1(Grass grass, StateType stateType) {
-        super(grass, stateType);
+    GrassState1(Element grass, StateType stateType, int daysInCurentState) {
+        super(grass, stateType,1);
     }
     @Override
     public ObjectProperty<StateType> getStateType() {
@@ -19,7 +19,7 @@ public class GrassState1 extends GrassState{
 
     @Override
     public void incrementDay() {
-        if (grass.getDaysInCurrentState()==12+1) {
+        if (getDaysInCurrentState()==12+1) {
             stateType.set(StateType.STATE0);
         }
     }

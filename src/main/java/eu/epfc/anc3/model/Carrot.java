@@ -4,34 +4,34 @@ import javafx.beans.property.*;
 
 public class Carrot extends Element{
 
-    private static final int MAX_POINTS = 100;
-    private int daysInCurrentState = 1;
-    private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
+    //private static final int MAX_POINTS = 100;
+    //private int daysInCurrentState = 1;
+    //private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
 
     Carrot() {
         elementType = ElementType.CARROT;
-        state.set(new CarrotState1(this,StateType.STATE1));
+        state.set(new CarrotState1(this,StateType.STATE1,1));
         setIsVegetable(true);
     }
 
-    int getMAX_POINTS() {
-        return MAX_POINTS;
-    }
+    //int getMAX_POINTS() {
+//        return MAX_POINTS;
+//    }
 
-    int getDaysInCurrentState() {
-        return daysInCurrentState;
-    }
-
-    void setDaysInCurrentState(int daysInCurrentState) {
-        this.daysInCurrentState = daysInCurrentState;
-    }
-
-    void incrementDaysInCurrentState() {
-        this.daysInCurrentState++;
-    }
+//    int getDaysInCurrentState() {
+//        return daysInCurrentState;
+//    }
+//
+//    void setDaysInCurrentState(int daysInCurrentState) {
+//        this.daysInCurrentState = daysInCurrentState;
+//    }
+//
+//    void incrementDaysInCurrentState() {
+//        this.daysInCurrentState++;
+//    }
 
     void incrementDay() {
-        incrementDaysInCurrentState();
+       // incrementDaysInCurrentState();
         state.get().incrementDay();
     }
 
@@ -42,7 +42,7 @@ public class Carrot extends Element{
 
     @Override
     IntegerProperty getHarvestScore(){
-        return harvestScore;
+        return state.get().getHarvestScore();
     }
 
     @Override
@@ -50,8 +50,8 @@ public class Carrot extends Element{
         state.get().setHarvestScore();
     }
 
-    void setHarvestScore(int harvestScore) {
-        this.harvestScore.set(harvestScore);
-    }
+//    void setHarvestScore(int harvestScore) {
+//        this.harvestScore.set(harvestScore);
+//    }
 
 }

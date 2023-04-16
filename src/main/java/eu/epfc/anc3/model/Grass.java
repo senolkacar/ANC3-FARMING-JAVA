@@ -6,7 +6,7 @@ class Grass extends Element {
 
     Grass() {
         elementType = ElementType.GRASS;
-        state.set(new GrassState1(this,StateType.STATE1));
+        state.set(new GrassState1(this,StateType.STATE1,1));
     }
 
     @Override

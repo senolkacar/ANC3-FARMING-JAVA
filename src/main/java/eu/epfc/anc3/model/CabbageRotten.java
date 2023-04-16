@@ -2,21 +2,21 @@ package eu.epfc.anc3.model;
 
 import javafx.beans.property.ObjectProperty;
 
-class CabbageRotten extends CabbageState {
+class CabbageRotten extends VegetableState {
 
-    public CabbageRotten(Cabbage cabbage, StateType stateType) {
-        super(cabbage,stateType);
+    public CabbageRotten(Element cabbage, StateType stateType, int daysInCurrentState) {
+        super(cabbage,stateType,daysInCurrentState);
     }
 
     @Override
     public void incrementDay() {
-        if (cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION -5
-                || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION+1)){
-            if(!cabbage.hasGrass()){
-                cabbage.setDaysInCurrentState(cabbage.getDaysInCurrentState()-1);
+        if (element.hasGrass() && getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION -5
+                || (!element.hasGrass() && getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION+1)){
+            if(!element.hasGrass()){
+                setDaysInCurrentState(getDaysInCurrentState()-1);
             }
-            cabbage.setElementHarvestScore();
-            cabbage.state.set(new CabbageState1(cabbage,StateType.STATE0));
+            element.setElementHarvestScore();
+            element.state.set(new CabbageState1(element,StateType.STATE0,1));
             setStateType(StateType.STATE0);
         }
     }
@@ -26,7 +26,7 @@ class CabbageRotten extends CabbageState {
 
     @Override
     public void setHarvestScore() {
-        cabbage.setHarvestScore(-(int)(cabbage.getMAX_POINTS()* 0.1 *cabbage.getDaysInCurrentState()));
+        harvestScore.set(-(int)(MAX_POINTS_CABBAGE* 0.1 *getDaysInCurrentState()));
     }
 
     @Override
