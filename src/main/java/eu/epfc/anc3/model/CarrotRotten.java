@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 class CarrotRotten extends VegetableState{
 
     CarrotRotten(Element carrot, StateType stateType,int daysInCurrentState) {
-        super(carrot,stateType,1);
+        super(carrot,stateType,daysInCurrentState);
     }
 
     @Override
@@ -18,11 +18,13 @@ class CarrotRotten extends VegetableState{
     @Override
     public void incrementDay() {
         setDaysInCurrentState(getDaysInCurrentState()+1);
+        setHarvestScore();
         if (getDaysInCurrentState() == CARROT_ROTTEN_DURATION + 1) {
             setDaysInCurrentState(getDaysInCurrentState()-1);//should be harvested. if not the method become recursive
-            setHarvestScore();
-            element.state.set(new CarrotState1(element,StateType.STATE0,1));
+
+            element.state.set(new CarrotRotten(element,StateType.STATE0,getDaysInCurrentState()));
             setStateType(StateType.STATE0);
+            setHarvestScore();
         }
     }
 
@@ -36,4 +38,13 @@ class CarrotRotten extends VegetableState{
         harvestScore.set(-(int)(MAX_POINTS_CARROT*CARROT_STATE1_POINT_PERCENTAGE*getDaysInCurrentState()));
     }
 
+    @Override
+    public String toString() {
+        return "CarrotRotten{" +
+                "element=" + element +
+                ", daysInCurrentState=" + daysInCurrentState +
+                ", stateType=" + stateType +
+                ", harvestScore=" + harvestScore +
+                '}';
+    }
 }

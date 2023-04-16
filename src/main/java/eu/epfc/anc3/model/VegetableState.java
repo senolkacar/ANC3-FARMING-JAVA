@@ -9,7 +9,7 @@ abstract class VegetableState implements State {
 
 
     protected Element element;
-    protected int daysInCurrentState = 1;
+    protected int daysInCurrentState;
     public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
     public IntegerProperty harvestScore = new SimpleIntegerProperty(0);
 
@@ -32,8 +32,11 @@ abstract class VegetableState implements State {
 
     @Override
     public String toString() {
-        return "CarrotState{" +
-                "carrot=" +
+        return "VegetableState{" +
+                "element=" + element +
+                ", daysInCurrentState=" + daysInCurrentState +
+                ", stateType=" + stateType +
+                ", harvestScore=" + harvestScore +
                 '}';
     }
 
@@ -47,10 +50,10 @@ abstract class VegetableState implements State {
         this.daysInCurrentState = daysInCurrentState;
     }
 
-    @Override
-    public void incrementDaysInCurrentState() {
-        this.daysInCurrentState++;
-    }
+//    @Override
+//    public void incrementDaysInCurrentState() {
+//        this.daysInCurrentState++;
+//    }
 
     @Override
     public void setHarvestScore(){

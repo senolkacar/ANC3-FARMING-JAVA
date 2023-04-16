@@ -73,7 +73,6 @@ public class ParcelView extends StackPane {
 
     private void setElementsImages(ImageView imageView, ObservableList<Element> elements) {
         List<ElementType> newList = elements.stream().map(Element::getType).collect(Collectors.toList());
-       // System.out.println(elements);
         if (newList.contains(ElementType.GRASS)) {
             imageView.setImage(grassImage);
             getChildren().remove(farmer);
@@ -100,7 +99,8 @@ public class ParcelView extends StackPane {
 
                     if (element.state != null) {
                         element.state.addListener((obs, oldVal, newVal) -> {
-                            setCarrotImage(newVal.getStateType().get());
+                            //System.out.println("newVal : " + newVal);
+                            setCarrotImage(newVal.getStateType().get(),element);
                         });
                     }
                 }
@@ -120,7 +120,7 @@ public class ParcelView extends StackPane {
                     }
                     if (element.state != null) {
                         element.state.addListener((obs, oldVal, newVal) -> {
-                            setCabbageImage(newVal.getStateType().get());
+                            setCabbageImage(newVal.getStateType().get(),element);
                         });
                     }
                 }
@@ -137,7 +137,7 @@ public class ParcelView extends StackPane {
         }
     }
 
-    private void setCarrotImage(StateType stateType) {
+    private void setCarrotImage(StateType stateType,Element element) {
         getChildren().remove(carrot);
         switch (stateType) {
             case STATE1:
@@ -170,7 +170,7 @@ public class ParcelView extends StackPane {
 
     }
 
-    private void setCabbageImage(StateType stateType) {
+    private void setCabbageImage(StateType stateType,Element element) {
         getChildren().remove(cabbage);
 
         switch (stateType) {

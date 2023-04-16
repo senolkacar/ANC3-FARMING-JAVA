@@ -36,10 +36,6 @@ class Parcel {
         this.elements.removeIf(e->e.getType()==oldElement);
     }
 
-//    boolean containsElement(Element newElement) {
-//        return elements.contains(newElement);
-//    }
-
     boolean containsElementType(ElementType elementType) {
         return elements.stream().anyMatch(element -> element.elementType ==elementType );
     }
@@ -57,6 +53,7 @@ class Parcel {
         int res = 0;
         for(Element element : elements) {
             if(element.elementType == elementType && element.state.get()!=null) {
+                element.state.get().setHarvestScore();
                 res = element.state.get().getHarvestScore().get();
                 break;
             }

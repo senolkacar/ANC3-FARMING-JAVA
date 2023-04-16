@@ -11,14 +11,15 @@ class CabbageRotten extends VegetableState {
     @Override
     public void incrementDay() {
         setDaysInCurrentState(getDaysInCurrentState()+1);
+        setHarvestScore();
         if (element.hasGrass() && getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION -5
                 || (!element.hasGrass() && getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION+1)){
             if(!element.hasGrass()){
                 setDaysInCurrentState(getDaysInCurrentState()-1);
             }
-            setHarvestScore();
-            element.state.set(new CabbageState1(element,StateType.STATE0,1));
+            element.state.set(new CabbageRotten(element,StateType.STATE0,getDaysInCurrentState()));
             setStateType(StateType.STATE0);
+            setHarvestScore();
         }
     }
 
@@ -35,5 +36,13 @@ class CabbageRotten extends VegetableState {
         return stateType;
     }
 
-
+    @Override
+    public String toString() {
+        return "CabbageRotten{" +
+                "element=" + element +
+                ", daysInCurrentState=" + daysInCurrentState +
+                ", stateType=" + stateType +
+                ", harvestScore=" + harvestScore +
+                '}';
+    }
 }
