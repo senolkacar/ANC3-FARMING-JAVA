@@ -16,6 +16,7 @@ class CabbageState4 extends VegetableState {
 
     @Override
     public void incrementDay() {
+        setDaysInCurrentState(getDaysInCurrentState()+1);
         if (element.hasGrass() && getDaysInCurrentState() == CABBAGE_STATE4_DURATION
                 || (!element.hasGrass() && getDaysInCurrentState() == CABBAGE_STATE4_DURATION + 1)){
             element.state.set(new CabbageRotten(element,StateType.STATEROTTEN,1));
@@ -31,7 +32,7 @@ class CabbageState4 extends VegetableState {
 
     @Override
     public void setHarvestScore() {
-        harvestScore.set((int)(MAX_POINTS_CABBAGE*CABBAGE_STATE1_POINT_PERCENTAGE));
+        harvestScore.set((int)(MAX_POINTS_CABBAGE*CABBAGE_STATE4_POINT_PERCENTAGE));
 
     }
 

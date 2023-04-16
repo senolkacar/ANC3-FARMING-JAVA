@@ -8,7 +8,7 @@ public abstract class Element  {
 
     public ElementType elementType;
     public  ObjectProperty<State> state = new SimpleObjectProperty<>();
-    private BooleanProperty isFertilied = new SimpleBooleanProperty(false);
+//    private BooleanProperty isFertilied = new SimpleBooleanProperty(false);
     private BooleanProperty hasGrass = new SimpleBooleanProperty();
     private BooleanProperty isVegetable = new SimpleBooleanProperty(false);
 
@@ -29,20 +29,30 @@ public abstract class Element  {
         return Objects.hash(elementType);
     }
 
-    void incrementDay() {
-    }
+//    void incrementDay() {
+//    }
 
     @Override
     public String toString(){
         return elementType.toString()  ;
     }
 
-    void setIsFertilied(boolean isFertilied) {
-        this.isFertilied.set(isFertilied);
-    }
+//    void setIsFertilied(boolean isFertilied) {
+//        this.isFertilied.set(isFertilied);
+//    }
+//
+//    void fertilize(){
+//    }
 
-    void fertilize(){
-    }
+//
+
+
+//    IntegerProperty getHarvestScore(){
+//        return new SimpleIntegerProperty();
+//    }
+//
+//    void setElementHarvestScore(){}
+
 
     public boolean hasGrass() {
         return hasGrass.get();
@@ -52,16 +62,9 @@ public abstract class Element  {
         return hasGrass;
     }
 
-    void setHasGrass(boolean hasGrass) {
+    public void setHasGrass(boolean hasGrass) {
         this.hasGrass.set(hasGrass);
     }
-
-
-    IntegerProperty getHarvestScore(){
-        return new SimpleIntegerProperty();
-    }
-
-    void setElementHarvestScore(){}
 
     boolean getIsVegetable() {
         return isVegetable.get();

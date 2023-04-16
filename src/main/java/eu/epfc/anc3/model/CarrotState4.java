@@ -15,6 +15,7 @@ class CarrotState4 extends VegetableState{
 
     @Override
     public void incrementDay() {
+        setDaysInCurrentState(getDaysInCurrentState()+1);
         if (getDaysInCurrentState() == CARROT_STATE4_DURATION + 1) {
             setStateType(StateType.STATEROTTEN);
             element.state.set(new  CarrotRotten(element,StateType.STATEROTTEN,1));
@@ -29,7 +30,7 @@ class CarrotState4 extends VegetableState{
 
     @Override
     public void setHarvestScore() {
-        harvestScore.set((int)(MAX_POINTS_CARROT*CARROT_STATE1_POINT_PERCENTAGE));
+        harvestScore.set((int)(MAX_POINTS_CARROT*CARROT_STATE4_POINT_PERCENTAGE));
     }
 
 

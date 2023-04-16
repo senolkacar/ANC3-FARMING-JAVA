@@ -30,25 +30,25 @@ public class Carrot extends Element{
 //        this.daysInCurrentState++;
 //    }
 
-    void incrementDay() {
-       // incrementDaysInCurrentState();
-        state.get().incrementDay();
-    }
+//    void incrementDay() {
+//       // incrementDaysInCurrentState();
+//        state.get().incrementDay();
+//    }
 
-    @Override
-    void fertilize(){
-        state.get().fertilize();
-    }
-
-    @Override
-    IntegerProperty getHarvestScore(){
-        return state.get().getHarvestScore();
-    }
-
-    @Override
-    void setElementHarvestScore() {
-        state.get().setHarvestScore();
-    }
+//    @Override
+//    void fertilize(){
+//        state.get().fertilize();
+//    }
+//
+//    @Override
+//    IntegerProperty getHarvestScore(){
+//        return state.get().getHarvestScore();
+//    }
+//
+//    @Override
+//    void setElementHarvestScore() {
+//        state.get().setHarvestScore();
+//    }
 
 //    void setHarvestScore(int harvestScore) {
 //        this.harvestScore.set(harvestScore);

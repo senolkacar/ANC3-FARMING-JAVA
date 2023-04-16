@@ -10,12 +10,13 @@ class CabbageRotten extends VegetableState {
 
     @Override
     public void incrementDay() {
+        setDaysInCurrentState(getDaysInCurrentState()+1);
         if (element.hasGrass() && getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION -5
                 || (!element.hasGrass() && getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION+1)){
             if(!element.hasGrass()){
                 setDaysInCurrentState(getDaysInCurrentState()-1);
             }
-            element.setElementHarvestScore();
+            setHarvestScore();
             element.state.set(new CabbageState1(element,StateType.STATE0,1));
             setStateType(StateType.STATE0);
         }

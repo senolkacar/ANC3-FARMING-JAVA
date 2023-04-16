@@ -48,15 +48,16 @@ class Parcel {
 //         elements.forEach(Element::incrementDay);//cause runtime exception when remove element
         ObservableList<Element> list = this.elements.get();
         for (int i=0; i<list.size(); i++) {
-            list.get(i).incrementDay();
+            if (list.get(i).state.get() != null)
+                list.get(i).state.get().incrementDay();
         }
     }
 
     int autoHarvest(ElementType elementType){
         int res = 0;
         for(Element element : elements) {
-            if(element.elementType == elementType) {
-                res = element.getHarvestScore().get();
+            if(element.elementType == elementType && element.state.get()!=null) {
+                res = element.state.get().getHarvestScore().get();
                 break;
             }
         }
@@ -70,9 +71,9 @@ class Parcel {
         Iterator<Element> iterator = elements.iterator();
         while(iterator.hasNext()) {
             Element element = iterator.next();
-            if(element.getIsVegetable()){
-                element.setElementHarvestScore();
-                res = element.getHarvestScore().get();
+            if(element.getIsVegetable() && element.state.get()!=null){
+                element.state.get().setHarvestScore();
+                res = element.state.get().getHarvestScore().get();
                 iterator.remove();
                 hasVegetables = true;
                 break;
@@ -118,8 +119,8 @@ class Parcel {
 
     void fertilize(){
         for(Element element : elements) {
-            if(element.getType() == ElementType.CARROT){
-                element.fertilize();
+            if(element.getType() == ElementType.CARROT && element.state.get()!=null){
+                element.state.get().fertilize();
             }
         }
     }

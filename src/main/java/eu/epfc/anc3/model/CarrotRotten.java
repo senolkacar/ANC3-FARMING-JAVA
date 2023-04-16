@@ -17,9 +17,10 @@ class CarrotRotten extends VegetableState{
 
     @Override
     public void incrementDay() {
+        setDaysInCurrentState(getDaysInCurrentState()+1);
         if (getDaysInCurrentState() == CARROT_ROTTEN_DURATION + 1) {
             setDaysInCurrentState(getDaysInCurrentState()-1);//should be harvested. if not the method become recursive
-            element.setElementHarvestScore();
+            setHarvestScore();
             element.state.set(new CarrotState1(element,StateType.STATE0,1));
             setStateType(StateType.STATE0);
         }

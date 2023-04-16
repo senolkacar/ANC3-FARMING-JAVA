@@ -39,10 +39,10 @@ public class Cabbage extends Element{
 //        return harvestScore;
 //    }
 
-    @Override
-    void setElementHarvestScore() {
-        state.get().setHarvestScore();
-    }
+//    @Override
+//    void setElementHarvestScore() {
+//        state.get().setHarvestScore();
+//    }
 //
 //    void setHarvestScore(int harvestScore) {
 //        this.harvestScore.set(harvestScore);
