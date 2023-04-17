@@ -1,11 +1,9 @@
 package eu.epfc.anc3.model;
 
 class CarrotState4 extends ElementState {
-
     CarrotState4(Element carrot, StateType stateType,int daysInCurrentState) {
         super(carrot,stateType,1);
     }
-
     @Override
     public void incrementDay() {
         setDaysInCurrentState(getDaysInCurrentState()+1);

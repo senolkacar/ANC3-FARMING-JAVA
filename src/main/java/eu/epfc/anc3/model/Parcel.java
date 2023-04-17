@@ -80,9 +80,7 @@ class Parcel {
             elements.removeIf(e -> e.getType() == ElementType.GRASS);
         }
         return res;
-
     }
-
     void plant(Mode mode){
         if(mode == Mode.PLANT_CABBAGE && !containsElementType(ElementType.CABBAGE) && !containsElementType(ElementType.CARROT)){
             //Cabbage cabbage = new Cabbage();
@@ -108,13 +106,11 @@ class Parcel {
             }
         }
     }
-
     void setHasGrass(boolean hasGrass) {
         for (Element element : elements) {
             element.setHasGrass(hasGrass);
         }
     }
-
     void PlaceGrassToLastPlace(){
         for (int i = 0; i < elements.size() - 1; i++) {
             Element element = elements.get(i);

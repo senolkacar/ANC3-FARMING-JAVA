@@ -14,7 +14,6 @@
 
         private final MenuViewModel menuVM;
         ObjectProperty<Mode> menuModeObjectProperty = new SimpleObjectProperty<>();
-
         public MenuView(MenuViewModel menuVM) {
             this.setSpacing(50);
             this.setPadding(new Insets(20));
@@ -26,7 +25,6 @@
             sleepButton = new Button();
             startButton.setFocusTraversable(false);
             sleepButton.setFocusTraversable(false);
-            //sleepButton.setDisable(true);
 
             buttonNameLogic();
             buttonLogic();
@@ -50,17 +48,5 @@
         private void buttonLogic(){
             sleepButton.disableProperty().bind(menuVM.farmerMovementEnableProperty().not());
         }
-        /*private void onStartButtonAction() {
 
-            if (startButton.getText().equals("Démarrer")) {
-                menuVM.reset();
-                sleepButton.setDisable(false);
-                startButton.setText("Arrêter");
-            } else {
-                menuVM.stop();
-                sleepButton.setDisable(true);
-                startButton.setText("Démarrer");
-            }
-
-        }*/
     }

@@ -7,7 +7,6 @@ class Farm {
     public static final int FARM_WIDTH = 25;
     public static final int FARM_HEIGHT = 15;
     public static final int PADDING = 10;
-
     private final Parcel[][] farm;
 
     Farm() {
@@ -19,11 +18,9 @@ class Farm {
             }
         }
     }
-
     ListProperty<Element> valueProperty(Position position) {
         return farm[position.getY()][position.getX()].elementProperty();
     }
-
     List<Element> getValue(Position position) {
         return farm[position.getY()][position.getX()].getValue();
     }
@@ -39,7 +36,6 @@ class Farm {
     void removeElement(Position position, ElementType element) {
         farm[position.getY()][position.getX()].removeElement(element);
     }
-
     void addElement(Position position, Element element) {
         farm[position.getY()][position.getX()].addElement(element);
     }
@@ -47,7 +43,6 @@ class Farm {
     int autoHarvest(Position position,ElementType elementType) {
         return farm[position.getY()][position.getX()].autoHarvest(elementType);
     }
-
     int harvest(Position position) {
         return farm[position.getY()][position.getX()].harvest();
     }

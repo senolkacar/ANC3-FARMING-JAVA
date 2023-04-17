@@ -11,10 +11,8 @@ import javafx.scene.layout.HBox;
 
 public class CountView extends HBox {
     private final CountViewModel countVM;
-
     private final Label dayCountLabel;
     private final TextField dayCountInput;
-
     private final Label scoreLabel;
     private final TextField scoreInput;
 

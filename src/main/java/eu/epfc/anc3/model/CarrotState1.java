@@ -4,7 +4,6 @@ class CarrotState1 extends ElementState {
     CarrotState1(Element carrot, StateType stateType,int daysInCurrentState) {
         super(carrot, stateType, daysInCurrentState);
     }
-
     @Override
     public void incrementDay() {
         setDaysInCurrentState(getDaysInCurrentState()+1);

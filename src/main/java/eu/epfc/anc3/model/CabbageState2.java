@@ -1,11 +1,9 @@
 package eu.epfc.anc3.model;
 
 class CabbageState2 extends ElementState {
-
     public CabbageState2(Element cabbage, StateType stateType,int daysInCurrentState) {
         super(cabbage,stateType,daysInCurrentState);
     }
-
     @Override
     public void incrementDay() {
         setDaysInCurrentState(getDaysInCurrentState()+1);
@@ -19,6 +17,5 @@ class CabbageState2 extends ElementState {
     public void setHarvestScore() {
         getHarvestScore().set((int)(MAX_POINTS_CABBAGE*CABBAGE_STATE2_POINT_PERCENTAGE));
     }
-
 
 }

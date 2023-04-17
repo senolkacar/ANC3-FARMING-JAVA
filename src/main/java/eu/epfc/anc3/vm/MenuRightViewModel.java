@@ -8,7 +8,6 @@ import javafx.beans.property.ObjectProperty;
 import javafx.scene.control.ToggleButton;
 
 public class MenuRightViewModel {
-
     private final GameFacade game;
 
     public MenuRightViewModel(GameFacade game) {
@@ -37,7 +36,6 @@ public class MenuRightViewModel {
 
         }
     }
-
     public void fertilizeAction(ObjectProperty<Mode> menuModeObjectProperty, ToggleButton fertilizeButton, MenuRightView menuRightView) {
         menuRightView.requestFocus();
         if (menuModeObjectProperty.get()==Mode.FERTILIZE){
@@ -47,7 +45,6 @@ public class MenuRightViewModel {
             fertilizeButton.isSelected();
         }
     }
-
     public void plantCabbageAction(ObjectProperty<Mode> menuModeObjectProperty,ToggleButton plantCabbageButton, MenuRightView menuRightView) {
         menuRightView.requestFocus();
         if (menuModeObjectProperty.get()==Mode.PLANT_CABBAGE){
@@ -57,7 +54,6 @@ public class MenuRightViewModel {
             plantCabbageButton.isSelected();
         }
     }
-
     public void plantCarrotAction(ObjectProperty<Mode> menuModeObjectProperty,ToggleButton plantCarrotButton, MenuRightView menuRightView) {
         menuRightView.requestFocus();
         if (menuModeObjectProperty.get()==Mode.PLANT_CARROT){
@@ -67,7 +63,6 @@ public class MenuRightViewModel {
             plantCarrotButton.isSelected();
         }
     }
-
     public void plantGrassAction(ObjectProperty<Mode> menuModeObjectProperty, ToggleButton plantGrassButton, MenuRightView menuRightView) {
         menuRightView.requestFocus();
         if (menuModeObjectProperty.get()==Mode.PLANT_GRASS){

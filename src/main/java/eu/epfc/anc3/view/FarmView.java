@@ -12,7 +12,6 @@ import static eu.epfc.anc3.view.GameView.FARM_WIDTH;
 
 public class FarmView extends GridPane {
     private final FarmViewModel farmVM;
-
     public FarmView(FarmViewModel farmViewModel) {
         setPadding(new Insets(PADDING));
         this.farmVM = farmViewModel;

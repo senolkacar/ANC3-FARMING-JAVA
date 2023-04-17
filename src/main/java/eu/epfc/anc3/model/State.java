@@ -30,21 +30,13 @@ public interface State {
     int MAX_POINTS_CABBAGE = 200;
 
     ObjectProperty<StateType> getStateType();
-
     void setStateType(StateType stateType);
-
     void incrementDay();
-
     void fertilize();
-
     void setHarvestScore();
-
     IntegerProperty getHarvestScore();
-
-   int getDaysInCurrentState();
-
+    int getDaysInCurrentState();
     void setDaysInCurrentState(int daysInCurrentState);
-
     Element getElement();
     void setElement(Element element);
 

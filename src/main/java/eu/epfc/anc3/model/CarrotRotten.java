@@ -1,7 +1,6 @@
 package eu.epfc.anc3.model;
 
 class CarrotRotten extends ElementState {
-
     CarrotRotten(Element carrot, StateType stateType,int daysInCurrentState) {
         super(carrot,stateType,daysInCurrentState);
     }

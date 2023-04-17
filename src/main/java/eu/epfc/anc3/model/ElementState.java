@@ -6,8 +6,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 abstract class ElementState implements State {
-
-
     private Element element;
     private int daysInCurrentState;
     private ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
@@ -17,19 +15,16 @@ abstract class ElementState implements State {
         this.element = element;
         this.stateType.set(stateType);
         this.daysInCurrentState = daysInCurrentState;
-
     }
 
     @Override
     public ObjectProperty<StateType> getStateType() {
         return stateType;
     }
-
     @Override
     public void setStateType(StateType stateType) {
         this.stateType.set(stateType);
     }
-
     @Override
     public String toString() {
         return "VegetableState{" +
@@ -39,7 +34,6 @@ abstract class ElementState implements State {
                 ", harvestScore=" + harvestScore +
                 '}';
     }
-
     @Override
     public int getDaysInCurrentState() {
         return daysInCurrentState;
@@ -49,7 +43,6 @@ abstract class ElementState implements State {
     public void setDaysInCurrentState(int daysInCurrentState) {
         this.daysInCurrentState = daysInCurrentState;
     }
-
     @Override
     public void fertilize() {
     }
@@ -57,12 +50,10 @@ abstract class ElementState implements State {
     public void setHarvestScore(){
 
     }
-
     @Override
     public IntegerProperty getHarvestScore(){
         return harvestScore;
     }
-
     @Override
     public Element getElement(){
         return element;

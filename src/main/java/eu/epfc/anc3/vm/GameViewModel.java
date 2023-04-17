@@ -93,7 +93,6 @@ public class GameViewModel {
         } else {
             game.plantOrRemove();
         }
-
     }
 
 

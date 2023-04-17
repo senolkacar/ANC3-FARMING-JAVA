@@ -17,15 +17,12 @@
         private final static int SPACE = 10;
         private final static int BUTTON_WIDTH = 180;
         private final static int BUTTON_HEIGHT = 50;
-
         private final ToggleGroup actionToggleGroup;
-
         private final ToggleButton plantGrassButton = new ToggleButton("Planter du gazon");
         private final ToggleButton plantCarrotButton =new ToggleButton("Planter des carottes");
         private final ToggleButton plantCabbageButton =new ToggleButton("Planter du chou");
         private final ToggleButton fertilizeButton =new ToggleButton("Fertiliser");
         private final ToggleButton harvestButton =new ToggleButton("Récolter");
-
         private final Image grass = new Image("grass.png");
         ImageView grassImageView = new ImageView(grass);
 

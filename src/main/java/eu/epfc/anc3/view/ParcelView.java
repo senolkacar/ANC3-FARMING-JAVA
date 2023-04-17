@@ -15,9 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ParcelView extends StackPane {
-
     private final ParcelViewModel parcelVM;
-
     private final ImageView imageView = new ImageView();
     private final ImageView farmer = new ImageView("farmer.png");
     private final ImageView carrot = new ImageView("carrot1.png");
@@ -99,8 +97,7 @@ public class ParcelView extends StackPane {
 
                     if (element.stateProperty() != null) {
                         element.stateProperty().addListener((obs, oldVal, newVal) -> {
-                            //System.out.println("newVal : " + newVal);
-                            setCarrotImage(newVal.getStateType().get(),element);
+                               setCarrotImage(newVal.getStateType().get(),element);
                         });
                     }
                 }
