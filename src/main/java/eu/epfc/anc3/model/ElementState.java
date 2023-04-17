@@ -5,15 +5,15 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
-abstract class VegetableState implements State {
+abstract class ElementState implements State {
 
 
-    protected Element element;
-    protected int daysInCurrentState;
-    public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
-    public IntegerProperty harvestScore = new SimpleIntegerProperty(0);
+    private Element element;
+    private int daysInCurrentState;
+    private ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
+    private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
 
-    VegetableState (Element element, StateType stateType, int daysInCurrentState) {
+    ElementState(Element element, StateType stateType, int daysInCurrentState) {
         this.element = element;
         this.stateType.set(stateType);
         this.daysInCurrentState = daysInCurrentState;
@@ -50,11 +50,9 @@ abstract class VegetableState implements State {
         this.daysInCurrentState = daysInCurrentState;
     }
 
-//    @Override
-//    public void incrementDaysInCurrentState() {
-//        this.daysInCurrentState++;
-//    }
-
+    @Override
+    public void fertilize() {
+    }
     @Override
     public void setHarvestScore(){
 
@@ -63,6 +61,15 @@ abstract class VegetableState implements State {
     @Override
     public IntegerProperty getHarvestScore(){
         return harvestScore;
+    }
+
+    @Override
+    public Element getElement(){
+        return element;
+    }
+    @Override
+    public void setElement(Element element) {
+        this.element = element;
     }
 
 }

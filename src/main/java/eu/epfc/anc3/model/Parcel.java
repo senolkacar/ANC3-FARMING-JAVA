@@ -44,17 +44,17 @@ class Parcel {
 //         elements.forEach(Element::incrementDay);//cause runtime exception when remove element
         ObservableList<Element> list = this.elements.get();
         for (int i=0; i<list.size(); i++) {
-            if (list.get(i).state.get() != null)
-                list.get(i).state.get().incrementDay();
+            if (list.get(i).getState() != null)
+                list.get(i).getState().incrementDay();
         }
     }
 
     int autoHarvest(ElementType elementType){
         int res = 0;
         for(Element element : elements) {
-            if(element.elementType == elementType && element.state.get()!=null) {
-                element.state.get().setHarvestScore();
-                res = element.state.get().getHarvestScore().get();
+            if(element.elementType == elementType && element.getState()!=null) {
+                element.getState().setHarvestScore();
+                res = element.getState().getHarvestScore().get();
                 break;
             }
         }
@@ -68,26 +68,13 @@ class Parcel {
         Iterator<Element> iterator = elements.iterator();
         while(iterator.hasNext()) {
             Element element = iterator.next();
-            if(element.getIsVegetable() && element.state.get()!=null){
-                element.state.get().setHarvestScore();
-                res = element.state.get().getHarvestScore().get();
+            if(element.getIsVegetable() && element.getState()!=null){
+                element.getState().setHarvestScore();
+                res = element.getState().getHarvestScore().get();
                 iterator.remove();
                 hasVegetables = true;
                 break;
             }
-//            if(element.getType() == ElementType.CARROT){
-//                element.setElementHarvestScore();
-//                res = element.getHarvestScore().get();
-//                iterator.remove();
-//                hasVegetables = true;
-//                break;
-//            } else if(element.getType() == ElementType.CABBAGE){
-//                element.setElementHarvestScore();
-//                res = element.getHarvestScore().get();
-//                iterator.remove();
-//                hasVegetables = true;
-//                break;
-//            }
         }
         if(!hasVegetables) { // if there are no vegetables, remove the grass
             elements.removeIf(e -> e.getType() == ElementType.GRASS);
@@ -116,8 +103,8 @@ class Parcel {
 
     void fertilize(){
         for(Element element : elements) {
-            if(element.getType() == ElementType.CARROT && element.state.get()!=null){
-                element.state.get().fertilize();
+            if(element.getType() == ElementType.CARROT && element.getState()!=null){
+                element.getState().fertilize();
             }
         }
     }

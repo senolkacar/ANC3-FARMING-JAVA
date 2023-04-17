@@ -79,8 +79,8 @@ public class ParcelView extends StackPane {
             for(Element element : elements) {
                 if(element.getType() == ElementType.GRASS) {
 
-                    if (element.state != null) {
-                        element.state.get().getStateType().addListener((obs, oldVal, newVal) -> setGrassImage(newVal));
+                    if (element.getState() != null) {
+                        element.getState().getStateType().addListener((obs, oldVal, newVal) -> setGrassImage(newVal));
                     }
                 }
             }
@@ -97,8 +97,8 @@ public class ParcelView extends StackPane {
                         getChildren().remove(farmer);
                     }
 
-                    if (element.state != null) {
-                        element.state.addListener((obs, oldVal, newVal) -> {
+                    if (element.stateProperty() != null) {
+                        element.stateProperty().addListener((obs, oldVal, newVal) -> {
                             //System.out.println("newVal : " + newVal);
                             setCarrotImage(newVal.getStateType().get(),element);
                         });
@@ -118,8 +118,8 @@ public class ParcelView extends StackPane {
                         getChildren().add(cabbage);
                         getChildren().remove(farmer);
                     }
-                    if (element.state != null) {
-                        element.state.addListener((obs, oldVal, newVal) -> {
+                    if (element.stateProperty() != null) {
+                        element.stateProperty().addListener((obs, oldVal, newVal) -> {
                             setCabbageImage(newVal.getStateType().get(),element);
                         });
                     }

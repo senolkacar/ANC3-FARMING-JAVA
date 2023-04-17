@@ -6,8 +6,8 @@ import java.util.Objects;
 
 public abstract class Element  {
 
-    public ElementType elementType;
-    public  ObjectProperty<State> state = new SimpleObjectProperty<>();
+    ElementType elementType;
+    private ObjectProperty<State> state = new SimpleObjectProperty<>();
     private final BooleanProperty hasGrass = new SimpleBooleanProperty();
     private final BooleanProperty isVegetable = new SimpleBooleanProperty(false);
 
@@ -42,7 +42,7 @@ public abstract class Element  {
         return hasGrass;
     }
 
-    public void setHasGrass(boolean hasGrass) {
+    void setHasGrass(boolean hasGrass) {
         this.hasGrass.set(hasGrass);
     }
 
@@ -53,8 +53,15 @@ public abstract class Element  {
     BooleanProperty getIsVegetableProperty() {
         return isVegetable;
     }
-
     void setIsVegetable(boolean isVegetable) {
         this.isVegetable.set(isVegetable);
     }
+
+    public State getState() {
+        return state.get();
+    }
+    public ObjectProperty<State> stateProperty() {
+        return state;
+    }
+
 }

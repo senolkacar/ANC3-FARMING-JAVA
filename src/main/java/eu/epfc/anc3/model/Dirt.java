@@ -4,7 +4,6 @@ class Dirt extends Element {
     Dirt() {
         elementType = ElementType.DIRT;
     }
-
     @Override
     public ElementType getType() {
         return this.elementType;

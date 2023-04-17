@@ -45,4 +45,7 @@ public interface State {
 
     void setDaysInCurrentState(int daysInCurrentState);
 
+    Element getElement();
+    void setElement(Element element);
+
 }
