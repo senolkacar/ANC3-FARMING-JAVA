@@ -6,9 +6,23 @@ class Grass extends Element {
         stateProperty().set(new GrassState1(this,StateType.STATE1,1));
     }
 
+//
+//    @Override
+//    public Element getCopy() {
+//        return this;
+//    }
+
+       Grass(Grass grass) {
+               this.elementType =grass.elementType;
+                this.stateProperty().set(this.getState(grass.getState()));
+            }
+
+           private ElementState getState(State state) {
+                return new GrassState1(this,state.getStateType().get(),state.getDaysInCurrentState());
+            }
 
     @Override
     public Element getCopy() {
-        return this;
+              return new Grass(this);
     }
 }
