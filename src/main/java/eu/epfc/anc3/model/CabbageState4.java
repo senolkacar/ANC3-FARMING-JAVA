@@ -10,11 +10,6 @@ class CabbageState4 extends VegetableState {
     }
 
     @Override
-    public ObjectProperty<StateType> getStateType() {
-        return stateType;
-    }
-
-    @Override
     public void incrementDay() {
         setDaysInCurrentState(getDaysInCurrentState()+1);
         if (element.hasGrass() && getDaysInCurrentState() == CABBAGE_STATE4_DURATION

@@ -32,11 +32,6 @@ class CabbageRotten extends VegetableState {
     }
 
     @Override
-    public ObjectProperty<StateType> getStateType() {
-        return stateType;
-    }
-
-    @Override
     public String toString() {
         return "CabbageRotten{" +
                 "element=" + element +

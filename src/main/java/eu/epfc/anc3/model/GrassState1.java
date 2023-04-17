@@ -9,11 +9,6 @@ public class GrassState1 extends VegetableState{
     }
 
     @Override
-    public ObjectProperty<StateType> getStateType() {
-        return stateType;
-    }
-
-    @Override
     public void setStateType(StateType stateType) {
 
     }

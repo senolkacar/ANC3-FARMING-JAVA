@@ -9,11 +9,6 @@ class CarrotState1 extends VegetableState{
     }
 
     @Override
-    public ObjectProperty<StateType> getStateType() {
-        return  stateType;
-    }
-
-    @Override
     public void incrementDay() {
         setDaysInCurrentState(getDaysInCurrentState()+1);
         if (getDaysInCurrentState() == CARROT_STATE1_DURATION + 1) {
