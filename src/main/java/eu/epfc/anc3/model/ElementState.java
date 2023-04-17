@@ -17,14 +17,20 @@ abstract class ElementState implements State {
         this.daysInCurrentState = daysInCurrentState;
     }
 
+    ElementState(ElementState elementState) {
+        this(elementState.getElement(), elementState.getStateType().get(), elementState.getDaysInCurrentState());
+    }
+
     @Override
     public ObjectProperty<StateType> getStateType() {
         return stateType;
     }
+
     @Override
     public void setStateType(StateType stateType) {
         this.stateType.set(stateType);
     }
+
     @Override
     public String toString() {
         return "VegetableState{" +
@@ -34,6 +40,7 @@ abstract class ElementState implements State {
                 ", harvestScore=" + harvestScore +
                 '}';
     }
+
     @Override
     public int getDaysInCurrentState() {
         return daysInCurrentState;
@@ -43,21 +50,26 @@ abstract class ElementState implements State {
     public void setDaysInCurrentState(int daysInCurrentState) {
         this.daysInCurrentState = daysInCurrentState;
     }
+
     @Override
     public void fertilize() {
     }
+
     @Override
-    public void setHarvestScore(){
+    public void setHarvestScore() {
 
     }
+
     @Override
-    public IntegerProperty getHarvestScore(){
+    public IntegerProperty getHarvestScore() {
         return harvestScore;
     }
+
     @Override
-    public Element getElement(){
+    public Element getElement() {
         return element;
     }
+
     @Override
     public void setElement(Element element) {
         this.element = element;

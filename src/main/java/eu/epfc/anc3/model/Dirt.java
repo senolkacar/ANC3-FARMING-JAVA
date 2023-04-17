@@ -7,6 +7,6 @@ class Dirt extends Element {
 
     @Override
     public Element getCopy() {
-        return this;
+        return new Dirt();
     }
 }
