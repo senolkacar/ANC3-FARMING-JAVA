@@ -7,7 +7,8 @@ class Grass extends Element {
     }
 
 
-
-
-
+    @Override
+    public Element getCopy() {
+        return this;
+    }
 }

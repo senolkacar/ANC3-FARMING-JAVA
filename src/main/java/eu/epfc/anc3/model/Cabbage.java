@@ -7,4 +7,12 @@ class Cabbage extends Element{
         setIsVegetable(true);
     }
 
+    @Override
+    public Cabbage getCopy() {
+        Cabbage copy = new Cabbage();
+        copy.setHasGrass(this.hasGrass());
+        copy.setIsVegetable(this.getIsVegetable());
+        copy.stateProperty().set(this.getState());
+        return copy;
+    }
 }

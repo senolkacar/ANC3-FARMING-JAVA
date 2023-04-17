@@ -52,4 +52,7 @@ public abstract class Element  {
         return state;
     }
 
+    public abstract Element getCopy();
+
+
 }

@@ -18,5 +18,14 @@ class Day {
         dayProperty.set(dayProperty.get()+1);
     }
 
+    public Day(Day other) {
+        this.dayProperty = new SimpleIntegerProperty(other.dayProperty.get());
+    }
 
+    void setDay(Day day){
+        this.dayProperty.set(day.dayProperty.get());
+    }
+
+    public Day() {
+    }
 }

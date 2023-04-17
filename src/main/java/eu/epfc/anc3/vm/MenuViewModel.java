@@ -1,5 +1,6 @@
 package eu.epfc.anc3.vm;
 
+import eu.epfc.anc3.model.GameCaretaker;
 import eu.epfc.anc3.model.GameFacade;
 import eu.epfc.anc3.model.Mode;
 import eu.epfc.anc3.view.FarmView;
@@ -10,6 +11,7 @@ import java.net.HttpCookie;
 
 public class MenuViewModel {
     private final GameFacade game;
+    private final GameCaretaker caretaker = new GameCaretaker();
 
     SimpleStringProperty startButtonText = new SimpleStringProperty("Démarrer");
 
@@ -56,6 +58,18 @@ public class MenuViewModel {
         } else {
             game.reset();
             startButtonTextProperty().set("Arrêter");
+        }
+    }
+
+    public void OnSaveButtonAction() {
+        caretaker.saveState(game);
+    }
+
+    public void OnRestoreButtonAction() {
+        int mementoCount = caretaker.getMementoCount();
+        if (mementoCount > 0) {
+            int index = mementoCount - 1; // Restore the most recent state
+            caretaker.restoreState(game, index);
         }
     }
 }

@@ -87,5 +87,11 @@ public class GameFacade {
     public void autoHarvest(Position position, ElementType elementType){
         game.autoHarvest(position,elementType);
     }
+    public Memento createMemento() {
+       return game.createMemento();
+    }
+    public void setMemento(Memento memento) {
+        game.setMemento(memento);
+    }
 
 }

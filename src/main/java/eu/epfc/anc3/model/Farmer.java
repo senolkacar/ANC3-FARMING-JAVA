@@ -1,5 +1,7 @@
 package eu.epfc.anc3.model;
 
+import java.util.List;
+
 class Farmer extends Element{
     private Position position;
     Farmer() {
@@ -15,6 +17,10 @@ class Farmer extends Element{
             farm.removeElement(getPosition(), ElementType.FARMER);
             setPosition(position);
             farm.addElement(position, this);
+            List<Element> elements = farm.getValue(position);
+            for(Element e : elements){
+                System.out.println(e.getState());
+            }
     }
     void moveUp(Farm farm) {
         if (getPosition().getY() > 0) {
@@ -44,4 +50,15 @@ class Farmer extends Element{
             farm.addElement(getPosition(), this);
         }
     }
+
+    @Override
+    public Element getCopy() {
+        return this;
+    }
+
+    public Farmer(Farmer farmer) {
+        this.position = new Position(farmer.position.getX(), farmer.position.getY());
+    }
+
+
 }

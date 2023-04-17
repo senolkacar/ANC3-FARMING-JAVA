@@ -6,5 +6,12 @@ class Carrot extends Element{
         setIsVegetable(true);
     }
 
-
+    @Override
+    public Carrot getCopy() {
+        Carrot copy = new Carrot();
+        copy.setHasGrass(this.hasGrass());
+        copy.setIsVegetable(this.getIsVegetable());
+        copy.stateProperty().set(this.getState());
+        return copy;
+    }
 }

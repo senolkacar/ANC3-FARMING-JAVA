@@ -47,9 +47,11 @@
 
             saveButton.setOnAction(e -> {
                 requestFocus();
+                menuVM.OnSaveButtonAction();
                     });
             restoreButton.setOnAction(e -> {
                 requestFocus();
+                menuVM.OnRestoreButtonAction();
                     });
 
             getChildren().addAll(startButton, sleepButton, saveButton, restoreButton);

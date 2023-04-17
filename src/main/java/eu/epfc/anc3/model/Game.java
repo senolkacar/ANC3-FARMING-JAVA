@@ -11,6 +11,7 @@ class Game {
     private final BooleanProperty farmerMovementEnable = new SimpleBooleanProperty(false);
     private final IntegerProperty scoreProperty = new SimpleIntegerProperty(0);
     private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);
+    private Memento savedMemento;
 
     IntegerProperty getDayProperty(){
         return day.dayPropertyProperty();
@@ -115,15 +116,15 @@ class Game {
         return scoreProperty;
     }
 
-    /*private Memento createMemento() {
+    Memento createMemento() {
         return new Memento(new Farm(this.farm), new Farmer(this.farmer), new Day(this.day), this.farmerMovementEnable.get(),
                 this.scoreProperty.get(), this.gameMode.get());
     }
 
-    private void setMemento(Memento memento) {
+    void setMemento(Memento memento) {
         this.farm.setFarm(memento.getFarm());
         this.farmer.setPosition(memento.getFarmer().getPosition());
-        this.day.setDay(memento.getDay().getDay());
+        this.day.setDay(memento.getDay());
         this.farmerMovementEnable.set(memento.getFarmerMovementEnable());
         this.scoreProperty.set(memento.getScoreProperty());
         this.gameMode.set(memento.getGameMode());
@@ -137,6 +138,6 @@ class Game {
         if (savedMemento != null) {
             setMemento(savedMemento);
         }
-    }*/
+    }
 
 }

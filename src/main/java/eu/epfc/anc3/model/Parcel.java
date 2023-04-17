@@ -3,8 +3,10 @@ package eu.epfc.anc3.model;
 import javafx.beans.property.*;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
@@ -120,6 +122,18 @@ class Parcel {
                 break;
             }
         }
+    }
+
+    Parcel(){
+
+    }
+
+    Parcel(Parcel parcel){
+        List<Element> list = new ArrayList<>();
+        for(Element element : parcel.elements){
+            list.add(element.getCopy());
+        }
+        this.elements.setAll(list);
     }
 
 
