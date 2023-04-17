@@ -94,13 +94,19 @@ class Game {
         }
     }
     void moveFarmerLeft() {
-        farmer.moveLeft(farm);
+        if(isMovementEnabled()){
+            farmer.moveLeft(farm);
+        }
     }
     void moveFarmerRight() {
-        farmer.moveRight(farm);
+        if(isMovementEnabled()){
+            farmer.moveRight(farm);
+        }
     }
     void moveFarmerDown() {
-        farmer.moveDown(farm);
+        if(isMovementEnabled()){
+            farmer.moveDown(farm);
+        }
     }
     BooleanProperty farmerMovementEnableProperty() {
         return farmerMovementEnable;
