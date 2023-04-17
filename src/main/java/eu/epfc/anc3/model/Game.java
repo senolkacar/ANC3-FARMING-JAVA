@@ -109,4 +109,28 @@ class Game {
         return scoreProperty;
     }
 
+    /*private Memento createMemento() {
+        return new Memento(new Farm(this.farm), new Farmer(this.farmer), new Day(this.day), this.farmerMovementEnable.get(),
+                this.scoreProperty.get(), this.gameMode.get());
+    }
+
+    private void setMemento(Memento memento) {
+        this.farm.setFarm(memento.getFarm());
+        this.farmer.setPosition(memento.getFarmer().getPosition());
+        this.day.setDay(memento.getDay().getDay());
+        this.farmerMovementEnable.set(memento.getFarmerMovementEnable());
+        this.scoreProperty.set(memento.getScoreProperty());
+        this.gameMode.set(memento.getGameMode());
+    }
+
+    public void save() {
+        savedMemento = createMemento();
+    }
+
+    public void restore() {
+        if (savedMemento != null) {
+            setMemento(savedMemento);
+        }
+    }*/
+
 }

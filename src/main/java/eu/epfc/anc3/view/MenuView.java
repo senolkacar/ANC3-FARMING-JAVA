@@ -12,10 +12,14 @@
         private final Button startButton;
         private final Button sleepButton;
 
+        private final Button saveButton;
+
+        private final Button restoreButton;
+
         private final MenuViewModel menuVM;
         ObjectProperty<Mode> menuModeObjectProperty = new SimpleObjectProperty<>();
         public MenuView(MenuViewModel menuVM) {
-            this.setSpacing(50);
+            this.setSpacing(10);
             this.setPadding(new Insets(20));
 
             this.menuVM = menuVM;
@@ -23,8 +27,12 @@
 
             startButton = new Button();
             sleepButton = new Button();
+            saveButton = new Button("Sauver");
+            restoreButton = new Button("Restaurer");
             startButton.setFocusTraversable(false);
             sleepButton.setFocusTraversable(false);
+            saveButton.setFocusTraversable(false);
+            restoreButton.setFocusTraversable(false);
 
             buttonNameLogic();
             buttonLogic();
@@ -37,7 +45,14 @@
                 requestFocus();
                 menuVM.OnStartButtonAction();});
 
-            getChildren().addAll(startButton, sleepButton);
+            saveButton.setOnAction(e -> {
+                requestFocus();
+                    });
+            restoreButton.setOnAction(e -> {
+                requestFocus();
+                    });
+
+            getChildren().addAll(startButton, sleepButton, saveButton, restoreButton);
         }
 
         private void buttonNameLogic() {
@@ -47,6 +62,8 @@
 
         private void buttonLogic(){
             sleepButton.disableProperty().bind(menuVM.farmerMovementEnableProperty().not());
+            saveButton.disableProperty().bind(menuVM.farmerMovementEnableProperty().not());
+            restoreButton.disableProperty().bind(menuVM.farmerMovementEnableProperty().not());
         }
 
     }
