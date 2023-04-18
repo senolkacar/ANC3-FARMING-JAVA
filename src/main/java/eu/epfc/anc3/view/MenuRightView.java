@@ -17,12 +17,12 @@ public class MenuRightView extends VBox {
     private final static int SPACE = 10;
     private final static int BUTTON_WIDTH = 180;
     private final static int BUTTON_HEIGHT = 50;
-    private final ToggleGroup actionToggleGroup;
-    private final ToggleButton plantGrassButton = new ToggleButton("Planter du gazon");
-    private final ToggleButton plantCarrotButton = new ToggleButton("Planter des carottes");
-    private final ToggleButton plantCabbageButton = new ToggleButton("Planter du chou");
-    private final ToggleButton fertilizeButton = new ToggleButton("Fertiliser");
-    private final ToggleButton harvestButton = new ToggleButton("Récolter");
+    private final ToggleGroup actionToggleGroup = new ToggleGroup();
+    public ToggleButton plantGrassButton = new ToggleButton("Planter du gazon");
+    public ToggleButton plantCarrotButton = new ToggleButton("Planter des carottes");
+    public ToggleButton plantCabbageButton = new ToggleButton("Planter du chou");
+    public ToggleButton fertilizeButton = new ToggleButton("Fertiliser");
+    public ToggleButton harvestButton = new ToggleButton("Récolter");
     private final Image grass = new Image("grass.png");
     ImageView grassImageView = new ImageView(grass);
 
@@ -50,9 +50,11 @@ public class MenuRightView extends VBox {
         menuModeObjectProperty.bindBidirectional(menuRightVM.gameModeProperty());
         farmerMovementEnableProperty = menuRightVM.farmerMovementEnableProperty();
 
+
+
         configLogicBinding();
 
-        actionToggleGroup = new ToggleGroup();
+        //actionToggleGroup = new ToggleGroup();
 
         plantGrassButton.setPrefWidth(BUTTON_WIDTH);
         plantCarrotButton.setPrefWidth(BUTTON_WIDTH);
@@ -71,6 +73,8 @@ public class MenuRightView extends VBox {
         plantCabbageButton.setToggleGroup(actionToggleGroup);
         fertilizeButton.setToggleGroup(actionToggleGroup);
         harvestButton.setToggleGroup(actionToggleGroup);
+
+        menuModeObjectProperty.addListener((obs, oldVal, newVal) ->menuRightVM.setSelectedButton(newVal,actionToggleGroup,this));
 
         plantGrassButton.setOnAction(e -> {
             menuRightVM.plantGrassAction(menuModeObjectProperty, plantGrassButton, this);

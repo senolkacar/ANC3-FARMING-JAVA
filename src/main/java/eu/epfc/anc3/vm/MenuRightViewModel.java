@@ -6,6 +6,7 @@ import eu.epfc.anc3.view.MenuRightView;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 
 public class MenuRightViewModel {
     private final GameFacade game;
@@ -77,5 +78,19 @@ public class MenuRightViewModel {
 
         }
 
+    }
+
+    public void setSelectedButton(Mode newVal, ToggleGroup actionToggleGroup, MenuRightView menuRightView) {
+        menuRightView.requestFocus();
+        if (newVal == Mode.PLANT_CABBAGE) {
+            actionToggleGroup.selectToggle(menuRightView.plantCabbageButton);
+        }else if (newVal == Mode.PLANT_CARROT)
+            actionToggleGroup.selectToggle(menuRightView.plantCarrotButton);
+        else if (newVal == Mode.PLANT_GRASS)
+            actionToggleGroup.selectToggle(menuRightView.plantGrassButton);
+        else if (newVal == Mode.FERTILIZE)
+            actionToggleGroup.selectToggle(menuRightView.fertilizeButton);
+        else if (newVal == Mode.HARVEST)
+            actionToggleGroup.selectToggle(menuRightView.harvestButton);
     }
 }
