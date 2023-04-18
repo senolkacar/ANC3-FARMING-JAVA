@@ -12,7 +12,7 @@ import static javafx.collections.FXCollections.observableArrayList;
 
 class Parcel {
 
-    private final SimpleListProperty<Element> elements = new SimpleListProperty<>(observableArrayList(new Dirt()));
+    final SimpleListProperty<Element> elements = new SimpleListProperty<>(observableArrayList(new Dirt()));
 
     SimpleListProperty<Element> elementProperty() {
         return elements;
@@ -130,7 +130,7 @@ class Parcel {
 
     Parcel(Parcel parcel){
         List<Element> list = new ArrayList<>();
-        for(Element element : parcel.elements){
+        for (Element element : parcel.elements) {
             list.add(element.getCopy());
         }
         this.elements.setAll(list);

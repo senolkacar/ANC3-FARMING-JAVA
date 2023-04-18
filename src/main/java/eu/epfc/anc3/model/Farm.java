@@ -87,7 +87,18 @@ class Farm {
     void setFarm(Farm farm){
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
-                this.farm[i][j].setElement(farm.farm[i][j].getValue());
+                Parcel parcel = this.farm[i][j];
+                List<Element> elements = farm.farm[i][j].getValue();
+                List<Element> copiedElements = new ArrayList<>();
+
+                // Iterate over the elements in the parcel
+                for (Element element : elements) {
+                    // Make a deep copy of the element and add it to the copiedElements list
+                    copiedElements.add(element.getCopy());
+                }
+
+                // Set the copied elements list to the parcel
+                parcel.elements.setAll(copiedElements);
             }
         }
     }

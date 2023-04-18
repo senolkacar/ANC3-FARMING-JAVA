@@ -76,7 +76,6 @@ public class ParcelView extends StackPane {
             getChildren().remove(farmer);
             for(Element element : elements) {
                 if(element.getType() == ElementType.GRASS) {
-
                     if (element.getState() != null) {
                         element.getState().getStateType().addListener((obs, oldVal, newVal) -> setGrassImage(newVal));
                     }
