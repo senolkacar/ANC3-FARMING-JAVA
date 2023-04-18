@@ -1,12 +1,19 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ReadOnlyIntegerProperty;
+import javafx.beans.property.*;
+
 import java.util.List;
 
 public class GameFacade {
     private final Game game = new Game();
+
+    public IntegerProperty getDayProperty() {
+        return game.getDayProperty();
+    }
+
+    public void increaseDayProperty() {
+        game.increaseDayProperty();
+    }
 
     public ObjectProperty<Mode> gameModeProperty() {
         return game.gameModeProperty();
@@ -20,11 +27,7 @@ public class GameFacade {
         return game.getParcelValueProperty(position);
     }
 
-    public boolean containsElement(Position position, Element element) {
-        return game.containsElement(position, element);
-    }
-
-    public void removeElement(Position position, Element element) {
+    public void removeElement(Position position, ElementType element) {
         game.removeElement(position, element);
     }
 
@@ -56,18 +59,6 @@ public class GameFacade {
         game.setMovementEnabled(movementEnabled);
     }
 
-    public ReadOnlyIntegerProperty getGrassParcelCountValueProperty() {
-        return game.getGrassParcelCountValueProperty();
-    }
-
-    public void increaseGrassParcelCount() {
-        game.increaseGrassParcelCount();
-    }
-
-    public void decreaseGrassParcelCount() {
-        game.decreaseGrassParcelCount();
-    }
-
     public void start() {
         game.start();
     }
@@ -76,20 +67,20 @@ public class GameFacade {
         game.reset();
     }
 
-    public static int getFarmWidth(){
+    public static int getFarmWidth() {
         return Farm.FARM_WIDTH;
     }
 
-    public static int getFarmHeight(){
+    public static int getFarmHeight() {
         return Farm.FARM_HEIGHT;
     }
 
-    public static int getPadding(){
+    public static int getPadding() {
         return Farm.PADDING;
     }
 
-    public void plantOrRemoveGrass() { // dans game model
-        game.plantOrRemoveGrass();
+    public void plantOrRemove() { // dans game model
+        game.plantOrRemove();
     }
 
     public void onMouseClicked(Position position) {
@@ -101,7 +92,7 @@ public class GameFacade {
     }
 
     public void moveFarmerLeft() {
-       game.moveFarmerLeft();
+        game.moveFarmerLeft();
     }
 
     public void moveFarmerRight() {
@@ -109,10 +100,27 @@ public class GameFacade {
     }
 
     public void moveFarmerDown() {
-       game.moveFarmerDown();
+        game.moveFarmerDown();
     }
 
+    public BooleanProperty farmerMovementEnableProperty() {
+        return game.farmerMovementEnableProperty();
+    }
 
+    public ReadOnlyIntegerProperty getScoreProperty() {
+        return game.getScoreProperty();
+    }
 
+    public void autoHarvest(Position position, ElementType elementType) {
+        game.autoHarvest(position, elementType);
+    }
+
+    public Memento createMemento() {
+        return game.createMemento();
+    }
+
+    public void setMemento(Memento memento) {
+        game.setMemento(memento);
+    }
 
 }

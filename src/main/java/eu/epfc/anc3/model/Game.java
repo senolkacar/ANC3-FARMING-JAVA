@@ -3,149 +3,159 @@ package eu.epfc.anc3.model;
 import javafx.beans.property.*;
 
 import java.util.List;
-import java.util.Set;
 
 class Game {
     private final Farm farm = new Farm();
-    private final Dirt dirt = new Dirt();
-    private final Grass grass = new Grass();
     private final Farmer farmer = new Farmer();
-    private boolean movementEnabled = false;
-
-    private final IntegerProperty grassParcelCount = new SimpleIntegerProperty(0);
+    private final Day day = new Day();
+    private final BooleanProperty farmerMovementEnable = new SimpleBooleanProperty(false);
+    private final IntegerProperty scoreProperty = new SimpleIntegerProperty(0);
     private final ObjectProperty<Mode> gameMode = new SimpleObjectProperty<>(Mode.FREE);
+    private Memento savedMemento;
+
+    IntegerProperty getDayProperty() {
+        return day.dayPropertyProperty();
+    }
+
+    void start() {
+        farmer.setPosition(new Position(0, 0));
+        farm.reset();
+        gameMode.set(Mode.FREE);
+        scoreProperty.setValue(0);
+        farmerMovementEnable.set(false);
+    }
+
+    void reset() {
+        this.start();
+        day.resetDayProperty();
+        farmerMovementEnable.set(true);
+    }
+
+    void increaseDayProperty() {
+        day.increaseDayProperty();
+        farm.incrementDay();
+    }
 
     ObjectProperty<Mode> gameModeProperty() {
         return gameMode;
     }
 
-    public void setGameMode(Mode gameMode) {
+    void setGameMode(Mode gameMode) {
         this.gameMode.set(gameMode);
     }
 
-    public ListProperty<Element> getParcelValueProperty(Position position) {
+    void autoHarvest(Position position, ElementType elementType) {
+        scoreProperty.setValue(scoreProperty.getValue() + farm.autoHarvest(position, elementType));
+    }
+
+    ListProperty<Element> getParcelValueProperty(Position position) {
         return farm.valueProperty(position);
     }
 
-    public List<Element> getParcelValue(Position position) {
+    List<Element> getParcelValue(Position position) {
         return farm.getValue(position);
     }
 
-    public boolean containsElement(Position position, Element element) {
-        return farm.containsElement(position, element);
-    }
-
-    public void removeElement(Position position, Element element) {
+    void removeElement(Position position, ElementType element) {
         farm.removeElement(position, element);
     }
 
-    public void addElement(Position position, Element element) {
+    void addElement(Position position, Element element) {
         farm.addElement(position, element);
     }
 
-    public void setParcelValue(Position position, List<Element> element) {
+    void setParcelValue(Position position, List<Element> element) {
         farm.setValue(position, element);
     }
 
-    public Position getFarmerPosition() {
+    Position getFarmerPosition() {
         return farmer.getPosition();
     }
 
-    public void setFarmerPosition(Position position) {
+    void setFarmerPosition(Position position) {
         farmer.setPosition(position);
     }
 
-    public boolean isMovementEnabled() {
-        return movementEnabled;
+    boolean isMovementEnabled() {
+        return farmerMovementEnable.get();
     }
 
-    public void setMovementEnabled(boolean movementEnabled) {
-        this.movementEnabled = movementEnabled;
+    void setMovementEnabled(boolean movementEnabled) {
+        this.farmerMovementEnable.set(movementEnabled);
     }
 
-    public ReadOnlyIntegerProperty getGrassParcelCountValueProperty() {
-        return grassParcelCount;
-    }
-
-    public void increaseGrassParcelCount() {
-        grassParcelCount.setValue(grassParcelCount.getValue() + 1);
-    }
-
-    public void decreaseGrassParcelCount() {
-        if (grassParcelCount.getValue()>0) {
-            grassParcelCount.setValue(grassParcelCount.getValue() - 1);
-        }
-    }
-
-    public void start(){
-        farmer.setPosition(new Position(0, 0));
-        farm.reset();
-        gameMode.set(Mode.FREE);
-        //mode = Mode.FREE;
-        grassParcelCount.setValue(0);
-        movementEnabled = false;
-    }
-
-    public void reset() {
-        this.start();
-        movementEnabled = true;
-    }
-
-    public void plantOrRemoveGrass() {
+    void plantOrRemove() {
         if (!isMovementEnabled())
             return;
-
-        if(gameMode.get() == Mode.PLANT&& !this.containsElement(getFarmerPosition(), grass)) {
-                this.removeElement(getFarmerPosition(), dirt);
-                this.addElement(getFarmerPosition(), grass);
-                increaseGrassParcelCount();
-            }
-        else if (gameMode.get() == Mode.REMOVE && this.containsElement(getFarmerPosition(), grass)) {
-                this.removeElement(getFarmerPosition(), grass);
-                this.addElement(getFarmerPosition(), dirt);
-                decreaseGrassParcelCount();
+        if (gameMode.get() == Mode.PLANT_GRASS || gameMode.get() == Mode.PLANT_CARROT || gameMode.get() == Mode.PLANT_CABBAGE) {
+            farm.plant(getFarmerPosition(), gameMode.get());
+        } else if (gameMode.get() == Mode.HARVEST) {
+            scoreProperty.setValue(scoreProperty.getValue() + farm.harvest(getFarmerPosition()));
+        } else if (gameMode.get() == Mode.FERTILIZE) {
+            farm.fertilize(getFarmerPosition());
         }
     }
 
-    public void onMouseClicked(Position position) {
+    void onMouseClicked(Position position) {
         if (isMovementEnabled()) {
-            this.removeElement(getFarmerPosition(), farmer);
-            setFarmerPosition(position);
-            this.addElement(getFarmerPosition(), farmer);
+            farmer.teleport(position, farm);
         }
     }
 
-    public void moveFarmerUp() {
-        if (isMovementEnabled() && getFarmerPosition().getY() > 0) {
-            this.removeElement(getFarmerPosition(), farmer);
-            setFarmerPosition(new Position(getFarmerPosition().getX(),getFarmerPosition().getY()-1));
-            this.addElement(getFarmerPosition(), farmer);
+    void moveFarmerUp() {
+        if (isMovementEnabled()) {
+            farmer.moveUp(farm);
         }
     }
 
-    public void moveFarmerLeft() {
-        if (isMovementEnabled() && getFarmerPosition().getX() > 0) {
-            this.removeElement(getFarmerPosition(), farmer);
-            setFarmerPosition(new Position(getFarmerPosition().getX()-1,getFarmerPosition().getY()));
-            this.addElement(getFarmerPosition(), farmer);
+    void moveFarmerLeft() {
+        if (isMovementEnabled()) {
+            farmer.moveLeft(farm);
         }
     }
 
-    public void moveFarmerRight() {
-        if (isMovementEnabled() && getFarmerPosition().getX() < Farm.FARM_WIDTH - 1) {
-            this.removeElement(getFarmerPosition(), farmer);
-            setFarmerPosition(new Position(getFarmerPosition().getX()+1,getFarmerPosition().getY()));
-            this.addElement(getFarmerPosition(), farmer);
+    void moveFarmerRight() {
+        if (isMovementEnabled()) {
+            farmer.moveRight(farm);
         }
     }
 
-    public void moveFarmerDown() {
-        if (isMovementEnabled() && getFarmerPosition().getY() < Farm.FARM_HEIGHT - 1) {
-            this.removeElement(getFarmerPosition(), farmer);
-            setFarmerPosition(new Position(getFarmerPosition().getX(),getFarmerPosition().getY()+1));
-            this.addElement(getFarmerPosition(), farmer);
+    void moveFarmerDown() {
+        if (isMovementEnabled()) {
+            farmer.moveDown(farm);
         }
     }
 
+    BooleanProperty farmerMovementEnableProperty() {
+        return farmerMovementEnable;
+    }
+
+    ReadOnlyIntegerProperty getScoreProperty() {
+        return scoreProperty;
+    }
+
+    Memento createMemento() {
+        return new Memento(new Farm(this.farm), new Farmer(this.farmer), new Day(this.day), this.farmerMovementEnable.get(),
+                this.scoreProperty.get(), this.gameMode.get());
+    }
+
+    void setMemento(Memento memento) {
+        this.farm.setFarm(memento.getFarm());
+        this.farmer.setPosition(memento.getFarmer().getPosition());
+        this.day.setDay(memento.getDay());
+        this.farmerMovementEnable.set(memento.getFarmerMovementEnable());
+        this.scoreProperty.set(memento.getScoreProperty());
+        this.gameMode.set(memento.getGameMode());
+    }
+
+    public void save() {
+        savedMemento = createMemento();
+    }
+
+    public void restore() {
+        if (savedMemento != null) {
+            setMemento(savedMemento);
+        }
+    }
 
 }

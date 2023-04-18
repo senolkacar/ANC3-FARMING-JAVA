@@ -1,6 +1,7 @@
 package eu.epfc.anc3.vm;
 
 import eu.epfc.anc3.model.Element;
+import eu.epfc.anc3.model.ElementType;
 import eu.epfc.anc3.model.GameFacade;
 import eu.epfc.anc3.model.Position;
 import javafx.beans.property.ListProperty;
@@ -18,7 +19,15 @@ public class ParcelViewModel {
         return game.getParcelValueProperty(position);
     }
 
-    public void onMouseClicked(){
+    public void onMouseClicked() {
         game.onMouseClicked(position);
+    }
+
+    public void removeElement(ElementType elementType) {
+        game.removeElement(position, elementType);
+    }
+
+    public void autoHarvest(ElementType elementType) {
+        game.autoHarvest(position, elementType);
     }
 }

@@ -6,7 +6,7 @@ class Dirt extends Element {
     }
 
     @Override
-    public ElementType getType() {
-        return this.elementType;
+    public Element getCopy() {
+        return this;
     }
 }

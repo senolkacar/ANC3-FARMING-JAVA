@@ -9,13 +9,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class GameView extends BorderPane {
+    static final int FARM_WIDTH = GameFacade.getFarmWidth();
+    static final int FARM_HEIGHT = GameFacade.getFarmHeight();
+    static final int PADDING = GameFacade.getPadding();
     private final GameViewModel gameVM;
     private final CountView countView;
     private final FarmView farmView;
     private final MenuView menuView;
-    static final int FARM_WIDTH = GameFacade.getFarmWidth();
-    static final int FARM_HEIGHT = GameFacade.getFarmHeight();
-    static final int PADDING = GameFacade.getPadding();
+    private final MenuRightView menuRightView;
 
     public GameView(Stage stage) {
         gameVM = new GameViewModel();
@@ -31,7 +32,12 @@ public class GameView extends BorderPane {
         super.setBottom(menuView);
         menuView.setFocusTraversable(true);
 
-        Scene scene = new Scene(this, 1000, 700);
+        menuRightView = new MenuRightView(gameVM.getMenuRightViewModel());
+        menuRightView.setAlignment(Pos.CENTER);
+        super.setRight(menuRightView);
+        menuRightView.setFocusTraversable(true);
+
+        Scene scene = new Scene(this, 1200, 700);
         scene.getRoot().setStyle("-fx-font-family: 'serif'");
 
         stage.setScene(scene);
@@ -42,6 +48,7 @@ public class GameView extends BorderPane {
         scene.setOnKeyPressed(e -> gameVM.onKeyPressed(e.getCode()));
         scene.setOnKeyReleased(e -> gameVM.onKeyReleased(e.getCode()));
         AnimationTimer timer = new AnimationTimer() {
+
             @Override
             public void handle(long now) {
                 if (gameVM.isPlanting()) {
