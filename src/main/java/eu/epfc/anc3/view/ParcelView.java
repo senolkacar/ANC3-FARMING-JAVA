@@ -89,6 +89,7 @@ public class ParcelView extends StackPane {
         if (newList.contains(ElementType.CARROT)) {
            for(Element element : elements) {
                 if(element.getType() == ElementType.CARROT) {
+                    setCarrotImage(element.stateProperty().get().getStateType().get(),element);
                     if (!getChildren().contains(carrot)) {
                         getChildren().add(carrot);
                         getChildren().remove(farmer);
@@ -110,6 +111,7 @@ public class ParcelView extends StackPane {
         if (newList.contains(ElementType.CABBAGE)) {
             for (Element element : elements) {
                 if (element.getType() == ElementType.CABBAGE) {
+                    setCabbageImage(element.stateProperty().get().getStateType().get(),element);
                     if (!getChildren().contains(cabbage)) {
                         getChildren().add(cabbage);
                         getChildren().remove(farmer);
