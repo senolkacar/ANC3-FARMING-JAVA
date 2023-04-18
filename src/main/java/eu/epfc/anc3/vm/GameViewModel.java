@@ -4,8 +4,6 @@ import eu.epfc.anc3.model.GameFacade;
 import eu.epfc.anc3.model.Mode;
 import javafx.scene.input.KeyCode;
 
-import java.util.stream.Stream;
-
 
 public class GameViewModel {
     private final GameFacade game = new GameFacade();
@@ -49,16 +47,16 @@ public class GameViewModel {
     }
 
     public void onKeyPressed(KeyCode key) {
-        if(key == KeyCode.Z || key == KeyCode.UP) {
+        if (key == KeyCode.Z || key == KeyCode.UP) {
             game.moveFarmerUp();
-        } else if(key == KeyCode.Q || key == KeyCode.LEFT) {
+        } else if (key == KeyCode.Q || key == KeyCode.LEFT) {
             game.moveFarmerLeft();
-        } else if(key == KeyCode.S || key == KeyCode.DOWN) {
+        } else if (key == KeyCode.S || key == KeyCode.DOWN) {
             game.moveFarmerDown();
-        } else if(key == KeyCode.D || key == KeyCode.RIGHT) {
+        } else if (key == KeyCode.D || key == KeyCode.RIGHT) {
             game.moveFarmerRight();
-        } else if(key == KeyCode.SPACE) {
-            if(menuRightViewModel.gameModeProperty().get()== Mode.HARVEST) {
+        } else if (key == KeyCode.SPACE) {
+            if (menuRightViewModel.gameModeProperty().get() == Mode.HARVEST) {
                 long currentTime = System.currentTimeMillis();
                 long timeSinceLastRemove = currentTime - lastHarvestTime;
                 if (timeSinceLastRemove >= 500) {
@@ -72,7 +70,7 @@ public class GameViewModel {
         }
     }
 
-    public void onKeyReleased(KeyCode key){
+    public void onKeyReleased(KeyCode key) {
         if (key == KeyCode.SPACE) {
             isPlanting = false;
         }
@@ -83,7 +81,7 @@ public class GameViewModel {
     }
 
     public void continuePlantingOrRemoving() {
-        if(menuRightViewModel.gameModeProperty().get()== Mode.HARVEST) {
+        if (menuRightViewModel.gameModeProperty().get() == Mode.HARVEST) {
             long currentTime = System.currentTimeMillis();
             long timeSinceLastRemove = currentTime - lastHarvestTime;
             if (timeSinceLastRemove >= 200) {

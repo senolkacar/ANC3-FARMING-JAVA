@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.StackPane;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -74,8 +74,8 @@ public class ParcelView extends StackPane {
         if (newList.contains(ElementType.GRASS)) {
             imageView.setImage(grassImage);
             getChildren().remove(farmer);
-            for(Element element : elements) {
-                if(element.getType() == ElementType.GRASS) {
+            for (Element element : elements) {
+                if (element.getType() == ElementType.GRASS) {
                     if (element.getState() != null) {
                         element.getState().getStateType().addListener((obs, oldVal, newVal) -> setGrassImage(newVal));
                     }
@@ -87,9 +87,9 @@ public class ParcelView extends StackPane {
         }
 
         if (newList.contains(ElementType.CARROT)) {
-           for(Element element : elements) {
-                if(element.getType() == ElementType.CARROT) {
-                    setCarrotImage(element.stateProperty().get().getStateType().get(),element);
+            for (Element element : elements) {
+                if (element.getType() == ElementType.CARROT) {
+                    setCarrotImage(element.stateProperty().get().getStateType().get(), element);
                     if (!getChildren().contains(carrot)) {
                         getChildren().add(carrot);
                         getChildren().remove(farmer);
@@ -97,7 +97,7 @@ public class ParcelView extends StackPane {
 
                     if (element.stateProperty() != null) {
                         element.stateProperty().addListener((obs, oldVal, newVal) -> {
-                               setCarrotImage(newVal.getStateType().get(),element);
+                            setCarrotImage(newVal.getStateType().get(), element);
                         });
                     }
                 }
@@ -111,14 +111,14 @@ public class ParcelView extends StackPane {
         if (newList.contains(ElementType.CABBAGE)) {
             for (Element element : elements) {
                 if (element.getType() == ElementType.CABBAGE) {
-                    setCabbageImage(element.stateProperty().get().getStateType().get(),element);
+                    setCabbageImage(element.stateProperty().get().getStateType().get(), element);
                     if (!getChildren().contains(cabbage)) {
                         getChildren().add(cabbage);
                         getChildren().remove(farmer);
                     }
                     if (element.stateProperty() != null) {
                         element.stateProperty().addListener((obs, oldVal, newVal) -> {
-                            setCabbageImage(newVal.getStateType().get(),element);
+                            setCabbageImage(newVal.getStateType().get(), element);
                         });
                     }
                 }
@@ -135,7 +135,7 @@ public class ParcelView extends StackPane {
         }
     }
 
-    private void setCarrotImage(StateType stateType,Element element) {
+    private void setCarrotImage(StateType stateType, Element element) {
         getChildren().remove(carrot);
         switch (stateType) {
             case STATE1:
@@ -155,7 +155,7 @@ public class ParcelView extends StackPane {
                 break;
         }
         getChildren().add(carrot);
-        if(getChildren().contains(farmer)){
+        if (getChildren().contains(farmer)) {
             getChildren().remove(farmer);
             getChildren().add(farmer);
         }
@@ -168,7 +168,7 @@ public class ParcelView extends StackPane {
 
     }
 
-    private void setCabbageImage(StateType stateType,Element element) {
+    private void setCabbageImage(StateType stateType, Element element) {
         getChildren().remove(cabbage);
 
         switch (stateType) {
@@ -189,7 +189,7 @@ public class ParcelView extends StackPane {
                 break;
         }
         getChildren().add(cabbage);
-        if(getChildren().contains(farmer)){
+        if (getChildren().contains(farmer)) {
             getChildren().remove(farmer);
             getChildren().add(farmer);
         }

@@ -28,46 +28,50 @@ public class MenuRightViewModel {
 
     public void harvestAction(ObjectProperty<Mode> menuModeObjectProperty, ToggleButton harvestButton, MenuRightView menuRightView) {
         menuRightView.requestFocus();
-        if (menuModeObjectProperty.get()==Mode.HARVEST){
+        if (menuModeObjectProperty.get() == Mode.HARVEST) {
             setGameMode(Mode.FREE);
-        } else{
+        } else {
             setGameMode(Mode.HARVEST);
             harvestButton.isSelected();
 
         }
     }
+
     public void fertilizeAction(ObjectProperty<Mode> menuModeObjectProperty, ToggleButton fertilizeButton, MenuRightView menuRightView) {
         menuRightView.requestFocus();
-        if (menuModeObjectProperty.get()==Mode.FERTILIZE){
+        if (menuModeObjectProperty.get() == Mode.FERTILIZE) {
             setGameMode(Mode.FREE);
-        } else{
+        } else {
             setGameMode(Mode.FERTILIZE);
             fertilizeButton.isSelected();
         }
     }
-    public void plantCabbageAction(ObjectProperty<Mode> menuModeObjectProperty,ToggleButton plantCabbageButton, MenuRightView menuRightView) {
+
+    public void plantCabbageAction(ObjectProperty<Mode> menuModeObjectProperty, ToggleButton plantCabbageButton, MenuRightView menuRightView) {
         menuRightView.requestFocus();
-        if (menuModeObjectProperty.get()==Mode.PLANT_CABBAGE){
+        if (menuModeObjectProperty.get() == Mode.PLANT_CABBAGE) {
             setGameMode(Mode.FREE);
-        } else{
+        } else {
             setGameMode(Mode.PLANT_CABBAGE);
             plantCabbageButton.isSelected();
         }
     }
-    public void plantCarrotAction(ObjectProperty<Mode> menuModeObjectProperty,ToggleButton plantCarrotButton, MenuRightView menuRightView) {
+
+    public void plantCarrotAction(ObjectProperty<Mode> menuModeObjectProperty, ToggleButton plantCarrotButton, MenuRightView menuRightView) {
         menuRightView.requestFocus();
-        if (menuModeObjectProperty.get()==Mode.PLANT_CARROT){
+        if (menuModeObjectProperty.get() == Mode.PLANT_CARROT) {
             setGameMode(Mode.FREE);
-        } else{
+        } else {
             setGameMode(Mode.PLANT_CARROT);
             plantCarrotButton.isSelected();
         }
     }
+
     public void plantGrassAction(ObjectProperty<Mode> menuModeObjectProperty, ToggleButton plantGrassButton, MenuRightView menuRightView) {
         menuRightView.requestFocus();
-        if (menuModeObjectProperty.get()==Mode.PLANT_GRASS){
+        if (menuModeObjectProperty.get() == Mode.PLANT_GRASS) {
             setGameMode(Mode.FREE);
-        } else{
+        } else {
             setGameMode(Mode.PLANT_GRASS);
             plantGrassButton.isSelected();
 

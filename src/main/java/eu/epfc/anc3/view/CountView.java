@@ -1,9 +1,7 @@
 package eu.epfc.anc3.view;
 
 import eu.epfc.anc3.vm.CountViewModel;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -32,10 +30,10 @@ public class CountView extends HBox {
         scoreInput = new TextField("0");
         scoreInput.setDisable(true);
 
-        getChildren().addAll(scoreLabel,scoreInput,dayCountLabel,dayCountInput);
+        getChildren().addAll(scoreLabel, scoreInput, dayCountLabel, dayCountInput);
 
         dayInputProperty.addListener((obs, old, newVal) -> dayCountInput.setText("" + newVal));
 
-        scoreProperty.addListener((obs, old, newVal) ->scoreInput.setText(""+newVal));
+        scoreProperty.addListener((obs, old, newVal) -> scoreInput.setText("" + newVal));
     }
 }

@@ -9,15 +9,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class GameView extends BorderPane {
+    static final int FARM_WIDTH = GameFacade.getFarmWidth();
+    static final int FARM_HEIGHT = GameFacade.getFarmHeight();
+    static final int PADDING = GameFacade.getPadding();
     private final GameViewModel gameVM;
     private final CountView countView;
     private final FarmView farmView;
     private final MenuView menuView;
     private final MenuRightView menuRightView;
-
-    static final int FARM_WIDTH = GameFacade.getFarmWidth();
-    static final int FARM_HEIGHT = GameFacade.getFarmHeight();
-    static final int PADDING = GameFacade.getPadding();
 
     public GameView(Stage stage) {
         gameVM = new GameViewModel();
@@ -52,9 +51,9 @@ public class GameView extends BorderPane {
 
             @Override
             public void handle(long now) {
-                    if (gameVM.isPlanting()) {
-                        gameVM.continuePlantingOrRemoving();
-                    }
+                if (gameVM.isPlanting()) {
+                    gameVM.continuePlantingOrRemoving();
+                }
             }
         };
         timer.start();

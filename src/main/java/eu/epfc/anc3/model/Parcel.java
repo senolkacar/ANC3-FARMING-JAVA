@@ -1,12 +1,11 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.*;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static javafx.collections.FXCollections.observableArrayList;
 

@@ -3,26 +3,20 @@ package eu.epfc.anc3.model;
 class Grass extends Element {
     Grass() {
         elementType = ElementType.GRASS;
-        stateProperty().set(new GrassState1(this,StateType.STATE1,1));
+        stateProperty().set(new GrassState1(this, StateType.STATE1, 1));
     }
 
-//
-//    @Override
-//    public Element getCopy() {
-//        return this;
-//    }
+    Grass(Grass grass) {
+        this.elementType = grass.elementType;
+        this.stateProperty().set(this.getState(grass.getState()));
+    }
 
-       Grass(Grass grass) {
-               this.elementType =grass.elementType;
-                this.stateProperty().set(this.getState(grass.getState()));
-            }
-
-           private ElementState getState(State state) {
-                return new GrassState1(this,state.getStateType().get(),state.getDaysInCurrentState());
-            }
+    private ElementState getState(State state) {
+        return new GrassState1(this, state.getStateType().get(), state.getDaysInCurrentState());
+    }
 
     @Override
     public Element getCopy() {
-              return new Grass(this);
+        return new Grass(this);
     }
 }

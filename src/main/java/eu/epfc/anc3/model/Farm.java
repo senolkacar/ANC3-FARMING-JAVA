@@ -1,7 +1,7 @@
 package eu.epfc.anc3.model;
+
 import javafx.beans.property.ListProperty;
 
-import java.util.ArrayList;
 import java.util.List;
 
 class Farm {
@@ -32,12 +32,13 @@ class Farm {
     ListProperty<Element> valueProperty(Position position) {
         return farm[position.getY()][position.getX()].elementProperty();
     }
+
     List<Element> getValue(Position position) {
         return farm[position.getY()][position.getX()].getValue();
     }
 
     void setValue(Position position, List<Element> element) {
-            farm[position.getY()][position.getX()].setElement(element);
+        farm[position.getY()][position.getX()].setElement(element);
     }
 
     boolean containsElementType(Position position, ElementType elementType) {
@@ -47,16 +48,19 @@ class Farm {
     void removeElement(Position position, ElementType element) {
         farm[position.getY()][position.getX()].removeElement(element);
     }
+
     void addElement(Position position, Element element) {
         farm[position.getY()][position.getX()].addElement(element);
     }
 
-    int autoHarvest(Position position,ElementType elementType) {
+    int autoHarvest(Position position, ElementType elementType) {
         return farm[position.getY()][position.getX()].autoHarvest(elementType);
     }
+
     int harvest(Position position) {
         return farm[position.getY()][position.getX()].harvest();
     }
+
     void plant(Position position, Mode mode) {
         farm[position.getY()][position.getX()].plant(mode);
     }
@@ -64,14 +68,15 @@ class Farm {
     void fertilize(Position position) {
         farm[position.getY()][position.getX()].fertilize();
     }
+
     void reset() {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
                 farm[i][j].clearElements();
                 farm[i][j].addElement(new Dirt());
-               if(i==0&&j==0){
-                   farm[i][j].addElement(new Farmer());
-               }
+                if (i == 0 && j == 0) {
+                    farm[i][j].addElement(new Farmer());
+                }
             }
         }
     }
@@ -84,21 +89,14 @@ class Farm {
         }
     }
 
-    void setFarm(Farm farm){
+    void setFarm(Farm farm) {
         for (int i = 0; i < FARM_HEIGHT; ++i) {
             for (int j = 0; j < FARM_WIDTH; ++j) {
-
-//                Parcel parcel = this.farm[i][j];
-//                List<Element> copiedElements = new ArrayList<>();
-
                 this.farm[i][j].elements.clear();
                 List<Element> elements = farm.farm[i][j].getValue();
                 for (Element element : elements) {
                     this.farm[i][j].elements.add(element.getCopy());
-                    //parcel.addElement(element.getCopy());
                 }
-                // Set the copied elements list to the parcel
-                //parcel.elements.setAll(copiedElements);
             }
         }
     }
