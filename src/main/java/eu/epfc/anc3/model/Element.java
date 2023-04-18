@@ -1,15 +1,17 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.*;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 import java.util.Objects;
 
-public abstract class Element  {
-
-    public ElementType elementType;
-    public ObjectProperty<StateType> stateType = new SimpleObjectProperty<>();
-    private BooleanProperty isFertilied = new SimpleBooleanProperty();
-    private BooleanProperty hasGrass = new SimpleBooleanProperty();
+public abstract class Element {
+    ElementType elementType;
+    private ObjectProperty<State> state = new SimpleObjectProperty<>();
+    private final BooleanProperty hasGrass = new SimpleBooleanProperty();
+    private final BooleanProperty isVegetable = new SimpleBooleanProperty(false);
 
     public ElementType getType() {
         return elementType;
@@ -28,39 +30,44 @@ public abstract class Element  {
         return Objects.hash(elementType);
     }
 
-    void incrementDay() {
-    }
-
     @Override
-    public String toString(){
-        return elementType.toString() +"stateType : " + getStateType() ;
+    public String toString() {
+        return elementType.toString();
     }
 
-    void setIsFertilied(boolean isFertilied) {
-        this.isFertilied.set(isFertilied);
+    public boolean hasGrass() {
+        return hasGrass.get();
     }
 
-    void fertilize(){
+    public BooleanProperty hasGrassProperty() {
+        return hasGrass;
     }
 
     void setHasGrass(boolean hasGrass) {
         this.hasGrass.set(hasGrass);
     }
 
-//    void plantGrass(){
-//    }
-
-    IntegerProperty getHarvestScore(){
-        return new SimpleIntegerProperty();
+    boolean getIsVegetable() {
+        return isVegetable.get();
     }
 
-    void setElementHarvestScore(){}
-
-    public ObjectProperty<StateType> getStateType() {
-        return stateType;
+    BooleanProperty getIsVegetableProperty() {
+        return isVegetable;
     }
 
-    void setStateType(StateType stateType) {
-        this.stateType.set(stateType);
+    void setIsVegetable(boolean isVegetable) {
+        this.isVegetable.set(isVegetable);
     }
+
+    public State getState() {
+        return state.get();
+    }
+
+    public ObjectProperty<State> stateProperty() {
+        return state;
+    }
+
+    public abstract Element getCopy();
+
+
 }

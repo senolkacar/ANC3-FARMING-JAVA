@@ -7,7 +7,7 @@ import java.util.List;
 public class GameFacade {
     private final Game game = new Game();
 
-    public IntegerProperty getDayProperty(){
+    public IntegerProperty getDayProperty() {
         return game.getDayProperty();
     }
 
@@ -26,10 +26,6 @@ public class GameFacade {
     public ListProperty<Element> getParcelValueProperty(Position position) {
         return game.getParcelValueProperty(position);
     }
-
-//    public boolean containsElement(Position position, Element element) {
-//        return game.containsElement(position, element);
-//    }
 
     public void removeElement(Position position, ElementType element) {
         game.removeElement(position, element);
@@ -71,15 +67,15 @@ public class GameFacade {
         game.reset();
     }
 
-    public static int getFarmWidth(){
+    public static int getFarmWidth() {
         return Farm.FARM_WIDTH;
     }
 
-    public static int getFarmHeight(){
+    public static int getFarmHeight() {
         return Farm.FARM_HEIGHT;
     }
 
-    public static int getPadding(){
+    public static int getPadding() {
         return Farm.PADDING;
     }
 
@@ -96,7 +92,7 @@ public class GameFacade {
     }
 
     public void moveFarmerLeft() {
-       game.moveFarmerLeft();
+        game.moveFarmerLeft();
     }
 
     public void moveFarmerRight() {
@@ -104,9 +100,8 @@ public class GameFacade {
     }
 
     public void moveFarmerDown() {
-       game.moveFarmerDown();
+        game.moveFarmerDown();
     }
-
 
     public BooleanProperty farmerMovementEnableProperty() {
         return game.farmerMovementEnableProperty();
@@ -116,15 +111,16 @@ public class GameFacade {
         return game.getScoreProperty();
     }
 
-//    public boolean containsCarrot(Position position) {
-//       return game.containsCarrot(position);
-//    }
-
-    public void autoHarvest(Position position, ElementType elementType){
-        game.autoHarvest(position,elementType);
+    public void autoHarvest(Position position, ElementType elementType) {
+        game.autoHarvest(position, elementType);
     }
 
-//    public StringProperty getCarrotImageProperty(Position position) {
-//        return game.getCarrotImageProperty(position);
-//    }
+    public Memento createMemento() {
+        return game.createMemento();
+    }
+
+    public void setMemento(Memento memento) {
+        game.setMemento(memento);
+    }
+
 }

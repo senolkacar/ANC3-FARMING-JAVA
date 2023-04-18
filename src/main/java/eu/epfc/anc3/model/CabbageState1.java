@@ -1,35 +1,23 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.scene.image.ImageView;
-
-class CabbageState1 extends CabbageState{
-
-//    String image = "cabbage2.png";
-
-    CabbageState1(Cabbage cabbage) {
-        super(cabbage);
+class CabbageState1 extends ElementState {
+    CabbageState1(Element cabbage, StateType stateType, int daysInCurrentState) {
+        super(cabbage, stateType, daysInCurrentState);
     }
 
     @Override
-    void incrementDay() {
-        if (cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE1_DURATION
-                || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_STATE1_DURATION + 1)){
-            cabbage.setCabbageState(new CabbageState2(cabbage));
-            cabbage.setDaysInCurrentState(1);
-//            cabbage.setImage(image);
-            cabbage.setStateType(StateType.STATE2);
+    public void incrementDay() {
+        setDaysInCurrentState(getDaysInCurrentState() + 1);
+        if (getElement().hasGrass() && getDaysInCurrentState() == CABBAGE_STATE1_DURATION
+                || (!getElement().hasGrass() && getDaysInCurrentState() == CABBAGE_STATE1_DURATION + 1)) {
+            getElement().stateProperty().set(new CabbageState2(getElement(), StateType.STATE2, 1));
+            setDaysInCurrentState(1);
         }
     }
 
     @Override
-    void setHarvestScore() {
-        cabbage.setHarvestScore((int)(cabbage.getMAX_POINTS()*CABBAGE_STATE1_POINT_PERCENTAGE));
+    public void setHarvestScore() {
+        getHarvestScore().set((int) (MAX_POINTS_CABBAGE * CABBAGE_STATE1_POINT_PERCENTAGE));
     }
 
-
-    @Override
-    public ObjectProperty<StateType> getStateType() {
-        return cabbage.getStateType();
-    }
 }

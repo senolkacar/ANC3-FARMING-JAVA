@@ -1,68 +1,73 @@
-    package eu.epfc.anc3.view;
+package eu.epfc.anc3.view;
 
-    import eu.epfc.anc3.model.Mode;
-    import eu.epfc.anc3.vm.MenuViewModel;
-    import javafx.beans.property.ObjectProperty;
-    import javafx.beans.property.SimpleObjectProperty;
-    import javafx.geometry.Insets;
-    import javafx.scene.control.Button;
-    import javafx.scene.control.ToggleButton;
-    import javafx.scene.control.ToggleGroup;
-    import javafx.scene.layout.HBox;
+import eu.epfc.anc3.model.Mode;
+import eu.epfc.anc3.vm.MenuViewModel;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 
-    public class MenuView extends HBox {
-        private final Button startButton;
-        private final Button sleepButton;
+public class MenuView extends HBox {
+    private final Button startButton;
+    private final Button sleepButton;
 
-        private final MenuViewModel menuVM;
-        ObjectProperty<Mode> menuModeObjectProperty = new SimpleObjectProperty<>();
+    private final Button saveButton;
 
-        public MenuView(MenuViewModel menuVM) {
-            this.setSpacing(50);
-            this.setPadding(new Insets(20));
+    private final Button restoreButton;
 
-            this.menuVM = menuVM;
-            menuModeObjectProperty.bindBidirectional(menuVM.gameModeProperty());
+    private final MenuViewModel menuVM;
+    ObjectProperty<Mode> menuModeObjectProperty = new SimpleObjectProperty<>();
 
-            startButton = new Button();
-            sleepButton = new Button();
-            startButton.setFocusTraversable(false);
-            sleepButton.setFocusTraversable(false);
-            //sleepButton.setDisable(true);
+    public MenuView(MenuViewModel menuVM) {
+        this.setSpacing(10);
+        this.setPadding(new Insets(20));
 
-            buttonNameLogic();
-            buttonLogic();
+        this.menuVM = menuVM;
+        menuModeObjectProperty.bindBidirectional(menuVM.gameModeProperty());
 
-            sleepButton.setOnAction(e->{
-                menuVM.sleepButtonAction();
-                requestFocus();
-            });
-            startButton.setOnAction(e -> {
-                requestFocus();
-                menuVM.OnStartButtonAction();});
+        startButton = new Button();
+        sleepButton = new Button();
+        saveButton = new Button("Sauver");
+        restoreButton = new Button("Restaurer");
+        startButton.setFocusTraversable(false);
+        sleepButton.setFocusTraversable(false);
+        saveButton.setFocusTraversable(false);
+        restoreButton.setFocusTraversable(false);
 
-            getChildren().addAll(startButton, sleepButton);
-        }
+        buttonNameLogic();
+        buttonLogic();
 
-        private void buttonNameLogic() {
-            startButton.textProperty().bind(menuVM.startButtonTextProperty());
-            sleepButton.textProperty().bind(menuVM.sleepButtonTextProperty());
-        }
+        sleepButton.setOnAction(e -> {
+            menuVM.sleepButtonAction();
+            requestFocus();
+        });
+        startButton.setOnAction(e -> {
+            requestFocus();
+            menuVM.OnStartButtonAction();
+        });
 
-        private void buttonLogic(){
-            sleepButton.disableProperty().bind(menuVM.farmerMovementEnableProperty().not());
-        }
-        /*private void onStartButtonAction() {
+        saveButton.setOnAction(e -> {
+            requestFocus();
+            menuVM.OnSaveButtonAction();
+        });
+        restoreButton.setOnAction(e -> {
+            requestFocus();
+            menuVM.OnRestoreButtonAction();
+        });
 
-            if (startButton.getText().equals("Démarrer")) {
-                menuVM.reset();
-                sleepButton.setDisable(false);
-                startButton.setText("Arrêter");
-            } else {
-                menuVM.stop();
-                sleepButton.setDisable(true);
-                startButton.setText("Démarrer");
-            }
-
-        }*/
+        getChildren().addAll(startButton, sleepButton, saveButton, restoreButton);
     }
+
+    private void buttonNameLogic() {
+        startButton.textProperty().bind(menuVM.startButtonTextProperty());
+        sleepButton.textProperty().bind(menuVM.sleepButtonTextProperty());
+    }
+
+    private void buttonLogic() {
+        sleepButton.disableProperty().bind(menuVM.farmerMovementEnableProperty().not());
+        saveButton.disableProperty().bind(menuVM.farmerMovementEnableProperty().not());
+        restoreButton.disableProperty().bind(menuVM.farmerMovementEnableProperty().not());
+    }
+
+}

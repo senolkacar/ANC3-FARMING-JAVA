@@ -1,90 +1,37 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.*;
-
-public class Cabbage extends Element{
-
-    private CabbageState cabbageState;
-    private static final int MAX_POINTS = 200;
-    private int daysInCurrentState = 1;
-    private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
-    //private StringProperty image = new SimpleStringProperty("cabbage1.png");// to delete
-    private BooleanProperty hasGrass = new SimpleBooleanProperty();//set when plant cabbage. to check if parcel contains grass or not
-
+class Cabbage extends Element {
     Cabbage() {
         elementType = ElementType.CABBAGE;
-        cabbageState = new CabbageState1(this);
-        stateType.set( StateType.STATE1);
+        stateProperty().set(new CabbageState1(this, StateType.STATE1, 1));
+        setIsVegetable(true);
     }
 
-    public CabbageState getCabbageState() {
-        return cabbageState;
+
+    public Cabbage(Cabbage other) {
+        elementType = other.elementType;
+        setIsVegetable(other.getIsVegetable());
+        stateProperty().set(this.getState(other.getState())); // Or use other.getStateProperty().get().clone() for a deep copy of the state property
     }
 
-    void setCabbageState(CabbageState cabbageState) {
-        this.cabbageState = cabbageState;
-    }
-
-    int getMAX_POINTS() {
-        return MAX_POINTS;
-    }
-
-    int getDaysInCurrentState() {
-        return daysInCurrentState;
-    }
-
-    void setDaysInCurrentState(int daysInCurrentState) {
-        this.daysInCurrentState = daysInCurrentState;
-    }
-
-    void incrementDaysInCurrentState() {
-        this.daysInCurrentState++;
-    }
-
-    void incrementDay() {
-        incrementDaysInCurrentState();
-        cabbageState.incrementDay();
-    }
-
-    boolean hasGrass() {
-        return hasGrass.get();
-    }
-
-    BooleanProperty hasGrassProperty() {
-        return hasGrass;
+    private ElementState getState(State state) {
+        if (state.getStateType().get() == StateType.STATE1) {
+            return new CabbageState1(this, state.getStateType().get(), state.getDaysInCurrentState());
+        } else if (state.getStateType().get() == StateType.STATE2) {
+            return new CabbageState2(this, state.getStateType().get(), state.getDaysInCurrentState());
+        } else if (state.getStateType().get() == StateType.STATE3) {
+            return new CabbageState3(this, state.getStateType().get(), state.getDaysInCurrentState());
+        } else if (state.getStateType().get() == StateType.STATE4) {
+            return new CabbageState4(this, state.getStateType().get(), state.getDaysInCurrentState());
+        } else if (state.getStateType().get() == StateType.STATEROTTEN) {
+            return new CabbageRotten(this, state.getStateType().get(), state.getDaysInCurrentState());
+        } else {
+            return null;
+        }
     }
 
     @Override
-    void setHasGrass(boolean hasGrass) {
-        this.hasGrass.set(hasGrass);
-    }
-
-//    @Override
-//    void plantGrass(){
-//        cabbageState.plantGrass();
-//    }//plantGrass should be called by farmer ?
-
-    @Override
-    IntegerProperty getHarvestScore(){
-        return harvestScore;
-    }
-
-    @Override
-    void setElementHarvestScore() {
-        cabbageState.setHarvestScore();
-    }
-
-    void setHarvestScore(int harvestScore) {
-        this.harvestScore.set(harvestScore);
-    }
-
-    @Override
-    public  ObjectProperty<StateType> getStateType() {
-        return stateType;
-    }
-
-    @Override
-    void setStateType(StateType stateType) {
-        this.stateType.set(stateType);
+    public Element getCopy() {
+        return new Cabbage(this);
     }
 }

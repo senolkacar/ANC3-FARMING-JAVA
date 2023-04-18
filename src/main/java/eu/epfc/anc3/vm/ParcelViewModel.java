@@ -1,10 +1,10 @@
 package eu.epfc.anc3.vm;
 
-import eu.epfc.anc3.model.*;
+import eu.epfc.anc3.model.Element;
+import eu.epfc.anc3.model.ElementType;
+import eu.epfc.anc3.model.GameFacade;
+import eu.epfc.anc3.model.Position;
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.StringProperty;
 
 public class ParcelViewModel {
     private final Position position;
@@ -19,7 +19,7 @@ public class ParcelViewModel {
         return game.getParcelValueProperty(position);
     }
 
-    public void onMouseClicked(){
+    public void onMouseClicked() {
         game.onMouseClicked(position);
     }
 
@@ -28,6 +28,6 @@ public class ParcelViewModel {
     }
 
     public void autoHarvest(ElementType elementType) {
-        game.autoHarvest(position,elementType);
+        game.autoHarvest(position, elementType);
     }
 }

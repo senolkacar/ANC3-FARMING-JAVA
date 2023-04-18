@@ -1,38 +1,28 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.ObjectProperty;
-
-class CabbageRotten extends CabbageState {
-
-//    String image = "0";
-
-    CabbageRotten(Cabbage cabbage) {
-        super(cabbage);
+class CabbageRotten extends ElementState {
+    public CabbageRotten(Element cabbage, StateType stateType, int daysInCurrentState) {
+        super(cabbage, stateType, daysInCurrentState);
     }
 
     @Override
-    void incrementDay() {
-        if (cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION -5
-                || (!cabbage.hasGrass() && cabbage.getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION+1)){
-//            cabbage.setImage(image);
-            //cabbage disappears on 11th day in dirt, but for the formula in harvestscore
-            //we need to pass the last rotten day of the cabbage which is 10th day
-            if(!cabbage.hasGrass()){
-                cabbage.setDaysInCurrentState(cabbage.getDaysInCurrentState()-1);
+    public void incrementDay() {
+        setDaysInCurrentState(getDaysInCurrentState() + 1);
+        setHarvestScore();
+        if (getElement().hasGrass() && getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION - 5
+                || (!getElement().hasGrass() && getDaysInCurrentState() == CABBAGE_ROTTEN_DURATION + 1)) {
+            if (!getElement().hasGrass()) {
+                setDaysInCurrentState(getDaysInCurrentState() - 1);
             }
-            cabbage.setElementHarvestScore();
-            cabbage.setStateType(StateType.STATE0);
-
+            getElement().stateProperty().set(new CabbageRotten(getElement(), StateType.STATE0, getDaysInCurrentState()));
+            setStateType(StateType.STATE0);
+            setHarvestScore();
         }
     }
 
     @Override
-    void setHarvestScore() {
-        cabbage.setHarvestScore(-(int)(cabbage.getMAX_POINTS()* 0.1 *cabbage.getDaysInCurrentState()));
+    public void setHarvestScore() {
+        getHarvestScore().set(-(int) (MAX_POINTS_CABBAGE * 0.1 * getDaysInCurrentState()));
     }
 
-    @Override
-    public ObjectProperty<StateType> getStateType() {
-        return cabbage.getStateType();
-    }
 }

@@ -1,15 +1,16 @@
 package eu.epfc.anc3.vm;
 
+import eu.epfc.anc3.model.GameCaretaker;
 import eu.epfc.anc3.model.GameFacade;
 import eu.epfc.anc3.model.Mode;
-import eu.epfc.anc3.view.FarmView;
-import eu.epfc.anc3.view.GameView;
-import javafx.beans.property.*;
-
-import java.net.HttpCookie;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 public class MenuViewModel {
     private final GameFacade game;
+    private final GameCaretaker caretaker = new GameCaretaker();
 
     SimpleStringProperty startButtonText = new SimpleStringProperty("Démarrer");
 
@@ -46,16 +47,28 @@ public class MenuViewModel {
     }
 
     public void sleepButtonAction() {
-         game.increaseDayProperty();
+        game.increaseDayProperty();
     }
 
     public void OnStartButtonAction() {
-        if(game.farmerMovementEnableProperty().get()) {
+        if (game.farmerMovementEnableProperty().get()) {
             game.setMovementEnabled(false);
             startButtonTextProperty().set("Démarrer");
         } else {
             game.reset();
             startButtonTextProperty().set("Arrêter");
+        }
+    }
+
+    public void OnSaveButtonAction() {
+        caretaker.saveState(game);
+    }
+
+    public void OnRestoreButtonAction() {
+        int mementoCount = caretaker.getMementoCount();
+        if (mementoCount > 0) {
+            int index = mementoCount - 1; // Restore the most recent state
+            caretaker.restoreState(game, index);
         }
     }
 }

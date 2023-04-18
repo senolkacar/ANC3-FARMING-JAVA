@@ -1,91 +1,36 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.*;
-import javafx.scene.image.ImageView;
-
-public class Carrot extends Element{
-
-    private CarrotState carrotState;
-    private static final int MAX_POINTS = 100;
-    private int daysInCurrentState = 1;
-    private IntegerProperty harvestScore = new SimpleIntegerProperty(0);
-    private StringProperty image = new SimpleStringProperty("carrot1.png");
-    private BooleanProperty isFertilied = new SimpleBooleanProperty(false);
-
+class Carrot extends Element {
     Carrot() {
         elementType = ElementType.CARROT;
-        carrotState = new CarrotState1(this);
-        stateType.set(StateType.STATE1);
+        stateProperty().set(new CarrotState1(this, StateType.STATE1, 1));
+        setIsVegetable(true);
     }
 
-    public CarrotState getCarrotState() {
-        return carrotState;
+    public Carrot(Carrot other) {
+        elementType = other.elementType;
+        setIsVegetable(other.getIsVegetable());
+        stateProperty().set(this.getState(other.getState())); // Or use other.getStateProperty().get().clone() if you want a deep copy of the state property
     }
 
-     void setCarrotState(CarrotState carrotState) {
-        this.carrotState = carrotState;
-    }
-
-    int getMAX_POINTS() {
-        return MAX_POINTS;
-    }
-
-    int getDaysInCurrentState() {
-        return daysInCurrentState;
-    }
-
-    void setDaysInCurrentState(int daysInCurrentState) {
-        this.daysInCurrentState = daysInCurrentState;
-    }
-
-    void incrementDaysInCurrentState() {
-        this.daysInCurrentState++;
-    }
-
-    void incrementDay() {
-        incrementDaysInCurrentState();
-        carrotState.incrementDay();
-    }
-
-    boolean isIsFertilied() {
-        return isFertilied.get();
-    }
-
-     BooleanProperty isFertiliedProperty() {
-        return isFertilied;
+    private ElementState getState(State state) {
+        if (state.getStateType().get() == StateType.STATE1) {
+            return new CarrotState1(this, state.getStateType().get(), state.getDaysInCurrentState());
+        } else if (state.getStateType().get() == StateType.STATE2) {
+            return new CarrotState2(this, state.getStateType().get(), state.getDaysInCurrentState());
+        } else if (state.getStateType().get() == StateType.STATE3) {
+            return new CarrotState3(this, state.getStateType().get(), state.getDaysInCurrentState());
+        } else if (state.getStateType().get() == StateType.STATE4) {
+            return new CarrotState4(this, state.getStateType().get(), state.getDaysInCurrentState());
+        } else if (state.getStateType().get() == StateType.STATEROTTEN) {
+            return new CarrotRotten(this, state.getStateType().get(), state.getDaysInCurrentState());
+        } else {
+            return null;
+        }
     }
 
     @Override
-    void setIsFertilied(boolean isFertilied) {
-        this.isFertilied.set(isFertilied);
-    }
-
-    @Override
-    void fertilize(){
-        carrotState.fertilize();
-    }
-
-    @Override
-    IntegerProperty getHarvestScore(){
-        return harvestScore;
-    }
-
-    @Override
-    void setElementHarvestScore() {
-        carrotState.setHarvestScore();
-    }
-
-    void setHarvestScore(int harvestScore) {
-        this.harvestScore.set(harvestScore);
-    }
-
-    @Override
-    public ObjectProperty<StateType> getStateType() {
-        return stateType;
-    }
-
-    @Override
-    void setStateType(StateType stateType) {
-        this.stateType.set(stateType);
+    public Element getCopy() {
+        return new Carrot(this);
     }
 }

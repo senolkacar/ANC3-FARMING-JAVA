@@ -1,46 +1,22 @@
 package eu.epfc.anc3.model;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 class Grass extends Element {
-
-    private int daysInCurrentState = 1;
-    //private StringProperty image = new SimpleStringProperty("grass.png");
-
     Grass() {
         elementType = ElementType.GRASS;
-        stateType.set(StateType.STATE1);
+        stateProperty().set(new GrassState1(this, StateType.STATE1, 1));
+    }
+
+    Grass(Grass grass) {
+        this.elementType = grass.elementType;
+        this.stateProperty().set(this.getState(grass.getState()));
+    }
+
+    private ElementState getState(State state) {
+        return new GrassState1(this, state.getStateType().get(), state.getDaysInCurrentState());
     }
 
     @Override
-    public ElementType getType() {
-        return this.elementType;
+    public Element getCopy() {
+        return new Grass(this);
     }
-
-    int getDaysInCurrentState() {
-        return daysInCurrentState;
-    }
-
-    @Override
-    void incrementDay() {
-        this.daysInCurrentState++;
-        if (getDaysInCurrentState()==12+1) {
-           this.setStateType(StateType.STATE0);
-        }
-    }
-
-    @Override
-    public ObjectProperty<StateType> getStateType() {
-        return stateType;
-    }
-
-    @Override
-    void setStateType(StateType stateType) {
-        this.stateType.set(stateType);
-    }
-
-
-
 }

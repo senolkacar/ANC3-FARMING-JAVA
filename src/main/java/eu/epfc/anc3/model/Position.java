@@ -26,8 +26,8 @@ public class Position {
     }
 
     @Override
-    public String toString(){// for debug
-        return getY()+"," + getY();
+    public String toString() {// for debug
+        return getY() + "," + getY();
     }
 
 }
